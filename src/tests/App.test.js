@@ -33,14 +33,18 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-describe('1) Teste se o topo da aplicação contém um conjunto fixo de links de navegação.', () => {
+describe('Teste se o topo da aplicação contém um conjunto fixo de links de navegação.', () => {
   it('O primeiro link deve possuir o texto Home', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
-    const heading = getByText(/Homee/i);
+    const heading = getByText(/Home/i);
     expect(heading).toBeInTheDocument();
+    const about = getByText(/About/i);
+    expect(about).toBeInTheDocument();
+    const favorite = getByText(/Favorite Pokémons/i);
+    expect(favorite).toBeInTheDocument();
   });
 });
