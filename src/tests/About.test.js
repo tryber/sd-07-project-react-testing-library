@@ -2,7 +2,7 @@ import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('links', () => {
+describe('About', () => {
   it('test About', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/about');
