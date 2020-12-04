@@ -19,7 +19,7 @@ describe('Testando Pokemon', () => {
     const pokemonActual = {
       type: getByTestId('pokemonType'),
       name: getByText(/pikachu/i),
-      weight: getByText(/Average weight:6.0kg/i),
+      weight: getByText(/Average weight: 6.0 kg/i),
       image: getByAltText(/Pikachu sprite/i),
       details: getByText(/More details/i),
       favorite: getByAltText(/Pikachu is marked as favorite/i),
