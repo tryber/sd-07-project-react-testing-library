@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 // import renderWithRouter from './renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
@@ -49,7 +49,6 @@ describe('3. FavoritePokemons.js file', () => {
     const { queryAllByTestId } = renderWithRouter(
       <FavoritePokemons pokemons={ favoritePokemons } />,
     );
-    expect(queryAllByTestId("pokemonType").length).toBe(ZERO);
+    expect(queryAllByTestId('pokemonType').length).toBe(ZERO);
   });
 });
-

@@ -2,7 +2,6 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 // import renderWithRouter from './renderWithRouter';
-// import renderWithRouter from './renderWithRouter';
 import NotFound from '../components/NotFound';
 
 test('', () => {
