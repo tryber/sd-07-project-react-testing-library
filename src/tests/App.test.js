@@ -9,7 +9,7 @@ describe('Testando o arquivo App', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();

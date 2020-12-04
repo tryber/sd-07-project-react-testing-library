@@ -1,5 +1,4 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
 import renderWithRender from '../renderWithRouter';
 import App from '../App';
 
