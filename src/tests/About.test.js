@@ -9,25 +9,24 @@ test('if about contains pokedex information', () => {
   expect(about).toBeInTheDocument();
 });
 // Teste se a página contém um heading h2 com o texto About Pokédex.
-test('if about contains pokedex information', () => {
+test('if about contains h2 with about pokedex', () => {
   const { container } = renderWithRouter(<About />);
   const [h2] = container.getElementsByTagName('h2');
   expect(h2).toHaveTextContent('About Pokédex');
 });
 // Teste se a página contém dois parágrafos com texto sobre a Pokédex.
-test('if about contains pokedex information', () => {
+test('if about contains 2 ps with text', () => {
   const { container } = renderWithRouter(<About />);
   const p = container.getElementsByTagName('p');
   expect(p[0]).toHaveTextContent(
-    `This application simulates a Pokédex,
-     a digital encliclopedia containing all Pokémons`,
+    `This application simulates a Pokédex, a digital encliclopedia containing all`,
   );
   expect(p[1]).toHaveTextContent(
     'One can filter Pokémons by type, and see more details for each one of them',
   );
 });
 // Teste se a página contém a seguinte imagem de uma Pokédex: https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png.
-test('if about contains pokedex information', () => {
+test('if about contains especific image', () => {
   const { container } = renderWithRouter(<About />);
   const [img] = container.getElementsByTagName('img');
   expect(img.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
