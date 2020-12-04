@@ -15,14 +15,10 @@ describe('Testando o arquivo About', () => {
     const aboutPoke = getByText(/About Pokédex/i);
     expect(aboutPoke).toBeInTheDocument();
 
-    const paragrafo1 = 'This application simulates a Pokédex,';
-
-    const aplication = getByText(paragrafo1);
+    const aplication = getByText(/This application simulates a Pokédex,/i);
     expect(aplication).toBeInTheDocument();
 
-    const paragrafo2 = 'One can filter Pokémons by type,';
-
-    const filter = getByText(paragrafo2);
+    const filter = getByText(/One can filter Pokémons by type,/i);
     expect(filter).toBeInTheDocument();
 
     const imagems = getByRole(/img/i);
