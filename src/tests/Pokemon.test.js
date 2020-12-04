@@ -13,14 +13,23 @@ const renderWithRouter = (component) => {
 
 test('Pokemon name rendering on screen', () => {
   const { getByText } = renderWithRouter(<App />);
-  const pikachu = getByText(/Pikachu/i).innerHTML;
-  expect(pikachu).toBe('Pikachu');
+  const pikachu = getByText(/Pikachu/i);
+  expect(pikachu).toBeInTheDocument();
+  expect(pikachu.innerHTML).toBe('Pikachu');
+});
+
+test('Rendering the correct type pokemon', () => {
+  const { getByTestId } = renderWithRouter(<App />);
+  const pokemonType = getByTestId('pokemonType');
+  expect(pokemonType).toBeInTheDocument();
+  expect(pokemonType.innerHTML).toBe('Electric');
 });
 
 test('Average weight rendering on screen', () => {
   const { getByTestId } = renderWithRouter(<App />);
-  const pikachuAverage = getByTestId('pokemon-weight').innerHTML;
-  expect(pikachuAverage).toBe('Average weight: 6.0 kg');
+  const pikachuAverage = getByTestId('pokemon-weight');
+  expect(pikachuAverage).toBeInTheDocument();
+  expect(pikachuAverage.innerHTML).toBe('Average weight: 6.0 kg');
 });
 
 test('Image source and alt pokemon is on screen ', () => {

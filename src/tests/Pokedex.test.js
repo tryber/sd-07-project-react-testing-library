@@ -11,6 +11,14 @@ const renderWithRouter = (component) => {
   });
 };
 
+test('Find heading h2 with text`Encountered pokémons`', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const heading = getByText(/Encountered pokémons/i);
+  expect(heading).toBeInTheDocument();
+  expect(heading.tagName).toBe('H2');
+  expect(heading.innerHTML).toBe('Encountered pokémons');
+});
+
 test('Show text next pokemon on button', () => {
   const { getByTestId, getByText } = renderWithRouter(<App />);
   const buttonNextPokemon = getByTestId('next-pokemon');
