@@ -19,14 +19,12 @@ describe('Teste da tela About', () => {
     const { container } = render(<About />);
     const p = container.querySelectorAll('p');
     const quantidadeP = 2;
-    const information1 = 'This application simulates a Pokédex,';
-    const information2 = ' a digital encliclopedia containing all Pokémons';
-    const information3 = 'One can filter Pokémons by type,';
-    const information4 = ' and see more details for each one of them';
 
     expect(p.length).toBe(quantidadeP);
-    expect(p[0].textContent).toBe(`${information1}${information2}`);
-    expect(p[1].textContent).toBe(`${information3}${information4}`);
+    expect(p[0].textContent).toBe('This application simulates a Pokédex,'
+    + ' a digital encliclopedia containing all Pokémons');
+    expect(p[1].textContent).toBe('One can filter Pokémons by type,'
+    + ' and see more details for each one of them');
   });
   it('test that there is a rendered an image of Pokedex', () => {
     const { getByRole } = render(<About />);
