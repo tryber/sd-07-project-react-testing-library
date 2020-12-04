@@ -22,3 +22,15 @@ test('shows the Pokédex when the route is `/`', () => {
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
+
+test('verifying if there are links in the app', () => {
+  const { getByText } = render(<App />);
+  const verifyingHome = getByText('Home');
+  expect(verifyingHome).toBeInTheDocument();
+
+  const verifyingAbout = getByText('About');
+  expect(verifyingAbout).toBeInTheDocument();
+
+  const verifyingFavoritePokemons = getByText('Favorite Pokémons');
+  expect(verifyingFavoritePokemons).toBeInTheDocument()
+});
