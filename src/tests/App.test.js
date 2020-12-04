@@ -1,7 +1,9 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import App from '../App';
+import renderWithRouter from './renderWithRouter';
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
@@ -23,7 +25,7 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-test('if links are present', () =>{
+test('if links text are present', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
@@ -32,4 +34,24 @@ test('if links are present', () =>{
   expect(getByText(/home/i)).toBeInTheDocument();
   expect(getByText(/about/i)).toBeInTheDocument();
   expect(getByText(/Favorite Pokémons/i)).toBeInTheDocument();
+});
+
+describe('tests if links are functional', () => {
+  it('should redirect to home', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/home/i));
+    expect(history.location.pathname).toBe('/');
+  });
+
+  it('should redirect to favorites', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/Favorite Pokémons/i));
+    expect(history.location.pathname).toBe('/favorites');
+  });
+
+  it('should redirect to about', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/about/i));
+    expect(history.location.pathname).toBe('/about');
+  });
 });
