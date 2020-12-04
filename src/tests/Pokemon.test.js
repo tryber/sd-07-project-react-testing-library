@@ -1,7 +1,7 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRender from '../renderWithRouter';
 import App from '../App';
-import { getByText, fireEvent } from '@testing-library/react';
 
 describe('Testando o arquivo Pokemon', () => {
   it('Deve renderizar name Pokemon ', () => {
@@ -32,7 +32,7 @@ describe('Testando o arquivo Pokemon', () => {
     expect(imagens).toBeInTheDocument();
     expect(imagens.alt).toBe('Pikachu sprite');
     expect(imagens.src).toBe(
-      'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png'
+      'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
     );
   });
 
