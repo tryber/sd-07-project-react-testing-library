@@ -7,22 +7,20 @@ describe('Testando o componente About', () => {
   it('Testando se a pagina contém informações', () => {
     const { getByText } = renderWithRouter(<App />);
     fireEvent.click(getByText('About'));
-    const procurandoInfo = getByText(/This application simulates a Pokédex/i);
+    const procurandoInfo = getByText(/About Pokédex/i);
     expect(procurandoInfo).toBeInTheDocument();
   });
 
-  it('Testando se a página tem heading', () => {
+  it('Testando o primeiro paragrafo da pagina', () => {
     const { getByText } = renderWithRouter(<App />);
     fireEvent.click(getByText('About'));
     const procurandoH2 = getByText(/This application simulates/i);
     expect(procurandoH2).toBeInTheDocument();
   });
 
-  it('Testando se a página contém dois parágrafos', () => {
+  it('Testando se a página contém um segundo parágrafo', () => {
     const { getByText } = renderWithRouter(<App />);
     fireEvent.click(getByText('About'));
-    const procurandoP1 = getByText(/This application simulates a Pokédex/);
-    expect(procurandoP1).toBeInTheDocument();
     const procurandoP2 = getByText(/One can filter Pokémons by type, and see more/);
     expect(procurandoP2).toBeInTheDocument();
   });
