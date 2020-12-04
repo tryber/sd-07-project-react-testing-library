@@ -2,7 +2,6 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import About from '../components/About';
-import renderWithRouter from './renderWithRouter';
 
 test('if about pokédex text is present on the page', () => {
   const { getByText } = render(
@@ -22,9 +21,10 @@ test('if image is present on the page', () => {
     </MemoryRouter>,
   );
   expect(getByRole('img')).toHaveAttribute(
-    'src', 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png'
+    'src',
+'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
   );
   expect(getByRole('img')).toHaveAttribute(
-    'class', 'pokedex-image'
+    'class', 'pokedex-image',
   );
 });
