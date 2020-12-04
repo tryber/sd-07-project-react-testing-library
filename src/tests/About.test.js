@@ -13,21 +13,18 @@ const renderWithRouter = (component) => {
 
 describe('Teste se a página contém as informações sobre a Pokédex', () => {
   test('if the page contains a h2 element with a especific text', () => {
-    const { getByTestId } = renderWithRouter(<About />);
+    const { getByText } = renderWithRouter(<About />);
 
-    const heading = getByTestId('heading');
+    const heading = getByText(/about pokédex/i);
     expect(heading).toBeInTheDocument();
-    expect(heading).toHaveTextContent(/about pokédex/i);
   });
 
   test('if the page contains 2 paragraphs', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
-
-    const paragraphs = getAllByTestId('about-pokedex');
-    const expectedParagraphs = 2;
-    expect(paragraphs[0]).toBeInTheDocument();
-    expect(paragraphs[1]).toBeInTheDocument();
-    expect(paragraphs.length).toBe(expectedParagraphs);
+    const { getByText } = renderWithRouter(<About />);
+    const paragraph1 = getByText(/This application simulates a Pokédex/i);
+    const paragraph2 = getByText(/One can filter Pokémons by type/i);
+    expect(paragraph1).toBeInTheDocument();
+    expect(paragraph2).toBeInTheDocument();
   });
 
   test('if the page contains a specific picture', () => {
