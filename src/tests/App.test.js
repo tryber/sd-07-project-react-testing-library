@@ -14,8 +14,6 @@ describe('Página principal', () => {
     expect(heading).toBeInTheDocument();
     expect(title).toBeInTheDocument();
   });
-
-  
 });
 
 describe('Links do Header', () => {
@@ -65,5 +63,12 @@ describe('Redirecionamento dos Links', () => {
     fireEvent.click(linkFavorites);
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
+  });
+
+  it('Testa a falha de URL não encontrada', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/hello');
+    const notFound = getByText('Page requested not found');
+    expect(notFound).toBeInTheDocument();
   });
 });
