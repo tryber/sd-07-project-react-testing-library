@@ -1,11 +1,11 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import { fireEvent } from '@testing-library/react';
 
 describe('Renderizar corretamente a aplicação no caminho especificado', () => {
   it('should have an pathname of `/`', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
     const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
@@ -18,10 +18,8 @@ describe('Renderizar corretamente a aplicação no caminho especificado', () => 
 });
 
 describe('Top of page must have nav links', () => {
-
-  test('if first link have the text `Home`',() => {
+  test('if first link have the text `Home`', () => {
     const { getByText, getAllByRole } = renderWithRouter(<App />);
-    
     const home = getByText(/Home/i);
     expect(home).toBeInTheDocument();
 
@@ -29,9 +27,8 @@ describe('Top of page must have nav links', () => {
     expect(linkArray[0]).toHaveTextContent(/Home/i);
   });
 
-  test('if second link have the text `About`',() => {
+  test('if second link have the text `About`', () => {
     const { getByText, getAllByRole } = renderWithRouter(<App />);
-    
     const about = getByText(/About/i);
     expect(about).toBeInTheDocument();
 
@@ -39,9 +36,8 @@ describe('Top of page must have nav links', () => {
     expect(linkArray[1]).toHaveTextContent(/About/i);
   });
 
-  test('if third link have the text `Favorite Pokémons`',() => {
+  test('if third link have the text `Favorite Pokémons`', () => {
     const { getByText, getAllByRole } = renderWithRouter(<App />);
-    
     const favorites = getByText(/Favorite Pokémons/i);
     expect(favorites).toBeInTheDocument();
 
