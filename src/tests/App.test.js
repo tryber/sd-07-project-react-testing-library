@@ -57,4 +57,4 @@ describe('Requisito 1', () => {
     const pageNotFound = getByText(/page requested not found/i);
     expect(pageNotFound).toBeInTheDocument();
   });
-})
+});
