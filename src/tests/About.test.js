@@ -3,7 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRoute from '../components/renderWithRoute';
 
-describe('testando o componente About', () => {
+describe('Testando o componente About', () => {
   it('Testando se a página contém informações', () => {
     const { getByText } = renderWithRoute(<App />);
     fireEvent.click(getByText('About'));
