@@ -21,7 +21,7 @@ test('Testando se a página contém dois parágrafos com texto sobre a Pokédex.
   const { container, getByText } = renderWithRouter(<About />);
   const p1 = container.querySelector('p');
 
-  const p2 = getByText('One can filter Pokémons by type,' 
+  const p2 = getByText('One can filter Pokémons by type,'
   + ' and see more details for each one of them');
 
   expect(p1).toBeInTheDocument();
