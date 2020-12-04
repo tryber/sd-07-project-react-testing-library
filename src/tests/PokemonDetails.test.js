@@ -36,12 +36,12 @@ describe('Testando o arquivo Pokemon Details', () => {
     const favoriteLocation = getAllByAltText(/Pikachu location/i);
     expect(favoriteLocation[0]).toBeInTheDocument();
     expect(favoriteLocation[0].src).toBe(
-      'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png'
+      'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
     );
 
     expect(favoriteLocation[1]).toBeInTheDocument();
     expect(favoriteLocation[1].src).toBe(
-      'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png'
+      'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
     );
   });
 
