@@ -56,7 +56,6 @@ describe('1. Testing the App.js file', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/notfound');
     expect(history.location.pathname).toBe('/notfound');
-
     const notFound = getByText(/Page requested not found/i);
     expect(notFound).toBeInTheDocument();
   });
