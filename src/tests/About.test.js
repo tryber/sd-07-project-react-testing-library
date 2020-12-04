@@ -23,6 +23,7 @@ describe('2. Testing the About.js file', () => {
     const cdn = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/';
     const img = '800px-Gen_I_Pok%C3%A9dex.png';
     const image = getByRole('img');
+
     expect(image).toHaveAttribute(
       'src',
       `${cdn}${img}`,
