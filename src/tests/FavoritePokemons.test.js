@@ -8,7 +8,7 @@ describe('renders the FavoritePokemons screen', () => {
   it('renders no favorites pokemons', () => {
     render(<FavoritePokemons pokemons={ [] } />, { wrapper: MemoryRouter });
     expect(screen.getByText('No favorite pokemon found')).toBeInTheDocument();
-    expect(screen.queryByText('pokemon-name')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('pokemon-name')).not.toBeInTheDocument();
   });
 
   it('renders two favorites pokemons', () => {
