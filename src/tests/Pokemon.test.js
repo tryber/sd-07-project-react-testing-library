@@ -14,6 +14,9 @@ describe('6. Testing the Pokemon.js file', () => {
     const poke1 = getByTestId('pokemon-name');
     expect(poke1).toHaveTextContent(/Charmander/i);
 
+    const poke2 = getByTestId('pokemonType');
+    expect(poke2).toHaveTextContent(/Fire/i);
+
     const poke1Average = getByTestId('pokemon-weight');
     expect(poke1Average).toHaveTextContent('Average weight: 8.5 kg');
 
