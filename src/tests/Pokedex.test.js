@@ -7,7 +7,7 @@ describe('Testando o arquivo Pokedex', () => {
   it('Informações sobre Pokedex', () => {
     const { getByText } = renderWithRender(<App />);
     const Encountered = getByText(/Encountered pokémons/i);
-    expect(Encountered.tagName).toBe('H2');   
+    expect(Encountered.tagName).toBe('H2');
   });
 
   it('Informações Botoes Pokedex', () => {
@@ -33,7 +33,7 @@ describe('Testando o arquivo Pokedex', () => {
 
     const buttonPoke = getAllByTestId('pokemon-type-button');
 
-    buttonPoke.map(buton => expect(buton).toBeInTheDocument());
+    buttonPoke.map((buton) => expect(buton).toBeInTheDocument());
 
     fireEvent.click(getByText(/Psychic/i));
 
@@ -46,14 +46,11 @@ describe('Testando o arquivo Pokedex', () => {
     const PokedexFilter2 = getByText(/Caterpie/i);
 
     expect(PokedexFilter2).toBeInTheDocument();
-    
-    
+
     fireEvent.click(getByText(/All/i));
 
     const PokedexFilter3 = getByText(/Pikachu/i);
 
     expect(PokedexFilter3).toBeInTheDocument();
-
   });
-
 });
