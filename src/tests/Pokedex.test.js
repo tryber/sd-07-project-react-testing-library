@@ -83,7 +83,7 @@ describe('renders the App screen', () => {
       { wrapper: MemoryRouter },
     );
 
-    expect(screen.getByTestId('pokemon-reset-type-button').textContent).toBe('All');
+    expect(screen.getByText('All')).toBeInTheDocument();
   });
 
   it('renders disabled next button', () => {
@@ -109,7 +109,7 @@ describe('renders the App screen', () => {
       { wrapper: MemoryRouter },
     );
 
-    fireEvent.click(screen.getByTestId('pokemon-reset-type-button'));
+    fireEvent.click(screen.getByText('All'));
 
     const nextButton = screen.getByTestId('next-pokemon');
     expect(nextButton.textContent).toBe('Próximo pokémon');
