@@ -72,17 +72,7 @@ describe('Testando o arquivo Pokemon.js', () => {
   });
 
   it('Matando Mutantes 2.0', () => {
-    const pokeFav = {
-      4: false,
-      10: false,
-      23: false,
-      25: true,
-      65: false,
-      78: false,
-      143: false,
-      148: true,
-      151: false,
-    };
+    const pokeFav = true;
 
     renderWithRouter(
       <Pokemon pokemon={ data[0] } showDetailsLink={ false } isFavorite={ pokeFav } />,
@@ -90,5 +80,14 @@ describe('Testando o arquivo Pokemon.js', () => {
 
     const starImg = screen.getByRole('img', { name: /pikachu is marked as favorite/i });
     expect(starImg.src).toMatch(/star-icon.svg/);
+
+    const mut1 = screen.getByText(/6.0/);
+    expect(mut1).toBeInTheDocument();
+
+    const mut2 = screen.getByText(/Average weight/);
+    expect(mut2).toBeInTheDocument();
+
+    const mut3 = screen.getByText(/kg/);
+    expect(mut3).toBeInTheDocument();
   });
 });
