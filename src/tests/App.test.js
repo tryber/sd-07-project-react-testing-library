@@ -14,15 +14,6 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('Teste se a página principal da Pokédex renderiza com /', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
-  expect(getByText('Encountered pokémons.')).toBeInTheDocument();
-});
-
 test('Teste se o topo da aplicação há um conjunto fixo de links de navegação.', () => {
   const { getByText } = render(
     <MemoryRouter>
@@ -60,8 +51,8 @@ test('Teste se a aplicação direciona para a página de Pokémons Favoritados.'
 
 test('Teste se a aplicação é redirecionada para a página Not Found.', () => {
   const { getByText, history } = renderWithRouter(<App />);
-  const route = '/anything';
+  const route = '/anything/';
   history.push(route);
-  const pageNotFound = getByText(/not found/i);
+  const pageNotFound = getByText(/page requested not found/i);
   expect(pageNotFound).toBeInTheDocument();
 });
