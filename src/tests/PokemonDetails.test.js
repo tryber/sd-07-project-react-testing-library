@@ -67,8 +67,8 @@ describe('7. Testando o arquivo PokemonDetails.js', () => {
 
       const summaryHeadingToExist = screen.getByRole('heading', { name: /summary/i });
 
-      expect(summaryHeadingToExist.innerHTML).toBe('Summary');
-      expect(summaryHeadingToExist.innerHTML).not.toBe(' Summary ');
+      expect(summaryHeadingToExist.innerHTML).toBe(' Summary ');
+      expect(summaryHeadingToExist.innerHTML).not.toBe('Summary');
     });
 
     it(`A  seção de detalhes deve conter um parágrafo com o resumo do Pokémon específico
