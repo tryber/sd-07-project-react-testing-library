@@ -9,7 +9,7 @@ describe('rotas', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe('rotas', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     history.push('/errrrouuuuuu');
     const NotFound = getByAltText(
-      'Pikachu crying because the page requested was not found'
+      'Pikachu crying because the page requested was not found',
     );
     expect(NotFound).toBeInTheDocument();
   });
