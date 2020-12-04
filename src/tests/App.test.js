@@ -1,15 +1,15 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../helpers/renderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+describe('App.js', () => {
+  it('Página principal é renderizada ao carregar a aplicação no caminho de URL /', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const heading = getByText(/Pokédex/i);
+    const title = getByText(/Encountered pokémons/i);
+    history.push('/');
+    expect(heading).toBeInTheDocument();
+    expect(title).toBeInTheDocument();
+  });
 });
+
