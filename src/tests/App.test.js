@@ -27,7 +27,7 @@ test('for navigation links at the top of the page', () => {
   expect(homeButton).toBeInTheDocument();
   expect(aboutButton).toBeInTheDocument();
   expect(favoritePokemonsButton).toBeInTheDocument();
-})
+});
 
 test('whether the home button redirects to the home page', () => {
   const { getByText, history } = renderWithRouter(<App />);
@@ -35,9 +35,9 @@ test('whether the home button redirects to the home page', () => {
 
   fireEvent.click(homeButton);
   expect(history.location.pathname).toBe('/');
-  const homeText = getByText('Encountered pokémons')
-  expect(homeText).toBeInTheDocument()
-})
+  const homeText = getByText('Encountered pokémons');
+  expect(homeText).toBeInTheDocument();
+});
 
 test('whether the about button redirects to the about page', () => {
   const { getByText, history } = renderWithRouter(<App />);
@@ -45,9 +45,9 @@ test('whether the about button redirects to the about page', () => {
 
   fireEvent.click(aboutButton);
   expect(history.location.pathname).toBe('/about');
-  const aboutText = getByText('About Pokédex')
-  expect(aboutText).toBeInTheDocument()
-})
+  const aboutText = getByText('About Pokédex');
+  expect(aboutText).toBeInTheDocument();
+});
 
 test('whether the Favorite Pokémons button redirects to the favorites page', () => {
   const { getByText, history } = renderWithRouter(<App />);
@@ -55,9 +55,9 @@ test('whether the Favorite Pokémons button redirects to the favorites page', ()
 
   fireEvent.click(favoritePokemonsButton);
   expect(history.location.pathname).toBe('/favorites');
-  const favoritePokemonsText = getByText('Favorite pokémons')
-  expect(favoritePokemonsText).toBeInTheDocument()
-})
+  const favoritePokemonsText = getByText('Favorite pokémons');
+  expect(favoritePokemonsText).toBeInTheDocument();
+});
 
 test('whether the home button redirects to the favorite pokemons page', () => {
   const { getByText, history } = renderWithRouter(<App />);
@@ -65,6 +65,6 @@ test('whether the home button redirects to the favorite pokemons page', () => {
   expect(history.location.pathname).toBe('/');
   history.push('/xablau');
   expect(history.location.pathname).toBe('/xablau');
-  const pageNotFoundText = getByText('Page requested not found')
-  expect(pageNotFoundText).toBeInTheDocument()
-})
+  const pageNotFoundText = getByText('Page requested not found');
+  expect(pageNotFoundText).toBeInTheDocument();
+});
