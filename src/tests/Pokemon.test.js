@@ -9,9 +9,9 @@ describe('Testando o arquivo Pokemon.js', () => {
   it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
     renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite={ false } />);
 
-    const weight = screen.getByText(/average weight: 6.0 kg/i);
+    const weight = screen.getByTestId('pokemon-weight');
     const img = screen.getByRole('img', { name: /pikachu sprite/i });
-    expect(weight).toBeInTheDocument();
+    expect(weight).toHaveTextContent(/average weight: 6.0 kg/i);
     expect(img.src).toBe(
       'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
     );
