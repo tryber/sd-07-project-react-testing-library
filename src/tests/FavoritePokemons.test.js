@@ -28,5 +28,6 @@ describe('favorito', () => {
     fireEvent.click(getByText('Favorite Pokémons'));
     const arraypokemon = getAllByTestId('pokemon-name');
     expect(arraypokemon[0]).toBeInTheDocument();
+    expect(arraypokemon[1]).toBeInTheDocument();
   });
 });
