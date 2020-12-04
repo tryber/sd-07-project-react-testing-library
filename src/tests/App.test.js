@@ -8,7 +8,7 @@ describe('Requisito 1', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
@@ -18,7 +18,7 @@ describe('Requisito 1', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const home = getByText(/Home/i);
     expect(home).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe('Requisito 1', () => {
     const { getByText, history } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const home = getByText(/Home/i);
     fireEvent.click(home);
@@ -44,7 +44,7 @@ describe('Requisito 1', () => {
     const { getByText, history } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const about = getByText(/About/i);
     fireEvent.click(about);
@@ -56,7 +56,7 @@ describe('Requisito 1', () => {
     const { getByText, history } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const favorites = getByText(/Favorite Pokémons/i);
     fireEvent.click(favorites);
@@ -68,7 +68,7 @@ describe('Requisito 1', () => {
     const { getByText, history } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const route = '/notExist';
     history.push(route);
