@@ -49,7 +49,7 @@ describe('testando o componente App', () => {
   it('Testando redirecionamento para página não encontrada', () => {
     const { getByAltText, history } = renderWithRoute(<App />);
     history.push('/xablau');
-    const testandoNotFound = getByAltText('Pikachu crying because the page requested was not found');
-    expect(testandoNotFound).toBeInTheDocument();
+    const nfou = getByAltText('Pikachu crying because the page requested was not found');
+    expect(nfou).toBeInTheDocument();
   });
 });
