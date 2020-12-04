@@ -14,7 +14,6 @@ describe('3. Testing the FavoritePokemons.js file', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ pokemons } />);
     const poke1 = getByText(/Pikachu/i);
     expect(poke1).toBeInTheDocument();
-
     const poke2 = getByText(/Charmander/i);
     expect(poke2).toBeInTheDocument();
   });

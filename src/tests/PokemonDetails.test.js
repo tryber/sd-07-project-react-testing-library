@@ -18,7 +18,6 @@ describe('7. Testing the PokemonDetails.js file', () => {
       match={ { params: { id: '4' } } }
       onUpdateFavoritePokemons={ () => {} }
     />);
-
     history.push('/pokemons/4');
     const pokeTitle = getByText(/Charmander Details/i);
     expect(pokeTitle).toBeInTheDocument();

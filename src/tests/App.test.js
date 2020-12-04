@@ -14,7 +14,6 @@ describe('1. Testing the App.js file', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const home = getByText(/Home/i);
     expect(home).toBeInTheDocument();
-
     fireEvent.click(home);
     expect(history.location.pathname).toBe('/');
 
