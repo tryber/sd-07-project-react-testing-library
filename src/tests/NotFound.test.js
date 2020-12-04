@@ -12,7 +12,7 @@ describe('Teste da tela NotFound', () => {
 
     expect(title).toBeInTheDocument();
     expect(title.tagName).toBe('H2');
-    expect(title.textContent).toBe('Page requested not found 😭');
+    expect(title.textContent).toContain('Page requested not found');
   });
   it('test that there is a rendered an image of Not Found page', () => {
     const { getAllByRole } = render(<NotFound />);
