@@ -6,7 +6,7 @@ import renderWithRouter from '../renderWithRouter';
 
 afterEach(cleanup);
 
-describe('testing the file App.js', () => {
+describe('testing the Home page', () => {
   test('renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
