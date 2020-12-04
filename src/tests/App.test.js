@@ -62,7 +62,6 @@ test('whether the Favorite Pokémons button redirects to the favorites page', ()
 test('whether the home button redirects to the favorite pokemons page', () => {
   const { getByText, history } = renderWithRouter(<App />);
 
-  expect(history.location.pathname).toBe('/');
   history.push('/xablau');
   expect(history.location.pathname).toBe('/xablau');
   const pageNotFoundText = getByText('Page requested not found');
