@@ -28,7 +28,7 @@ describe('testando o componente About', () => {
     const { getByAltText, getByText } = renderWithRoute(<App />);
     fireEvent.click(getByText('About'));
     const altImg = getByAltText('Pokédex');
-    expect(altImg.src).toEqual('https://cdn.bulbagarden.net/upload/thumb/8/86/' +
-     'Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(altImg.src).toEqual('https://cdn.bulbagarden.net/upload/thumb/8/86/'
+    + 'Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
