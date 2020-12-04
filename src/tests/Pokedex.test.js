@@ -105,6 +105,35 @@ describe('Teste se a Pokédex tem os botões de filtro', () => {
     expect(typeFound.textContent).toBe('Bug');
   });
 });
+describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+  it('O texto do botão deve ser All;', () => {
+    const { queryByText } = renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ pokefavorite }
+      />,
+    );
+    const buttonAll = queryByText('All');
+    expect(buttonAll).toBeInTheDocument();
+  });
+  it('A Pokedéx deverá todos quando em All', () => {
+    const { getByText, getByTestId } = renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ pokefavorite }
+      />,
+    );
+    const buttonAll = getByText('All');
+    expect(buttonAll).toBeInTheDocument();
+    const buttonBug = getByText('Bug');
+    fireEvent.click(buttonBug);
+    fireEvent.click(buttonAll);
+    const button = getByTestId('next-pokemon');
+    pokemons.forEach(() => fireEvent.click(button));
+    const pokeOne = getByText(pokemons[0].name);
+    expect(pokeOne).toBeInTheDocument();
+  });
+});
 describe('Teste se é criado, um botão de filtro para cada tipo de Pokémon.', () => {
   it('Os botões de filtragem devem ser dinâmicos;', () => {
     const { getAllByTestId } = renderWithRouter(
@@ -156,7 +185,7 @@ describe('O botão de Próximo pokémon deve ser desabilitado', () => {
   it('quando a lista filtrada de Pokémons tiver um só pokémon.', () => {
     const { getByTestId, getAllByTestId } = renderWithRouter(
       <Pokedex
-        pokemons={ pokemons }
+        pokemons={ [pokemons[0]] }
         isPokemonFavoriteById={ pokefavorite }
       />,
     );
