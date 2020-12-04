@@ -30,13 +30,13 @@ test('Must there is not `More Details` link', () => {
 });
 
 test('The section details contains text `Sumary` heading h2', () => {
-  const { queryByText, container } = renderWithRouter(<App />);
+  const { queryByText } = renderWithRouter(<App />);
   const moreDetails = queryByText(/More details/i);
   fireEvent.click(moreDetails);
 
-  const summary = container.querySelectorAll('h2')[1];
+  const summary = queryByText(/Summary/i);
   expect(summary).toBeInTheDocument();
-  expect(summary.innerHTML).toBe('Summary');
+  expect(summary.tagName).toBe('H2');
 });
 
 test('The section details contains especific text with paragraph `p`', () => {
