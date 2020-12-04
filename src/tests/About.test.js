@@ -3,7 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-describe('2. Testando o arquivo About.js', () => {
+describe('2. About.js file', () => {
   test('Teste se a página contém as informações sobre a Pokédex', () => {
     const { getByText } = renderWithRouter(<App />);
 
