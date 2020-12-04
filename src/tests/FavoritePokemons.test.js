@@ -13,16 +13,4 @@ describe('Testando o arquivo FavoritePokemons.js', () => {
     const noFavoriteMsg = getByText(/No favorite pokemon found/i);
     expect(noFavoriteMsg).toBeInTheDocument();
   });
-
-  test('Teste se é exibido todos os cards de pokémons favoritados', () => {
-    const { getByText, getByRole } = renderWithRouter(<App />);
-    const favoritesLink = getByText(/Favorite Pokémons/i);
-    const moreDetailsLink = getByText(/More details/i);
-    fireEvent.click(moreDetailsLink);
-    const favorite = getByRole(/checkbox/i);
-    fireEvent.click(favorite);
-    fireEvent.click(favoritesLink);
-    const pikachu = getByText(/Pikachu/i);
-    expect(pikachu).toBeInTheDocument();
-  });
 });
