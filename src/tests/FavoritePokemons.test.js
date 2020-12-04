@@ -1,7 +1,7 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../components/renderWithRouter';
 import App from '../App';
-import { render, fireEvent } from '@testing-library/react';
 
 describe('Testando about', () => {
   it('Teste se nenhum card de pokémon é exibido, se ele não estiver favoritado', () => {
