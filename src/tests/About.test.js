@@ -13,4 +13,11 @@ describe('Requisito 2', () => {
     const image = getByAltText('Pokédex');
     expect(image.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
+  test('verifica se há 2 h2 na página', () => {
+    const { getByText } = renderWithRouter(<About />);
+    const txt1 = getByText(/This application simulates a Pokédex/i);
+    const txt2 = getByText(/One can filter Pokémons by type, and/i);
+    expect(txt1).toBeInTheDocument();
+    expect(txt2).toBeInTheDocument();
+  });
 });
