@@ -32,6 +32,19 @@ describe('5. Testando o arquivo Pokedex.js', () => {
       },
     );
 
+    it('Deve existir o título "Encountered Pokémons" na tela', () => {
+      renderWithRouter(
+        <Pokedex
+          isPokemonFavoriteById={ isPokemonFavoriteById }
+          pokemons={ pokemons }
+        />,
+      );
+
+      const title = screen.getByRole('heading', { name: /encountered pokémons/i });
+
+      expect(title).toHaveTextContent('Encountered pokémons');
+    });
+
     it('O botão deve conter o texto `Próximo pokémon`.', () => {
       renderWithRouter(
         <Pokedex
