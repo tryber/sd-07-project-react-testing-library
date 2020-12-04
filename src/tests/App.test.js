@@ -1,6 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Requisito 1', () => {
@@ -29,11 +30,7 @@ describe('Requisito 1', () => {
   });
 
   test('app redirect correctly to home', () => {
-    const { getByText, history } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText, history } = renderWithRouter(<App />);
     const home = getByText(/Home/i);
     fireEvent.click(home);
     const { pathname } = history.location;
@@ -41,23 +38,15 @@ describe('Requisito 1', () => {
   });
 
   test('app redirect correctly to about', () => {
-    const { getByText, history } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText, history } = renderWithRouter(<App />);
     const about = getByText(/About/i);
     fireEvent.click(about);
     const { pathname } = history.location;
-    expect(pathname).toBe('/About');
+    expect(pathname).toBe('/about');
   });
 
   test('app redirect correctly to favorite pokémons', () => {
-    const { getByText, history } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText, history } = renderWithRouter(<App />);
     const favorites = getByText(/Favorite Pokémons/i);
     fireEvent.click(favorites);
     const { pathname } = history.location;
@@ -65,11 +54,7 @@ describe('Requisito 1', () => {
   });
 
   test('app redirect correctly to not found', () => {
-    const { getByText, history } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText, history } = renderWithRouter(<App />);
     const route = '/notExist';
     history.push(route);
     const notFound = getByText(/page requested not found/i);
