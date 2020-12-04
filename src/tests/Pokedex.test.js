@@ -89,10 +89,11 @@ test('if the Pokedex has every filtered buttons', () => {
   });
 });
 
+// prettier-ignore
 test('if the Pokedex has a reset filter button', () => {
   const { getByText } = render(
     <MemoryRouter>
-      <Pokedex pokemons={pokemon} isPokemonFavoriteById={favorite} />
+      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ favorite } />
     </MemoryRouter>,
   );
 
