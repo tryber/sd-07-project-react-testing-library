@@ -13,8 +13,8 @@ test('if pokedex contains h2 with Encountered pokémons', () => {
 });
 // Teste se é exibido o próximo Pokémon da lista quando o botão Próximo pokémon é clicado.
 test('if next pokemon is shown', () => {
-  const { getByText, container } = renderWithRouter(<App />);
-  const pikachu = getByText(/pikachu/i);
+  const { getByText } = renderWithRouter(<App />);
+  // const pikachu = getByText(/pikachu/i);
   fireEvent.click(getByText(/próximo pokémon/i));
   const char = getByText(/charmander/i);
   // expect(pikachu).toBeInTheDocument();
@@ -22,7 +22,7 @@ test('if next pokemon is shown', () => {
 });
 // O botão deve conter o texto Próximo pokémon; FAZER ESSE!!!
 test('button contains text proximo pokemon', () => {
-  const { getByText, container } = renderWithRouter(<App />);
+  const { getByText } = renderWithRouter(<App />);
   const button = getByText(/próximo pokémon/i);
   expect(button.innerHTML).toBe('Próximo pokémon');
 });
