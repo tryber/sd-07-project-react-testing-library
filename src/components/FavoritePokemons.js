@@ -11,7 +11,7 @@ const ZERO = 0;
 class FavoritePokemons extends React.Component {
   static notFound() {
     return (
-      <div>
+      <div >
         <p>{`No favorite ` + `pokemon found`}</p>
       </div>
     );
