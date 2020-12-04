@@ -47,6 +47,33 @@ describe('', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     const buttons = getAllByTestId('pokemon-type-button');
     const numberOfTypes = 7;
+    const zero = 0;
+    const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
     expect(buttons.length).toBe(numberOfTypes);
+    for (let index = zero; index < numberOfTypes; index += 1) {
+      expect(buttons[index].innerHTML).toBe(types[index]);
+    }
+  });
+
+  test('if filter clear is present', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const clearFilter = getByText('All');
+    const zero = 0;
+    const length = 8;
+    const nextButton = getByText(/próximo pokémon/i);
+    expect(clearFilter).toBeInTheDocument();
+    for (let i = zero; i < length; i += 1) {
+      userEvent.click(nextButton);
+    }
+    expect(getByText(/dragonair/i)).toBeInTheDocument();
+    userEvent.click(nextButton);
+    expect(getByText(/pikachu/i)).toBeInTheDocument();
+  });
+
+  test('if nextButton is disable when there is only one of selected type', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const nextButton = getByText(/próximo pokémon/i);
+    userEvent.click(getByText('Bug'));
+    expect(nextButton).toHaveAttribute('disabled');
   });
 });
