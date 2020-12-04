@@ -17,7 +17,7 @@ test('se a página contém um heading h2 com o texto About Pokédex', () => {
   expect(titleAbout).toBeInTheDocument();
 });
 
-test('se a página contém a seguinte imagem de uma Pokédex', () => {
+test('if the page contains the following image of a Pokédex', () => {
   renderWithRouter(<About />);
   const image = screen.getByAltText(/Pokédex/i);
   expect(image.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
