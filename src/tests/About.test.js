@@ -21,7 +21,7 @@ test('A página deve conter um heading h2 com o texto About Pokédex', () => {
 test('A página deve conter dois parágrafos com texto sobre a Pokédex', () => {
   const { container } = render(<About />);
   const paragrafo = container.querySelectorAll('p');
-  expect(paragrafo.length).toBe();
+  expect(paragrafo.length).toBe('2');
 });
 
 test('A página deve conter a seguinte imagem de uma Pokédex', () => {
