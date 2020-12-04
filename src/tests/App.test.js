@@ -5,7 +5,7 @@ import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
-    <MemoryRouter initialEntries={['/']}>
+    <MemoryRouter initialEntries={ ['/'] }>
       <App />
     </MemoryRouter>,
   );
