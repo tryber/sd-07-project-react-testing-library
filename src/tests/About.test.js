@@ -21,3 +21,6 @@ test('se a página contém uma imagem específica', () => {
   const img = document.querySelector('img');
   expect(img.src).toContain('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
 });
+
+// Resolução de como verificar o src da imagem no site:
+// https://medium.com/@drake_beth/how-to-test-images-in-react-a70053b1634a
