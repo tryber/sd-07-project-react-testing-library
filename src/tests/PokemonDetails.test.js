@@ -21,7 +21,6 @@ describe('7. Testing the PokemonDetails.js file', () => {
     history.push('/pokemons/4');
     const pokeTitle = getByText(/Charmander Details/i);
     expect(pokeTitle).toBeInTheDocument();
-
     const linkToDetails = queryByRole('link', { href: '/pokemons/4' });
     expect(linkToDetails).toBeNull();
 
