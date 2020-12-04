@@ -48,8 +48,7 @@ describe('rotas', () => {
   it('Testa se Favorite Pokemons é renderizado', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     history.push('/error');
-    const NotFound = getByAltText(
-      'Pikachu crying because the page requested was not found');
-    expect(NotFound).toBeInTheDocument();
+    const Nf = getByAltText('Pikachu crying because the page requested was not found');
+    expect(Nf).toBeInTheDocument();
   });
 });
