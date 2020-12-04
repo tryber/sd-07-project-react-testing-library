@@ -51,7 +51,7 @@ test('Teste se a aplicação é redirecionada para a página de About.', () => {
   expect(pathName).toBe('/about');
 });
 
-test('Teste se a aplicação é redirecionada para a página de Pokémons Favoritados.', () => {
+test('Teste se a aplicação direciona para a página de Pokémons Favoritados.', () => {
   const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/Favorite Pokémons/i));
   const pathName = history.location.pathname;
