@@ -7,6 +7,7 @@ describe('2. Testing the About.js file', () => {
     const { getByText, history } = renderWithRouter(<About />);
     const heading = getByText(/About Pokédex/i);
     expect(heading).toBeInTheDocument();
+
     history.push('/about');
     expect(history.location.pathname).toBe('/about');
   });

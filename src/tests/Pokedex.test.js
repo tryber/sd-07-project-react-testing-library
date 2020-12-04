@@ -40,6 +40,7 @@ describe('5. Testing the Pokedex.js file', () => {
     const poke2 = queryByText(/Pikachu/i);
     expect(poke2).toBeNull();
   });
+
   it('Pokédex has the filter buttons', () => {
     const { getByRole, getByTestId, getAllByTestId } = renderWithRouter(<Pokedex
       pokemons={ pokemons }

@@ -8,6 +8,7 @@ describe('4. Testing the NotFound.js file', () => {
     const heading = getByRole('heading', { name: /Page requested not found/i });
     expect(heading).toBeInTheDocument();
   });
+
   it('The page shows the image', () => {
     const { getAllByRole } = renderWithRouter(<NotFound />);
     const image = getAllByRole('img')[1];
