@@ -42,7 +42,7 @@ describe('Navegation Links', () => {
     expect(linkFavorite).toBeInTheDocument();
   });
 
-  test('clicking on Home the URL should be /', () => {
+  test('if after clicking on Home, the URL path is /', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     const linkHome = getByText(/Home/i);
@@ -54,7 +54,7 @@ describe('Navegation Links', () => {
     expect(homeMessage).toBeInTheDocument();
   });
 
-  test('clicking on About the URL should be /about', () => {
+  test('if after clicking on About, the URL path is /about', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     const linkAbout = getByText(/About/i);
@@ -66,7 +66,7 @@ describe('Navegation Links', () => {
     expect(aboutMessage).toBeInTheDocument();
   });
 
-  test('clicking on Favorite Pokémon the URL should be /favorites', () => {
+  test('if after clicking on Favorite Pokémon, the URL path is /favorites', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     const linkFavorite = getByText(/Favorite Pokémons/i);
@@ -75,7 +75,7 @@ describe('Navegation Links', () => {
     expect(pathname).toBe('/favorites');
   });
 
-  test('if Url is unknown, should apper the page Not found', () => {
+  test('if the URL is unknown, should appear the page not found', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     history.push('/unknownpage');
