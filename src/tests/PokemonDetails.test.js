@@ -1,20 +1,32 @@
 import React from 'react';
-import renderWithRouter from '../helper/testRouterHelper';
 import { fireEvent, screen } from '@testing-library/react';
+import renderWithRouter from '../helper/testRouterHelper';
 import pokemons from '../data';
 import App from '../App';
 import { PokemonDetails } from '../components';
 
 describe('Testando PokemonDetail', () => {
-
   it('deve mostrar os detalhes do pokemon', () => {
-    const pikachu = { "id": 25, "name": "Pikachu", "type": "Electric", "averageWeight": { "value": "6.0", "measurementUnit": "kg" }, "image": "https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png", "moreInfo": "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)", "foundAt": [{ "location": "Kanto Viridian Forest", "map": "https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png" }, { "location": "Kanto Power Plant", "map": "https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png" }], "summary": "This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat." }
-    const favoritePokemon = () => { }
+    const pikachu = { id: 25,
+      name: 'Pikachu',
+      type: 'Electric',
+      averageWeight: { value: '6.0',
+        measurementUnit: 'kg' },
+      image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+      moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
+      foundAt: [{ location: 'Kanto Viridian Forest',
+        map: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png' },
+      { location: 'Kanto Power Plant',
+        map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png' }],
+      summary: `This intelligent Pokémon roasts hard berries with electricity 
+      to make them tender enough to eat.` };
+    const favoritePokemon = () => { };
     const { getByText } = renderWithRouter(<PokemonDetails
-      isPokemonFavoriteById={{ [pikachu.id]: false }}
-      match={{ params: { id: pikachu.id.toString() } }}
-      pokemons={pokemons}
-      onUpdateFavoritePokemons={favoritePokemon} />)
+      isPokemonFavoriteById={ { [pikachu.id]: false } }
+      match={ { params: { id: pikachu.id.toString() } } }
+      pokemons={ pokemons }
+      onUpdateFavoritePokemons={ favoritePokemon }
+    />);
 
     const nameDetailsTest = getByText(`${pikachu.name} Details`);
 
@@ -22,13 +34,14 @@ describe('Testando PokemonDetail', () => {
   });
 
   it('não deve mostrar o text detalhes do pokemon', () => {
-    const pikachu = { "id": 25, "name": "Pikachu", "type": "Electric", "averageWeight": { "value": "6.0", "measurementUnit": "kg" }, "image": "https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png", "moreInfo": "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)", "foundAt": [{ "location": "Kanto Viridian Forest", "map": "https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png" }, { "location": "Kanto Power Plant", "map": "https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png" }], "summary": "This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat." }
-    const favoritePokemon = () => { }
+    const pikachu = { id: 25, name: 'Pikachu', type: 'Electric', averageWeight: { value: '6.0', measurementUnit: 'kg' }, image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png', moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)', foundAt: [{ location: 'Kanto Viridian Forest', map: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png' }, { location: 'Kanto Power Plant', map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png' }], summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.' };
+    const favoritePokemon = () => { };
     const { queryByText } = renderWithRouter(<PokemonDetails
-      isPokemonFavoriteById={{ [pikachu.id]: false }}
-      match={{ params: { id: pikachu.id.toString() } }}
-      pokemons={pokemons}
-      onUpdateFavoritePokemons={favoritePokemon} />)
+      isPokemonFavoriteById={ { [pikachu.id]: false } }
+      match={ { params: { id: pikachu.id.toString() } } }
+      pokemons={ pokemons }
+      onUpdateFavoritePokemons={ favoritePokemon }
+    />);
 
     const moreDetailsTest = queryByText(/More Details/i);
 
@@ -36,13 +49,14 @@ describe('Testando PokemonDetail', () => {
   });
 
   it('deve conter um heading', () => {
-    const pikachu = { "id": 25, "name": "Pikachu", "type": "Electric", "averageWeight": { "value": "6.0", "measurementUnit": "kg" }, "image": "https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png", "moreInfo": "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)", "foundAt": [{ "location": "Kanto Viridian Forest", "map": "https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png" }, { "location": "Kanto Power Plant", "map": "https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png" }], "summary": "This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat." }
-    const favoritePokemon = () => { }
+    const pikachu = { id: 25, name: 'Pikachu', type: 'Electric', averageWeight: { value: '6.0', measurementUnit: 'kg' }, image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png', moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)', foundAt: [{ location: 'Kanto Viridian Forest', map: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png' }, { location: 'Kanto Power Plant', map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png' }], summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.' };
+    const favoritePokemon = () => { };
     const { getByRole } = renderWithRouter(<PokemonDetails
-      isPokemonFavoriteById={{ [pikachu.id]: false }}
-      match={{ params: { id: pikachu.id.toString() } }}
-      pokemons={pokemons}
-      onUpdateFavoritePokemons={favoritePokemon} />)
+      isPokemonFavoriteById={ { [pikachu.id]: false } }
+      match={ { params: { id: pikachu.id.toString() } } }
+      pokemons={ pokemons }
+      onUpdateFavoritePokemons={ favoritePokemon }
+    />);
 
     const moreDetailsTest = getByRole('heading', { name: /Summary/i });
 
@@ -51,27 +65,34 @@ describe('Testando PokemonDetail', () => {
   });
 
   it('deve conter um parágrafo de descrição', () => {
-    const pikachu = { "id": 25, "name": "Pikachu", "type": "Electric", "averageWeight": { "value": "6.0", "measurementUnit": "kg" }, "image": "https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png", "moreInfo": "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)", "foundAt": [{ "location": "Kanto Viridian Forest", "map": "https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png" }, { "location": "Kanto Power Plant", "map": "https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png" }], "summary": "This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat." }
-    const favoritePokemon = () => { }
+    const pikachu = { id: 25, name: 'Pikachu', type: 'Electric', averageWeight: { value: '6.0', measurementUnit: 'kg' }, image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png', moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)', foundAt: [{ location: 'Kanto Viridian Forest', map: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png' }, { location: 'Kanto Power Plant', map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png' }], summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.' };
+    const favoritePokemon = () => { };
     const { queryByText } = renderWithRouter(<PokemonDetails
-      isPokemonFavoriteById={{ [pikachu.id]: false }}
-      match={{ params: { id: pikachu.id.toString() } }}
-      pokemons={pokemons}
-      onUpdateFavoritePokemons={favoritePokemon} />)
+      isPokemonFavoriteById={ { [pikachu.id]: false } }
+      match={ { params: { id: pikachu.id.toString() } } }
+      pokemons={ pokemons }
+      onUpdateFavoritePokemons={ favoritePokemon }
+    />);
 
-    const moreDetailsTest = queryByText(/This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat./i);
+    const gambiarra = new RegExp(
+      'This intelligent Pokémon roasts hard berries with '
+      + 'electricity to make them tender enough to eat.', 'i',
+    );
+
+    const moreDetailsTest = queryByText(gambiarra);
 
     expect(moreDetailsTest.tagName).toBe('P');
   });
 
   it('deve conter um heading para a seção de mapas', () => {
-    const pikachu = { "id": 25, "name": "Pikachu", "type": "Electric", "averageWeight": { "value": "6.0", "measurementUnit": "kg" }, "image": "https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png", "moreInfo": "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)", "foundAt": [{ "location": "Kanto Viridian Forest", "map": "https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png" }, { "location": "Kanto Power Plant", "map": "https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png" }], "summary": "This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat." }
-    const favoritePokemon = () => { }
+    const pikachu = { id: 25, name: 'Pikachu', type: 'Electric', averageWeight: { value: '6.0', measurementUnit: 'kg' }, image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png', moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)', foundAt: [{ location: 'Kanto Viridian Forest', map: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png' }, { location: 'Kanto Power Plant', map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png' }], summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.' };
+    const favoritePokemon = () => { };
     const { queryByText } = renderWithRouter(<PokemonDetails
-      isPokemonFavoriteById={{ [pikachu.id]: false }}
-      match={{ params: { id: pikachu.id.toString() } }}
-      pokemons={pokemons}
-      onUpdateFavoritePokemons={favoritePokemon} />)
+      isPokemonFavoriteById={ { [pikachu.id]: false } }
+      match={ { params: { id: pikachu.id.toString() } } }
+      pokemons={ pokemons }
+      onUpdateFavoritePokemons={ favoritePokemon }
+    />);
 
     const moreDetailsTest = queryByText(`Game Locations of ${pikachu.name}`);
 
@@ -79,15 +100,16 @@ describe('Testando PokemonDetail', () => {
   });
 
   it('deve conter as imagens de localização', () => {
-    const pikachu = { "id": 25, "name": "Pikachu", "type": "Electric", "averageWeight": { "value": "6.0", "measurementUnit": "kg" }, "image": "https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png", "moreInfo": "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)", "foundAt": [{ "location": "Kanto Viridian Forest", "map": "https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png" }, { "location": "Kanto Power Plant", "map": "https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png" }], "summary": "This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat." }
-    const favoritePokemon = () => { }
+    const pikachu = { id: 25, name: 'Pikachu', type: 'Electric', averageWeight: { value: '6.0', measurementUnit: 'kg' }, image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png', moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)', foundAt: [{ location: 'Kanto Viridian Forest', map: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png' }, { location: 'Kanto Power Plant', map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png' }], summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.' };
+    const favoritePokemon = () => { };
     const { queryAllByAltText } = renderWithRouter(<PokemonDetails
-      isPokemonFavoriteById={{ [pikachu.id]: false }}
-      match={{ params: { id: pikachu.id.toString() } }}
-      pokemons={pokemons}
-      onUpdateFavoritePokemons={favoritePokemon} />)
-    
-    const {foundAt} = pikachu
+      isPokemonFavoriteById={ { [pikachu.id]: false } }
+      match={ { params: { id: pikachu.id.toString() } } }
+      pokemons={ pokemons }
+      onUpdateFavoritePokemons={ favoritePokemon }
+    />);
+
+    const { foundAt } = pikachu;
 
     const moreDetailsTest = queryAllByAltText(/Pikachu location/i);
 
@@ -97,7 +119,7 @@ describe('Testando PokemonDetail', () => {
   });
 
   it('deve poder favoritar um pokemon', () => {
-    //utilizado app uma vez que a função de favoritar é herdada do app
+    // utilizado app uma vez que a função de favoritar é herdada do app
     renderWithRouter(<App />);
 
     const moreDetailsLink = screen.getByText(/More details/);
@@ -116,5 +138,3 @@ describe('Testando PokemonDetail', () => {
     expect(screen.getByAltText('Pikachu is marked as favorite')).toBeInTheDocument();
   });
 });
-
-
