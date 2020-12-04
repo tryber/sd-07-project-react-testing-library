@@ -1,13 +1,12 @@
 import React from 'react';
 import { cleanup, render } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter';
 import About from '../components/About';
 
 afterEach(cleanup);
 
 describe('testing the About page', () => {
   test('the page has a h2 heading with the text "About Pokédex"', () => {
-    const { getByText, getByTestId } = renderWithRouter(<About />);
+    const { getByText, getByTestId } = render(<About />);
     const heading = getByTestId('h2-heading');
     expect(heading).toBeInTheDocument();
     const headingText = getByText(/\bAbout Pokédex\b/);
