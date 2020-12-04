@@ -49,7 +49,9 @@ describe('rotas', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     history.push('/error');
     const NotFound = getByAltText(
-      'Pikachu crying because the page requested was not found');
+      'Pikachu crying because the page requested was not found'
+      
+      );
     expect(NotFound).toBeInTheDocument();
   });
 });
