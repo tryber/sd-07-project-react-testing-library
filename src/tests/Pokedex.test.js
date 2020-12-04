@@ -9,7 +9,7 @@ test('if button and Encountered pokémons text is present', () => {
 });
 
 describe('', () => {
-  test('if button is present', () => {
+  test('if next button is present', () => {
     const { getByText } = renderWithRouter(<App />);
     const nextButton = getByText(/Próximo pokémon/i);
     expect(nextButton).toBeInTheDocument();
@@ -56,21 +56,20 @@ describe('', () => {
   });
 
   test('if filter clear is present', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const clearFilter = getByText('All');
-    const zero = 0;
-    const length = 8;
+    const { getByRole, getByText } = renderWithRouter(<App />);
+    const clearFilter = getByRole('button', { name: /all/i });
     const nextButton = getByText(/próximo pokémon/i);
     expect(clearFilter).toBeInTheDocument();
-    for (let i = zero; i < length; i += 1) {
-      userEvent.click(nextButton);
-    }
-    expect(getByText(/dragonair/i)).toBeInTheDocument();
-    userEvent.click(nextButton);
+    expect(clearFilter).toHaveTextContent('All');
+    userEvent.click(clearFilter);
     expect(getByText(/pikachu/i)).toBeInTheDocument();
+    userEvent.click(nextButton);
+    expect(getByText(/charmander/i)).toBeInTheDocument();
+    userEvent.click(nextButton);
+    expect(getByText(/caterpie/i)).toBeInTheDocument();
   });
 
-  test('if nextButton is disable when there is only one of selected type', () => {
+  test('if nextButton is disabled when there is only one of selected type', () => {
     const { getByText } = renderWithRouter(<App />);
     const nextButton = getByText(/próximo pokémon/i);
     userEvent.click(getByText('Bug'));
