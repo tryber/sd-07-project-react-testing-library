@@ -46,4 +46,13 @@ describe('verify the routes', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
+
+  test('check if it goes to "NotFound" in case of unknown URL', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+
+    const route = '/xablau';
+    history.push(route);
+    const pageNotFound = getByText(/Page requested not found/i);
+    expect(pageNotFound).toBeInTheDocument();
+  });
 });
