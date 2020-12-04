@@ -15,7 +15,7 @@ test('renders a reading with the text `Pokédex`', () => {
 });
 
 describe('Requirement - 01', () => {
-  test('whether the top of the application contains a fixed set of navigation links', () => {
+  test('1/5', () => {
     renderWithRouter(<App />);
 
     const HomeLink = screen.getByText(/home/i);
@@ -31,7 +31,7 @@ describe('Requirement - 01', () => {
     expect(FavoritePokemonLink.tagName).toBe('A');
   });
 
-  test('if the application is redirected to the homepage, at the URL / by clicking on the Home link in the navigation bar', () => {
+  test('2/5', () => {
     const { history } = renderWithRouter(<App />);
 
     const HomeLink = screen.getByText(/home/i);
@@ -42,7 +42,7 @@ describe('Requirement - 01', () => {
     expect(pathname).toBe('/');
   });
 
-  test('if the application is redirected to the About page, in the URL / about, by clicking on the About link in the navigation bar', () => {
+  test('3/5', () => {
     const { history } = renderWithRouter(<App />);
 
     const AboutLink = screen.getByText(/about/i);
@@ -53,7 +53,7 @@ describe('Requirement - 01', () => {
     expect(pathname).toBe('/about');
   });
 
-  test('if the application is redirected to the Favorite Pokémon page, in the URL / favorites, by clicking on the Favorite Pokémons link in the navigation bar.', () => {
+  test('4/5', () => {
     const { history } = renderWithRouter(<App />);
 
     const FavoritePokemonLink = screen.getByText(/favorite pokémon/i);
@@ -64,7 +64,7 @@ describe('Requirement - 01', () => {
     expect(pathname).toBe('/favorites');
   });
 
-  test('if the application is redirected to the Not Found page when entering an unknown URL.', () => {
+  test('5/5', () => {
     const { history } = renderWithRouter(<App />);
 
     const wrongPath = 'wrong/path/test';
