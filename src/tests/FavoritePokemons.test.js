@@ -11,7 +11,7 @@ describe('renders the FavoritePokemons screen', () => {
     expect(screen.queryByText('pokemon-name')).not.toBeInTheDocument();
   });
 
-  it('renders 2 favorites pokemons', () => {
+  it('renders two favorites pokemons', () => {
     const { pokemons } = mockedData;
     render(
       <FavoritePokemons pokemons={ pokemons } />,
