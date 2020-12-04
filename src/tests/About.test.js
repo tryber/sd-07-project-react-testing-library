@@ -21,9 +21,9 @@ describe('Teste da tela About', () => {
     const quantidadeP = 2;
 
     expect(p.length).toBe(quantidadeP);
-    expect(p[0].textContent).toBe('This application simulates a Pokédex,'
+    expect(p[0].textContent).toContain('This application simulates a Pokédex,'
     + ' a digital encliclopedia containing all Pokémons');
-    expect(p[1].textContent).toBe('One can filter Pokémons by type,'
+    expect(p[1].textContent).toContain('One can filter Pokémons by type,'
     + ' and see more details for each one of them');
   });
   it('test that there is a rendered an image of Pokedex', () => {
