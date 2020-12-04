@@ -16,7 +16,7 @@ const isPokemonFavoriteById = {
   151: false,
 };
 
-describe('renders the App screen', () => {
+describe('renders the Pokedex screen', () => {
   it('renders the text `Encountered pokémons`', () => {
     render(
       <Pokedex
