@@ -19,7 +19,7 @@ test('if about contains 2 ps with text', () => {
   const { container } = renderWithRouter(<About />);
   const p = container.getElementsByTagName('p');
   expect(p[0]).toHaveTextContent(
-    `This application simulates a Pokédex, a digital encliclopedia containing all`,
+    'This application simulates a Pokédex, a digital encliclopedia containing all',
   );
   expect(p[1]).toHaveTextContent(
     'One can filter Pokémons by type, and see more details for each one of them',
