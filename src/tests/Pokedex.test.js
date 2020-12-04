@@ -24,7 +24,7 @@ describe('Testando o arquivo Pokedex', () => {
   it('Informações Filter Pokedex', () => {
     const { getByText, getAllByTestId } = renderWithRender(<App />);
     const buttonPoke = getAllByTestId('pokemon-type-button');
-    buttonPoke.map((buton) => expect(buton).toBeInTheDocument());
+    buttonPoke.map((button) => expect(button).toBeInTheDocument());
     fireEvent.click(getByText(/Psychic/i));
     const PokedexFilter = getByText(/Alakazam/i);
     expect(PokedexFilter).toBeInTheDocument();

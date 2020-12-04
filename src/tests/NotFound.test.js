@@ -14,7 +14,7 @@ describe('Testando o arquivo NotFound', () => {
     expect(notfound.tagName).toBe('H2');
 
     const imagems = getByAltText(
-      'Pikachu crying because the page requested was not found',
+      'Pikachu crying because the page requested was not found'
     );
     const imagem = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
     expect(imagems.src).toBe(imagem);
