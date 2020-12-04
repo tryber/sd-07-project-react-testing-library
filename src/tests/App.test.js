@@ -54,7 +54,7 @@ it('The first link must have the text "Favorite Pokémons"', () => {
 it('Test if the application is redirected to the home page', () => {
   const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/Home/i));
-  const pathname = history.location.pathname;
+  const { pathname } = history.location;
   expect(pathname).toBe('/');
   const home = getByText(/Home/i);
   expect(home).toBeInTheDocument();
@@ -63,7 +63,7 @@ it('Test if the application is redirected to the home page', () => {
 it('Test if the application is redirected to the About page', () => {
   const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/About/i));
-  const pathname = history.location.pathname;
+  const { pathname } = history.location;
   expect(pathname).toBe('/about');
   const about = getByText(/About Pokédex/i);
   expect(about).toBeInTheDocument();
@@ -72,7 +72,7 @@ it('Test if the application is redirected to the About page', () => {
 it('Test if the application is redirected to the Favorite Pokémon page', () => {
   const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/Favorite Pokémons/i));
-  const pathname = history.location.pathname;
+  const { pathname } = history.location;
   expect(pathname).toBe('/favorites');
 });
 
