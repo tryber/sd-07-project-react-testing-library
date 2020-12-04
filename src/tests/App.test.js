@@ -1,11 +1,11 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { renderWithRouter } from '../renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Tests for App component', () => {
   it('renders the home page with the path `/`', () => {
-    const { getByText } = renderWithRouter(<App />);
+    const { getByText, history } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
     const { pathName } = history.location;
