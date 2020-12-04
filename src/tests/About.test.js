@@ -1,4 +1,4 @@
-import { cleanup, fireEvent } from '@testing-library/react';
+import { cleanup } from '@testing-library/react';
 import React from 'react';
 import About from '../components/About';
 import renderWithRouter from '../helpers/renderWithRouter';
