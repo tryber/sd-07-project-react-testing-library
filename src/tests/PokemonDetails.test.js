@@ -1,8 +1,5 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
-import App from '../App';
 import Details from '../components/PokemonDetails';
 import data from '../data';
 
@@ -19,8 +16,8 @@ describe('Testando o arquivo PokemonDetails.js', () => {
     151: false,
   };
 
-  it('Teste se as informações detalhadas do Pokémon selecionado são mostradas na tela.', () => {
-    const { getByText, queryByText, getByRole, getByTestId } = renderWithRouter(
+  it('Teste se as ... mostradas na tela.', () => {
+    const { getByText, queryByText, getByRole } = renderWithRouter(
       <Details
         isPokemonFavoriteById={ pokeFav }
         pokemons={ data }
@@ -42,11 +39,11 @@ describe('Testando o arquivo PokemonDetails.js', () => {
     expect(title.innerHTML).toBe('Summary');
 
     // A seção de detalhes deve conter um parágrafo com o resumo do Pokémon específico sendo visualizado.
-    const text = getByText(/this intelligent pokémon roasts hard berries with electricity to make them tender enough to eat./i);
+    const text = getByText(/with electricity to make them tender enough to eat./i);
     expect(text).toBeInTheDocument();
   });
 
-  it('Teste se existe na página uma seção com os mapas contendo as localizações do pokémon', () => {
+  it('Teste se ... do pokémon', () => {
     const { getByText, getAllByRole, getByRole } = renderWithRouter(
       <Details
         isPokemonFavoriteById={ pokeFav }
