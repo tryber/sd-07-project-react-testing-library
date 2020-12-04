@@ -1,7 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
@@ -54,4 +53,10 @@ describe('tests if links are functional', () => {
     fireEvent.click(getByText(/about/i));
     expect(history.location.pathname).toBe('/about');
   });
+});
+
+test('if unknown url works properly', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  history.push('/unknown');
+  expect(getByText(/Page requested not found/i)).toBeInTheDocument();
 });
