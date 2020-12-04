@@ -18,11 +18,17 @@ test('Testando se a página contém um <h2> com a frase "About Pokédex."', () =
 });
 
 test('Testando se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-  const { queryAllByTestId } = renderWithRouter(<About />);
-  const paragraphs = queryAllByTestId('pokedex-info');
-  const two = 2;
+  const { container, getByText } = renderWithRouter(<About />);
+  const p1 = container.querySelector('p');
 
-  expect(paragraphs).toHaveLength(two);
+  const p2 = getByText('One can filter Pokémons by type,' 
+  + ' and see more details for each one of them');
+
+  expect(p1).toBeInTheDocument();
+  expect(p1.tagName).toBe('P');
+
+  expect(p2).toBeInTheDocument();
+  expect(p2.tagName).toBe('P');
 });
 
 test('Testando se a página contém uma imagem especifica.', () => {
