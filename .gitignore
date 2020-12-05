@@ -28,3 +28,6 @@ yarn-error.log*
 
 # stryker temp files
 .stryker-tmp
+
+# IDE
+.idea
