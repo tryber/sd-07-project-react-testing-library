@@ -24,6 +24,10 @@ describe('Teste se informações detalhadas do Pokémon selecionado são mostrad
     const { queryByText, history } = renderWithRouter(<App />);
     history.push(`/pokemons/${poke.id}`);
     const pokeNav = queryByText('Summary');
+    const pokeLocations = queryByText(`Game Locations of ${poke.name}`);
+    const summary = queryByText(`${poke.summary}`);
+    expect(summary).toBeInTheDocument();
+    expect(pokeLocations).toBeInTheDocument();
     expect(pokeNav).toBeInTheDocument();
   });
   it('Teste se existe na página uma seção com os mapas contendo as localizações', () => {
@@ -33,6 +37,9 @@ describe('Teste se informações detalhadas do Pokémon selecionado são mostrad
     const imgs = getAllByAltText(`${poke.name} location`);
     const num = 2;
     expect(imgs.length).toBe(num);
+    const imgsrcs = poke.foundAt.map((location) => location.map);
+    const maps = imgs.map((image) => image.src);
+    expect(imgsrcs).toStrictEqual(maps);
   });
   it('Teste se o usuário pode favoritar um pokémon', () => {
     const poke = pokemons[0];
