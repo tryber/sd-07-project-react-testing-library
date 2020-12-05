@@ -3,12 +3,6 @@ import About from '../components/About';
 import renderWithRouter from './renderWithRouter';
 
 describe('Test if About component', () => {
-  test('renders contents about Pokédex', () => {
-    const { getByTestId } = renderWithRouter(<About />);
-    const aboutSection = getByTestId('about-section');
-    expect(aboutSection).toBeInTheDocument();
-  });
-
   test('renders a info about Pokédex', () => {
     const { getByText } = renderWithRouter(<About />);
     const aboutTitle = getByText('About Pokédex');
@@ -16,10 +10,13 @@ describe('Test if About component', () => {
   });
 
   test('renders two paragraphs with text about Pokédex', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
-    const aboutParagraphs = getAllByTestId('about-info');
-    const paragraphsInPage = 2;
-    expect(aboutParagraphs).toHaveLength(paragraphsInPage);
+    const { getByText } = renderWithRouter(<About />);
+    const firstText = /This application simulates a Pokédex/;
+    const firstParagraph = getByText(firstText);
+    const secondText = /One can filter Pokémons by type, and/;
+    const secondParagraph = getByText(secondText);
+    expect(firstParagraph).toBeInTheDocument();
+    expect(secondParagraph).toBeInTheDocument();
   });
 
   test('renders a Pokédex image', () => {
