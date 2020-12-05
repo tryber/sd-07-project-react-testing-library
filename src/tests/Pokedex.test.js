@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getAllByTestId } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
@@ -62,7 +62,12 @@ test('Filter buttons working', () => {
   expect(selected.innerHTML).toBe('Electric');
 });
 // O texto do botão deve corresponder ao nome do tipo, ex. Psychic;
-
+test('Button equals selected', () => {
+  const { getByText, getByTestId } = renderWithRouter(<App />);
+  fireEvent.click(getByText(/fire/i));
+  const selected = getByTestId('pokemonType');
+  expect(selected.innerHTML).toBe('Fire');
+});
 // Teste se a Pokédex contém um botão para resetar o filtro
 test('Reset filter button', () => {
   const { getByText } = renderWithRouter(<App />);
@@ -95,6 +100,7 @@ test('ALL is selected when rendered', () => {
   expect(selected.innerHTML).toBe('Fire');
 });
 // Teste se é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon.
+// pegar antes do render? como se não tem a desestruturização ainda?
 
 // Os botões de filtragem devem ser dinâmicos;
 
