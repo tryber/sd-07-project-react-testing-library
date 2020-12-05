@@ -15,25 +15,27 @@ test('se é exibido todos os cards de pokémons favoritados', async () => {
   const history = createMemoryHistory();
   const pokemons = [
     {
-      averageWeight: { value: "6.0", measurementUnit: "kg" },
-      image: "https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png",
-      name: "Pikachu",
-      summary: `This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.`,
-      type: "Electric"
+      averageWeight: { value: '6.0', measurementUnit: 'kg' },
+      image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+      name: 'Pikachu',
+      summary: 'This intelligent Pokémon roasts hard berries with' 
+      + 'electricity to make them tender enough to eat.',
+      type: 'Electric'
     },
     {
-      averageWeight: { value: "8.5", measurementUnit: "kg" },
-      image: "https://cdn.bulbagarden.net/upload/0/0a/Spr_5b_004.png",
-      name: "Charmander",
-      summary: `The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.`,
-      type: "Fire"
+      averageWeight: { value: '8.5', measurementUnit: 'kg' },
+      image: 'https://cdn.bulbagarden.net/upload/0/0a/Spr_5b_004.png',
+      name: 'Charmander',
+      summary: 'The flame on its tail shows the strength of its life force.'
+      + 'If it is weak, the flame also burns weakly.',
+      type: 'Fire'
     }
   ];
   const { getByText } = render(
     <Router history={history}>
-      <FavoritePokemons pokemons={pokemons} />
+      <FavoritePokemons pokemons={ pokemons } />
     </Router>
-    );
+  );
   await getByText('Pikachu');
   expect(getByText('Pikachu')).toBeInTheDocument();
   await getByText('Charmander');
@@ -43,10 +45,8 @@ test('se é exibido todos os cards de pokémons favoritados', async () => {
 test('nenhum card de pokémon é exibido, se ele não estiver favoritado.', async () => {
     const history = createMemoryHistory();
     const pokemons = [];
-    const response = { json: jest.fn().mockImplementation( () => Promise.resolve(pokemon))};
-    global.fetch = jest.fn().mockImplementation( () => Promise.resolve(response));
     const { getByText } = render(
-        <Router history={history}>
+        <Router history={ history }>
             <FavoritePokemons pokemons={pokemons} />
         </Router>
     );
