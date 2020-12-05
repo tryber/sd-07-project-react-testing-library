@@ -1,8 +1,6 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent, findAllByText } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import About from '../components/About';
-import renderWithRouter from '../renderWithRouter';
 
 it('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
   const { getByRole } = render(<About />);
