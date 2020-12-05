@@ -27,10 +27,10 @@ test('se é exibido todos os cards de pokémons favoritados', async () => {
       name: 'Charmander',
       summary: 'The flame on its tail shows the strength of its life force.'
       + 'If it is weak, the flame also burns weakly.',
-      type: 'Fire' }
-  ];
+      type: 'Fire' } ];
   const { getByText } = render(
-    <Router history={ history }><FavoritePokemons pokemons={ pokemons } /></Router>);
+    <Router history={ history }><FavoritePokemons pokemons={ pokemons } /></Router>
+  );
   await getByText('Pikachu');
   expect(getByText('Pikachu')).toBeInTheDocument();
   await getByText('Charmander');
@@ -41,7 +41,8 @@ test('nenhum card de pokémon é exibido, se ele não estiver favoritado.', asyn
   const history = createMemoryHistory();
   const pokemons = [];
   const { getByText } = render(
-    <Router history={ history }><FavoritePokemons pokemons={ pokemons } /></Router>);
+    <Router history={ history }><FavoritePokemons pokemons={ pokemons } /></Router>
+  );
   await getByText('No favorite pokemon found');
   expect(getByText('No favorite pokemon found')).toBeInTheDocument();
 });
