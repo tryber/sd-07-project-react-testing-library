@@ -19,7 +19,7 @@ test('se a página contém um heading h2 com o texto About Pokédex', () => {
 test('se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
   const length = 2;
   const { container } = render(<About />);
-  const allP =  container.querySelectorAll('p');
+  const allP = container.querySelectorAll('p');
   expect(allP.length).toBe(length);
 });
 
