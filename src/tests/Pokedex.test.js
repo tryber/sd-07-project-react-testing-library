@@ -49,7 +49,7 @@ describe('Teste se é exibido o próximo Pokémon da lista quando'
   ];
   test('O botão deve conter o texto Próximo pokémon', async () => {
     const { getByText } = renderWithRouter(
-      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />
+      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
     );
     await getByText('Próximo pokémon');
     expect(getByText(/Próximo pokémon/i)).toBeInTheDocument();
@@ -57,7 +57,7 @@ describe('Teste se é exibido o próximo Pokémon da lista quando'
   test('Os próximos Pokémons da lista devem ser mostrados, um a um,'
   + 'ao clicar sucessivamente no botão', async () => {
     const { getByText } = renderWithRouter(
-      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />
+      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
     );
     await getByText('Próximo pokémon');
     fireEvent.click(getByText(/Próximo pokémon/i));
