@@ -32,11 +32,7 @@ describe('o topo da aplicação contém conjunto fixo de links:', () => {
 
 test('App é redirecionada para a página inicial, ao clicar no link Home', () => {
   const history = createMemoryHistory();
-  const { getByText } = render(
-    <Router history={ history }>
-      <App />
-    </Router>
-  );
+  const { getByText } = render(<Router history={ history }><App /></Router>);
   const home = getByText(/Encountered pokémons/i);
   expect(home).toBeInTheDocument();
   fireEvent.click(getByText(/Home/i));
@@ -46,11 +42,7 @@ test('App é redirecionada para a página inicial, ao clicar no link Home', () =
 
 test('App é redirecionada para a página de About, ao clicar no link About', () => {
   const history = createMemoryHistory();
-  const { getByText } = render(
-    <Router history={ history }>
-      <App />
-    </Router>
-  );
+  const { getByText } = render(<Router history={ history }><App /></Router>);
   const about = getByText(/About/i);
   expect(about).toBeInTheDocument();
   fireEvent.click(getByText(/About/i));
@@ -60,11 +52,7 @@ test('App é redirecionada para a página de About, ao clicar no link About', ()
 
 test('App é redirecionada Pokémons Favoritados, ao clicar no link Favorite', () => {
   const history = createMemoryHistory();
-  const { getByText } = render(
-    <Router history={ history }>
-      <App />
-    </Router>
-  );
+  const { getByText } = render(<Router history={ history }><App /></Router>);
   const detail = getByText(/Favorite Pokémons/i);
   expect(detail).toBeInTheDocument();
   fireEvent.click(getByText(/Favorite Pokémons/i));
@@ -74,11 +62,7 @@ test('App é redirecionada Pokémons Favoritados, ao clicar no link Favorite', (
 
 test('App é redirecionada para a página Not Found em URL desconhecida', () => {
   const history = createMemoryHistory();
-  const { getByText } = render(
-    <Router history={ history }>
-      <App />
-    </Router>
-  );
+  const { getByText } = render(<Router history={ history }><App /></Router>);
   const route = '/desconhecida';
   history.push(route);
   const pageNotFound = getByText(/not found/i);
