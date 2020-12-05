@@ -18,7 +18,8 @@ test('se é exibido todos os cards de pokémons favoritados', async () => {
       averageWeight: { value: '6.0', measurementUnit: 'kg' },
       image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
       name: 'Pikachu',
-      summary: /This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat./,
+      summary: 'This intelligent Pokémon roasts hard berries with electricity' + 
+      'to make them tender enough to eat.',
       type: 'Electric' },
     {
       averageWeight: { value: '8.5', measurementUnit: 'kg' },
