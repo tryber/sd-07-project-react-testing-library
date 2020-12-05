@@ -18,5 +18,4 @@ describe('Testando o arquivo NotFound.js', () => {
     const image = getByAltText(/Pikachu crying because the page requested was not found/);
     expect(image.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
-
 });
