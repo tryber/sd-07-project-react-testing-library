@@ -43,7 +43,8 @@ test('nenhum card de pokémon é exibido, se ele não estiver favoritado.', asyn
   const { getByText } = render(
     <Router history={ history }>
       <FavoritePokemons pokemons={ pokemons } />
-    </Router>);
+    </Router>
+    );
   await getByText('No favorite pokemon found');
   expect(getByText('No favorite pokemon found')).toBeInTheDocument();
 });
