@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
@@ -52,13 +52,14 @@ botão Próximo pokémon é clicado.`, () => {
       const name = getByText(e.name);
       expect(name).toBeInTheDocument();
       fireEvent.click(button);
+      return e;
     });
     const firstName = getByText(pokemons[0].name);
     expect(firstName).toBeInTheDocument();
   });
 });
 
-describe(`Teste se a Pokédex tem os botões de filtro.`, () => {
+describe('Teste se a Pokédex tem os botões de filtro.', () => {
   it('O texto do botão deve corresponder ao nome do tipo, ex. Psychic;', () => {
     const { getByText } = renderWithRouter(
       <Pokedex
@@ -86,13 +87,14 @@ describe(`Teste se a Pokédex tem os botões de filtro.`, () => {
       let filteredPokemon;
       fireEvent.click(filterButton);
       if (type !== 'All') {
-        filteredPokemon = pokemons.filter(e => e.type === type);
+        filteredPokemon = pokemons.filter((e) => e.type === type);
       } else filteredPokemon = pokemons;
 
       filteredPokemon.map((e) => {
         const name = getByText(e.name);
         expect(name).toBeInTheDocument();
         fireEvent.click(nextButton);
+        return e;
       });
       const firstName = getByText(filteredPokemon[0].name);
       expect(firstName).toBeInTheDocument();
@@ -103,7 +105,7 @@ describe(`Teste se a Pokédex tem os botões de filtro.`, () => {
 
 describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   it('O texto do botão deve ser All', () => {
-    const { getByText, getByRole } = renderWithRouter(
+    const { getByRole } = renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -124,18 +126,19 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     fireEvent.click(filterButton);
     function filter(type) {
       const nextButton = getByText(/Próximo pokémon/);
-      const filterButton = getByRole('button', { name: type });
-      expect(filterButton).toBeInTheDocument();
+      const filterButtonf = getByRole('button', { name: type });
+      expect(filterButtonf).toBeInTheDocument();
       let filteredPokemon;
-      fireEvent.click(filterButton);
+      fireEvent.click(filterButtonf);
       if (type !== 'All') {
-        filteredPokemon = pokemons.filter(e => e.type === type);
+        filteredPokemon = pokemons.filter((e) => e.type === type);
       } else filteredPokemon = pokemons;
 
       filteredPokemon.map((e) => {
         const name = getByText(e.name);
         expect(name).toBeInTheDocument();
         fireEvent.click(nextButton);
+        return e;
       });
       const firstName = getByText(filteredPokemon[0].name);
       expect(firstName).toBeInTheDocument();
@@ -143,7 +146,7 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     filter('All');
   });
 
-  it(`Ao carregar a página, o filtro selecionado deverá ser All`, () => {
+  it('Ao carregar a página, o filtro selecionado deverá ser All', () => {
     const { getByText, getByRole } = renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
@@ -157,13 +160,14 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
       let filteredPokemon;
       fireEvent.click(filterButton);
       if (type !== 'All') {
-        filteredPokemon = pokemons.filter(e => e.type === type);
+        filteredPokemon = pokemons.filter((e) => e.type === type);
       } else filteredPokemon = pokemons;
 
       filteredPokemon.map((e) => {
         const name = getByText(e.name);
         expect(name).toBeInTheDocument();
         fireEvent.click(nextButton);
+        return e;
       });
       const firstName = getByText(filteredPokemon[0].name);
       expect(firstName).toBeInTheDocument();
@@ -194,11 +198,10 @@ cada tipo de Pokémon.`, () => {
       let filteredPokemon;
       fireEvent.click(filterButton);
       if (type !== 'All') {
-        filteredPokemon = pokemons.filter(e => e.type === type);
+        filteredPokemon = pokemons.filter((e) => e.type === type);
       } else filteredPokemon = pokemons;
       if (filteredPokemon.length === 1) expect(nextButton).toBeDisabled();
       else expect(nextButton).not.toBeDisabled();
-
     }
     isThere('All');
     isThere('Electric');
@@ -210,4 +213,3 @@ cada tipo de Pokémon.`, () => {
     isThere('Dragon');
   });
 });
-
