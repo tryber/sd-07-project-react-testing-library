@@ -4,7 +4,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-describe('Testing App.js archive', () => {
+describe('Testing App.js file', () => {
   test('renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
@@ -58,7 +58,7 @@ describe('Testing App.js archive', () => {
       expect(pathname).toBe('/favorites');
     });
 
-  test('when path doesnt exist, render page `Not Found`', () => {
+  test('when path doesnt exist, renders `Not Found` page', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/page/notfound/');
 
