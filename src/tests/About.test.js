@@ -23,8 +23,10 @@ describe('testing the About page', () => {
 
   test('the page has a Pokédex image', () => {
     const { container } = render(<About />);
-    const image = container.getElementsByTagName('img');
-    const imageValidation = image[0];
-    expect(imageValidation).toBeInTheDocument();
+
+    const image = container.querySelector(
+      '[src = "https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png"]',
+    );
+    expect(image).toBeInTheDocument();
   });
 });
