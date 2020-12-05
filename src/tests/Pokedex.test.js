@@ -13,7 +13,8 @@ test('A página contém um heading h2 com o texto Encountered pokémons?', async
       + 'electricity to make them tender enough to eat.',
       type: 'Electric' }];
   const { container } = renderWithRouter(
-    <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />);
+    <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
+  );
   await container.querySelector('h2');
   expect(container.querySelector('h2')).toHaveTextContent('Encountered pokémons');
 });
