@@ -13,7 +13,7 @@ test('se as informações detalhadas do Pokemon selecionado estão na tela', () 
   expect(getByText(/Summary/i)).toBeInTheDocument();
 
   expect(
-    getByText(/This intelligent Pokémon roasts hard/i)
+    getByText(/This intelligent Pokémon roasts hard/i),
   ).toBeInTheDocument();
 });
 
@@ -27,10 +27,10 @@ test('se existem mapas com as localizações dos Pokemons', () => {
 
   const maps = document.querySelectorAll('img');
   expect(maps[1].src).toBe(
-    'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png'
+    'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
   );
   expect(maps[2].src).toBe(
-    'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png'
+    'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
   );
 });
 
