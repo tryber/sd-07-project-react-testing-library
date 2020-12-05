@@ -37,7 +37,7 @@ describe('o topo da aplicação contém conjunto fixo de links:', () => {
 test('App é redirecionada para a página inicial, ao clicar no link Home', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
     </Router>
   );
@@ -45,13 +45,13 @@ test('App é redirecionada para a página inicial, ao clicar no link Home', () =
   expect(home).toBeInTheDocument();
   fireEvent.click(getByText(/Home/i));
   const { pathname } = history.location;
-  expect(pathname).toBe("/");
+  expect(pathname).toBe('/');
 });
 
 test('App é redirecionada para a página de About, ao clicar no link About', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
     </Router>
   );
@@ -65,7 +65,7 @@ test('App é redirecionada para a página de About, ao clicar no link About', ()
 test('App é redirecionada Pokémons Favoritados, ao clicar no link Favorite', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
     </Router>
   );
@@ -73,17 +73,17 @@ test('App é redirecionada Pokémons Favoritados, ao clicar no link Favorite', (
   expect(detail).toBeInTheDocument();
   fireEvent.click(getByText(/Favorite Pokémons/i));
   const { pathname } = history.location;
-  expect(pathname).toBe("/favorites");
+  expect(pathname).toBe('/favorites');
 });
 
 test('App é redirecionada para a página Not Found em URL desconhecida', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
     </Router>
   );
-  const route = "/desconhecida";
+  const route = '/desconhecida';
   history.push(route);
   const pageNotFound = getByText(/not found/i);
   expect(pageNotFound).toBeInTheDocument();
