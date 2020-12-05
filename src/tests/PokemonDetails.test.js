@@ -17,11 +17,8 @@
 //         const allP =  container.querySelectorAll('p');
 //         expect(allP.length).toBe(4);
 //         expect(allP).toBeInTheDocument();
-                
 //     });
 // });
-
-
 
 // Teste se as informações detalhadas do Pokémon selecionado são mostradas na tela.
 
@@ -32,11 +29,6 @@
 // A seção de detalhes deve conter um heading h2 com o texto Summary.
 
 // A seção de detalhes deve conter um parágrafo com o resumo do Pokémon específico sendo visualizado.
-
-
-
-
-
 
 // Teste se existe na página uma seção com os mapas contendo as localizações do pokémon
 
