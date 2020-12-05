@@ -1,14 +1,12 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
+import RenderWithRouter from './RenderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
+describe('Testing App.js', () => {
+  it('Shoul render initial page Po', () => {
+    const { getByText } = RenderWithRouter(<App />);
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
+})
 });
