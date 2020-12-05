@@ -14,8 +14,8 @@ describe('Testando o arquivo Pokedex.js, requisito 5', () => {
   });
 
   it('Teste se é exibido o próximo Pokémon da lista.', () => {
-    const { getByText, getByTestId } = renderWithRouter(<App />);
-    const button = getByTestId('next-pokemon');
+    const { getByText, getByRole } = renderWithRouter(<App />);
+    const button = getByRole('button', { name: 'Próximo pokémon' });
     expect(button).toBeInTheDocument();
     const pikachu = getByText(/Pikachu/i);
     expect(pikachu).toBeInTheDocument();
