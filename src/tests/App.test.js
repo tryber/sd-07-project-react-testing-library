@@ -3,7 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import RenderWithRouter from './RenderWithRouter';
 
-describe('Testing App.js', () => {
+describe('TestS 1 - App.js', () => {
   it('Should render initial page \'Pokédex\'', () => {
     const { getByText } = RenderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
