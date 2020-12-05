@@ -57,3 +57,12 @@ test('on Pokédex contains a navigation link to view details', () => {
     fireEvent.click(btnNext);
   });
 });
+
+test('an image with the src attribute containing the /star-icon.svg path', () => {
+  renderWithRouter(<App />);
+  const details = screen.getByText(/More details/i);
+  fireEvent.click(details);
+  const btnFavorit = screen.getByText(/Pokémon favoritado?/i);
+  fireEvent.click(btnFavorit);
+  expect(screen.getByAltText('Pikachu is marked as favorite').src).toBe('http://localhost/star-icon.svg');
+});
