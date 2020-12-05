@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
 import { pokemonType } from '../types';
-
 import './pokemon.css';
 
 const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
