@@ -62,14 +62,22 @@ describe('Teste se é exibido o próximo Pokémon da lista quando'
     await getByText('Próximo pokémon');
     fireEvent.click(getByText(/Próximo pokémon/i));
     await getByText('Charmander');
+    expect(getByText('Charmander')).toBeInTheDocument();
     fireEvent.click(getByText(/Próximo pokémon/i));
     await getByText('Alakazam');
+    expect(getByText('Alakazam')).toBeInTheDocument();
+  });
+  test('O primeiro Pokémon da lista deve ser mostrado ao clicar no botão,'
+  + 'se estiver no último Pokémon da lista', async () => {
+    const { getByText } = renderWithRouter(
+        <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
+    );
+    await getByText('Encountered pokémons');
+    fireEvent.click(getByText(/Próximo pokémon/i));
+    await getByText('Encountered pokémons');
+    fireEvent.click(getByText(/Próximo pokémon/i));
+    await getByText('Encountered pokémons');
+    fireEvent.click(getByText(/Próximo pokémon/i));
+    expect(getByText('Pikachu')).toBeInTheDocument();
   });
 });
-// Teste se é exibido o próximo Pokémon da lista quando o botão Próximo pokémon é clicado.
-
-// O botão deve conter o texto Próximo pokémon;
-
-// Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar sucessivamente no botão;
-
-// O primeiro Pokémon da lista deve ser mostrado ao clicar no botão, se estiver no último Pokémon da lista;
