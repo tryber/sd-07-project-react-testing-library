@@ -26,7 +26,7 @@ test('se é exibido todos os cards de pokémons favoritados', async () => {
       summary: 'The flame on its tail shows the strength of its life force.'
       + 'If it is weak, the flame also burns weakly.',
       type: 'Fire' }];
-  const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ pokemons } />)
+  const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ pokemons } />);
   await getByText('Pikachu');
   expect(getByText('Pikachu')).toBeInTheDocument();
   await getByText('Charmander');
