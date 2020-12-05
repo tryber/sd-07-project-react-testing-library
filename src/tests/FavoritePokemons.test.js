@@ -1,7 +1,5 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
 import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from '../renderWithRouter';
 
@@ -13,7 +11,6 @@ test('se não pokémons favoritos, exibir No favorite pokemon found, ', async ()
 });
 
 test('se é exibido todos os cards de pokémons favoritados', async () => {
-  const history = createMemoryHistory();
   const pokemons = [
     {
       averageWeight: { value: '6.0', measurementUnit: 'kg' },
@@ -29,9 +26,7 @@ test('se é exibido todos os cards de pokémons favoritados', async () => {
       summary: 'The flame on its tail shows the strength of its life force.'
       + 'If it is weak, the flame also burns weakly.',
       type: 'Fire' }];
-  const { getByText } = render(
-    <Router history={ history }><FavoritePokemons pokemons={ pokemons } /></Router>
-  );
+  const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ pokemons } />)
   await getByText('Pikachu');
   expect(getByText('Pikachu')).toBeInTheDocument();
   await getByText('Charmander');
@@ -39,14 +34,8 @@ test('se é exibido todos os cards de pokémons favoritados', async () => {
 });
 
 test('nenhum card de pokémon é exibido, se ele não estiver favoritado.', async () => {
-  const history = createMemoryHistory();
   const pokemons = [];
-  const { getByText } = renderWithRouter(<FavoritePokemons />)
-//   const { getByText } = render(
-//     <Router history={ history }>
-//       <FavoritePokemons pokemons={ pokemons } />
-//     </Router>
-//   );
+  const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ pokemons } />)
   await getByText('No favorite pokemon found');
   expect(getByText('No favorite pokemon found')).toBeInTheDocument();
 });
