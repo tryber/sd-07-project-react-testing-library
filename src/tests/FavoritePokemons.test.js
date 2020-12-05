@@ -18,7 +18,7 @@ test('se é exibido todos os cards de pokémons favoritados', async () => {
       averageWeight: { value: '6.0', measurementUnit: 'kg' },
       image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
       name: 'Pikachu',
-      summary: 'This intelligent Pokémon roasts hard berries with'+'electricity to make them tender enough to eat.',
+      summary: 'This intelligent Pokémon roasts hard berries with' + 'electricity to make them tender enough to eat.',
       type: 'Electric'
     },
     {
@@ -30,10 +30,7 @@ test('se é exibido todos os cards de pokémons favoritados', async () => {
     }
   ];
   const { getByText } = render(
-    <Router history={history}>
-      <FavoritePokemons pokemons={ pokemons } />
-    </Router>
-  );
+    <Router history={ history }><FavoritePokemons pokemons={ pokemons } /></Router>);
   await getByText('Pikachu');
   expect(getByText('Pikachu')).toBeInTheDocument();
   await getByText('Charmander');
@@ -44,10 +41,7 @@ test('nenhum card de pokémon é exibido, se ele não estiver favoritado.', asyn
   const history = createMemoryHistory();
   const pokemons = [];
   const { getByText } = render(
-    <Router history={ history }>
-      <FavoritePokemons pokemons={ pokemons } />
-    </Router>
-  );
+    <Router history={ history }><FavoritePokemons pokemons={ pokemons } /></Router>);
   await getByText('No favorite pokemon found');
   expect(getByText('No favorite pokemon found')).toBeInTheDocument()
 });
