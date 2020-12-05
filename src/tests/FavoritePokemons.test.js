@@ -3,6 +3,7 @@ import { Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import FavoritePokemons from '../components/FavoritePokemons';
+import renderWithRouter from '../renderWithRouter';
 
 test('se não pokémons favoritos, exibir No favorite pokemon found, ', async () => {
   const pokemons = [];
@@ -40,11 +41,12 @@ test('se é exibido todos os cards de pokémons favoritados', async () => {
 test('nenhum card de pokémon é exibido, se ele não estiver favoritado.', async () => {
   const history = createMemoryHistory();
   const pokemons = [];
-  const { getByText } = render(
-    <Router history={ history }>
-      <FavoritePokemons pokemons={ pokemons } />
-    </Router>
-  );
+  const { getByText } = renderWithRouter(<FavoritePokemons />)
+//   const { getByText } = render(
+//     <Router history={ history }>
+//       <FavoritePokemons pokemons={ pokemons } />
+//     </Router>
+//   );
   await getByText('No favorite pokemon found');
   expect(getByText('No favorite pokemon found')).toBeInTheDocument();
 });
