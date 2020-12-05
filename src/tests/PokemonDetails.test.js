@@ -24,7 +24,7 @@ it('should have a h2 heading with pokemon name and a Summary', () => {
   expect(description.textContent).not.toBe('');
 });
 
-it('should have a heading describe location', () => {
+it('should have a heading and description of the location', () => {
   const { getByRole, getByText, getByTestId } = renderWithRouter(<App />);
 
   const { textContent } = getByTestId('pokemon-name');
@@ -49,4 +49,14 @@ it('should have image corresponding of currents pokemon location', () => {
     expect(location.alt).not.toBe('');
     expect(location.alt).toBe(`${textContent} location`);
   });
+});
+
+it('should have a checkbox for the user be able to Favorite a pokemon', () => {
+  const { getByRole, getByText } = renderWithRouter(<App />);
+
+  fireEvent.click(getByText(/More details/));
+
+  const favorite = getByRole('checkbox', { name: /Pokémon favoritado?/ });
+
+  expect(favorite).toBeInTheDocument();
 });
