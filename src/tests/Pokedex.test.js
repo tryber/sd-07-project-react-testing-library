@@ -12,7 +12,9 @@ test('A página contém um heading h2 com o texto Encountered pokémons?', async
       summary: 'This intelligent Pokémon roasts hard berries with'
       + 'electricity to make them tender enough to eat.',
       type: 'Electric' }];
-  const { container } = renderWithRouter(<Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />);
+  const { container } = renderWithRouter(
+    <Pokedex pokemons={pokemon} isPokemonFavoriteById={25} />
+  );
   await container.querySelector('h2');
   expect(container.querySelector('h2')).toHaveTextContent('Encountered pokémons');
 });
@@ -46,14 +48,15 @@ describe('Teste se é exibido o próximo Pokémon da lista quando'
       },
     ];
     test('O botão deve conter o texto Próximo pokémon', async () => {
-        const { getByText } = renderWithRouter(
-          <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />
-        );
-        await getByText('Próximo pokémon');
-        expect(getByText(/Próximo pokémon/i)).toBeInTheDocument();
+      const { getByText } = renderWithRouter(
+        <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />
+      );
+      await getByText('Próximo pokémon');
+      expect(getByText(/Próximo pokémon/i)).toBeInTheDocument();
     });
     test('Os próximos Pokémons da lista devem ser mostrados, um a um,'
-    + 'ao clicar sucessivamente no botão', async () => {
+    + 'ao clicar sucessivamente no botão',
+      async () => {
         const { getByText } = renderWithRouter(
           <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />
         );
@@ -62,8 +65,10 @@ describe('Teste se é exibido o próximo Pokémon da lista quando'
         await getByText('Charmander');
         fireEvent.click(getByText(/Próximo pokémon/i));
         await getByText('Alakazam');
-    });
-});
+      }
+    );
+  }
+);
 // Teste se é exibido o próximo Pokémon da lista quando o botão Próximo pokémon é clicado.
 
 // O botão deve conter o texto Próximo pokémon;
