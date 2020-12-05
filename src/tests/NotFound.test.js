@@ -11,9 +11,12 @@ describe('Testando o arquivo NotFound.js', () => {
     expect(queryByText(/Page requested not found/i)).toBeInTheDocument();
   });
   test('Teste se página mostra a imagem', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+    const { getByRole, history } = renderWithRouter(<App />);
     const route = 'http://localhost/xablau';
     history.push(route);
-    expect(getByText('img').src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+    const srcExpected = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
+    expect(getByRole('img',
+      { name: /pikachu crying because the page requested was not found/i }).src)
+      .toBe(srcExpected);
   });
 });
