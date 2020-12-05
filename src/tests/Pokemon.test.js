@@ -36,6 +36,10 @@ it('should display a card containing basic pokemon infos', () => {
   expect(pokemonName).toBeInTheDocument();
   expect(pokemonType).toBeInTheDocument();
   expect(pokemonWeight).toBeInTheDocument();
+
+  expect(pokemonName.textContent).not.toBe('');
+  expect(pokemonType.textContent).not.toBe('');
+  expect(pokemonWeight.textContent).not.toBe('');
 });
 
 it('should present the average following: <measure> kg', () => {
