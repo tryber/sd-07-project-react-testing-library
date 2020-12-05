@@ -6,11 +6,7 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 test('renders a reading with the text "Pokédex"', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>
-  );
+  const { getByText } = render(<MemoryRouter><App /></MemoryRouter>);
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
 });
@@ -59,7 +55,7 @@ test('App é redirecionada para a página de About, ao clicar no link About', ()
   expect(about).toBeInTheDocument();
   fireEvent.click(getByText(/About/i));
   const { pathname } = history.location;
-  expect(pathname).toBe("/about");
+  expect(pathname).toBe('/about');
 });
 
 test('App é redirecionada Pokémons Favoritados, ao clicar no link Favorite', () => {
