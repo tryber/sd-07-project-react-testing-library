@@ -43,3 +43,29 @@ test('if only one Pokémon is shown at a time.', () => {
     expect(testId.length).toBe(1);
   });
 });
+
+test('if Pokédex has the filter buttons', () => {
+  renderWithRouter(<App />);
+  const filters = screen.getAllByTestId('pokemon-type-button');
+  const pokemonsFilters = ['All', ...pokemons.map((item) => item.type)];
+  const pokemonsNoRepeating = [];
+  pokemonsFilters.forEach((item) => {
+    if (!pokemonsNoRepeating.includes(item)) {
+      pokemonsNoRepeating.push(item);
+    }
+  });
+  pokemonsNoRepeating.forEach((itemPoke, index) => {
+    expect(filters[index]).toHaveTextContent(itemPoke);
+  });
+});
+
+test('show everyone if the Everyone button is clicked', () => {
+  renderWithRouter(<App />);
+  const btnAll = screen.getByText(/All/i);
+  const btnNext = screen.getByText(/Próximo pokémon/i);
+  fireEvent.click(btnAll);
+  pokemons.forEach((pokemon) => {
+    expect(screen.getByText(pokemon.name)).toBeInTheDocument();
+    fireEvent.click(btnNext);
+  });
+});
