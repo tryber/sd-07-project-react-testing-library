@@ -23,21 +23,22 @@ describe('5. Pokedex.js file', () => {
       fireEvent.click(buttonNextPokem);
     });
 
+    const firstPokemon = data[0];
     expect(getByText('Pikachu')).toBeInTheDocument();
   });
 
   test('if there are filter buttons and it works', () => {
     const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
     const filterTypeButton = getAllByTestId('pokemon-type-button');
-    const numberOfTypes = 7;
+    const numberOfTypes = 6;
     const index = Math.ceil(Math.random() * numberOfTypes);
 
     fireEvent.click(filterTypeButton[index]);
 
-    expect(getByTestId('pokemonType')).toBeInTheDocument();
+    expect(getByTestId('pokemonType').innerHTML).toBe(filterTypeButton[index].innerHTML);
   });
 
-  test('if there is a reset filter button', () => {
+  test('if there is a reset filter button', ()=>{
     const { getByText, getByTestId } = renderWithRouter(<App />);
     const allButton = getByText('All');
 
