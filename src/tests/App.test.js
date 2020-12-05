@@ -6,7 +6,8 @@ import renderWithRouter from '../renderWithRouter';
 describe('testing file App.js', () => {
   test('if the route / renders the home page of pokedex', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const pathname = history.location.pathname;
+    const { location } = history;
+    const { pathname } = location;
     expect(pathname).toBe('/');
     const homeText = getByText(/Encountered pokémons/i);
     expect(homeText).toBeInTheDocument();
@@ -23,7 +24,8 @@ describe('testing file App.js', () => {
   test('if the link home render pathname /', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Home/i));
-    const pathname = history.location.pathname;
+    const { location } = history;
+    const { pathname } = location;
     expect(pathname).toBe('/');
     const homeText = getByText(/Encountered pokémons/i);
     expect(homeText).toBeInTheDocument();
@@ -32,7 +34,8 @@ describe('testing file App.js', () => {
   test('if the link About render pathname /about', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/About/i));
-    const pathname = history.location.pathname;
+    const { location } = history;
+    const { pathname } = location;
     expect(pathname).toBe('/about');
     const aboutText = getByText(/About Pokédex/i);
     expect(aboutText).toBeInTheDocument();
@@ -41,7 +44,8 @@ describe('testing file App.js', () => {
   test('if the link Pokémons Favoritados render pathname /favorites', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Favorite Pokémons/i));
-    const pathname = history.location.pathname;
+    const { location } = history;
+    const { pathname } = location;
     expect(pathname).toBe('/favorites');
     const favoriteText = getByText('Favorite pokémons');
     expect(favoriteText).toBeInTheDocument();
