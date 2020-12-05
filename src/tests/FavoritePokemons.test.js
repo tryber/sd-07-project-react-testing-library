@@ -1,12 +1,12 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../components/renderWithRouter';
-import { fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
 
 describe('Testando o arquivo FavoritePokemons.js, requisito 3', () => {
-  it('Teste se a mensagem "No favorite pokemon found", se não tiver pokémons favoritos.', () => {
+  it('Teste se a mensagem "No favorite pokemon found", se não tiver favoritos.', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons />);
     const notFavorite = getByText(/No favorite pokemon found/i);
     expect(notFavorite).toBeInTheDocument();
@@ -18,7 +18,7 @@ describe('Testando o arquivo FavoritePokemons.js, requisito 3', () => {
     const checkbox = getByRole('checkbox');
     fireEvent.click(checkbox);
     expect(checkbox.checked).toBeTruthy();
-    history.push('/favorites')
+    history.push('/favorites');
     const mew = getByText(/Mew/i);
     expect(mew).toBeInTheDocument();
   });
@@ -29,9 +29,8 @@ describe('Testando o arquivo FavoritePokemons.js, requisito 3', () => {
     const checkbox = getByRole('checkbox');
     fireEvent.click(checkbox);
     expect(checkbox.checked).toBeTruthy();
-    history.push('/favorites')
+    history.push('/favorites');
     const pikachu = queryByText(/Pikachu/i);
     expect(pikachu).not.toBeInTheDocument();
   });
-
 });

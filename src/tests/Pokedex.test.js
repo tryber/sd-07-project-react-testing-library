@@ -22,9 +22,8 @@ describe('Testando o arquivo Pokedex.js, requisito 5', () => {
     fireEvent.click(button);
     const chamander = getByText(/Charmander/i);
     expect(chamander).toBeInTheDocument();
-    const pokemon = pokemons.filter(({ name }) => 
-      name !== 'Pikachu' && name !== 'Charmander');
-    pokemon.forEach(() => fireEvent.click(button));
+    const poke = pokemons.filter(({ name: n }) => n !== 'Pikachu' && n !== 'Charmander');
+    poke.forEach(() => fireEvent.click(button));
     const endPokemon = getByText(pokemons[pokemons.length - 1].name);
     expect(endPokemon).toBeInTheDocument();
     fireEvent.click(button);
@@ -52,14 +51,14 @@ describe('Testando o arquivo Pokedex.js, requisito 5', () => {
     const next = getByTestId('next-pokemon');
     pokemons.forEach(() => fireEvent.click(next));
     const pikachu = getByText(/Pikachu/i);
-    expect(pikachu).toBeInTheDocument();    
+    expect(pikachu).toBeInTheDocument();
   });
 
-  it('Teste se é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon.', () => {
+  it('Teste se é criado, dinamicamente, um botão de filtro para cada Pokémon.', () => {
     const { getAllByTestId, getByRole, getByTestId } = renderWithRouter(<App />);
     const typesButtons = getAllByTestId('pokemon-type-button');
     typesButtons.forEach((allTypes) => {
-      let buttons = getByRole('button',{ name: allTypes.innerHTML });
+      const buttons = getByRole('button', { name: allTypes.innerHTML });
       expect(buttons).toBeInTheDocument();
     });
     const all = getByRole('button', { name: 'All' });
