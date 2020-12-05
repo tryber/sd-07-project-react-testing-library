@@ -1,9 +1,6 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import About from './../components/About'
-import renderWithRouter from '../renderWithRouter';
-import { createMemoryHistory } from 'history';
 
 test('se a página contém as informações sobre a Pokédex.', () => {
     const { getByText } = render(<About />);
