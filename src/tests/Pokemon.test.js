@@ -32,6 +32,7 @@ it('should display a card containing basic pokemon infos', () => {
   const pokemonName = getByTestId('pokemon-name');
   const pokemonType = getByTestId('pokemonType');
   const pokemonWeight = getByTestId('pokemon-weight');
+  const pokemonWeightLength = 4;
 
   expect(pokemonName).toBeInTheDocument();
   expect(pokemonType).toBeInTheDocument();
@@ -40,11 +41,10 @@ it('should display a card containing basic pokemon infos', () => {
   expect(pokemonName.textContent).not.toBe('');
   expect(pokemonType.textContent).not.toBe('');
   expect(pokemonWeight.textContent).not.toBe('');
-  expect(pokemonWeight.textContent).not.toBe(
-    `Average weight: ${pokemonWeight.textContent} kg`,
-  );
+
   expect(pokemonWeight.textContent).not.toBe('Average weight:  ');
   expect(pokemonWeight.textContent).not.toBe('Average weight:  kg');
+  expect(pokemonWeight.textContent.split(' ').length).toBe(pokemonWeightLength);
 });
 
 it('should present the average following: <measure> kg', () => {
@@ -55,6 +55,7 @@ it('should present the average following: <measure> kg', () => {
 
   expect(numberWeightInfo).toBeInTheDocument();
   expect(unitWeightInfo).toBeInTheDocument();
+  expect(unitWeightInfo).not.toBe('');
 });
 
 it('should display a correct type info', () => {
