@@ -38,7 +38,18 @@ describe('Test 5 - Pokedex.js', () => {
     expect(filteredPoke[0].innerHTML).toBe(pokemons[0].type);
     expect(filteredPoke[1].innerHTML).toBe(pokemons[1].type);
     const especifcType = getByRole('button', { name: 'Electric' });
-    fireEvent.click(especifcType);
     expect(especifcType).toBeInTheDocument();
   });
+  it('Should hava a button to clean felters', () => {
+    const { getByRole } = RenderWithRouter(<App />);
+    const resetButton = getByRole('button', { name: 'All' });
+    expect(resetButton.innerHTML).toBe('All');
+  });
+  it('Should disable button next pokemon when there is only one pokemon.', () => {
+    const { getByTestId, getByRole } = RenderWithRouter(<App />);
+    const disable = getByTestId('next-pokemon');
+    const especifcType = getByRole('button', { name: 'Electric' });
+    fireEvent.click(especifcType);
+    expect(disable).toBeDisabled();
+  })
 });
