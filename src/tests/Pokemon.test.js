@@ -18,15 +18,19 @@ describe('testing the file Pokemon.js', () => {
     );
     const pokemonName = getByText(/Snorlax/i);
     expect(pokemonName).toBeInTheDocument();
+    expect(pokemonName.innerHTML).toBe('Snorlax');
 
     const pokemonType = getByText(/Normal/i);
     expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.innerHTML).toBe('Normal');
 
     const pokemonWeightValue = getByText(/460.0/i);
     expect(pokemonWeightValue).toBeInTheDocument();
+    expect(pokemonWeightValue.innerHTML).toBe('Average weight: 460.0 kg');
 
     const pokemonWeightUnit = getByText(/kg/i);
     expect(pokemonWeightUnit).toBeInTheDocument();
+    expect(pokemonWeightUnit.innerHTML).toBe('Average weight: 460.0 kg');
 
     const image = getByAltText('Snorlax sprite');
     expect(image).toBeInTheDocument();
