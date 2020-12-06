@@ -52,6 +52,7 @@ class PokemonDetails extends React.Component {
         <label htmlFor="favorite">
           {`Pokémon favoritado?`}
           <input
+            data-testid='favorite-pokemon'
             type="checkbox"
             id="favorite"
             checked={ isFavorite }
