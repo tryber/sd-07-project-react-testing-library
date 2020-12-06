@@ -2,6 +2,9 @@ import React from 'react';
 import Pokemon from '../components/Pokemon';
 import Pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
+import { cleanup } from '@testing-library/react';
+
+afterEach(cleanup);
 
 const isPokemonFavoriteById = {
   4: true,
@@ -24,6 +27,7 @@ determinado pokémon.`, () => {
         isFavorite={ isPokemonFavoriteById }
       />,
     );
+
     const name = getByText(/Pikachu/);
     expect(name).toBeInTheDocument();
     const type = getByText(/Electric/);
