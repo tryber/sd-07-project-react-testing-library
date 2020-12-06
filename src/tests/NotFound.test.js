@@ -13,4 +13,11 @@ describe('Requiriment 04', () => {
     expect(notFoundTitle.tagName).toBe('H2');
   });
 
+  test('2/2', () => {
+    renderWithRouter(<NotFound />);
+
+    const notFoundImage = screen.getByRole('img', { name: /pikachu/i });
+
+    expect(notFoundImage.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+  });
 });
