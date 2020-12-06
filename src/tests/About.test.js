@@ -6,7 +6,7 @@ describe('testing file About.js', () => {
   test('if the page contain informations about a pokedex', () => {
     const { getByText } = render(<About />);
     const pokedexInformations = getByText(
-      /digital encliclopedia containing all Pokémons/i
+      /digital encliclopedia containing all Pokémons/i,
     );
     expect(pokedexInformations).toBeInTheDocument();
   });
@@ -20,10 +20,10 @@ describe('testing file About.js', () => {
   test('if the page contain 2 paragraphs about Pokédex', () => {
     render(<About />);
     expect(
-      screen.getByText(/this application simulates a pokédex/i)
+      screen.getByText(/this application simulates a pokédex/i),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/one can filter pokémons by type/i)
+      screen.getByText(/one can filter pokémons by type/i),
     ).toBeInTheDocument();
   });
   test('if the page contain a img about Pokédex', () => {
