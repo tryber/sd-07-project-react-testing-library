@@ -8,7 +8,7 @@ describe('Requiriment 02', () => {
     renderWithRouter(<About />);
 
     const aboutMessage = screen.getByText(
-      /this application simulates a pokédex, a digital encliclopedia containing all pokémons/i
+      /this application simulates a pokédex/i
     );
 
     expect(aboutMessage).toBeInTheDocument();
@@ -41,8 +41,6 @@ describe('Requiriment 02', () => {
 
     const aboutImage = screen.getByRole('img');
 
-    expect(aboutImage.src).toBe(
-      'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png'
-    );
+    expect(aboutImage.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
