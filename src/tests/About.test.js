@@ -14,4 +14,13 @@ describe('Requiriment 02', () => {
     expect(aboutMessage).toBeInTheDocument();
   });
 
+  test('2/4', () => {
+    renderWithRouter(<About />);
+
+    const aboutTitle = screen.getByText(/about pokédex/i);
+
+    expect(aboutTitle).toBeInTheDocument();
+    expect(aboutTitle.tagName).toBe('H2');
+  });
+
 });
