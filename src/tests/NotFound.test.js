@@ -14,9 +14,8 @@ describe('Testing NotFound.js functionality', () => {
 
   it('Should show a image of pikachu crying', () => {
     const { getByAltText } = renderWithRouter(<NotFound />);
-    const imgPikachuCrying = 
-    getByAltText('Pikachu crying because the page requested was not found');
-    expect(imgPikachuCrying).toHaveAttribute('src',
+    const img = getByAltText('Pikachu crying because the page requested was not found');
+    expect(img).toHaveAttribute('src',
       'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
