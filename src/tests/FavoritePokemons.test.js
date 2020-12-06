@@ -29,5 +29,11 @@ describe('Requiriment 03', () => {
     expect(snorlax).toBeInTheDocument();
   });
 
+  test('3/3', () => {
+    renderWithRouter(<FavoritePokemon pokemons={ addFavoritePokemons } />);
 
+    const bulbasaur = screen.queryByText(/bulbasaur/i);
+
+    expect(bulbasaur).toBeNull();
+  });
 });
