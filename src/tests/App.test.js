@@ -1,18 +1,16 @@
 import React from 'react';
-import { MemoryRouter, Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import App from '../App';
-import NotFound from '../components/NotFound';
-
 
 describe('primeiro requisito', () => {
   test('se a página principal é renderizada no caminho de URL /', () => {
     const history = createMemoryHistory();
-		render(
-			<Router history={ history }>
-				<App />
-			</Router>
+    render(
+      <Router history={ history }>
+        <App />
+      </Router>,
     );
 
     const { pathname } = history.location;
@@ -21,32 +19,31 @@ describe('primeiro requisito', () => {
 
   test('se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
     const history = createMemoryHistory();
-		const { getByText } = render(
-			<Router history={ history }>
-				<App />
-			</Router>
+    const { getByText } = render(
+      <Router history={ history }>
+        <App />
+      </Router>,
     );
 
-    const home = getByText('Home')
+    const home = getByText('Home');
     expect(home).toBeInTheDocument();
-    
-    const about = getByText('About')
+
+    const about = getByText('About');
     expect(about).toBeInTheDocument();
 
-    const favorite = getByText('Favorite Pokémons')
+    const favorite = getByText('Favorite Pokémons');
     expect(favorite).toBeInTheDocument();
-
-  })
+  });
 
   test('se é redirecionada para a home, na URL / ao clicar no link Home', () => {
     const history = createMemoryHistory();
-		const { getByText } = render(
-			<Router history={ history }>
-				<App />
-			</Router>
+    const { getByText } = render(
+      <Router history={ history }>
+        <App />
+      </Router>,
     );
 
-    const home = getByText('Home')
+    const home = getByText('Home');
     fireEvent.click(home);
     const { pathname } = history.location;
     expect(pathname).toBe('/');
@@ -54,47 +51,45 @@ describe('primeiro requisito', () => {
 
   test('se é redirecionada para About, na URL /about, ao clicar no link About', () => {
     const history = createMemoryHistory();
-		const { getByText } = render(
-			<Router history={ history }>
-				<App />
-			</Router>
+    const { getByText } = render(
+      <Router history={ history }>
+        <App />
+      </Router>,
     );
 
-    const about = getByText('About')
+    const about = getByText('About');
     fireEvent.click(about);
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
 
-  test('se é redirecionada para Favoritados, na URL /favorites, ao clicar no link', () => {
+  test('se é redirecionada para Favoritados, na URL /favorites ao clicar no link', () => {
     const history = createMemoryHistory();
-		const { getByText } = render(
-			<Router history={ history }>
-				<App />
-			</Router>
+    const { getByText } = render(
+      <Router history={ history }>
+        <App />
+      </Router>,
     );
 
-    const favorites = getByText('Favorite Pokémons')
+    const favorites = getByText('Favorite Pokémons');
     fireEvent.click(favorites);
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
 
-  test('se a aplicação vai para página Not Found ao entrar em uma URL desconhecida', () => {
+  test('se a aplicação vai para página Not Found ao entrar na URL desconhecida', () => {
     const history = createMemoryHistory();
-		const { getByText } = render(
-			<Router history={ history }>
-				<App />
-			</Router>
+    const { getByText } = render(
+      <Router history={ history }>
+        <App />
+      </Router>,
     );
 
     const notFound = '/xablau';
     history.push(notFound);
     expect(getByText('Page requested not found')).toBeInTheDocument();
-  })
+  });
 });
-
-
 
 // test('renders a reading with the text `Pokédex`', () => {
 //   const { getByText } = render(
