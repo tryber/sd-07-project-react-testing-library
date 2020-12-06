@@ -55,7 +55,7 @@ describe('testing file App.js', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/About/i));
     history.push('/paginaquenaoexiste');
-    const notFoundMessage = getByText(/not found/i);
+    const notFoundMessage = getByText(/Page requested not found/i);
     expect(notFoundMessage).toBeInTheDocument();
   });
 });
