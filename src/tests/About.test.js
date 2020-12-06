@@ -20,7 +20,7 @@ describe('testing file About.js', () => {
     expect(heading.tagName).toBe('H2');
   })
 
-  it('the page contains an h2 heading with the text "About Pokédex"', () => {
+  it('the page contains two paragraphs with text about Pokédex', () => {
     /* https://testing-library.com/docs/dom-testing-library/api-queries/ */
     const { container } = renderWithRouter(<About />);
     const paragraph = container.querySelectorAll('p');
