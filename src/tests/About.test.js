@@ -8,7 +8,7 @@ describe('Requiriment 02', () => {
     renderWithRouter(<About />);
 
     const aboutMessage = screen.getByText(
-      /this application simulates a pokédex/i
+      /this application simulates a pokédex/i,
     );
 
     expect(aboutMessage).toBeInTheDocument();
