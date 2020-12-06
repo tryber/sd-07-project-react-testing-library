@@ -20,7 +20,7 @@ describe('Requiriment 03', () => {
   });
 
   test('2/3', () => {
-    renderWithRouter(<FavoritePokemon pokemons={ addFavoritePokemons} />);
+    renderWithRouter(<FavoritePokemon pokemons={ addFavoritePokemons } />);
 
     const mew = screen.getByText(/mew/i);
     const snorlax = screen.getByText(/snorlax/i);
