@@ -62,4 +62,16 @@ describe('Requiriment 05', () => {
     expect(firstPokemon).toBeInTheDocument();
   });
 
+  test('3/7', () => {
+    renderWithRouter(<Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />);
+
+    let currentPokemon = screen.getAllByTestId('pokemon-name');
+    const nextPokemonButton = screen.getByTestId('next-pokemon');
+    expect(currentPokemon.length).toBe(1);
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getAllByTestId('pokemon-name');
+    expect(currentPokemon.length).toBe(1);
+  });
+
 });
