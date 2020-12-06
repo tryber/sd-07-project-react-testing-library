@@ -24,7 +24,7 @@ describe('7. Testando o arquivo PokemonDetails.js', () => {
     fireEvent.click(getByText('More details'));
 
     expect(getByText(`Game Locations of ${defaultPokemon.name}`)).toBeInTheDocument();
-    defaultPokemon.foundAt.forEach(({ location, map }) => {
+    defaultPokemon.foundAt.forEach(({ map }) => {
       expect(container.querySelector(`[src="${map}"]`)).toBeInTheDocument();
       expect(
         container.querySelector(`[alt="${defaultPokemon.name} location"]`),
@@ -33,7 +33,7 @@ describe('7. Testando o arquivo PokemonDetails.js', () => {
   });
 
   test('Se o usuário pode favoritar um pokémon através da página de detalhes.', () => {
-    const { getByText} = renderWithRouter(<App />);
+    const { getByText } = renderWithRouter(<App />);
     fireEvent.click(getByText('More details'));
 
     expect(getByText(/Pokémon favoritado/i)).toBeInTheDocument();
