@@ -217,7 +217,7 @@ cada tipo de Pokémon.`, () => {
 });
 
 it('Verifica a existência dos botões All, tipos e Next', () => {
-  const { getByText, getAllByRole } = renderWithRouter(
+  const { getAllByRole } = renderWithRouter(
     <Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ isPokemonFavoriteById }
