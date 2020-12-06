@@ -11,22 +11,22 @@ describe('testing About.js functionality', () => {
   });
 
   it('Should coteins a tag h2 in the document', () => {
-    const { getByText, getAllByTestId,
-      getByRole, getByTestId } = renderWithRouter(<About />);
+    const { getByText, getByRole, getByAltText } = renderWithRouter(<About />);
 
     const header2 = getByRole('heading', { level: 2 });
+    expect(header2).toBeInTheDocument();
     expect(header2.tagName.toLowerCase()).toBe('h2');
     const header2Text = getByText(/About Pokédex/i);
     expect(header2Text).toBeInTheDocument();
     const numberToComper = 2;
-    const pAboutPokedex = getAllByTestId('about-pokedex');
+    const pAboutPokedex = document.querySelectorAll('p');
     expect(pAboutPokedex.length).toBe(numberToComper);
     const pText1 = getByText(/This application simulates a Pokédex/i);
     expect(pText1).toBeInTheDocument();
     const pText2 = getByText(/One can filter Pokémons by type/i);
     expect(pText2).toBeInTheDocument();
 
-    const imgOfPokedexURL = getByTestId('img-of-pokedex');
+    const imgOfPokedexURL = getByAltText('Pokédex');
     expect(imgOfPokedexURL).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
