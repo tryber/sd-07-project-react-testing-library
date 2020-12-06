@@ -23,4 +23,17 @@ describe('Requiriment 02', () => {
     expect(aboutTitle.tagName).toBe('H2');
   });
 
+  test('3/4', () => {
+    renderWithRouter(<About />);
+
+    const aboutParagraphOne = screen.getByText(/this application simulates a pokédex/i);
+    const aboutParagraphTwo = screen.getByText(/one can filter pokémons by type/i);
+
+    expect(aboutParagraphOne).toBeInTheDocument();
+    expect(aboutParagraphTwo).toBeInTheDocument();
+
+    expect(aboutParagraphOne.tagName).toBe('P');
+    expect(aboutParagraphTwo.tagName).toBe('P');
+  });
+
 });
