@@ -7,7 +7,7 @@ import FavoritePokemon from '../components/FavoritePokemons';
 describe('Requiriment 03', () => {
   // Raphael Caputo - linha 7;
 
-  // https://github.com/tryber/sd-07-project-react-testing-library/pull/12/files;
+  // https://github.com/tryber/sd-07-project-react-testing-library/pull/64/files;
 
   const addFavoritePokemons = [pokemons[7], pokemons[5]];
 
