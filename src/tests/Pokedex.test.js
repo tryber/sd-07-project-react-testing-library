@@ -133,7 +133,15 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   });
   test('A Pokedéx deverá mostrar os Pokémons normalmente'
   + '(sem filtros) quando o botão All for clicado;', () => {
-
+    const { getByText } = renderWithRouter(
+    <Pokedex
+      pokemons={ pokemon }
+      isPokemonFavoriteById={ 25 }
+    />,
+    );
+    fireEvent.click(getByText('All'));
+    expect(getByText('All')).toBeInTheDocument();
+    expect(getByText('Próximo pokémon')).toBeInTheDocument();
   });
   test('Ao carregar a página, o filtro selecionado deverá ser All', () => {
     const clickBtnAll = jest.fn();
