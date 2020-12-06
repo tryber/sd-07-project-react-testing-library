@@ -1,8 +1,10 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, cleanup } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
+
+afterEach(cleanup);
 
 const isPokemonFavoriteById = {
   4: true,
@@ -212,4 +214,65 @@ cada tipo de Pokémon.`, () => {
     isThere('Normal');
     isThere('Dragon');
   });
+});
+
+it('Verifica a existência dos botões All, tipos e Next', () => {
+  const { getByText, getAllByRole } = renderWithRouter(
+    <Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ isPokemonFavoriteById }
+    />,
+  );
+  const AllButton = getAllByRole('button', { name: 'All' });
+  const ElectricButton = getAllByRole('button', { name: 'Electric',
+    testIdAttribute: 'pokemon-type-button' });
+  const FireButton = getAllByRole('button', { name: 'Fire',
+    testIdAttribute: 'pokemon-type-button' });
+  const BugButton = getAllByRole('button', { name: 'Bug',
+    testIdAttribute: 'pokemon-type-button' });
+  const PoisonButton = getAllByRole('button', { name: 'Poison',
+    testIdAttribute: 'pokemon-type-button' });
+  const PsychicButton = getAllByRole('button', { name: 'Psychic',
+    testIdAttribute: 'pokemon-type-button' });
+  const NormalButton = getAllByRole('button', { name: 'Normal',
+    testIdAttribute: 'pokemon-type-button' });
+  const DragonButton = getAllByRole('button', { name: 'Dragon',
+    testIdAttribute: 'pokemon-type-button' });
+  const NextButton = getAllByRole('button', { name: 'Próximo pokémon',
+    testIdAttribute: 'pokemon-type-button' });
+
+  const allButtons = getAllByRole('button');
+  expect(AllButton[0]).toBeInTheDocument();
+  expect(ElectricButton[0]).toBeInTheDocument();
+  expect(FireButton[0]).toBeInTheDocument();
+  expect(BugButton[0]).toBeInTheDocument();
+  expect(PoisonButton[0]).toBeInTheDocument();
+  expect(PsychicButton[0]).toBeInTheDocument();
+  expect(NormalButton[0]).toBeInTheDocument();
+  expect(DragonButton[0]).toBeInTheDocument();
+  expect(NextButton[0]).toBeInTheDocument();
+
+  expect(AllButton.length).toBe(1);
+  expect(ElectricButton.length).toBe(1);
+  expect(FireButton.length).toBe(1);
+  expect(BugButton.length).toBe(1);
+  expect(PoisonButton.length).toBe(1);
+  expect(PsychicButton.length).toBe(1);
+  expect(NormalButton.length).toBe(1);
+  expect(DragonButton.length).toBe(1);
+  expect(NextButton.length).toBe(1);
+
+  expect(allButtons.length).toBe(9);
+
+  const valueAllButton = getByText(/All/);
+
+  expect(allButtons[0].innerHTML).toBe('All');
+  expect(allButtons[1].innerHTML).toBe('Electric');
+  expect(allButtons[2].innerHTML).toBe('Fire');
+  expect(allButtons[3].innerHTML).toBe('Bug');
+  expect(allButtons[4].innerHTML).toBe('Poison');
+  expect(allButtons[5].innerHTML).toBe('Psychic');
+  expect(allButtons[6].innerHTML).toBe('Normal');
+  expect(allButtons[7].innerHTML).toBe('Dragon');
+  expect(allButtons[8].innerHTML).toBe('Próximo pokémon');
 });
