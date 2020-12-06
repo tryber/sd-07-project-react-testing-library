@@ -14,4 +14,10 @@ describe('testing file NotFound.js', () => {
       'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
     );
   });
+
+  test('if the page not found render when the using a not existing path', () => {
+    const { getByText } = render(<NotFound />);
+    const notFoundMessage = getByText(/Page requested not found/i);
+    expect(notFoundMessage).toBeInTheDocument();
+  });
 });
