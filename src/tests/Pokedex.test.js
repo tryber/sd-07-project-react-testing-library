@@ -93,7 +93,7 @@ test('Teste se é mostrado apenas um Pokémon por vez.', async () => {
       type: 'Electric' }];
   const length = 3;
   const { container } = renderWithRouter(
-      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
+    <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
   );
   await container.querySelector('.pokemon-overview');
   await container.querySelectorAll('p');
