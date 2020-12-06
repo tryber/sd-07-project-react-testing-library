@@ -32,14 +32,6 @@ const pokemon = [
 ];
 
 test('A página contém um heading h2 com o texto Encountered pokémons?', async () => {
-  const pokemon = [
-    {
-      averageWeight: { value: '6.0', measurementUnit: 'kg' },
-      image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-      name: 'Pikachu',
-      summary: 'This intelligent Pokémon roasts hard berries with'
-      + 'electricity to make them tender enough to eat.',
-      type: 'Electric' }];
   const { container } = renderWithRouter(
     <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
   );
@@ -49,32 +41,6 @@ test('A página contém um heading h2 com o texto Encountered pokémons?', async
 
 describe('Teste se é exibido o próximo Pokémon da lista quando'
 + 'o botão Próximo pokémon é clicado.', () => {
-  const pokemon = [
-    {
-      averageWeight: { value: '6.0', measurementUnit: 'kg' },
-      image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-      name: 'Pikachu',
-      summary: 'This intelligent Pokémon roasts hard berries with electricity'
-      + 'to make them tender enough to eat.',
-      type: 'Electric',
-    },
-    {
-      averageWeight: { value: '8.5', measurementUnit: 'kg' },
-      image: 'https://cdn.bulbagarden.net/upload/0/0a/Spr_5b_004.png',
-      name: 'Charmander',
-      summary: 'The flame on its tail shows the strength of its life force.'
-      + 'If it is weak, the flame also burns weakly.',
-      type: 'Fire',
-    },
-    {
-      averageWeight: { value: '48.0', measurementUnit: 'kg' },
-      image: 'https://cdn.bulbagarden.net/upload/8/88/Spr_5b_065_m.png',
-      name: 'Alakazam',
-      summary: 'Closing both its eyes heightens all its other senses.'
-      + 'This enables it to use its abilities to their extremes.',
-      type: 'Psychic',
-    },
-  ];
   test('O botão deve conter o texto Próximo pokémon', async () => {
     const { getByText } = renderWithRouter(
       <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
@@ -111,7 +77,7 @@ describe('Teste se é exibido o próximo Pokémon da lista quando'
 });
 
 test('Teste se é mostrado apenas um Pokémon por vez.', async () => {
-  const pokemon = [
+  const pokemonOne = [
     {
       averageWeight: { value: '6.0', measurementUnit: 'kg' },
       image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
@@ -121,7 +87,7 @@ test('Teste se é mostrado apenas um Pokémon por vez.', async () => {
       type: 'Electric' }];
   const length = 3;
   const { container } = renderWithRouter(
-    <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
+    <Pokedex pokemons={ pokemonOne } isPokemonFavoriteById={ 25 } />,
   );
   await container.querySelector('.pokemon-overview');
   await container.querySelectorAll('p');
