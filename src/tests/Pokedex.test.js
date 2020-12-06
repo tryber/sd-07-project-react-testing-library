@@ -145,7 +145,7 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
       />,
     );
     const btn = queryByTestId('');
-    if (btn.textContent = 'All') return btn.onClick;
+    if (btn) return btn.onClick;
     fireEvent.load(queryByTestId(''));
     expect(queryByTestId('').textContent).toBe('All');
   });
