@@ -92,8 +92,8 @@ test('Teste se é mostrado apenas um Pokémon por vez.', async () => {
       + 'electricity to make them tender enough to eat.',
       type: 'Electric' }];
   const length = 3;
-    const { container } = renderWithRouter(
-    <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
+  const { container } = renderWithRouter(
+      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
   );
   await container.querySelector('.pokemon-overview');
   await container.querySelectorAll('p');
@@ -133,7 +133,9 @@ describe('Teste se a Pokédex tem os botões de filtro.', () => {
   ];
   test('A partir da seleção de um botão de tipo, a Pokédex deve circular'
   + 'somente pelos pokémons daquele tipo;', async () => {
-    const { getByText } = renderWithRouter(<Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />);
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
+    );
     await getByText('Fire');
     fireEvent.click(getByText('Fire'));
     expect(getByText('Charmander')).toBeInTheDocument();
@@ -142,7 +144,9 @@ describe('Teste se a Pokédex tem os botões de filtro.', () => {
     expect(getByText(/48.0 kg/i)).toBeInTheDocument();
   });
   test('O texto do botão deve corresponder ao nome do tipo, ex. Psychic;', async () => {
-    const { getByText, queryByTestId } = renderWithRouter(<Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />);
+    const { getByText, queryByTestId } = renderWithRouter(
+      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
+    );
     await getByText('Psychic');
     fireEvent.click(getByText('Psychic'));
     expect(getByText('Alakazam')).toBeInTheDocument();
@@ -156,8 +160,6 @@ describe('Teste se a Pokédex tem os botões de filtro.', () => {
 // A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;
 
 // O texto do botão deve corresponder ao nome do tipo, ex. Psychic;
-
-
 
 // Teste se a Pokédex contém um botão para resetar o filtro
 
