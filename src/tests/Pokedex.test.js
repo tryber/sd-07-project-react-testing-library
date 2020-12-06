@@ -87,7 +87,7 @@ describe('Testing the Pokedex.js file', () => {
     const firstPokemon = getByText(/Pikachu/i);
     expect(firstPokemon).toBeInTheDocument();
   });
-  it('Should to test if buttons are created dynamically for each type of Pokémon.', () => {
+  it('Should to test if buttons are created dynamically for each type of Pokémon', () => {
     const { getByText, getAllByTestId } = renderWithRouter(<App />);
     const filterButton = getByText('All');
     fireEvent.select(filterButton);
@@ -113,5 +113,12 @@ describe('Testing the Pokedex.js file', () => {
     expect(allTypesButtons[6].innerHTML).toBe('Dragon');
     fireEvent.click(allTypesButtons[6]);
     expect(filterButton).toBeInTheDocument();
+  });
+  it('Should disable Next Pokémon button when has only one Pokémon selected.', () => {
+    const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
+    const allTypesButtons = getAllByTestId('pokemon-type-button');
+    const nextButton = getByTestId('next-pokemon');
+    fireEvent.click(allTypesButtons[0]);
+    expect(nextButton).not.toBe();
   });
 });
