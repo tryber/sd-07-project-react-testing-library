@@ -13,6 +13,7 @@ test('if pokemon with correct information is rendered', () => {
   const weight = getByTestId('pokemon-weight');
   expect(weight).toHaveTextContent('Average weight: 6.0 kg');
   const image = container.getElementsByTagName('img')[0];
+  expect(image.src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   expect(image.alt).toBe('Pikachu sprite');
 });
 // Teste se o card do Pokémon indicado na Pokédex contém um link de navegação para
