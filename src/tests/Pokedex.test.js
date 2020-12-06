@@ -100,9 +100,14 @@ test('ALL is selected when rendered', () => {
   expect(selected.innerHTML).toBe('Fire');
 });
 // Teste se é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon.
-// pegar antes do render? como se não tem a desestruturização ainda?
-
-// Os botões de filtragem devem ser dinâmicos;
+test('if one button is generated for each filter', () => {
+  const { getAllByTestId, getByRole } = renderWithRouter(<App />);
+  const buttons = getAllByTestId('pokemon-type-button');
+  buttons.forEach((button) => {
+    const one = getByRole('button', { name: button.innerHTML });
+    expect(one).toBeInTheDocument();
+  });
+});
 
 // Deve existir um botão de filtragem para cada tipo de Pokémon disponível nos dados, sem repetição. Ou seja, a sua Pokédex deve possuir pokémons do tipo Fire, Psychic, Electric e Normal;
 test('One button for each type', () => {
