@@ -25,4 +25,17 @@ describe('Test 5 - Pokedex.js', () => {
     fireEvent.click(button);
     expect(pokemons[0].name).toBe('Pikachu');
   });
+  it('Should to contain only one pokemon', () => {
+    const { container } = RenderWithRouter(<App />);
+    const pokemonsCard = container.querySelectorAll('.pokemon');
+    expect(pokemonsCard.length).toBe(1);
+  });
+  it('Should contain filter buttons', () => {
+    const { getAllByTestId } = RenderWithRouter(<App pokemons={ pokemons } />);
+    const filteredPoke = getAllByTestId('pokemon-type-button');
+    const magicNumber = 7;
+    expect(filteredPoke).toHaveLength(magicNumber);
+    expect(filteredPoke[0].innerHTML).toBe(pokemons[0].type);
+    expect(filteredPoke[1].innerHTML).toBe(pokemons[1].type);
+  });
 });
