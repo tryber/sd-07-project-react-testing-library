@@ -24,49 +24,57 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-test('Teste se o topo da aplicação contém um conjunto de links de navegação', () => {
-  const { getByText } = renderWithRouter(<App />);
-  fireEvent.click(getByText(/Home/i));
-  fireEvent.click(getByText(/About/i));
-  fireEvent.click(getByText(/Favorite Pokémons/i));
-});
+describe('Testando links de navegação', () => {
+  test('Teste se o topo da aplicação contém um conjunto de links de navegação', () => {
+    const { getByText } = renderWithRouter(<App />);
 
-test('Teste se a aplicação navega da home para URL / ao clicar no link Home', () => {
-  const { getByText, history } = renderWithRouter(<App />);
+    const home = getByText(/Home/i);
+    expect(home).toBeInTheDocument();
 
-  const home = getByText(/Home/i);
+    const about = getByText(/About/i);
+    expect(about).toBeInTheDocument();
 
-  fireEvent.click(home);
-  const { pathname } = history.location;
-  expect(pathname).toBe('/');
-});
+    const favoritePokemon = getByText(/Favorite Pokémons/i);
+    expect(favoritePokemon).toBeInTheDocument();
+  });
 
-test('Aplicação navega da página About para URL /about ao clicar no link About', () => {
-  const { getByText, history } = renderWithRouter(<App />);
+  test('Teste se a aplicação navega da home para URL / ao clicar no link Home', () => {
+    const { getByText, history } = renderWithRouter(<App />);
 
-  const about = getByText(/About/i);
+    const home = getByText(/Home/i);
 
-  fireEvent.click(about);
-  const { pathname } = history.location;
-  expect(pathname).toBe('/about');
-});
+    fireEvent.click(home);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
+  });
 
-test('Navega de Pokémons Favoritados para /favorites ao clicar no link Favorite', () => {
-  const { getByText, history } = renderWithRouter(<App />);
+  test('Aplicação navega da página About para URL /about ao clicar no link About', () => {
+    const { getByText, history } = renderWithRouter(<App />);
 
-  const favorites = getByText(/Favorite/i);
+    const about = getByText(/About/i);
 
-  fireEvent.click(favorites);
-  const { pathname } = history.location;
-  expect(pathname).toBe('/favorites');
-});
+    fireEvent.click(about);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
+  });
 
-test('É redirecionada para a página Not Found ao entrar em uma URL desconhecida', () => {
-  const { getByText, history } = renderWithRouter(<App />);
+  test('Navega de Pokémons Favoritados para /favorites clicando no link Favorite', () => {
+    const { getByText, history } = renderWithRouter(<App />);
 
-  const route = '/xablau';
-  history.push(route);
+    const favorites = getByText(/Favorite/i);
 
-  const pageNotFound = getByText(/Page requested not found/i);
-  expect(pageNotFound).toBeInTheDocument();
+    fireEvent.click(favorites);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+  });
+
+  test('É redirecionada para página Not Found ao entrar em uma URL desconhecida', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+
+    const route = '/xablau';
+    history.push(route);
+
+    const pageNotFound = getByText(/Page requested not found/i);
+    expect(pageNotFound).toBeInTheDocument();
+  });
 });
