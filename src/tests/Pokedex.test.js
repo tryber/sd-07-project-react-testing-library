@@ -1,6 +1,6 @@
 import React from 'react';
-import renderWithRouter from './renderWithRouter';
 import { fireEvent } from '@testing-library/react';
+import renderWithRouter from './renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 
@@ -22,7 +22,7 @@ describe('check if `Pokédex` component is working correctly', () => {
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoriteList }
-      />
+      />,
     );
     const encounteredPokemons = getByText(/Encountered pokémons/i);
     expect(encounteredPokemons).toBeInTheDocument();
@@ -34,11 +34,11 @@ describe('check if `Pokédex` component is working correctly', () => {
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoriteList }
-      />
+      />,
     );
     const firstPokemon = getByText(/Pikachu/i);
     expect(firstPokemon).toBeInTheDocument();
-    
+
     fireEvent.click(getByText(/Próximo pokémon/i));
     const secondPokemon = getByText(/Charmander/i);
     expect(secondPokemon).toBeInTheDocument();
@@ -70,7 +70,7 @@ describe('check if `Pokédex` component is working correctly', () => {
     fireEvent.click(getByText(/Próximo pokémon/i));
     const ninthPokemon = getByText(/Dragonair/i);
     expect(ninthPokemon).toBeInTheDocument();
-    
+
     fireEvent.click(getByText(/Próximo pokémon/i));
     expect(firstPokemon).toBeInTheDocument();
   });
@@ -80,7 +80,7 @@ describe('check if `Pokédex` component is working correctly', () => {
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoriteList }
-      />
+      />,
     );
     const pokemon = getAllByText(/Average/i);
     expect(pokemon).toHaveLength(1);
@@ -91,7 +91,7 @@ describe('check if `Pokédex` component is working correctly', () => {
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoriteList }
-      />
+      />,
     );
     const allFilter = getByTestId('');
     expect(allFilter).toBeInTheDocument();
@@ -100,7 +100,8 @@ describe('check if `Pokédex` component is working correctly', () => {
     expect(allTypesFilter[0]).toBeInTheDocument();
     expect(allTypesFilter[3]).toBeInTheDocument();
     expect(allTypesFilter[6]).toBeInTheDocument();
-    expect(allTypesFilter).toHaveLength(7);
+    const typesLength = 7;
+    expect(allTypesFilter).toHaveLength(typesLength);
   });
 
   it('check if the filters are working', () => {
@@ -108,7 +109,7 @@ describe('check if `Pokédex` component is working correctly', () => {
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoriteList }
-      />
+      />,
     );
     const allTypesFilter = getAllByTestId('pokemon-type-button');
     fireEvent.click(allTypesFilter[1]);
@@ -144,29 +145,29 @@ describe('check if `Pokédex` component is working correctly', () => {
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoriteList }
-      />
+      />,
     );
 
     const allButton = getByText(/All/i);
     expect(allButton).toBeInTheDocument();
-  })
+  });
 
   it('should show all pokemons when `All` button is clicked', () => {
     const { getByText } = renderWithRouter(
-        <Pokedex
-          pokemons={ pokemons }
-          isPokemonFavoriteById={ favoriteList }
-        />
-      );
-  
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoriteList }
+      />,
+    );
+
     const allButton = getByText(/All/i);
     const skipPokemon = getByText(/Próximo pokémon/i);
     const fireFilter = getByText(/Fire/i);
-      
+
     fireEvent.click(fireFilter);
     fireEvent.click(skipPokemon);
     fireEvent.click(allButton);
-      
+
     const firstPokemon = getByText(/Pikachu/i);
     expect(firstPokemon).toBeInTheDocument();
 
@@ -185,9 +186,8 @@ describe('check if `Pokédex` component is working correctly', () => {
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoriteList }
-      />
+      />,
     );
-    
 
     const electricArray = getAllByText(/Electric/i);
     const electricFilter = electricArray[1];
@@ -225,16 +225,16 @@ describe('check if `Pokédex` component is working correctly', () => {
     fireEvent.click(resetFilters);
     expect(electricPokemon).toBeInTheDocument();
     expect(resetFilters).toBeInTheDocument();
-  })
+  });
 
-  it('check if `Próximo pokémon` button is disabled when there is no next pokémon', () => {
+  it('check if `Próximo pokémon` button is disabled when there isn`t next pokémon', () => {
     const { getByText, getAllByText } = renderWithRouter(
-        <Pokedex
-          pokemons={ pokemons }
-          isPokemonFavoriteById={ favoriteList }
-        />
-      );
-    
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoriteList }
+      />,
+    );
+
     const electricArray = getAllByText(/Electric/i);
     const electricFilter = electricArray[1];
     const normalFilter = getByText(/Normal/i);

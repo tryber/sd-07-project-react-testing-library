@@ -13,7 +13,7 @@ describe('Pokedéx is rendering', () => {
 
   it('shows the Pokédex when the route is `/`', () => {
     const { getByText } = render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={ ['/'] }>
         <App />
       </MemoryRouter>,
     );
@@ -46,14 +46,14 @@ describe('check if navigation is working', () => {
   it('redirect to path `/` when `Home` is clicked', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Home/i));
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
 
   it('redirect to path `about` when `About` is clicked', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/About/i));
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     expect(pathname).toBe('/about');
     const aboutPokedex = getByText(/About Pokédex/);
     expect(aboutPokedex).toBeInTheDocument();
@@ -62,13 +62,13 @@ describe('check if navigation is working', () => {
   it('redirect to path `favorites` when `Favorite Pokémons` is clicked', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Favorite Pokémons/i));
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
     const favoritePokemons = getByText(/Favorite pokémons/);
     expect(favoritePokemons).toBeInTheDocument();
   });
 
-  it('redirect to page `Not Found` when a not existing route is insert in the navigator', () => {
+  it('redirect to `Not Found` when a inexisting route is insert in the navigator', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/page-that-doesnt-exist');
     const noMatch = getByText(/Page requested not found/i);

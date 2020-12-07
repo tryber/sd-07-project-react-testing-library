@@ -18,7 +18,8 @@ describe('check if `About` component is working correctly', () => {
   it('check if `About Pokédex` has two `p` elements explaining the pokedéx', () => {
     const { getAllByText } = render(<About />);
     const paragraphs = getAllByText(/Pokémons/i);
-    expect(paragraphs).toHaveLength(2);
+    const paragraphsLength = 2;
+    expect(paragraphs).toHaveLength(paragraphsLength);
     expect(paragraphs[0].tagName).toBe('P');
     expect(paragraphs[1].tagName).toBe('P');
   });
@@ -26,7 +27,7 @@ describe('check if `About` component is working correctly', () => {
   it('check pokédex image link', () => {
     const { getByAltText } = render(<About />);
     const image = getByAltText(/Pokédex/);
-    const imageLink = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png'
+    const imageLink = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     expect(image.src).toBe(imageLink);
   });
 });
