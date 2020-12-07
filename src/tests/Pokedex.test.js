@@ -26,7 +26,7 @@ const pokemons = [
       },
     ],
     summary:
-      'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+      'This intelligent Pokémon roasts hard berries with electricity.',
   },
   {
     id: 4,
@@ -59,7 +59,7 @@ const pokemons = [
       },
     ],
     summary:
-      'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
+      'The flame on its tail shows the strength of its life force. If it is weak.',
   },
 ];
 
@@ -76,31 +76,34 @@ test('The page contains an h2 heading with the text Encountered Pokémons', () =
   expect(h2Tag).toHaveTextContent('Encountered pokémons');
 });
 
-test('The next Pokémon in the list is displayed when the "Next Pokémon" button is clicked', () => {
-  const { getByText, getByRole } = renderWithRouter(
+test('The next Pokémon in the list is displayed when the Next Pokémon button is clicked',
+  () => {
+    const { getByText, getByRole } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
+    );
+
+    const button = getByRole('button', { name: 'Próximo pokémon' });
+    expect(button).toBeDefined();
+
+    let pokemon = getByText(/Pikachu/i);
+    expect(pokemon).toBeInTheDocument();
+
+    fireEvent.click(button);
+    pokemon = getByText(/Charmander/i);
+    expect(pokemon).toBeInTheDocument();
+
+    fireEvent.click(button);
+    pokemon = getByText(/Pikachu/i);
+    expect(pokemon).toBeInTheDocument();
+  });
+
+it('Only one Pokémon is shown at a time', () => {
+  const { getAllByTestId } = renderWithRouter(
     <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
   );
-
-  const button = getByRole('button', { name: 'Próximo pokémon' });
-  expect(button).toBeDefined();
-
-  let pokemon = getByText(/Pikachu/i);
-  expect(pokemon).toBeInTheDocument();
-
-  fireEvent.click(button);
-  pokemon = getByText(/Charmander/i);
-  expect(pokemon).toBeInTheDocument();
-
-  fireEvent.click(button);
-  pokemon = getByText(/Pikachu/i);
-  expect(pokemon).toBeInTheDocument();
+  const pokemon = getAllByTestId('pokemon-name');
+  expect(pokemon).toHaveLength(1);
 });
-
-// it('Only one Pokémon is shown at a time', () => {
-//   const { getByText, getByRole } = renderWithRouter(
-//     <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
-//   );
-// });
 
 test('Pokédex has the filter buttons', () => {
   const { getByTestId, getByRole } = renderWithRouter(
