@@ -33,13 +33,12 @@ const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
 };
 
 Pokemon.propTypes = {
-  isFavorite: PropTypes.bool,
+  isFavorite: PropTypes.bool.isRequired,
   pokemon: pokemonType.isRequired,
   showDetailsLink: PropTypes.bool,
 };
 
 Pokemon.defaultProps = {
-  isFavorite: true,
   showDetailsLink: true,
 };
 
