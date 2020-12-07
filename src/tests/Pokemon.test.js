@@ -2,11 +2,14 @@ import React from 'react';
 import RenderWithRouter from './RenderWithRouter';
 // import { fireEvent } from '@testing-library/react';
 import App from '../App';
+import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
 describe('Test 6 - Pokemon.js', () => {
   it('', () => {
-    const { getByTestId, getByRole } = RenderWithRouter(<App pokemons={ pokemons } />);
+    const { getByTestId, getByRole } = RenderWithRouter(<App pokemons={ pokemons } >
+      <Pokemon />
+    </App>);
     const pokemonName = getByTestId('pokemon-name');
     const pokemonType = getByTestId('pokemonType');
     const pokemonWeight = getByTestId('pokemon-weight');
