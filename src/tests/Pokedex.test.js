@@ -2,7 +2,6 @@ import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
-import pokemons from '../data';
 
 afterEach(cleanup);
 
@@ -87,7 +86,7 @@ describe('Requirement 5: Testing Pokedex.js', () => {
       <Pokedex
         pokemons={ fakeData }
         isPokemonFavoriteById={ fakeFavPokes }
-      />
+      />,
     );
     const text = getByText(/encountered pokémons/i);
     expect(text).toBeInTheDocument();
@@ -164,18 +163,18 @@ describe('Requirement 5: Testing Pokedex.js', () => {
           summary: 'It is kinda creepy',
         },
       ];
-  
+
       const fakeFavPokes = {
         143: true,
         10: false,
         151: false,
       };
-  
+
       const { getByText } = renderWithRouter(
         <Pokedex
           pokemons={ fakeData }
           isPokemonFavoriteById={ fakeFavPokes }
-        />
+        />,
       );
 
       const buttonText = getByText(/próximo pokémon/i);
@@ -251,20 +250,20 @@ describe('Requirement 5: Testing Pokedex.js', () => {
           summary: 'It is kinda creepy',
         },
       ];
-  
+
       const fakeFavPokes = {
         143: true,
         10: false,
         151: false,
       };
-  
+
       const { getByText, getByTestId } = renderWithRouter(
         <Pokedex
           pokemons={ fakeData }
           isPokemonFavoriteById={ fakeFavPokes }
-        />
+        />,
       );
-      let index = 0;
+      const index = 0;
       const pokemon = getByTestId('pokemon-name');
       const nextButton = getByText(/próximo pokémon/i);
 
@@ -343,7 +342,7 @@ describe('Requirement 5: Testing Pokedex.js', () => {
           summary: 'It is kinda creepy',
         },
       ];
-  
+
       const fakeFavPokes = {
         143: true,
         10: false,
@@ -354,11 +353,11 @@ describe('Requirement 5: Testing Pokedex.js', () => {
         <Pokedex
           pokemons={ fakeData }
           isPokemonFavoriteById={ fakeFavPokes }
-        />
+        />,
       );
       const nextButton = getByText(/próximo pokémon/i);
 
-      for (let index = 0; index < fakeData.length; index += 1) {
+      for (const index = 0; index < fakeData.length; index += 1) {
         if (index === fakeData.length - 1) {
           fireEvent.click(nextButton);
           const pokemon = getByTestId('pokemon-name');
@@ -366,7 +365,7 @@ describe('Requirement 5: Testing Pokedex.js', () => {
         } else {
           fireEvent.click(nextButton);
         }
-      } 
+      }
     });
   });
 });
