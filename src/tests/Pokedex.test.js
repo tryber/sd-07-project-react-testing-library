@@ -18,103 +18,111 @@ const favoriteById = {
 };
 
 describe('Testando o arquivo Pokedex.js', () => {
-  it('Test if the page contains an h2 heading with the text Encountered Pokémon.', () => {
+  it('deve exibir o próximo Pokémon quando o botão Próximo pokémon é clicado', () => {
     const { getByText } = renderWithRouter(
       <Pokedex pokemons={ data } isPokemonFavoriteById={ favoriteById } />,
     );
-    const heading = getByText(/Encountered pokémons/i);
-    expect(heading).toBeInTheDocument();
-    expect(heading.tagName).toBe('H2');
-    expect(heading.innerHTML).toBe('Encountered pokémons');
-  });
 
-  it('displays next Pokémon in the list when the Next Pokémon button is clicked.', () => {
-    const { getByTestId, getByText } = renderWithRouter(
-      <Pokedex pokemons={ data } isPokemonFavoriteById={ favoriteById } />,
-    );
-    const nextPokemon = getByTestId('next-pokemon');
-    expect(nextPokemon.innerHTML).toBe('Próximo pokémon');
+    const nextPokemon = getByText(/Próximo pokémon/i);
+    let currencyPokemon = getByText(data[0].name);
+    expect(currencyPokemon).toBeInTheDocument();
 
     fireEvent.click(nextPokemon);
-    const charmander = getByText(/Charmander/i);
-    expect(charmander).toBeInTheDocument();
+    currencyPokemon = getByText(data[1].name);
+    expect(currencyPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    currencyPokemon = getByText(data[2].name);
+    expect(currencyPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    currencyPokemon = getByText(data[3].name);
+    expect(currencyPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    currencyPokemon = getByText(data[4].name);
+    expect(currencyPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    currencyPokemon = getByText(data[5].name);
+    expect(currencyPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    currencyPokemon = getByText(data[6].name);
+    expect(currencyPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    currencyPokemon = getByText(data[7].name);
+    expect(currencyPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    currencyPokemon = getByText(data[8].name);
+    expect(currencyPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    currencyPokemon = getByText(data[0].name);
+    expect(currencyPokemon).toBeInTheDocument();
   });
 
-  it('Test if only one Pokémon is shown at a time.', () => {
-    const { getByTestId, getByText } = renderWithRouter(
+  it('deve mostrar apenas um Pokémon por vez', () => {
+    const { queryByText } = renderWithRouter(
       <Pokedex pokemons={ data } isPokemonFavoriteById={ favoriteById } />,
     );
-    const buttonNext = getByTestId('next-pokemon');
-    fireEvent.click(buttonNext);
-    const charmander = getByText(/Charmander/i);
-    expect(charmander).toBeInTheDocument();
-    fireEvent.click(buttonNext);
-    const caterpie = getByText(/Caterpie/i);
-    expect(caterpie).toBeInTheDocument();
-    fireEvent.click(buttonNext);
-    const ekans = getByText(/Ekans/i);
-    expect(ekans).toBeInTheDocument();
-    fireEvent.click(buttonNext);
-    const alakazam = getByText(/Alakazam/i);
-    expect(alakazam).toBeInTheDocument();
-    fireEvent.click(buttonNext);
-    const mew = getByText(/Mew/i);
-    expect(mew).toBeInTheDocument();
-    fireEvent.click(buttonNext);
-    const rapidash = getByText(/Rapidash/i);
-    expect(rapidash).toBeInTheDocument();
-    fireEvent.click(buttonNext);
-    const snorlax = getByText(/Snorlax/i);
-    expect(snorlax).toBeInTheDocument();
-    fireEvent.click(buttonNext);
-    const dragonair = getByText(/Dragonair/i);
-    expect(dragonair).toBeInTheDocument();
-    fireEvent.click(buttonNext);
-    const pikachu = getByText(/Pikachu/i);
-    expect(pikachu).toBeInTheDocument();
+    const nextPokemon = queryByText(/Próximo pokémon/i);
+    let currencyPokemon = queryByText(data[0].name);
+    expect(currencyPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemon);
+    const previousPokemon = queryByText(data[0].name);
+    currencyPokemon = queryByText(data[1].name);
+    expect(currencyPokemon).toBeInTheDocument();
+    expect(previousPokemon).not.toBeInTheDocument();
   });
 
-  it('verify if the Pokédex has the filter buttons.', () => {
-    const { getAllByTestId } = renderWithRouter(
+  it('deve ver se a Pokédex tem os botões de filtro', () => {
+    const { queryByTestId, queryByText, queryAllByTestId } = renderWithRouter(
       <Pokedex pokemons={ data } isPokemonFavoriteById={ favoriteById } />,
     );
-    const buttons = getAllByTestId('pokemon-type-button');
-    const length = 7;
-    expect(buttons.length).toBe(length);
+    const buttons = queryAllByTestId('pokemon-type-button');
+    fireEvent.click(buttons[0]);
+    const nextPokemon = queryByText(/Próximo pokémon/i);
+    expect(nextPokemon.disabled).toBe(true);
+
+    fireEvent.click(buttons[1]);
+    const pokemonType = queryByTestId('pokemonType');
+    expect(buttons[1].textContent).toBe(pokemonType.textContent);
   });
 
-  it('Test if the Pokédex contains a button to reset the filter', () => {
-    const { getByText } = renderWithRouter(
+  it('deve ver se a Pokédex contém um botão para resetar o filtro', () => {
+    const { queryByTestId, queryAllByTestId, queryByText } = renderWithRouter(
       <Pokedex pokemons={ data } isPokemonFavoriteById={ favoriteById } />,
     );
-    const button = getByText('All');
-    expect(button).toBeInTheDocument();
+    const buttons = queryAllByTestId('pokemon-type-button');
+    const buttonAll = queryByText('All');
+    fireEvent.click(buttons[0]);
+    let buttonNext = queryByTestId('next-pokemon');
+    expect(buttonNext.disabled).toBe(true);
+
+    fireEvent.click(buttonAll);
+    buttonNext = queryByTestId('next-pokemon');
+    expect(buttonNext.disabled).toBe(false);
   });
 
-  it('a filter button is created dynamically for each type of Pokémon.', () => {
-    const types = data.map((pokemon) => pokemon.type);
-    const filterTypes = types.filter((type, index) => types.indexOf(type) === index);
-
+  it('verifica se é criado um botão de filtro para cada tipo de Pokémon.', () => {
     const { queryAllByTestId } = renderWithRouter(
       <Pokedex pokemons={ data } isPokemonFavoriteById={ favoriteById } />,
     );
-
-    const btnsTypes = queryAllByTestId('pokemon-type-button');
-    expect(btnsTypes.length).toBe(filterTypes.length);
+    const types = data.map((pokemon) => pokemon.type);
+    const typeFilter = types.filter((pokemon, index) => types.indexOf(pokemon) === index);
+    const buttons = queryAllByTestId('pokemon-type-button');
+    expect(buttons.length).toBe(typeFilter.length);
   });
 
-  it('The Next Pokémon button disables when you have only one Pokémon.', () => {
-    const { getByTestId, getAllByText } = renderWithRouter(
+  it('deve ver se a página tem um heading h2 com o texto Encountered pokémons.', () => {
+    const { queryByText } = renderWithRouter(
       <Pokedex pokemons={ data } isPokemonFavoriteById={ favoriteById } />,
     );
-    const nextButton = getByTestId('next-pokemon');
-
-    const electricButton = getAllByText(/Electric/i)[1];
-    fireEvent.click(electricButton);
-    expect(nextButton.disabled).toBe(true);
-
-    const bugButton = getAllByText(/Bug/i)[0];
-    fireEvent.click(bugButton);
-    expect(nextButton.disabled).toBe(true);
+    const heading = queryByText('Encountered pokémons');
+    expect(heading.tagName).toBe('H2');
   });
 });
