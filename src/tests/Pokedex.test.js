@@ -89,21 +89,42 @@ describe('Testando o arquivo Pokedex.js', () => {
         pokemons={ pokemons }
         isPokemonFavoriteById={ {} }
       />);
-        expect(screen.getByText(/all/i)).toBeInTheDocument();
-    })
-    test('A Pokedéx deverá mostrar os Pokémons normalmente (sem filtros) quando o botão All for clicado',
-     () => {
-     const { getByText } = renderWithRouter(<Pokedex
-        pokemons={ pokemons }
-        isPokemonFavoriteById={ {} }
-      />);
-       const btnHome = getByText(/all/i);
-       fireEvent.click(btnHome);
-       expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
-    })
+      expect(screen.getByText(/all/i)).toBeInTheDocument();
+    });
+    test('Deverá mostrar os Pokémons normalmente quando o botão All for clicado',
+      () => {
+        const { getByText } = renderWithRouter(<Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ {} }
+        />);
+        const btnHome = getByText(/all/i);
+        fireEvent.click(btnHome);
+        expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
+        fireEvent.click(getByText(/próximo pokémon/i));
+        expect(screen.getByText(/charmander/i)).toBeInTheDocument();
+      });
     test('Ao carregar a página, o filtro selecionado deverá ser All', () => {
       renderWithRouter(<App />);
       expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
+      fireEvent.click(screen.getByText(/próximo pokémon/i));
+        expect(screen.getByText(/charmander/i)).toBeInTheDocument();
+    });
+  });
+  describe('Teste se é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon.',
+  () => {
+    test('Os botões de filtragem devem ser dinâmicos', () => {
+      renderWithRouter(<Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ {} }
+      />);
+      expect(screen.getByRole('button', { name: /all/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /electric/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /fire/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /bug/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /poison/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /psychic/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /normal/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /dragon/i })).toBeInTheDocument();
     })
   })
 });
