@@ -7,7 +7,7 @@ afterEach(cleanup);
 
 describe('Test screen PokemonDetails', () => {
   it('tests that the Details page is rendered according to the Pokémons home', () => {
-    const { getByText, getByTestId, history } = renderWithRouter(<App />);
+    const { getByText, history } = renderWithRouter(<App />);
 
     const moreDet = getByText('More details');
     expect(moreDet).toBeInTheDocument();
