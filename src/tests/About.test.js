@@ -4,9 +4,7 @@ import About from '../components/About';
 
 it('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
   const { getByRole } = render(<About />);
-  // const h1 = getByRole('heading', { name: 'Pokédex' });
   const h2 = getByRole('heading', { name: 'About Pokédex' });
-  // expect(h1).toBeInTheDocument();
   expect(h2).toBeInTheDocument();
 });
 
