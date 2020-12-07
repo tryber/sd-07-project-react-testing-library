@@ -1,3 +1,5 @@
+// During the development of this project I consulted the colleague`s repository Tiago Esdras and Carlos Souza.
+
 import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 
