@@ -84,7 +84,7 @@ describe('Testando o componente Pokedex', () => {
     });
     expect(botaoAll).toBeInTheDocument();
   });
-  it('Testando se existe o botão próximo pokemon', () => {
+  it('Testando se o botão próximo pokemon está desabilitado', () => {
     const { getAllByTestId, getByText } = renderWithRoute(<App />);
     const botoesDeTipo = getAllByTestId('pokemon-type-button');
     fireEvent.click(botoesDeTipo[0]);
