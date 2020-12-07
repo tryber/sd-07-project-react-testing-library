@@ -18,7 +18,8 @@ describe('Test screen PokemonDetails', () => {
 
     const titleDetPoke = getByText('Pikachu Details');
     const titleSummary = getByText('Summary');
-    const summary = getByTestId('summary');
+    const summary = getByText('This intelligent Pokémon roasts hard '
+    + 'berries with electricity to make them tender enough to eat.');
 
     expect(titleDetPoke).toBeInTheDocument();
     expect(titleDetPoke.tagName).toBe('H2');
@@ -27,8 +28,6 @@ describe('Test screen PokemonDetails', () => {
     expect(moreDet).not.toBeInTheDocument();
     expect(summary).toBeInTheDocument();
     expect(summary.tagName).toBe('P');
-    expect(summary.textContent).toContain('This intelligent Pokémon roasts hard '
-    + 'berries with electricity to make them tender enough to eat.');
   });
   it('Test if there are maps on the page containing the locations of the pokémon', () => {
     const { getByText, getAllByAltText, history, container } = renderWithRouter(<App />);
