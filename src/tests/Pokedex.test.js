@@ -73,18 +73,20 @@ describe('testing Pokedex.js functionality', () => {
   });
 
   it('Should have one button for each type of pokemon', () => {
-    const { getByText, queryAllByTestId } = renderWithRouter(<App />);
+    const { getByText, queryAllByTestId, container } = renderWithRouter(<App />);
 
     const btnsType = queryAllByTestId('pokemon-type-button');
     btnsType.forEach((btn) => {
-      const btnAll = getByText(/all/i);
-      expect(btnAll).toBeInTheDocument();
       pokemons.forEach((pokemon) => {
+        const btnAll = getByText(/all/i);
+        expect(btnAll).toBeInTheDocument();
         if (pokemon.type === btn.innerHTML) {
           expect(btn.innerHTML).toEqual(pokemon.type);
         }
       });
     });
+    const btnDateTestId = container.querySelector('[data-testid="pokemon-type-button"]');
+    expect(btnDateTestId).toBeInTheDocument();
   });
 
   it('Should Next pokemon btn be disabled if theres only one pokemon of that type',
