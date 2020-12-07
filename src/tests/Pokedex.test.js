@@ -11,7 +11,7 @@ describe('Testando Pokedex', () => {
   });
 
   it('Teste se é exibido o próximo Pokémon da lista quando o botão é clicado.', () => {
-    const { getByText, getByTestId } = renderWithRouter(<App />);
+    const { getByText } = renderWithRouter(<App />);
     const textoBotao = getByText('Próximo pokémon');
     expect(textoBotao).toBeInTheDocument();
     fireEvent.click(textoBotao);
@@ -32,7 +32,7 @@ describe('Testando Pokedex', () => {
     const num0 = 0;
     const num8 = 8;
     for (let i = num0; i <= num8; i += 1) {
-      let pokemon = getAllByTestId('pokemon-name');
+      const pokemon = getAllByTestId('pokemon-name');
       fireEvent.click(getByText(/Próximo pokémon/i));
       expect(pokemon.length).toBe(1);
     }
@@ -51,7 +51,7 @@ describe('Testando Pokedex', () => {
   it('Teste dinamicamente um botão de filtro para cada tipo de Pokémon.', () => {
     const { getAllByTestId, getByRole } = renderWithRouter(<App />);
     const botoesTipo = getAllByTestId('pokemon-type-button');
-    botoesTipo.map((botao) => {
+    botoesTipo.forEach((botao) => {
       const botoes = getByRole('button', {
         name: botao.innerHTML,
       });
