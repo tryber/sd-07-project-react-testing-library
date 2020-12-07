@@ -227,7 +227,7 @@ describe('check if `Pokédex` component is working correctly', () => {
     expect(resetFilters).toBeInTheDocument();
   });
 
-  it('check if `Próximo pokémon` button is disabled when there isn`t next pokémon', () => {
+  it('should disable `Próximo pokémon` button when there is no next pokémon', () => {
     const { getByText, getAllByText } = renderWithRouter(
       <Pokedex
         pokemons={ pokemons }

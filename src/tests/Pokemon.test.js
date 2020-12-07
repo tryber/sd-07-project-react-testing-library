@@ -4,13 +4,12 @@ import renderWithRouter from './renderWithRouter';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
-const renderPokemon = (pokemon, isFavorite) => { return renderWithRouter(
-    <Pokemon
-      pokemon={ pokemon }
-      isFavorite={ isFavorite }
-    />,
-  );
-};
+const renderPokemon = (pokemon, isFavorite) => renderWithRouter(
+  <Pokemon
+    pokemon={ pokemon }
+    isFavorite={ isFavorite }
+  />,
+);
 
 describe('should render a Pokémon', () => {
   it('should shown the pokémon name', () => {
