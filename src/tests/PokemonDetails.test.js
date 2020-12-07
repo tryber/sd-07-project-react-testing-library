@@ -67,7 +67,8 @@ describe('it should have a map containing the pokémon location', () => {
     const locations = getAllByAltText(/Pikachu location/i);
     expect(locations[0]).toBeInTheDocument();
     expect(locations[1]).toBeInTheDocument();
-    expect(locations).toHaveLength(2);
+    const locationsLength = 2;
+    expect(locations).toHaveLength(locationsLength);
   });
 
   it('should shown all locations in details', () => {
