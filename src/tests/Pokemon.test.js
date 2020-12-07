@@ -7,23 +7,29 @@ describe('Testando Pokemon', () => {
   it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
     const { getByTestId, getByAltText } = renderWithRouter(<App />);
     const nome = getByTestId('pokemon-name');
-    expect(nome).toHaveTextContent(/Pikachu/i);
     expect(nome).toBeInTheDocument();
+    expect(nome).toHaveTextContent(/Pikachu/i);
+
     const tipo = getByTestId('pokemonType');
     expect(tipo).toBeInTheDocument();
+    expect(tipo.innerHTML).toBe('Electric');
+
     const peso = getByTestId('pokemon-weight');
     expect(peso).toBeInTheDocument();
+    expect(peso.innerHTML).toBe('Average weight: 6.0 kg');
+
     const imagem = getByAltText('Pikachu sprite');
     expect(imagem).toBeInTheDocument();
     expect(imagem).toHaveAttribute(
       'src',
-      'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+      'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png'
     );
   });
 
   it('Teste se o card do Pokémon contém um link de navegação.', () => {
     const { getByText } = renderWithRouter(<App />);
     const linkDetalhes = getByText('More details');
+    expect(linkDetalhes).toBeInTheDocument();
     expect(linkDetalhes).toHaveAttribute('href', '/pokemons/25');
   });
 
