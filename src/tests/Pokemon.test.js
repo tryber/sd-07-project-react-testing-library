@@ -50,11 +50,18 @@ describe('Testando o componente Pokedex', () => {
     expect(history.location.pathname).toBe('/pokemons/4');
   });
   it('Testando se existe estrela de favorito no cartão', () => {
-    const { getByText, getByAltText } = renderWithRoute(<App />);
+    const { getByText, getByAltText, history } = renderWithRoute(<App />);
     fireEvent.click(getByText('More details'));
     fireEvent.click(getByText('Pokémon favoritado?'));
+    history.push('/');
     const estrela = getByAltText('Pikachu is marked as favorite');
     expect(estrela.src).toBe('http://localhost/star-icon.svg');
     expect(estrela).toBeInTheDocument();
+
+    history.push('/pokemons/4');
+    fireEvent.click(getByText('Pokémon favoritado?'));
+    const novaEstrela = getByAltText('Charmander is marked as favorite');
+    expect(novaEstrela.src).toBe('http://localhost/star-icon.svg');
+    expect(novaEstrela).toBeInTheDocument();
   });
 });
