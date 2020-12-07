@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../renderWithRouter';
-// import Button from '../components/Button';
+import Data from '../data';
 
 const pokemon = [
   {
@@ -159,12 +159,54 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   });
 });
 
-// Teste se é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon.
+describe('Teste se é criado, dinamicamente, um botão de filtro'
++ 'para cada tipo de Pokémon', () => {
+  test('Os botões de filtragem devem ser dinâmicos', () => {
+    const { container } = renderWithRouter(
+      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
+    );
+    fireEvent.load(container.querySelector('.pokedex-buttons-panel'));
+    expect(container.querySelector('.pokedex-buttons-panel')).toBeInTheDocument();
+  });
 
-// Os botões de filtragem devem ser dinâmicos;
+  test('Deve existir um botão de filtragem para cada tipo de Pokémon disponível'
+  + 'nos dados, sem repetição. Ou seja, a sua Pokédex deve possuir pokémons do tipo Fire, Psychic, Electric e Normal;', () => {
+    const allTypes = ['Electric', 'Fire', 'Psychic'];
+    const { container } = renderWithRouter(
+      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
+    );
+    const allBtns = container.getElementsByClassName('button-text filter-button');
+    const all = [];
+    for (let i = 0; i < allBtns.length; i++) {
+      all.push(allBtns[i].textContent);
+    }
+    const allBtnsNew = all.filter((element, index) => all.indexOf(element) === index);
+    const allBtnNewV2 = allBtnsNew.slice(1,4);
+    expect(allBtnNewV2).toEqual(allTypes);
+  });
 
-// Deve existir um botão de filtragem para cada tipo de Pokémon disponível nos dados, sem repetição. Ou seja, a sua Pokédex deve possuir pokémons do tipo Fire, Psychic, Electric e Normal;
-
-// Deve ser mostrado como opção de filtro, um botão para cada um dos tipos. Além disso, o botão All precisa estar sempre visível.
-
-// O botão de Próximo pokémon deve ser desabilitado quando a lista filtrada de Pokémons tiver um só pokémon.
+  test('Deve ser mostrado como opção de filtro, um botão para cada um dos tipos.'
+  + 'Além disso, o botão All precisa estar sempre visível.', () => {
+    const allTypes = ['All', 'Electric', 'Fire', 'Psychic'];
+    const { container } = renderWithRouter(
+      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
+    );
+    const allBtns = container.getElementsByClassName('button-text filter-button');
+    const all = [];
+    for (let i = 0; i < allBtns.length; i++) {
+      all.push(allBtns[i].textContent);
+    }
+    const allBtnsNew = all.filter((element, index) => all.indexOf(element) === index);
+    expect(allBtnsNew).toEqual(allTypes);
+  });
+  test('O botão de Próximo pokémon deve ser '
+  + 'desabilitado quando a lista filtrada de Pokémons tiver um só pokémon.', () => {
+    const { getByRole } = renderWithRouter(
+      <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
+    );
+    const button = getByRole('button', { name: 'Fire' });
+    fireEvent.click(button);
+    const btnNextPokemon = getByRole('button', { name: 'Próximo pokémon' });
+    expect(btnNextPokemon).toBeDisabled();
+  });
+});
