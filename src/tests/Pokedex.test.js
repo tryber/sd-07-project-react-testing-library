@@ -80,27 +80,32 @@ describe('Requiriment 05', () => {
     const pokemonTypeButtons = screen.getAllByTestId('pokemon-type-button');
     const allTypesButton = screen.getByText(/all/i);
     const nextPokemonButton = screen.getByTestId('next-pokemon');
+    const totalOfTypeButtonsMustBe = 7;
 
     expect(allTypesButton).toBeInTheDocument();
-    expect(pokemonTypeButtons.length).toBe(7);
-    pokemonTypeButtons.forEach((currentButton) => expect(currentButton).toBeInTheDocument());
+    expect(pokemonTypeButtons.length).toBe(totalOfTypeButtonsMustBe);
+
+    pokemonTypeButtons
+      .forEach((currentButton) => expect(currentButton).toBeInTheDocument());
+
+    const typeDisplayedInScreen = 2;
 
     fireEvent.click(pokemonTypeButtons[1]);
     let currentType = screen.getAllByText(/fire/i);
     let currentPokemon = screen.getByText(/charmander/i);
-    expect(currentType.length).toBe(2);
+    expect(currentType.length).toBe(typeDisplayedInScreen);
     expect(currentPokemon).toBeInTheDocument();
 
     fireEvent.click(nextPokemonButton);
     currentType = screen.getAllByText(/fire/i);
     currentPokemon = screen.getByText(/rapidash/i);
-    expect(currentType.length).toBe(2);
+    expect(currentType.length).toBe(typeDisplayedInScreen);
     expect(currentPokemon).toBeInTheDocument();
 
     fireEvent.click(nextPokemonButton);
     currentType = screen.getAllByText(/fire/i);
     currentPokemon = screen.getByText(/charmander/i);
-    expect(currentType.length).toBe(2);
+    expect(currentType.length).toBe(typeDisplayedInScreen);
     expect(currentPokemon).toBeInTheDocument();
   });
 
@@ -189,6 +194,7 @@ describe('Requiriment 05', () => {
     renderWithRouter(<Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />);
 
     const pokemonTypeButtons = screen.getAllByTestId('pokemon-type-button');
+    const totalOfTypeButtonsMustBe = 7;
     const arrElectricValue = screen.getAllByText(/electric/i);
 
     expect(screen.getByText(/all/i)).toBeInTheDocument();
@@ -206,7 +212,7 @@ describe('Requiriment 05', () => {
     expect(screen.getByText(/all/i)).toBeInTheDocument();
     expect(screen.getByText(/dragon/i)).toBeInTheDocument();
 
-    expect(pokemonTypeButtons.length).toBe(7);
+    expect(pokemonTypeButtons.length).toBe(totalOfTypeButtonsMustBe);
   });
 
   test('7/7', () => {
