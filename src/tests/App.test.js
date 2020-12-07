@@ -26,7 +26,7 @@ describe('testing App.js', () => {
     fireEvent.click(getByText(/Home/i));
     const { pathname } = history.location;
     expect(pathname).toBe('/');
-  })
+  });
 
   test('test if clicking in About the URL is redicecioned for /about', () => {
     const history = createMemoryHistory();
@@ -38,9 +38,9 @@ describe('testing App.js', () => {
     fireEvent.click(getByText(/About/i));
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
-  })
+  });
 
-  test('test if clicking in Favorite Pokémons the URL is redicecioned for /favorites', () => {
+  test('test if clicking in Favo Pokémons the URL is redicecioned for /favorites', () => {
     const history = createMemoryHistory();
     const { getByText } = render(
       <Router history={ history }>
@@ -50,5 +50,5 @@ describe('testing App.js', () => {
     fireEvent.click(getByText(/Favorite Pokémons/i));
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
-  })
-})
+  });
+});
