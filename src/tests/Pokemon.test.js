@@ -24,7 +24,7 @@ describe('Testando o arquivo Pokemon.js', () => {
     const pikachuAverage = getByTestId('pokemon-weight');
     expect(pikachuAverage).toBeInTheDocument();
     expect(pikachuAverage.innerHTML).toBe(
-      `Average weight: ${averageWeight.value} ${averageWeight.measurementUnit}`
+      `Average weight: ${averageWeight.value} ${averageWeight.measurementUnit}`,
     );
 
     const pikachuImage = container.querySelector('img');
@@ -52,7 +52,7 @@ describe('Testando o arquivo Pokemon.js', () => {
 
   it('verifica se existe um ícone de estrela nos Pokémons favoritados', () => {
     const { getByAltText, getByText } = renderWithRouter(
-      <Pokemon isFavorite={ true } pokemon={ data[0] } />,
+      <Pokemon isFavorite pokemon={ data[0] } />,
     );
     const moreDetails = getByText(/More details/i);
     fireEvent.click(moreDetails);
