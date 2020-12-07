@@ -19,8 +19,8 @@ describe('should render a Pokémon', () => {
   });
 
   it('should shown the pokémon type', () => {
-    const { getByTestId } = renderPokemon(pokemons[2], false);
-    const pokemonType = getByTestId('pokemonType');
+    const { getByText } = renderPokemon(pokemons[2], false);
+    const pokemonType = getByText(/Bug/i);
     expect(pokemonType).toBeInTheDocument();
   });
 
