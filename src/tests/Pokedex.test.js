@@ -185,4 +185,27 @@ describe('Requiriment 05', () => {
     expect(currentPokemon).toBeInTheDocument();
   });
 
+  test('6/7', () => {
+    renderWithRouter(<Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />);
+
+    const pokemonTypeButtons = screen.getAllByTestId('pokemon-type-button');
+    const arrElectricValue = screen.getAllByText(/electric/i);
+
+    expect(screen.getByText(/all/i)).toBeInTheDocument();
+    expect(arrElectricValue[1]).toBeInTheDocument();
+    expect(screen.getByText(/all/i)).toBeInTheDocument();
+    expect(screen.getByText(/fire/i)).toBeInTheDocument();
+    expect(screen.getByText(/all/i)).toBeInTheDocument();
+    expect(screen.getByText(/bug/i)).toBeInTheDocument();
+    expect(screen.getByText(/all/i)).toBeInTheDocument();
+    expect(screen.getByText(/poison/i)).toBeInTheDocument();
+    expect(screen.getByText(/all/i)).toBeInTheDocument();
+    expect(screen.getByText(/psy/i)).toBeInTheDocument();
+    expect(screen.getByText(/all/i)).toBeInTheDocument();
+    expect(screen.getByText(/normal/i)).toBeInTheDocument();
+    expect(screen.getByText(/all/i)).toBeInTheDocument();
+    expect(screen.getByText(/dragon/i)).toBeInTheDocument();
+
+    expect(pokemonTypeButtons.length).toBe(7);
+  });
 });
