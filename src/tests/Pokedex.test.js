@@ -1,4 +1,4 @@
-import { cleanup, fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent, getByTestId } from '@testing-library/react';
 import React from 'react';
 import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../helpers/renderWithRouter';
@@ -40,7 +40,7 @@ describe('Pokedex - teste de Conteúdo', () => {
     />);
 
     let actualPokemon = getByTestId('pokemon-name').innerHTML;
-    expect(actualPokemon).toBe('Pikachu');
+    expect(actualPokemon).toBe(pokemons[0].name);
 
     const nextBtn = getByTestId('next-pokemon');
     expect(nextBtn.innerHTML).toBe('Próximo pokémon');
@@ -49,6 +49,26 @@ describe('Pokedex - teste de Conteúdo', () => {
     actualPokemon = getByTestId('pokemon-name').innerHTML;
     expect(actualPokemon).not.toBe(pokemons[0].name);
     expect(actualPokemon).toBe(pokemons[1].name);
+  });
+
+  it('Mostrar primeiro da lista quando estiver no último e clicar próximo', () => {
+    const { getByTestId } = renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ isPokemonFavoriteById }
+    />);
+
+    let actualPokemon = getByTestId('pokemon-name').innerHTML;
+    const nextBtn = getByTestId('next-pokemon');
+
+    expect(actualPokemon).toBe(pokemons[0].name);
+
+    pokemons.forEach((element) => {
+      fireEvent.click(nextBtn);
+      console.log(element.name);
+    });
+
+    actualPokemon = getByTestId('pokemon-name').innerHTML;
+    expect(actualPokemon).toBe(pokemons[0].name);
   });
 
   it('Deve mostrar um pokemon por vez', () => {
@@ -67,5 +87,24 @@ describe('Pokedex - teste de Conteúdo', () => {
     />);
     const pokemonsType = getAllByTestId('pokemon-type-button');
     expect(pokemonsType.length).toBe(typesOfPokemons);
+  });
+
+  it('Deve filtrar por tipo', () => {
+    const { getAllByTestId, getByTestId } = renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ isPokemonFavoriteById }
+    />);
+    const pokemonsType = getAllByTestId('pokemon-type-button');
+    pokemonsType.forEach((type) => {
+      fireEvent.click(type);
+
+      const numberOfPokemons = pokemons.filter((pokemon) => (
+        type.innerHTML === pokemon.type
+      ));
+      numberOfPokemons.forEach(() => {
+        const pokemonType = getByTestId('pokemonType').innerHTML;
+        expect(type.innerHTML).toBe(pokemonType);
+      });
+    });
   });
 });
