@@ -57,6 +57,6 @@ test('if app is redirected to the Not Found page when entering an unknown URL.',
   const { getByText, history } = renderWithRouter(<App />);
 
   history.push('/pagina-nao-existe');
-  const notFound = getByText('Pikachu crying because the page requested was not found');
+  const notFound = getByText('Page requested not found');
   expect(notFound).toBeInTheDocument();
 });
