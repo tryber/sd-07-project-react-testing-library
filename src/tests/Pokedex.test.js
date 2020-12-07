@@ -208,4 +208,19 @@ describe('Requiriment 05', () => {
 
     expect(pokemonTypeButtons.length).toBe(7);
   });
+
+  test('7/7', () => {
+    renderWithRouter(<Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />);
+
+    const nextPokemonButton = screen.getByText(/próximo/i);
+    const bugTypeButton = screen.getByText(/bug/i);
+
+    fireEvent.click(bugTypeButton);
+    let currentPokemon = screen.getByText(/caterpie/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/caterpie/i);
+    expect(currentPokemon).toBeInTheDocument();
+  });
 });
