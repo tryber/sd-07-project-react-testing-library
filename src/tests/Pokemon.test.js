@@ -20,9 +20,9 @@ describe('testing file Pokemon.js', () => {
     const correctAverageWeight = getByTestId('pokemon-weight');
     const correctPokemonImage = getByAltText(/Pikachu sprite/i);
     const correctFavoriteImage = getByAltText(/Pikachu is marked as favorite/i);
-    expect(correctName).toHaveTextContent('Pikachu');
-    expect(correctType).toHaveTextContent('Electric');
-    expect(correctAverageWeight).toHaveTextContent('6.0 kg');
+    expect(correctName).toHaveTextContent(/Pikachu/i);
+    expect(correctType).toHaveTextContent(/Electric/i);
+    expect(correctAverageWeight).toHaveTextContent(/Average weight: 6.0 kg/i);
     expect(correctPokemonImage).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(correctFavoriteImage).toHaveAttribute('src', '/star-icon.svg');
   });
