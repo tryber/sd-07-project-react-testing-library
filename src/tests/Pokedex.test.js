@@ -113,6 +113,9 @@ describe('Pokedex - teste de Conteúdo', () => {
       isPokemonFavoriteById={ isPokemonFavoriteById }
     />);
 
+    const btnAll = getByTestId('pokemon-all-button');
+    fireEvent.click(btnAll);
+
     const nextBtn = getByTestId('next-pokemon');
     pokemons.forEach((pokemon) => {
       const pokemonRendered = getByTestId('pokemon-name').innerHTML;
