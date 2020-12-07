@@ -4,7 +4,7 @@ import { fireEvent, render } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
+it('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
@@ -14,31 +14,30 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('shows the Pokédex when the route is `/`', () => {
+it('shows the Pokédex when the route is `/`', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
     </MemoryRouter>,
   );
-
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-describe('Testa o conjunto fixo de links de navegação', () => {
+describe('Testa se contém o conjunto de Links de navegação', () => {
   it('O primeiro link deve possuir o texto Home', () => {
-    const { getByText } = render(<App />);
+    const { getByText } = renderWithRouter(<App />);
     const linkHome = getByText(/Home/i);
     expect(linkHome).toBeInTheDocument();
   });
 
   it('O segundo link deve possuir o texto About', () => {
-    const { getByText } = render(<App />);
+    const { getByText } = renderWithRouter(<App />);
     const linkAbout = getByText(/About/i);
     expect(linkAbout).toBeInTheDocument();
   });
 
   it('O terceiro link deve possuir o texto Favorite Pokémons', () => {
-    const { getByText } = render(<App />);
+    const { getByText } = renderWithRouter(<App />);
     const linkFavorite = getByText(/Favorite Pokémons/i);
     expect(linkFavorite).toBeInTheDocument();
   });
