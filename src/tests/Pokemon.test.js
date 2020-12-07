@@ -1,8 +1,8 @@
 import React from 'react';
+import { cleanup } from '@testing-library/react';
 import Pokemon from '../components/Pokemon';
 import Pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
-import { cleanup } from '@testing-library/react';
 
 afterEach(cleanup);
 
