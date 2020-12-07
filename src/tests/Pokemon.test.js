@@ -17,7 +17,7 @@ describe('Testando Pokemon', () => {
     expect(imagem).toBeInTheDocument();
     expect(imagem).toHaveAttribute(
       'src',
-      'https://cdn.bulbagarden.net/upload/0/0a/Spr_5b_004.png',
+      'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
     );
   });
 
