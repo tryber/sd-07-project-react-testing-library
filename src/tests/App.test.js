@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
@@ -10,8 +10,8 @@ test('Verifica se existe o texto `Pokédex` quando renderiza o App.js', () => {
 });
 
 describe('Requisito 1. Testando arquivo App.js', () => {
-  it('Teste se o topo da aplicação contém um conjunto fixo de links de navegação.', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+  it('Topo da aplicação contém um conjunto fixo de links de navegação.', () => {
+    const { getByText } = renderWithRouter(<App />);
     const Home = getByText(/Home/i);
     expect(Home).toBeInTheDocument();
 
@@ -22,7 +22,7 @@ describe('Requisito 1. Testando arquivo App.js', () => {
     expect(FavoritePokemons).toBeInTheDocument();
   });
 
-  it('Teste se a aplicação é redirecionada para a página inicial, na URL / ao clicar no link Home da barra de navegação.', () => {
+  it('Aplicação é redirecionada para a página inicial.', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     const Home = getByText(/Home/i);
@@ -31,7 +31,7 @@ describe('Requisito 1. Testando arquivo App.js', () => {
     expect(pathname).toBe('/');
   });
 
-  it('Teste se a aplicação é redirecionada para a página de About, na URL /about, ao clicar no link About da barra de navegação.', () => {
+  it('Aplicação é redirecionada para a página de About.', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     const About = getByText(/About/i);
@@ -40,7 +40,7 @@ describe('Requisito 1. Testando arquivo App.js', () => {
     expect(pathname).toBe('/about');
   });
 
-  it('Teste se a aplicação é redirecionada para a página de Pokémons Favoritados, na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.', () => {
+  it('Aplicação é redirecionada para a página de Pokémons Favoritados.', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     const Favorites = getByText(/Favorite Pokémons/i);
@@ -49,7 +49,7 @@ describe('Requisito 1. Testando arquivo App.js', () => {
     expect(pathname).toBe('/favorites');
   });
 
-  it('Teste se a aplicação é redirecionada para a página Not Found ao entrar em uma URL desconhecida.', () => {
+  it('Aplicação é redirecionada para a página Not Found.', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/pagina/xablau');
     const pageNotFound = getByText('Page requested not found');
