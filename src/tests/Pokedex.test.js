@@ -74,4 +74,115 @@ describe('Requiriment 05', () => {
     expect(currentPokemon.length).toBe(1);
   });
 
+  test('4/7', () => {
+    renderWithRouter(<Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />);
+
+    const pokemonTypeButtons = screen.getAllByTestId('pokemon-type-button');
+    const allTypesButton = screen.getByText(/all/i);
+    const nextPokemonButton = screen.getByTestId('next-pokemon');
+
+    expect(allTypesButton).toBeInTheDocument();
+    expect(pokemonTypeButtons.length).toBe(7);
+    pokemonTypeButtons.forEach((currentButton) => expect(currentButton).toBeInTheDocument());
+
+    fireEvent.click(pokemonTypeButtons[1]);
+    let currentType = screen.getAllByText(/fire/i);
+    let currentPokemon = screen.getByText(/charmander/i);
+    expect(currentType.length).toBe(2);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentType = screen.getAllByText(/fire/i);
+    currentPokemon = screen.getByText(/rapidash/i);
+    expect(currentType.length).toBe(2);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentType = screen.getAllByText(/fire/i);
+    currentPokemon = screen.getByText(/charmander/i);
+    expect(currentType.length).toBe(2);
+    expect(currentPokemon).toBeInTheDocument();
+  });
+
+  test('5/7', () => {
+    renderWithRouter(<Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />);
+
+    const allTypesButton = screen.getByText(/all/i);
+    const nextPokemonButton = screen.getByTestId('next-pokemon');
+    let currentPokemon = screen.getByText(/pikachu/i);
+
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/charmander/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/caterpie/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/ekans/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/alakazam/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/mew/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/rapidash/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/snorlax/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/dragonair/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    expect(allTypesButton).toBeInTheDocument();
+
+    fireEvent.click(allTypesButton);
+
+    currentPokemon = screen.getByText(/pikachu/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/charmander/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/caterpie/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/ekans/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/alakazam/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/mew/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/rapidash/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/snorlax/i);
+    expect(currentPokemon).toBeInTheDocument();
+
+    fireEvent.click(nextPokemonButton);
+    currentPokemon = screen.getByText(/dragonair/i);
+    expect(currentPokemon).toBeInTheDocument();
+  });
+
 });
