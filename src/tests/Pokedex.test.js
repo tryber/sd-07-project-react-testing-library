@@ -7,7 +7,6 @@ import pokemons from '../data';
 afterEach(cleanup);
 
 describe('Pokedex - teste de Conteúdo', () => {
-
   const isPokemonFavoriteById = {
     4: false,
     10: false,

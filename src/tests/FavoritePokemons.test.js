@@ -34,7 +34,8 @@ describe('Favorite Pokemons - Teste de conteúdo', () => {
             map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
           },
         ],
-        summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+        summary: `This intelligent Pokémon roasts hard 
+        berries with electricity to make them tender enough to eat.`,
       },
       {
         id: 4,
@@ -64,7 +65,8 @@ describe('Favorite Pokemons - Teste de conteúdo', () => {
             map: 'https://cdn.bulbagarden.net/upload/6/6f/Kanto_Rock_Tunnel_Map.png',
           },
         ],
-        summary: 'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
+        summary: `The flame on its tail shows the strength 
+        of its life force. If it is weak, the flame also burns weakly.`,
       },
       {
         id: 10,
@@ -94,7 +96,8 @@ describe('Favorite Pokemons - Teste de conteúdo', () => {
             map: 'https://cdn.bulbagarden.net/upload/4/4e/Johto_National_Park_Map.png',
           },
         ],
-        summary: 'For protection, it releases a horrible stench from the antennae on its head to drive away enemies.',
+        summary: `For protection, it releases a 
+        horrible stench from the antennae on its head to drive away enemies.`,
       },
     ];
     const { getAllByTestId } = renderWithRouter(<FavoritePokemons
