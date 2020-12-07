@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import App from '../App';
@@ -8,7 +8,7 @@ describe('testing App.js', () => {
   test('renders a reading with the text `Pokédex`', () => {
     const history = createMemoryHistory();
     const { getByText } = render(
-      <Router history={history}>
+      <Router history={ history }>
         <App />
       </Router>
     );
@@ -19,7 +19,7 @@ describe('testing App.js', () => {
   test('test if clicking in Home the URL is redicecioned for /', () => {
     const history = createMemoryHistory();
     const { getByText } = render(
-      <Router history={history}>
+      <Router history={ history }>
         <App />
       </Router>
     );
@@ -31,7 +31,7 @@ describe('testing App.js', () => {
   test('test if clicking in About the URL is redicecioned for /about', () => {
     const history = createMemoryHistory();
     const { getByText } = render(
-      <Router history={history}>
+      <Router history={ history }>
         <App />
       </Router>
     );
@@ -43,7 +43,7 @@ describe('testing App.js', () => {
   test('test if clicking in Favorite Pokémons the URL is redicecioned for /favorites', () => {
     const history = createMemoryHistory();
     const { getByText } = render(
-      <Router history={history}>
+      <Router history={ history }>
         <App />
       </Router>
     );
