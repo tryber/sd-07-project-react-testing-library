@@ -5,17 +5,17 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
 
 describe('testing file FavoritePokemons.js', () => {
-
   afterEach(cleanup);
 
-  it('the message "No favorite pokemon found" appears when the person does not have favorite pokemon', () => {
-    const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ [] }/>);
+  it('"No favorite pokemon found" appears when the person does not have favorite pokemon', () => {
+    const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ [] } />);
     const notFound = getByText(/No favorite pokemon found/i);
     expect(notFound).toBeVisible();
-  })
+  });
 
-  it('test if all favorite Pokémon cards are displayed on the Favorite Pokémons page', () => {
+  it('all favorite Pokémon cards are displayed on the Favorite Pokémons page', () => {
     const { getByText, getAllByText, getByRole } = renderWithRouter(<App />);
+    const two = 2;
     const pikachuName = getByText(/Pikachu/i);
     const moreDetailsPikachu = getByText(/More details/i);
     expect(pikachuName).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe('testing file FavoritePokemons.js', () => {
     expect(homeLink).toBeVisible();
     fireEvent.click(homeLink);
     const nextPokemon = getByText(/Próximo Pokémon/i);
-    expect(nextPokemon).toBeVisible()
+    expect(nextPokemon).toBeVisible();
     fireEvent.click(nextPokemon);
     const charmanderName = getByText(/Charmander/i);
     const moreDetailsCharmander = getByText(/More details/i);
@@ -43,12 +43,13 @@ describe('testing file FavoritePokemons.js', () => {
     expect(pikachuName).toBeVisible();
     expect(charmanderName).toBeVisible();
     const getAllText = getAllByText(/More details/i);
-    expect(getAllText.length).toBe(2);
-  })
+    expect(getAllText.length).toBe(two);
+  });
 
   it('test if no Pokémon card is displayed, if no Pokémon is favorite', () => {
     const { container } = renderWithRouter(<FavoritePokemons />);
+    const zero = 0;
     const imgPokemons = container.querySelectorAll('img');
-    expect(imgPokemons.length).toBe(0);
-  })
-})
+    expect(imgPokemons.length).toBe(zero);
+  });
+});

@@ -4,7 +4,6 @@ import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
 describe('testing file App.js', () => {
-
   afterEach(cleanup);
 
   it('renders a reading with the text `Pokédex`', () => {
@@ -36,7 +35,7 @@ describe('testing file App.js', () => {
     expect(favoritesPathname).toBe('/favorites');
   });
 
-  it('application redirected to home page "/" when clicking on the "Home" link', () => {
+  it('redirected to home page "/" when clicking on the "Home" link', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Home/i));
     const homePathname = history.location.pathname;
@@ -45,7 +44,7 @@ describe('testing file App.js', () => {
     expect(home).toBeInTheDocument();
   });
 
-  it('application redirected to about page "/about" when clicking on the "About" link', () => {
+  it('redirected to about page "/about" when clicking on the "About" link', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/About/i));
     const aboutPathname = history.location.pathname;
@@ -54,19 +53,20 @@ describe('testing file App.js', () => {
     expect(about).toBeInTheDocument();
   });
 
-  it('application redirected to favorites page "/favorites" when clicking on the "Favorite Pokémons" link', () => {
+  it('redirected to "/favorites" when clicking on "Favorite Pokémons" link', () => {
     const { getByText, getAllByText, history } = renderWithRouter(<App />);
+    const two = 2;
     fireEvent.click(getByText(/Favorite Pokémons/i));
     const favoritesPathname = history.location.pathname;
     expect(favoritesPathname).toBe('/favorites');
     const favorites = getAllByText(/Favorite pokémons/i);
-    expect(favorites.length).toBe(2);
+    expect(favorites.length).toBe(two);
   });
 
-  it('application is redirected to the not found page when entering an unknown URL', () => {
+  it('redirected to the not found page when entering an unknown URL', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/doesnotexist/');
     const notFound = getByText(/Page requested not found/i);
     expect(notFound).toBeInTheDocument();
   });
-})
+});

@@ -5,9 +5,7 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('testing file PokemonDetails.js', () => {
-
   afterEach(cleanup);
-
   const pokemonToBeTested = pokemons[0];
 
   it('detailed information of the selected Pokémon is shown on the screen', () => {
@@ -22,12 +20,13 @@ describe('testing file PokemonDetails.js', () => {
     expect(queryNotFound).toBe(null);
     const summary = getByRole('heading', { name: /Summary/i });
     expect(summary.tagName).toBe('H2');
-    const description = getByText(/This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat/i);
+    const description = getByText(/This intelligent Pokémon/i);
     expect(description).toBeInTheDocument();
-  })
+  });
 
   it('section with maps containing the locations of the pokémon are displayed', () => {
     const { getByText, getByRole, getAllByAltText } = renderWithRouter(<App />);
+    const two = 2;
     const pokemonDetails = getByText(/More details/i);
     fireEvent.click(pokemonDetails);
     const headingLocation = getByRole('heading', { name: /Game Locations of Pikachu/i });
@@ -35,7 +34,7 @@ describe('testing file PokemonDetails.js', () => {
     expect(headingLocation.tagName).toBe('H2');
     const pokemonLocations = pokemonToBeTested.foundAt;
     const habitatImages = getAllByAltText(/Pikachu location/i);
-    expect(habitatImages.length).toBe(2);
+    expect(habitatImages.length).toBe(two);
     expect(pokemonLocations.length).toEqual(habitatImages.length);
     const titleMapOne = getByText(/Kanto Viridian Forest/i);
     expect(titleMapOne).toBeVisible();
@@ -45,10 +44,10 @@ describe('testing file PokemonDetails.js', () => {
     expect(imageMapOne).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
     const imageMapTwo = habitatImages[1];
     expect(imageMapTwo).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
-  })
+  });
 
   it('the user can favorite a pokémon through the details page', () => {
-    const { getByText, getByAltText, queryByAltText  } = renderWithRouter(<App />);
+    const { getByText, getByAltText, queryByAltText } = renderWithRouter(<App />);
     const pokemonDetails = getByText(/More details/i);
     fireEvent.click(pokemonDetails);
     const favoritePikachu = getByText(/Pokémon favoritado?/i);
@@ -58,5 +57,5 @@ describe('testing file PokemonDetails.js', () => {
     fireEvent.click(favoritePikachu);
     const queryNotFound = queryByAltText(/Pikachu is marked as favorite/i);
     expect(queryNotFound).toBe(null);
-  })
-})
+  });
+});
