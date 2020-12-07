@@ -7,26 +7,24 @@ import App from '../App';
 describe('testing App.js', () => {
   test('renders a reading with the text `Pokédex`', () => {
     const history = createMemoryHistory();
-    const { pathname } = history.location;
     const { getByText } = render(
       <Router history={history}>
         <App />
       </Router>
     );
     const heading = getByText(/Pokédex/i);
-    expect(pathname).toBe('/');
     expect(heading).toBeInTheDocument();
   });
 
   test('test if clicking in Home the URL is redicecioned for /', () => {
     const history = createMemoryHistory();
-    const { pathname } = history.location;
     const { getByText } = render(
       <Router history={history}>
         <App />
       </Router>
     );
     fireEvent.click(getByText(/Home/i));
+    const { pathname } = history.location;
     expect(pathname).toBe('/');
   })
 
