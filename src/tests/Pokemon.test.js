@@ -26,12 +26,17 @@ describe('Testando o componente Pokedex', () => {
     expect(charmanderImg).toBeInTheDocument();
   });
   it('Testando se existe o botão More details nos cartões', () => {
-    const { getByText } = renderWithRoute(<App />);
+    const { getByText, history } = renderWithRoute(<App />);
     const botaoDetalhesPikacho = getByText('More details');
     expect(botaoDetalhesPikacho).toBeInTheDocument();
+    fireEvent.click(botaoDetalhesPikacho);
+    expect(history.location.pathname).toBe('/pokemons/25');
+    history.push('/');
     fireEvent.click(getByText('Próximo pokémon'));
     const botaoDetalhesCharmander = getByText('More details');
     expect(botaoDetalhesCharmander).toBeInTheDocument();
+    fireEvent.click(botaoDetalhesCharmander);
+    expect(history.location.pathname).toBe('/pokemons/4');
   });
   it('Testando o redirecionamento do botão More details', () => {
     const { getByText, history } = renderWithRoute(<App />);
