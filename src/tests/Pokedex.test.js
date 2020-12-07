@@ -31,7 +31,6 @@ describe('Contém um h2 com o texto Encountered pokémons', () => {
     expect(p).toBeInTheDocument();
   });
 });
-
 describe('Teste se é exibido o próximo Pokémon quando clicado.', () => {
   beforeEach(() => {
     const { history } = renderWithRouter(<App />);
@@ -47,7 +46,6 @@ describe('Teste se é exibido o próximo Pokémon quando clicado.', () => {
     testClickNext();
   });
 });
-
 describe('Teste se é mostrado apenas um Pokémon por vez.', () => {
   afterEach(cleanup);
   it('Mostrado apenas um Pokémon por vez.', () => {
@@ -97,7 +95,7 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   it('O texto do botão deve ser All', () => {
     const text = 'All';
     const btn = screen.getByRole('button', { name: text });
-    expect(btn).toBeInTheDocument();
+    expect(btn.innerHTML).toBe(text);
   });
   it('A Pokedéx deverá mostrar os Pokémons sem filtros', () => {
     getTypes().forEach((typeIn) => {
@@ -106,6 +104,11 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
       const pokemonList = pokemons.filter(({ type }) => typeIn === type);
       testClickNext(pokemonList);
     });
+    const btnDragon = screen.getByRole('button', { name: /dragon/i });
+    fireEvent.click(btnDragon);
+    const btnAll = screen.getByRole('button', { name: /All/i });
+    fireEvent.click(btnAll);
+    testClickNext();
   });
   it('Ao carregar a página, o filtro selecionado deverá ser All;', () => {
     testClickNext();
@@ -118,10 +121,27 @@ describe('Criado um botão de filtro para cada tipo de Pokémon.', () => {
   });
   afterEach(cleanup);
   it('Existi um botão para cada tipo de Pokémon disponível', () => {
+    getTypes().forEach((type) => {
+      const buttonType = screen.getByRole('button', { name: `${type}` });
+      expect(buttonType).toBeInTheDocument();
+    });
   });
-  it('A Pokedéx deverá mostrar os Pokémons sem filtros', () => {
+  it('Filtragem para cada tipo de Pokémon, sem repetição', () => {
+    const typeButtons = screen.queryAllByTestId('pokemon-type-button');
+    expect(getTypes().length).toBe(typeButtons.length);
   });
-  it('A botão All precisa estar sempre visível.', () => {
+  it('desabilitado quando a lista filtrada de Pokémons tiver um só pokémon.', () => {
     testClickNext();
+  });
+});
+describe('Teste se é mostrado apenas um Pokémon por vez.', () => {
+  afterEach(cleanup);
+  it(' botão de Próximo pokémon deve ser desabilitado', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/');
+    const btn = screen.getByRole('button', { name: /dragon/i });
+    fireEvent.click(btn);
+    const nextBtn = screen.getByRole('button', { name: /próximo pokémon/i });
+    expect(nextBtn.disabled).toBeTruthy();
   });
 });
