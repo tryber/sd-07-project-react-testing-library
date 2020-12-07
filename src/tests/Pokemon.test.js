@@ -49,14 +49,14 @@ describe('Requiriment 06', () => {
     const { history } = renderWithRouter(<App />);
 
     const linkToMoreDetails = screen.getByText(/more details/i);
-    
+
     fireEvent.click(linkToMoreDetails);
     const pathName = history.location.pathname;
     expect(pathName).toBe('/pokemons/25');
   });
 
   test('5/5', () => {
-    renderWithRouter(<Pokemon pokemon={ pokemons[7] } isFavorite={ true } />);
+    renderWithRouter(<Pokemon pokemon={ pokemons[7] } isFavorite="true" />);
 
     const favoriteImageByAltText = screen.getByAltText(/snorlax is marked as favorite/i);
 
