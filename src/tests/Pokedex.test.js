@@ -20,7 +20,7 @@ describe('Testa o arquivo Pokedex.js', () => {
 
   it('testa se é exibido o próximo pokemon quando clica no botão proximo pokemon', () => {
     const pokemon = [pokemons[0], pokemons[1]];
-    const { getByTestId, getByText } = renderWithRouter(
+    const { getByText } = renderWithRouter(
       <Pokedex
         pokemons={ pokemon }
         isPokemonFavoriteById={ { 25: false, 4: false } }
@@ -51,19 +51,6 @@ describe('Testa o arquivo Pokedex.js', () => {
     expect(pikachu).toBeInTheDocument();
     expect(queryByText('Charmander')).not.toBeInTheDocument();
   });
-
-  // it('testa se a pokedex tem os botões de filtro', () => {
-  //   const pokemon = [pokemons[0]];
-  //   const { getByText } = renderWithRouter(
-  //     <Pokedex
-  //       pokemons={ pokemon }
-  //       isPokemonFavoriteById={ { 25: false } }
-  //     />,
-  //   );
-
-  //   const filterButton = getByText('Psychic');
-  //   expect(filterButton).toBeInTheDocument();
-  // });
 
   it('testa se a pokedex tem um botão para resetar o filtro', () => {
     const pokemon = [pokemons[0], pokemons[1]];
