@@ -62,10 +62,11 @@ describe('Testando Pokedex', () => {
   });
 
   it('O botão de Próximo pokémon deve ser desabilitado.', () => {
-    const { getByRole } = renderWithRouter(<App />);
-    const eletric = getByRole('button', { name: 'Electric' });
-    fireEvent.click(eletric);
-    const proximo = getByRole('button', { name: 'Próximo pokémon' });
-    expect(proximo).toBeDisabled();
+    const { getAllByTestId, getByText } = renderWithRouter(<App />);
+    const botoesDeTipo = getAllByTestId('pokemon-type-button');
+    fireEvent.click(botoesDeTipo[0]);
+    fireEvent.click(getByText('Próximo pokémon'));
+    const pikachu = getByText('Pikachu');
+    expect(pikachu).toBeInTheDocument();
   });
 });
