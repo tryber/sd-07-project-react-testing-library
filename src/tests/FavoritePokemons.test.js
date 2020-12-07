@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
 
-test("is displayed on the screen 'No favorite pokemon'", () => {
+test('is displayed on the screen \'No favorite pokemon\'', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
@@ -17,16 +17,16 @@ test("is displayed on the screen 'No favorite pokemon'", () => {
   expect(noFavoriteText).toBeInTheDocument();
 });
 
-test("is displayed on the screen all favorite pokemons card", () => {
+test('is displayed on the screen all favorite pokemons card', () => {
   const { getByText, getByLabelText, getByTestId } = render(
     <MemoryRouter>
       <App />
     </MemoryRouter>,
   );
   const moreDetailsButton = getByText('More details');
-  fireEvent.click(moreDetailsButton)
+  fireEvent.click(moreDetailsButton);
 
-  const checkFavorite =  getByLabelText('Pokémon favoritado?');
+  const checkFavorite = getByLabelText('Pokémon favoritado?');
   fireEvent.click(checkFavorite);
 
   const favoritePokemonsButton = getByText('Favorite Pokémons');
