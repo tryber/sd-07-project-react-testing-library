@@ -37,7 +37,7 @@ describe('Testing Pokemon.js functionality', () => {
   it('should have a p with attribut data-testid="pokemonType"', () => {
     const { container } = renderWithRouter(<App />);
 
-    const pWithDataId = container.querySelector('[data-testid="pokemonType"]'); 
+    const pWithDataId = container.querySelector('[data-testid="pokemonType"]');
     expect(pWithDataId).toBeInTheDocument();
-  })
+  });
 });
