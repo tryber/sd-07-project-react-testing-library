@@ -48,6 +48,18 @@ describe('Testando Pokedex', () => {
     expect(bug).toBeInTheDocument();
   });
 
+  it('Teste se a Pokédex contém um botão para resetar o filtro.', () => {
+    const { getByRole, getByText, history } = renderWithRouter(<App />);
+    const botaoAll = getByRole('button', { name: 'All' });
+    expect(botaoAll).toBeInTheDocument();
+    fireEvent.click(botaoAll);
+    const pikachu = getByText('Pikachu');
+    expect(pikachu).toBeInTheDocument();
+    history.push('/');
+    const pikachuSegundoTest = getByText('Pikachu');
+    expect(pikachuSegundoTest).toBeInTheDocument();
+  });
+
   it('Teste dinamicamente um botão de filtro para cada tipo de Pokémon.', () => {
     const { getAllByTestId, getByRole } = renderWithRouter(<App />);
     const botoesTipo = getAllByTestId('pokemon-type-button');
