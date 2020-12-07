@@ -6,7 +6,7 @@ describe('Testando about', () => {
   it('Teste se página contém um h2 com o texto Page requested not found', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/rota/errada');
-    const h2 = getByText('Page requested ' + 'not found');
+    const h2 = getByText('Page requested not found');
     expect(h2).toBeInTheDocument();
   });
 
