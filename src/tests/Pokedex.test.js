@@ -4,13 +4,13 @@ import { MemoryRouter } from 'react-router-dom';
 import Pokedex from '../components/Pokedex';
 
 const pokemon = [
-  { name: 'pikachu', type: 'Electric', image: '', averageWeight: '', id: 1 },
-  { name: 'ekans', type: 'Poison', image: '', averageWeight: '', id: 2 },
-  { name: 'Charmander', type: 'Fire', image: '', averageWeight: '', id: 2 },
-  { name: 'caterpie', type: 'Bug', image: '', averageWeight: '', id: 2 },
-  { name: 'Alakazan', type: 'Psychic', image: '', averageWeight: '', id: 2 },
-  { name: 'snorlax', type: 'Normal', image: '', averageWeight: '', id: 2 },
-  { name: 'Dragonair', type: 'Dragon', image: '', averageWeight: '', id: 2 },
+  { name: 'pikachu', type: 'Electric', image: '', averageWeight: '', id: 4 },
+  { name: 'ekans', type: 'Poison', image: '', averageWeight: '', id: 10 },
+  { name: 'Charmander', type: 'Fire', image: '', averageWeight: '', id: 23 },
+  { name: 'caterpie', type: 'Bug', image: '', averageWeight: '', id: 25 },
+  { name: 'Alakazan', type: 'Psychic', image: '', averageWeight: '', id: 65 },
+  { name: 'snorlax', type: 'Normal', image: '', averageWeight: '', id: 78 },
+  { name: 'Dragonair', type: 'Dragon', image: '', averageWeight: '', id: 143 },
 ];
 const favorite = {
   4: false,
@@ -20,8 +20,6 @@ const favorite = {
   65: false,
   78: false,
   143: false,
-  148: false,
-  151: false,
 };
 const lengthButton = 7;
 
