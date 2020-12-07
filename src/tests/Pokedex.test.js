@@ -52,7 +52,6 @@ describe('Testing the file Pokedex.js', () => {
     const poke1 = getByText(/Pikachu/i);
     expect(poke1).toBeInTheDocument();
   });
-
   test('shown only one Pokémon at a time', () => {
     const { getAllByText } = renderWithRouter(<App />);
     const text = getAllByText(/Average weight/i);
