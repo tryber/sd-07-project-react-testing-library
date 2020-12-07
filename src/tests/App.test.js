@@ -10,7 +10,7 @@ describe('testing App.js', () => {
     const { getByText } = render(
       <Router history={ history }>
         <App />
-      </Router>
+      </Router>,
     );
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
@@ -21,7 +21,7 @@ describe('testing App.js', () => {
     const { getByText } = render(
       <Router history={ history }>
         <App />
-      </Router>
+      </Router>,
     );
     fireEvent.click(getByText(/Home/i));
     const { pathname } = history.location;
@@ -33,7 +33,7 @@ describe('testing App.js', () => {
     const { getByText } = render(
       <Router history={ history }>
         <App />
-      </Router>
+      </Router>,
     );
     fireEvent.click(getByText(/About/i));
     const { pathname } = history.location;
@@ -45,7 +45,7 @@ describe('testing App.js', () => {
     const { getByText } = render(
       <Router history={ history }>
         <App />
-      </Router>
+      </Router>,
     );
     fireEvent.click(getByText(/Favorite Pokémons/i));
     const { pathname } = history.location;
