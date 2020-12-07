@@ -2,7 +2,6 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../components/renderWithRouter';
-import { render } from 'react-dom';
 
 describe('Testando o componente Pokedex', () => {
   it('Teste se página contém um h2 com o texto Encountered pokémons', () => {
@@ -71,7 +70,7 @@ describe('Testando o componente Pokedex', () => {
       getByRole,
     } = renderWithRouter(<App />);
     const botoesTipo = getAllByTestId('pokemon-type-button');
-    botoesTipo.map((botao) => {
+    botoesTipo.forEach((botao) => {
       const botoes = getByRole('button', {
         name: botao.innerHTML,
       });
