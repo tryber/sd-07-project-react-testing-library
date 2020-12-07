@@ -17,7 +17,7 @@ test('if render the links in the home page', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   const homeLink = getByText(/Home/i);
@@ -27,4 +27,4 @@ test('if render the links in the home page', () => {
   expect(homeLink).toBeInTheDocument();
   expect(aboutLink).toBeInTheDocument();
   expect(favoriteLink).toBeInTheDocument();
-})
+});
