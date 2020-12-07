@@ -9,32 +9,34 @@ describe('1. Testando o arquivo App.js', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
-    const { pathName } = history.location;
-    console.log('veio algo');
-    expect(pathName).toBe('/');
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
   });
 
   it('renders links navigation on top', () => {
     const { getByText } = renderWithRouter(<App />);
+
     const home = getByText(/Home/i);
     expect(home).toBeInTheDocument();
+
     const about = getByText(/About/i);
     expect(about).toBeInTheDocument();
-    const favorites = getByText(/About/i);
+
+    const favorites = getByText(/Favorite Pokémons/i);
     expect(favorites).toBeInTheDocument();
   });
 
   it('redirect tp home page when click in link Home', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Home/i));
-    const { pathName } = history.location;
-    expect(pathName).toBe('/');
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
   });
   it('redirect to about page when in link About', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/About/i));
-    const { pathName } = history.location;
-    expect(pathName).toBe('/About');
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
   });
   it('redirect to favorites pokémons when click in link Favorite Pokémons', () => {
     const { getByText, history } = renderWithRouter(<App />);
