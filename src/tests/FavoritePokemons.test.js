@@ -30,7 +30,7 @@ describe('Requirement 3: Testing FavoritePokemons.js', () => {
             map: 'https://cdn.bulbagarden.net/upload/5/54/Kanto_Vermilion_City_Map.png',
           },
         ],
-        summary: 'What sounds like its cry may actually be its snores or the rumblings of its hungry belly.',
+        summary: 'It is hungry.',
       },
       {
         id: 10,
@@ -60,8 +60,8 @@ describe('Requirement 3: Testing FavoritePokemons.js', () => {
             map: 'https://cdn.bulbagarden.net/upload/4/4e/Johto_National_Park_Map.png',
           },
         ],
-        summary: 'For protection, it releases a horrible stench from the antennae on its head to drive away enemies.',
-      }
+        summary: 'Well... It is a bug',
+      },
     ];
     const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ fakeFavs } />);
     const snorlax = getByText(/snorlax/i);
