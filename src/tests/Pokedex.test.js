@@ -5,33 +5,32 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('testing file Pokedex.js', () => {
-
   afterEach(cleanup);
 
   it('the page contains an h2 heading with the text "Encountered Pokémon"', () => {
     const { getByRole } = renderWithRouter(<App />);
     const encounteredHeading = getByRole('heading', { name: /Encountered pokémons/i });
     expect(encounteredHeading.tagName).toBe('H2');
-  })
+  });
 
-  it('the next Pokémon in the list is displayed when the Next Pokémon button is clicked', () => {
+  it('Next pokemon displayed when "Próximo pokémon" button is clicked', () => {
     const { getByText } = renderWithRouter(<App />);
-    const allPokemons = pokemons.map(element => element.name);
+    const allPokemons = pokemons.map((element) => element.name);
     const nextPokemon = getByText(/Próximo pokémon/i);
     allPokemons.forEach((pokemon) => {
       expect(getByText(pokemon)).toBeInTheDocument();
       fireEvent.click(nextPokemon);
     });
-    const firstPokemon = getByText(/Pikachu/i); 
+    const firstPokemon = getByText(/Pikachu/i);
     fireEvent.click(nextPokemon);
     expect(firstPokemon).toBeInTheDocument();
-  })
+  });
 
   it('only one Pokémon is shown at a time', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     const pokemonsInThePage = getAllByTestId('pokemon-name');
     expect(pokemonsInThePage.length).toBe(1);
-  })
+  });
 
   it('Pokédex has filter buttons', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
@@ -47,13 +46,13 @@ describe('testing file Pokedex.js', () => {
     expect(firstFilteredPokemon).toBeInTheDocument();
     const pokemonType = getByTestId('pokemonType');
     expect(pokemonType).toHaveTextContent(/Fire/i);
-  })
+  });
 
   it('Pokédex contains a button to reset the filter', () => {
     const { getByText, getByTestId, getByRole } = renderWithRouter(<App />);
     const allButton = getByRole('button', { name: /All/i });
     expect(allButton).toBeVisible();
-    const allPokemons = pokemons.map(element => element.name);
+    const allPokemons = pokemons.map((element) => element.name);
     const nextPokemon = getByText(/Próximo pokémon/i);
     allPokemons.forEach((pokemon) => {
       expect(getByText(pokemon)).toBeVisible();
@@ -75,7 +74,7 @@ describe('testing file Pokedex.js', () => {
       expect(getByText(pokemon)).toBeVisible();
       fireEvent.click(nextPokemon);
     });
-  })
+  });
 
   it('filter button is created dynamically for each type of Pokémon', () => {
     const { getByRole, getAllByTestId } = renderWithRouter(<App />);
@@ -99,9 +98,9 @@ describe('testing file Pokedex.js', () => {
     expect(getByRole('button', { name: pokemonTypes[4] })).toBeVisible();
     expect(getByRole('button', { name: pokemonTypes[5] })).toBeVisible();
     expect(getByRole('button', { name: pokemonTypes[6] })).toBeVisible();
-  })
+  });
 
-  it('"Próximo pokémon" button should be disabled when the filtered list of Pokémon has only one Pokémon', () => {
+  it('"Próximo pokémon" disabled when filtered Pokémon list has one Pokémon', () => {
     const { getByText, getByRole } = renderWithRouter(<App />);
     const pikachu = getByText(/Pikachu/i);
     expect(pikachu).toBeVisible();
@@ -109,5 +108,5 @@ describe('testing file Pokedex.js', () => {
     fireEvent.click(electricButton);
     const nextPokemon = getByRole('button', { name: /Próximo pokémon/i });
     expect(nextPokemon).toBeDisabled();
-  })
-})
+  });
+});

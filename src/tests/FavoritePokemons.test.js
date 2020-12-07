@@ -7,7 +7,7 @@ import App from '../App';
 describe('testing file FavoritePokemons.js', () => {
   afterEach(cleanup);
 
-  it('"No favorite pokemon found" appears when the person does not have favorite pokemon', () => {
+  it('"No favorite pokemon found" appears when you have no favorite pokemons', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ [] } />);
     const notFound = getByText(/No favorite pokemon found/i);
     expect(notFound).toBeVisible();

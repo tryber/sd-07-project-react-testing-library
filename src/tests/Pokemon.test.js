@@ -10,10 +10,11 @@ describe('testing file Pokemon.js', () => {
   const pokemonToBeTested = pokemons[0];
 
   it('the card with the information of a certain Pokémon is rendered correctly', () => {
-    const toBeTrue = true;
-    const { getByTestId, getByAltText } = renderWithRouter(<Pokemon pokemon={ pokemonToBeTested }
-      showDetailsLink={ toBeTrue } isFavorite={ toBeTrue }
-      />);
+    const { getByTestId, getByAltText } = renderWithRouter(<Pokemon
+      pokemon={ pokemonToBeTested }
+      showDetailsLink
+      isFavorite
+    />);
     const correctName = getByTestId('pokemon-name');
     const correctType = getByTestId('pokemonType');
     const correctAverageWeight = getByTestId('pokemon-weight');
@@ -26,7 +27,7 @@ describe('testing file Pokemon.js', () => {
     expect(correctFavoriteImage).toHaveAttribute('src', '/star-icon.svg');
   });
 
-  it('the Pokémon card contains a navigation link to view details of this Pokémon', () => {
+  it('Pokémon card contains a link to view details of this Pokémon', () => {
     const { getByText } = renderWithRouter(<App />);
     const twentyFive = 25;
     const pokemonId = pokemons[0].id;
@@ -35,7 +36,7 @@ describe('testing file Pokemon.js', () => {
     expect(moreDetails).toHaveAttribute('href', '/pokemons/25');
   });
 
-  it('clicking on the Pokémon redirects the application to the Pokémon details page', () => {
+  it('clicking on Pokémon redirects application to the Pokémon details page', () => {
     const { getByText, getByRole } = renderWithRouter(<App />);
     const twentyFive = 25;
     const pokemonId = pokemons[0].id;
