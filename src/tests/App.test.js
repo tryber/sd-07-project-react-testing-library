@@ -70,7 +70,7 @@ describe('check if navigation is working', () => {
 
   it('redirect to page `Not Found` when a not existing route is insert in the navigator', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    history.push('/page-that-dont-exist');
+    history.push('/page-that-doesnt-exist');
     const noMatch = getByText(/Page requested not found/i);
     expect(noMatch).toBeInTheDocument();
   });
