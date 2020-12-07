@@ -22,7 +22,7 @@ describe('Testando Pokemon', () => {
     expect(imagem).toBeInTheDocument();
     expect(imagem).toHaveAttribute(
       'src',
-      'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png'
+      'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
     );
   });
 
