@@ -42,7 +42,7 @@ test('if star icon appear on favorite pokemons', () => {
   userEvent.click(detailsButton);
   const favoriteButton = getByText(/pokémon favoritado/i);
   userEvent.click(favoriteButton);
-  const starIcon = getByAltText(/marked as favorite/i);
+  const starIcon = getByAltText(/pikachu is marked as favorite/i);
   expect(starIcon).toBeInTheDocument();
   expect(starIcon).toHaveAttribute(
     'src', '/star-icon.svg',
