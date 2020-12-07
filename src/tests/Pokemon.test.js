@@ -2,6 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRoute from '../components/renderWithRoute';
+import pokemons from '../data';
 
 describe('Testando o componente Pokedex', () => {
   it('Testando se é renderizado as informações do pokémon', () => {
@@ -13,7 +14,7 @@ describe('Testando o componente Pokedex', () => {
     const pikachuPeso = getByText('Average weight: 6.0 kg');
     expect(pikachuPeso).toBeInTheDocument();
     const pikachuImg = getByAltText('Pikachu sprite');
-    expect(pikachuImg).toBeInTheDocument();
+    expect(pikachuImg.src).toEqual(pokemons[0].image);
 
     fireEvent.click(getByText('Próximo pokémon'));
     const charmanderNome = getByText('Charmander');
@@ -23,7 +24,7 @@ describe('Testando o componente Pokedex', () => {
     const charmanderPeso = getByText('Average weight: 8.5 kg');
     expect(charmanderPeso).toBeInTheDocument();
     const charmanderImg = getByAltText('Charmander sprite');
-    expect(charmanderImg).toBeInTheDocument();
+    expect(charmanderImg.src).toEqual(pokemons[1].image);
   });
   it('Testando se existe o botão More details nos cartões', () => {
     const { getByText, history } = renderWithRoute(<App />);
