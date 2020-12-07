@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -32,5 +32,5 @@ test('verifying if there are links in the app', () => {
   expect(verifyingAbout).toBeInTheDocument();
 
   const verifyingFavoritePokemons = getByText('Favorite Pokémons');
-  expect(verifyingFavoritePokemons).toBeInTheDocument()
+  expect(verifyingFavoritePokemons).toBeInTheDocument();
 });
