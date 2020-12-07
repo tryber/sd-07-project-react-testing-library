@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, getByTestId } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import React from 'react';
 import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../helpers/renderWithRouter';
@@ -105,6 +105,38 @@ describe('Pokedex - teste de Conteúdo', () => {
         const pokemonType = getByTestId('pokemonType').innerHTML;
         expect(type.innerHTML).toBe(pokemonType);
       });
+    });
+  });
+
+  it('Botão para resetar o filtro', () => {
+    const { getByTestId } = renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ isPokemonFavoriteById }
+    />);
+
+    const nextBtn = getByTestId('next-pokemon');
+    pokemons.forEach((pokemon) => {
+      const pokemonRendered = getByTestId('pokemon-name').innerHTML;
+      expect(pokemon.name).toBe(pokemonRendered);
+      fireEvent.click(nextBtn);
+    });
+  });
+
+  it('Botão próximo Pokemon desabilitado', () => {
+    const { getAllByTestId, getByTestId } = renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ isPokemonFavoriteById }
+    />);
+    const pokemonsType = getAllByTestId('pokemon-type-button');
+    pokemonsType.forEach((type) => {
+      fireEvent.click(type);
+      const numberOfPokemons = pokemons.filter((pokemon) => (
+        type.innerHTML === pokemon.type
+      ));
+      if (numberOfPokemons.length === 1) {
+        const nextBtn = getByTestId('next-pokemon');
+        expect(nextBtn).toHaveAttribute('disabled');
+      }
     });
   });
 });
