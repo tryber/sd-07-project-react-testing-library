@@ -38,6 +38,6 @@ describe('Testing Pokemon.js functionality', () => {
     const { container } = renderWithRouter(<App />);
 
     const pWithDataId = container.querySelector('[data-testid="pokemonType"]');
-    expect(pWithDataId).toBeInTheDocument();
+    expect(pWithDataId.innerHTML).toBe('Electric');
   });
 });
