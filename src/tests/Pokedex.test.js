@@ -107,24 +107,41 @@ describe('Testando o arquivo Pokedex.js', () => {
       renderWithRouter(<App />);
       expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
       fireEvent.click(screen.getByText(/próximo pokémon/i));
-        expect(screen.getByText(/charmander/i)).toBeInTheDocument();
+      expect(screen.getByText(/charmander/i)).toBeInTheDocument();
     });
   });
-  describe('Teste se é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon.',
-  () => {
-    test('Os botões de filtragem devem ser dinâmicos', () => {
-      renderWithRouter(<Pokedex
-        pokemons={ pokemons }
-        isPokemonFavoriteById={ {} }
-      />);
-      expect(screen.getByRole('button', { name: /all/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /electric/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /fire/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /bug/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /poison/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /psychic/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /normal/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /dragon/i })).toBeInTheDocument();
+  describe('Teste se é criado, um botão de filtro para cada tipo de Pokémon.',
+    () => {
+      test('Os botões de filtragem devem ser dinâmicos', () => {
+        renderWithRouter(<Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ {} }
+        />);
+        expect(screen.getByRole('button', { name: /all/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /electric/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /fire/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /bug/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /poison/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /psychic/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /normal/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /dragon/i })).toBeInTheDocument();
+        const length2 = 7;
+        expect(screen.getAllByTestId('pokemon-type-button').length).toBe(length2);
+      });
+    });
+    describe('O botão de Próximo pokémon deve ser desabilitado', () => {
+      test('quando a lista filtrada de Pokémons tiver um só pokémon.', () => {
+        renderWithRouter(<Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ {} }
+        />);
+       const btnNormal = screen.getByRole('button', { name: /normal/i });
+       const btnNext = screen.getByText(/próximo pokémon/i);
+       fireEvent.click(btnNormal);
+       expect(screen.getByText(/snorlax/i)).toBeInTheDocument();
+       fireEvent.click(btnNext);
+        expect(screen.getByText(/snorlax/i)).toBeInTheDocument();
+       
+      })
     })
-  })
 });
