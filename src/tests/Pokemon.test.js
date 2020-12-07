@@ -1,6 +1,5 @@
 import React from 'react';
-import { cleanup, fireEvent } from '@testing-library/react';
-import { screen } from '@testing-library/dom';
+import { cleanup, fireEvent, screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import { Pokemon } from '../components';
 import App from '../App';
@@ -52,20 +51,19 @@ it(`Teste se o card do Pokémon indicado na Pokédex contém um link de navegaç
   expect(screen.getByText('More details')).toHaveAttribute('href', `/pokemons/${id}`);
 });
 
-/* it(`Teste se ao clicar no link de navegação do Pokémon,
+it(`Teste se ao clicar no link de navegação do Pokémon,
     é feito o redirecionamento da aplicação para a página
-    de detalhes de Pokémon.`, () => {
-  const { container } = renderWithRouter(
+    de detalhes de Pokémon.`, async () => {
+  const { history } = renderWithRouter(
     <Pokemon
       pokemon={ POKEMON_TEST }
       isFavorite={ App.setIsPokemonFavoriteById()[id] }
     />,
   );
   fireEvent.click(screen.getByRole('link', { href: `/pokemons/${id}` }));
-  waitForDomChange({ container })
-    .then(() => console.log('DOM changed!'));
-  expect(screen.getByRole('heading')).toHaveTextContent(`${name} Details`);
-}); */
+  const { location: { pathname } } = history;
+  expect(pathname).toBe(`/pokemons/${id}`);
+});
 
 it(`Teste também se a URL exibida no navegador muda para /pokemon/<id>, 
     onde <id> é o id do Pokémon cujos detalhes se deseja ver;`, () => {
