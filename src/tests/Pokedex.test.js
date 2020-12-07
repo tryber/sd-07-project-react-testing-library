@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
+import App from '../App';
 import renderWithRouter from './renderWithRouter';
 import pokemons from '../data';
 
@@ -60,4 +61,49 @@ describe('Testando o arquivo Pokedex.js', () => {
         expect(screen.getAllByTestId(/pokemon-name/i).length).toBe(1);
       });
     });
+  describe('Teste se a Pokédex tem os botões de filtro.', () => {
+    test('O texto do botão deve corresponder ao nome do tipo',
+      () => {
+        renderWithRouter(<Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ {} }
+        />);
+        fireEvent.click(screen.getByText(/fire/i));
+        const length = 2;
+        expect(screen.getAllByText(/fire/i).length).toBe(length);
+      });
+    test('A Pokédex deve circular somente pelos pokémons daquele tipo', () => {
+      renderWithRouter(<Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ {} }
+      />);
+      fireEvent.click(screen.getByText(/fire/i));
+      expect(screen.getByText(/charmander/i)).toBeInTheDocument();
+      fireEvent.click(screen.getByText(/próximo pokémon/i));
+      expect(screen.getByText(/rapidash/i)).toBeInTheDocument();
+    });
+  });
+  describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+    test('O texto do botão deve ser All', () => {
+      renderWithRouter(<Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ {} }
+      />);
+        expect(screen.getByText(/all/i)).toBeInTheDocument();
+    })
+    test('A Pokedéx deverá mostrar os Pokémons normalmente (sem filtros) quando o botão All for clicado',
+     () => {
+     const { getByText } = renderWithRouter(<Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ {} }
+      />);
+       const btnHome = getByText(/all/i);
+       fireEvent.click(btnHome);
+       expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
+    })
+    test('Ao carregar a página, o filtro selecionado deverá ser All', () => {
+      renderWithRouter(<App />);
+      expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
+    })
+  })
 });
