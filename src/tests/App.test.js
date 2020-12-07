@@ -12,3 +12,19 @@ test('renders a reading with the text `Pokédex`', () => {
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
 });
+
+test('if render the links in the home page', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+
+  const homeLink = getByText(/Home/i);
+  const aboutLink = getByText(/About/i);
+  const favoriteLink = getByText(/Favorite Pokémons/i);
+
+  expect(homeLink).toBeInTheDocument();
+  expect(aboutLink).toBeInTheDocument();
+  expect(favoriteLink).toBeInTheDocument();
+})
