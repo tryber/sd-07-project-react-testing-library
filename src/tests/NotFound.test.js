@@ -3,9 +3,9 @@ import { render } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
 test('testa se a página contem um h2 com o texto Page requested not found 😭', () => {
-  const { getByText, getByTestId } = render(<NotFound />);
+  const { getByText, getByLabelText } = render(<NotFound />);
   const text = getByText(/Page requested not found/i);
-  const emoji = getByTestId(/emoji/i);
+  const emoji = getByLabelText(/Crying emoji/i);
   expect(text).toBeInTheDocument();
   expect(emoji).toBeInTheDocument();
 });
