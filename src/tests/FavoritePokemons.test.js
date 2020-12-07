@@ -17,7 +17,7 @@ describe('Testing the file FavoritePokemons.js', () => {
     const route = '/favorites';
     history.push(route);
     const msnText = getByText(/No favorite pokemon found/i);
-     expect(msnText).toBeInTheDocument();
+    expect(msnText).toBeInTheDocument();
   });
   test('displayed all favorite Pokémon cards', () => {
     const history = createMemoryHistory();
@@ -33,7 +33,7 @@ describe('Testing the file FavoritePokemons.js', () => {
     expect(checkFavorite.checked).toBeTruthy();
     history.push('/favorites');
     const favoriteText = getByText(/Charmander/i);
-     expect(favoriteText).toBeInTheDocument();
+    expect(favoriteText).toBeInTheDocument();
   });
   test('no pokemon card is to apply', () => {
     const history = createMemoryHistory();
@@ -49,6 +49,6 @@ describe('Testing the file FavoritePokemons.js', () => {
     expect(checkFavorite.checked).toBeTruthy();
     history.push('/favorites');
     const pikachu = queryByText(/Pikachu/i);
-     expect(pikachu).not.toBeInTheDocument();
+    expect(pikachu).not.toBeInTheDocument();
   });
 });
