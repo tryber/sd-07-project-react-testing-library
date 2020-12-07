@@ -129,19 +129,18 @@ describe('Testando o arquivo Pokedex.js', () => {
         expect(screen.getAllByTestId('pokemon-type-button').length).toBe(length2);
       });
     });
-    describe('O botão de Próximo pokémon deve ser desabilitado', () => {
-      test('quando a lista filtrada de Pokémons tiver um só pokémon.', () => {
-        renderWithRouter(<Pokedex
-          pokemons={ pokemons }
-          isPokemonFavoriteById={ {} }
-        />);
-       const btnNormal = screen.getByRole('button', { name: /normal/i });
-       const btnNext = screen.getByText(/próximo pokémon/i);
-       fireEvent.click(btnNormal);
-       expect(screen.getByText(/snorlax/i)).toBeInTheDocument();
-       fireEvent.click(btnNext);
-        expect(screen.getByText(/snorlax/i)).toBeInTheDocument();
-       
-      })
-    })
+  describe('O botão de Próximo pokémon deve ser desabilitado', () => {
+    test('quando a lista filtrada de Pokémons tiver um só pokémon.', () => {
+      renderWithRouter(<Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ {} }
+      />);
+      const btnNormal = screen.getByRole('button', { name: /normal/i });
+      const btnNext = screen.getByText(/próximo pokémon/i);
+      fireEvent.click(btnNormal);
+      expect(screen.getByText(/snorlax/i)).toBeInTheDocument();
+      fireEvent.click(btnNext);
+      expect(screen.getByText(/snorlax/i)).toBeInTheDocument();
+    });
+  });
 });
