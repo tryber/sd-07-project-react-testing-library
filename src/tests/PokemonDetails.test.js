@@ -100,7 +100,5 @@ página de detalhes.`, () => {
     fireEvent.click(favorite);
     const star = getAllByAltText(/Pikachu is marked as favorite/);
     expect(star[0].src).toBe('http://localhost/star-icon.svg');
-
-
   });
 });

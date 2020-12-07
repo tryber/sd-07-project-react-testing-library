@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, cleanup, getAllByTestId, getByText } from '@testing-library/react';
+import { fireEvent, cleanup } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
@@ -19,7 +19,7 @@ const isPokemonFavoriteById = {
 };
 
 test('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
-  const { getByText } = renderWithRouter(
+  renderWithRouter(
     <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ isPokemonFavoriteById } />,
   );
   const h2 = getByText(/Encountered pokémons/);
@@ -29,7 +29,7 @@ test('Teste se página contém um heading h2 com o texto Encountered pokémons',
 describe(`Teste se é exibido o próximo Pokémon da lista quando o 
 botão Próximo pokémon é clicado.`, () => {
   it('O botão deve conter o texto Próximo pokémon', () => {
-    const { getByText } = renderWithRouter(
+    renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -43,7 +43,7 @@ botão Próximo pokémon é clicado.`, () => {
   ao clicar sucessivamente no botão + O primeiro Pokémon da lista 
   deve ser mostrado ao clicar no botão, se estiver no último Pokémon 
   da lista;`, () => {
-    const { getByText } = renderWithRouter(
+    renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -63,7 +63,7 @@ botão Próximo pokémon é clicado.`, () => {
 
 describe('Teste se a Pokédex tem os botões de filtro.', () => {
   it('O texto do botão deve corresponder ao nome do tipo, ex. Psychic;', () => {
-    const { getByText } = renderWithRouter(
+    renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -76,7 +76,7 @@ describe('Teste se a Pokédex tem os botões de filtro.', () => {
   it(`A partir da seleção de um botão de tipo, a Pokédex deve 
   circular somente pelos pokémons daquele tipo + O texto do botão 
   deve corresponder ao nome do tipo, ex. Psychic`, () => {
-    const { getByText, getByRole } = renderWithRouter(
+    const { getByRole } = renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -118,7 +118,7 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   });
   it(`A Pokedéx deverá mostrar os Pokémons normalmente (sem filtros) 
   quando o botão All for clicado;`, () => {
-    const { getByText, getByRole } = renderWithRouter(
+    const { getByRole } = renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -149,7 +149,7 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   });
 
   it('Ao carregar a página, o filtro selecionado deverá ser All', () => {
-    const { getByText, getByRole } = renderWithRouter(
+    const { getByRole } = renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -185,7 +185,7 @@ cada tipo de Pokémon.`, () => {
   possuir pokémons do tipo Fire, Psychic, Electric e Normal; + O 
   botão de Próximo pokémon deve ser desabilitado quando a lista 
   filtrada de Pokémons tiver um só pokémon.`, () => {
-    const { getByRole, getByText } = renderWithRouter(
+    const { getByRole } = renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -217,15 +217,15 @@ cada tipo de Pokémon.`, () => {
 });
 
 it('Verifica a existência dos botões All, tipos e Next', () => {
-  const { getAllByTestId, getByText } = renderWithRouter(
-  // renderWithRouter(
+  renderWithRouter(
     <Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ isPokemonFavoriteById }
     />,
   );
+  const tamanho = 7;
   const allFilters = getAllByTestId('pokemon-type-button');
-  expect(allFilters.length).toBe(7);
+  expect(allFilters.length).toBe(tamanho);
   const allButton = getByText(/All/);
   expect(allButton).toBeInTheDocument();
   const nextButton = getByText(/Próximo pokémon/);
