@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, cleanup } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
-import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
+import pokemons from '../data';
 
 afterEach(cleanup);
 
@@ -239,8 +239,7 @@ it('Verifica a existência dos botões All, tipos e Next', () => {
     testIdAttribute: 'pokemon-type-button' });
   const DragonButton = getAllByRole('button', { name: 'Dragon',
     testIdAttribute: 'pokemon-type-button' });
-  const NextButton = getAllByRole('button', { name: 'Próximo pokémon',
-    testIdAttribute: 'pokemon-type-button' });
+  const NextButton = getAllByRole('button', { name: 'Próximo pokémon' });
 
   const allButtons = getAllByRole('button');
   expect(AllButton[0]).toBeInTheDocument();

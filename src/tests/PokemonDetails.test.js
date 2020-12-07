@@ -20,10 +20,10 @@ são mostradas na tela.`, () => {
   it(`A página deve conter um texto <name> Details, onde <name> é o 
   nome do Pokémon;`, () => {
     const {
-      getByRole,
-      queryByRole,
+      // getByRole,
+      // queryByRole,
       getByText,
-      history,
+      // history,
     } = renderWithRouter(<PokemonDetails
       isPokemonFavoriteById={ isPokemonFavoriteById }
       pokemons={ pokemons }
@@ -44,10 +44,10 @@ pokémon`, () => {
   it(`Na seção de detalhes deverá existir um heading h2 com o texto Game Locations of 
   <name>; onde <name> é o nome do Pokémon exibido.`, () => {
     const {
-      getByRole,
-      queryByRole,
+      // getByRole,
+      // queryByRole,
       getByText,
-      history,
+      // history,
     } = renderWithRouter(<PokemonDetails
       isPokemonFavoriteById={ isPokemonFavoriteById }
       pokemons={ pokemons }
