@@ -97,7 +97,7 @@ test('The next Pokémon in the list is displayed when the Next Pokémon button i
     expect(pokemon).toBeInTheDocument();
   });
 
-it('Only one Pokémon is shown at a time', () => {
+test('Only one Pokémon is shown at a time', () => {
   const { getAllByTestId } = renderWithRouter(
     <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
   );
@@ -116,16 +116,40 @@ test('Pokédex has the filter buttons', () => {
     expect(button).toBeDefined();
 
     fireEvent.click(button);
-    const pokemon = getByTestId('pokemonType');
-    expect(pokemon).toHaveTextContent(filter);
+    const type = getByTestId('pokemonType');
+    expect(type).toHaveTextContent(filter);
   });
 });
 
 test('Pokédex contains a button to reset the filter', () => {
-  const { getByRole } = renderWithRouter(
+  const { getByRole, getByText } = renderWithRouter(
     <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
   );
   const button = getByRole('button', { name: 'All' });
   expect(button).toBeDefined();
   expect(button).toHaveTextContent('All');
+  fireEvent.click(button);
+  const pokemon = getByText(/Pikachu/i);
+  expect(pokemon).toBeInTheDocument();
+});
+
+test('The Next Pokémon button should be disabled when the list has only one Pokémon',
+  () => {
+    const { getByRole, getByTestId } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
+    );
+    const button = getByRole('button', { name: 'Fire' });
+    fireEvent.click(button);
+    const nextButton = getByTestId('next-pokemon');
+    expect(nextButton).toBeDisabled();
+  });
+
+test('A filter button is created for each type of Pokémon', () => {
+  const { getAllByTestId, getByText } = renderWithRouter(
+    <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
+  );
+  const ALL_TYPES = 2;
+
+  expect(getAllByTestId('pokemon-type-button').length).toBe(ALL_TYPES);
+  expect(getByText('All')).toBeInTheDocument();
 });
