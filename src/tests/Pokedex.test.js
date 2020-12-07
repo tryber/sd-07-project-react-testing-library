@@ -51,5 +51,5 @@ describe('Test 5 - Pokedex.js', () => {
     const especifcType = getByRole('button', { name: 'Electric' });
     fireEvent.click(especifcType);
     expect(disable).toBeDisabled();
-  })
+  });
 });
