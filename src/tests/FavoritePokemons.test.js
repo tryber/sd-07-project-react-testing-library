@@ -3,7 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../components/renderWithRouter';
 import App from '../App';
 
-describe('Testando about', () => {
+describe('Testando Favoritados', () => {
   it('Teste se nenhum card de pokémon é exibido, se ele não estiver favoritado', () => {
     const { queryByTestId, history } = renderWithRouter(<App />);
     history.push('/favorites');

@@ -2,7 +2,7 @@ import React from 'react';
 import renderWithRouter from '../components/renderWithRouter';
 import App from '../App';
 
-describe('Testando about', () => {
+describe('Testando NotFound', () => {
   it('Teste se página contém um h2 com o texto Page requested not found', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/rota/errada');
