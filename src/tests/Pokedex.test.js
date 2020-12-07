@@ -2,7 +2,6 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../renderWithRouter';
-import Data from '../data';
 
 const pokemon = [
   {
