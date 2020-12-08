@@ -43,7 +43,7 @@ describe('Teste se é renderizado um card com as informações de'
 + 'determinado pokémon.', () => {
   test('O nome correto do Pokémon deve ser mostrado na tela;', async () => {
     const { queryByTestId } = renderWithRouter(
-      <Pokemon pokemon={ pokemon }  />,
+      <Pokemon pokemon={ pokemon } />,
     );
     await queryByTestId('pokemon-name');
     const pokemonName = queryByTestId('pokemon-name');
@@ -51,7 +51,7 @@ describe('Teste se é renderizado um card com as informações de'
   });
   test('O tipo correto do pokémon deve ser mostrado na tela.', async () => {
     const { queryByTestId } = renderWithRouter(
-      <Pokemon pokemon={ pokemon }  />,
+      <Pokemon pokemon={ pokemon } />,
     );
     await queryByTestId('pokemonType');
     const pokemonType = queryByTestId('pokemonType');
@@ -61,7 +61,7 @@ describe('Teste se é renderizado um card com as informações de'
   + 'weight: <value> <measurementUnit>; onde <value> e <measurementUnit> são,'
   + 'respectivamente, o peso médio do pokémon e sua unidade de medida', async () => {
     const { queryByTestId } = renderWithRouter(
-      <Pokemon pokemon={ pokemon }  />,
+      <Pokemon pokemon={ pokemon } />,
     );
     await queryByTestId('pokemon-weight');
     const pokemonWeight = queryByTestId('pokemon-weight');
