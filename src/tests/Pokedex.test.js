@@ -172,14 +172,13 @@ describe('Teste se é criado, dinamicamente, um botão de filtro'
   + 'nos dados, sem repetição. Ou seja, a sua Pokédex deve possuir pokémons do '
   + 'tipo Fire, Psychic, Electric e Normal;', () => {
     const allTypes = ['Electric', 'Fire', 'Psychic'];
-    var i;
     const { container } = renderWithRouter(
       <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
     );
     const allBtns = container.getElementsByClassName('button-text filter-button');
     const all = [];
     const cut = 4;
-    for (i = 0; i < allBtns.length; i += 1) {
+    for (let i = 0; i < allBtns.length; i += 1) {
       all.push(allBtns[i].textContent);
     }
     const allBtnsNew = all.filter((element, index) => all.indexOf(element) === index);
@@ -190,13 +189,12 @@ describe('Teste se é criado, dinamicamente, um botão de filtro'
   test('Deve ser mostrado como opção de filtro, um botão para cada um dos tipos.'
   + 'Além disso, o botão All precisa estar sempre visível.', () => {
     const allTypes = ['All', 'Electric', 'Fire', 'Psychic'];
-    var i = 0;
     const { container } = renderWithRouter(
       <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
     );
     const allBtns = container.getElementsByClassName('button-text filter-button');
     const all = [];
-    for (i = 0; i < allBtns.length; i += 1) {
+    for (let i = 0; i < allBtns.length; i += 1) {
       all.push(allBtns[i].textContent);
     }
     const allBtnsNew = all.filter((element, index) => all.indexOf(element) === index);
