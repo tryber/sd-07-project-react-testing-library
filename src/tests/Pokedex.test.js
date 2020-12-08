@@ -4,6 +4,7 @@ import { createMemoryHistory } from 'history';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../components/renderWithRouter';
 import App from '../App';
+import pokemons from '../data';
 
 afterEach(cleanup);
 
@@ -67,22 +68,29 @@ describe('Testing the file Pokedex.js', () => {
   });
 
   test('button to reset the filter', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const button = getByText('All');
-    expect(button).toBeInTheDocument();
+    const { getByRole, queryByText, getByTestId } = renderWithRouter(<App />);
+    const all = getByRole ('button', { name: 'All'});
+    fireEvent.click(all);
+    expect(all).toBeEnabled();
+    const next = getByTestId('next-pokemon');
+    pokemons.forEach(() => fireEvent.click(next));
+    const pikachu = queryByText(/Pikachu/i);
+    expect(pikachu).toBeInTheDocument();
   });
 
   test('created a filter button for each type of Pokémon', () => {
-    const { getAllByTestId, getByText, getByTestId } = renderWithRouter(<App />);
+    const { getAllByTestId, getByRole, getByTestId } = renderWithRouter(<App />);
     const allTestId = getAllByTestId('pokemon-type-button');
-    const seven = 7;
-    expect(allTestId.length).toBe(seven);
-    const button = getByText('All');
-    expect(button).toBeInTheDocument();
-    const btPoison = getByText('Poison');
-    fireEvent.click(btPoison);
-    expect(btPoison).toBeEnabled();
+    allTestId.forEach((allTypes) => {
+      const buttons = getByRole('button', { name: allTypes.innerHTML });
+      expect(buttons).toBeInTheDocument();      
+    });
+    const all = getByRole('button', { name: 'All'});
+    expect(all). toBeInTheDocument();
+    const electric = getByRole('button', { name: 'Electric' });
+    fireEvent.click(electric);
+    expect(electric).toBeEnabled();
     const next = getByTestId('next-pokemon');
-    expect(next).toBeDisabled();
+    expect(next).toBeDisabled()
   });
 });
