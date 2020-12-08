@@ -69,7 +69,7 @@ describe('Testing the file Pokedex.js', () => {
 
   test('button to reset the filter', () => {
     const { getByRole, queryByText, getByTestId } = renderWithRouter(<App />);
-    const all = getByRole ('button', { name: 'All'});
+    const all = getByRole('button', { name: 'All' });
     fireEvent.click(all);
     expect(all).toBeEnabled();
     const next = getByTestId('next-pokemon');
@@ -83,14 +83,14 @@ describe('Testing the file Pokedex.js', () => {
     const allTestId = getAllByTestId('pokemon-type-button');
     allTestId.forEach((allTypes) => {
       const buttons = getByRole('button', { name: allTypes.innerHTML });
-      expect(buttons).toBeInTheDocument();      
+      expect(buttons).toBeInTheDocument();
     });
-    const all = getByRole('button', { name: 'All'});
-    expect(all). toBeInTheDocument();
+    const all = getByRole('button', { name: 'All' });
+    expect(all).toBeInTheDocument();
     const electric = getByRole('button', { name: 'Electric' });
     fireEvent.click(electric);
     expect(electric).toBeEnabled();
     const next = getByTestId('next-pokemon');
-    expect(next).toBeDisabled()
+    expect(next).toBeDisabled();
   });
 });
