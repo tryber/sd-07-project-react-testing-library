@@ -169,14 +169,15 @@ describe('Teste se é criado, dinamicamente, um botão de filtro'
   });
 
   test('Deve existir um botão de filtragem para cada tipo de Pokémon disponível'
-  + 'nos dados, sem repetição. Ou seja, a sua Pokédex deve possuir pokémons do tipo Fire, Psychic, Electric e Normal;', () => {
+  + 'nos dados, sem repetição. Ou seja, a sua Pokédex deve possuir pokémons do '
+  + 'tipo Fire, Psychic, Electric e Normal;', () => {
     const allTypes = ['Electric', 'Fire', 'Psychic'];
     const { container } = renderWithRouter(
       <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
     );
     const allBtns = container.getElementsByClassName('button-text filter-button');
     const all = [];
-    for (let i = 0; i < allBtns.length; i++) {
+    for (let i = 0; i < allBtns.length; i+= 1) {
       all.push(allBtns[i].textContent);
     }
     const allBtnsNew = all.filter((element, index) => all.indexOf(element) === index);
