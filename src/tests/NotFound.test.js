@@ -11,11 +11,13 @@ describe('4. Testando o arquivo NotFound.js', () => {
   });
 
   it('Teste se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {
-    const { getByAltText } = renderWithRouter(<NotFound />);
+    const { getAllByRole } = renderWithRouter(<NotFound />);
 
-    const img = getByAltText(
-      'Pikachu crying because the page requested was not found',
+    const secondImage = 1;
+    const img = getAllByRole('img')[secondImage];
+
+    expect(img.src).toBe(
+      'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
     );
-    expect(img).toBeInTheDocument();
   });
 });
