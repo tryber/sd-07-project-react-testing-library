@@ -55,8 +55,10 @@ test('Testa se a URL exibida no navegador muda para /pokemon/<id>', () => {
 
 describe('Testa se existe um ícone de estrela nos Pokémons favoritados', () => {
   it('O ícone deve ser imagem com src contendo o caminho /star-icon.svg', () => {
-    const { getByAltText } = renderWithRouter(<
-      Pokemon pokemon={ pokemons[0] } isFavorite />);
+    const { getByAltText } = renderWithRouter(<Pokemon
+      pokemon={ pokemons[0] }
+      isFavorite
+    />);
     const icon = getByAltText(`${pokemons[0].name} is marked as favorite`);
     expect(icon.src).toContain('/star-icon.svg');
   });
