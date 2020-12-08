@@ -6,7 +6,7 @@ import pokemons from '../data';
 
 test('Teste se é renderizado um card com as informações de determinado Pokémon', () => {
   const card = pokemons[7];
-  const { getByText } = renderWithRouter(
+  const { getByText, getByAltText } = renderWithRouter(
     <Pokemon pokemon={ card } isFavorite={ false } />,
   );
 
@@ -24,13 +24,13 @@ test('Teste se é renderizado um card com as informações de determinado Pokém
   const weightData = 'Average weight: 460.0 kg';
   expect(weight.textContent).toBe(weightData);
 
-  const srcImage = card.image;
+  // const srcImage = card.image;
   const srcImageData = 'https://cdn.bulbagarden.net/upload/4/40/Spr_5b_143.png';
-  expect(srcImage).toBe(srcImageData);
+  // expect(srcImage).toBe(srcImageData);
 
-  const altImage = (`${card.name} sprite`);
-  const altImageData = 'Snorlax sprite';
-  expect(altImage).toBe(altImageData);
+  // const altImage = (`${card.name} sprite`);
+  const altImageData = getByAltText('Snorlax sprite');
+  expect(altImageData.src).toBe(srcImageData);
 });
 
 test('Teste se o card contém um link para exibir detalhes do Pokémon', () => {
