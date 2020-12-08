@@ -171,37 +171,30 @@ describe('Teste se é criado, dinamicamente, um botão de filtro'
   test('Deve existir um botão de filtragem para cada tipo de Pokémon disponível'
   + 'nos dados, sem repetição. Ou seja, a sua Pokédex deve possuir pokémons do '
   + 'tipo Fire, Psychic, Electric e Normal;', () => {
-    const allTypes = ['Electric', 'Fire', 'Psychic'];
-    const { container } = renderWithRouter(
+    const { getByRole } = renderWithRouter(
       <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
     );
-    const allBtns = container.getElementsByClassName('button-text filter-button');
-    const all = [];
-    const cut = 4;
-    for (let i = 0; i < allBtns.length; i += 1) {
-      all.push(allBtns[i].textContent);
-    }
-    const allBtnsNew = all.filter((element, index) => all.indexOf(element) === index);
-    const allBtnNewV2 = allBtnsNew.slice(1, cut);
-    expect(allBtnNewV2).toEqual(allTypes);
+    const buttonElectric = getByRole('button', { name: 'Electric' });
+    const buttonFire = getByRole('button', { name: 'Fire' });
+    const buttonPsychic = getByRole('button', { name: 'Psychic' });
+    expect(buttonFire).toBeInTheDocument();
+    expect(buttonElectric).toBeInTheDocument();
+    expect(buttonPsychic).toBeInTheDocument();
   });
 
   test('Deve ser mostrado como opção de filtro, um botão para cada um dos tipos.'
   + 'Além disso, o botão All precisa estar sempre visível.', () => {
-    const allTypes = ['All', 'Electric', 'Fire', 'Psychic'];
-    const { container } = renderWithRouter(
+    const { getByRole } = renderWithRouter(
       <Pokedex pokemons={ pokemon } isPokemonFavoriteById={ 25 } />,
     );
-    const allBtns = container.getElementsByClassName('button-text filter-button');
-    const all = [];
-    // for (let i = 0; i < allBtns.length; i += 1) {
-    //   all.push(allBtns[i].textContent);
-    // }
-    for (const i in allBtns) {
-      all.push(allBtns[i].textContent);
-    }
-    const allBtnsNew = all.filter((element, index) => all.indexOf(element) === index);
-    expect(allBtnsNew).toEqual(allTypes);
+    const buttonAll = getByRole('button', { name: 'All' });
+    const buttonElectric = getByRole('button', { name: 'Electric' });
+    const buttonFire = getByRole('button', { name: 'Fire' });
+    const buttonPsychic = getByRole('button', { name: 'Psychic' });
+    expect(buttonFire).toBeInTheDocument();
+    expect(buttonElectric).toBeInTheDocument();
+    expect(buttonPsychic).toBeInTheDocument();
+    expect(buttonAll).toBeDefined();
   });
   test('O botão de Próximo pokémon deve ser '
   + 'desabilitado quando a lista filtrada de Pokémons tiver um só pokémon.', () => {
