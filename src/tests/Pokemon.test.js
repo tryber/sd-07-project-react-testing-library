@@ -39,7 +39,7 @@ const pokemon = {
   type: 'Electric',
 };
 
-describe('Teste se é renderizado um card com as informações de 
+describe('Teste se é renderizado um card com as informações de' 
 + 'determinado pokémon.', () => {
   test('O nome correto do Pokémon deve ser mostrado na tela;', async () => {
     const { queryByTestId } = renderWithRouter(
