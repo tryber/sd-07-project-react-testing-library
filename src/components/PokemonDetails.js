@@ -73,6 +73,7 @@ class PokemonDetails extends React.Component {
     } = this.props;
 
     const pokemon = this.findPokemon(parseInt(id, 10));
+
     const isFavorite = isPokemonFavoriteById[id];
 
     return (
