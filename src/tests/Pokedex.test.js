@@ -83,6 +83,9 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
     );
     expect(getByText(/All/i)).toBeInTheDocument();
+
+    fireEvent.click(getByText(/All/i));
+    expect(pokemons.length.toString()).toBe('9');
   });
 
   it('Mostrar os Pokémons sem filtro quando o botão All for clicado', () => {
