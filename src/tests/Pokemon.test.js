@@ -39,10 +39,11 @@ const pokemon = {
   type: 'Electric',
 };
 
-describe('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
-  test("O nome correto do Pokémon deve ser mostrado na tela;", async () => {
+describe('Teste se é renderizado um card com as informações de 
++ 'determinado pokémon.', () => {
+  test('O nome correto do Pokémon deve ser mostrado na tela;', async () => {
     const { queryByTestId } = renderWithRouter(
-    <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />,
+      <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />,
     );
     await queryByTestId('pokemon-name');
     const pokemonName = queryByTestId('pokemon-name');
@@ -60,7 +61,7 @@ describe('Teste se é renderizado um card com as informações de determinado po
   + 'weight: <value> <measurementUnit>; onde <value> e <measurementUnit> são,' 
   + 'respectivamente, o peso médio do pokémon e sua unidade de medida', async () => {
     const { queryByTestId } = renderWithRouter(
-        <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />,
+      <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />,
     );
     await queryByTestId('pokemon-weight');
     const pokemonWeight = queryByTestId('pokemon-weight');
@@ -70,7 +71,7 @@ describe('Teste se é renderizado um card com as informações de determinado po
   + 'a URL da imagem e um atributo alt com o texto <name> sprite, onde <name> é o nome do'
   + 'pokémon;', async () => {
     const { container } = renderWithRouter(
-        <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />,
+      <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />,
     );
     await container.getElementsByTagName('img');
     const img = container.getElementsByTagName('img');
@@ -78,35 +79,3 @@ describe('Teste se é renderizado um card com as informações de determinado po
     expect(img[0].getAttribute('alt')).toBe('Pikachu sprite');
   });
 });
-// test('Teste se o card do Pokémon indicado na Pokédex contém um link de navegação para exibir detalhes deste Pokémon.'
-// + 'O link deve possuir a URL /pokemons/<id>, onde <id> é o id do Pokémon exibido;', async () => {
-//     const { container, queryByText } = renderWithRouter(
-//         <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />,
-//     );
-//     await queryByText(/More Details/);
-//     expect(queryByText(/More Details/)).toBeInTheDocument();
-    // const linkDetails = container.getElementsByTagName('a');
-    // console.log(linkDetails);
-    // expect(queryByText(/More Details/)).toBeInTheDocument();
-    // fireEvent.click(getByText(/More Details/));
-    // const a = container.getElementsByTagName('a');
-    // console.log(a)
-    // expect(a[0].getAttribute('href')).toBe(`/pokemons/undefined`)
-// });
-// Teste se o card do Pokémon indicado na Pokédex contém um link de navegação para exibir detalhes deste Pokémon. O link deve possuir a URL /pokemons/<id>, onde <id> é o id do Pokémon exibido;
-
-// Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento da aplicação para a página de detalhes de Pokémon.
-
-// Teste também se a URL exibida no navegador muda para /pokemon/<id>, onde <id> é o id do Pokémon cujos detalhes se deseja ver;
-
-
-
-
-
-
-
-
-
-
-
-
