@@ -7,7 +7,7 @@ describe('4. Testando o arquivo NotFound.js', () => {
     const { getByRole } = renderWithRouter(<NotFound />);
 
     const h2 = getByRole('heading', { level: 2 });
-    expect(h2.textContent).toBe('Page requested not found');
+    expect(h2.textContent).toBe('Page requested not found 😭');
   });
 
   it('Teste se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {
