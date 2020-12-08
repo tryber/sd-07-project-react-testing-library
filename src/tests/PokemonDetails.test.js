@@ -26,7 +26,7 @@ describe('testing file PokemonDetails.js', () => {
 
   it('section with maps containing the locations of the pokémon are displayed', () => {
     const { getByText, getByRole, getAllByAltText } = renderWithRouter(<App />);
-    const two = 2;
+    const twoHabitatMapsForPikachu = 2;
     const pokemonDetails = getByText(/More details/i);
     fireEvent.click(pokemonDetails);
     const headingLocation = getByRole('heading', { name: /Game Locations of Pikachu/i });
@@ -34,7 +34,7 @@ describe('testing file PokemonDetails.js', () => {
     expect(headingLocation.tagName).toBe('H2');
     const pokemonLocations = pokemonToBeTested.foundAt;
     const habitatImages = getAllByAltText(/Pikachu location/i);
-    expect(habitatImages.length).toBe(two);
+    expect(habitatImages.length).toBe(twoHabitatMapsForPikachu);
     expect(pokemonLocations.length).toEqual(habitatImages.length);
     const titleMapOne = getByText(/Kanto Viridian Forest/i);
     expect(titleMapOne).toBeVisible();

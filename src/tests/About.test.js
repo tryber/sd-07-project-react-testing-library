@@ -22,9 +22,9 @@ describe('testing file About.js', () => {
   it('the page contains two paragraphs with text about Pokédex', () => {
     /* https://testing-library.com/docs/dom-testing-library/api-queries/ */
     const { container } = renderWithRouter(<About />);
-    const two = 2;
+    const twoParagraphsInAboutPage = 2;
     const paragraph = container.querySelectorAll('p');
-    expect(paragraph.length).toBe(two);
+    expect(paragraph.length).toBe(twoParagraphsInAboutPage);
     /* https://github.com/testing-library/jest-dom */
     expect(paragraph[0]).toHaveTextContent(/This application simulates a Pokédex/i);
     expect(paragraph[1]).toHaveTextContent(/One can filter Pokémons by type/i);

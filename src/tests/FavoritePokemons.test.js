@@ -15,7 +15,7 @@ describe('testing file FavoritePokemons.js', () => {
 
   it('all favorite Pokémon cards are displayed on the Favorite Pokémons page', () => {
     const { getByText, getAllByText, getByRole } = renderWithRouter(<App />);
-    const two = 2;
+    const twoMoreDetailsInFavoritePage = 2;
     const pikachuName = getByText(/Pikachu/i);
     const moreDetailsPikachu = getByText(/More details/i);
     expect(pikachuName).toBeInTheDocument();
@@ -43,13 +43,13 @@ describe('testing file FavoritePokemons.js', () => {
     expect(pikachuName).toBeVisible();
     expect(charmanderName).toBeVisible();
     const getAllText = getAllByText(/More details/i);
-    expect(getAllText.length).toBe(two);
+    expect(getAllText.length).toBe(twoMoreDetailsInFavoritePage);
   });
 
   it('test if no Pokémon card is displayed, if no Pokémon is favorite', () => {
     const { container } = renderWithRouter(<FavoritePokemons />);
-    const zero = 0;
+    const zeroImagesFound = 0;
     const imgPokemons = container.querySelectorAll('img');
-    expect(imgPokemons.length).toBe(zero);
+    expect(imgPokemons.length).toBe(zeroImagesFound);
   });
 });

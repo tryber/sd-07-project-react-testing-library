@@ -55,12 +55,13 @@ describe('testing file App.js', () => {
 
   it('redirected to "/favorites" when clicking on "Favorite Pokémons" link', () => {
     const { getByText, getAllByText, history } = renderWithRouter(<App />);
-    const two = 2;
-    fireEvent.click(getByText(/Favorite Pokémons/i));
+    const twoFavoritePokemonsTitleAndLink = 2;
+    const favoriteLink = getByText(/Favorite Pokémons/i);
+    fireEvent.click(favoriteLink);
     const favoritesPathname = history.location.pathname;
     expect(favoritesPathname).toBe('/favorites');
     const favorites = getAllByText(/Favorite pokémons/i);
-    expect(favorites.length).toBe(two);
+    expect(favorites.length).toBe(twoFavoritePokemonsTitleAndLink);
   });
 
   it('redirected to the not found page when entering an unknown URL', () => {

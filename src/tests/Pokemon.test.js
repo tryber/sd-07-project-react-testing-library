@@ -29,18 +29,18 @@ describe('testing file Pokemon.js', () => {
 
   it('Pokémon card contains a link to view details of this Pokémon', () => {
     const { getByText } = renderWithRouter(<App />);
-    const twentyFive = 25;
     const pokemonId = pokemons[0].id;
-    expect(pokemonId).toBe(twentyFive);
+    const pikachuId = 25;
+    expect(pokemonId).toBe(pikachuId);
     const moreDetails = getByText(/More details/i);
     expect(moreDetails).toHaveAttribute('href', '/pokemons/25');
   });
 
   it('clicking on Pokémon redirects application to the Pokémon details page', () => {
     const { getByText, getByRole } = renderWithRouter(<App />);
-    const twentyFive = 25;
     const pokemonId = pokemons[0].id;
-    expect(pokemonId).toBe(twentyFive);
+    const pikachuId = 25;
+    expect(pokemonId).toBe(pikachuId);
     const pokemonName = getByText(/Pikachu/i);
     expect(pokemonName).toBeVisible();
     const moreDetails = getByText(/More details/i);
@@ -51,9 +51,9 @@ describe('testing file Pokemon.js', () => {
 
   it('the URL displayed in the browser changes to "/pokemons/<id>"', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const twentyFive = 25;
     const pokemonId = pokemons[0].id;
-    expect(pokemonId).toBe(twentyFive);
+    const pikachuId = 25;
+    expect(pokemonId).toBe(pikachuId);
     const pokemonName = getByText(/Pikachu/i);
     const moreDetails = getByText(/More details/i);
     fireEvent.click(moreDetails);

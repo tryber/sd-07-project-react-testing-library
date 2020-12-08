@@ -28,8 +28,9 @@ describe('testing file Pokedex.js', () => {
 
   it('only one Pokémon is shown at a time', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
+    const onePokemonFoundInPage = 1;
     const pokemonsInThePage = getAllByTestId('pokemon-name');
-    expect(pokemonsInThePage.length).toBe(1);
+    expect(pokemonsInThePage.length).toBe(onePokemonFoundInPage);
   });
 
   it('Pokédex has filter buttons', () => {
