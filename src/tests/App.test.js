@@ -30,13 +30,6 @@ test('if render the links in the home page', () => {
   expect(favoriteLink).toBeInTheDocument();
 });
 
-test('if Pokedex main page is rendered', () => {
-  renderWithRouter(<App />);
-  const encountered = screen.getByText(/encountered pokémons/i);
-
-  expect(encountered).toBeInTheDocument();
-});
-
 describe('test if the links and the paths are valid', () => {
   it('should contain the links and the "/" path in home', () => {
     const { history } = renderWithRouter(<App />);
