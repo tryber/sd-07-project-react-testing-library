@@ -22,7 +22,7 @@ describe('testing file Pokemon.js', () => {
   });
   test('if the link Pokémons Favoritados render pathname /favorites', () => {
     const { getByAltText, getByText, getByRole, history } = renderWithRouter(
-      <App />
+      <App />,
     );
     fireEvent.click(getByText(/More details/i));
     const { location } = history;
