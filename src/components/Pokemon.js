@@ -39,6 +39,7 @@ Pokemon.propTypes = {
 };
 
 Pokemon.defaultProps = {
+  isFavorite: true,
   showDetailsLink: true,
 };
 
