@@ -3,6 +3,7 @@ import { cleanup, fireEvent } from '@testing-library/react';
 import RenderWithRouter from './RenderWithRouter';
 import Pokedex from '../components/Pokedex';
 import Data from '../data';
+import App from '../App';
 
 afterEach(cleanup);
 
@@ -152,4 +153,15 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
     fireEvent.click(buttonElectric);
     expect(buttonNext).toBeDisabled();
   });
+
+  test('testando existência dos botões', () => {
+    const { queryAllByTestId, getByText } = RenderWithRouter(<App />);
+
+    const allButtons = queryAllByTestId('pokemon-type-button');
+    const nextButton = getByText(/Próximo pokémon/i);
+    
+    expect(allButtons.length).toBeGreaterThan(0);
+    allButtons.forEach(button => expect(button).toBeInTheDocument());
+    expect(nextButton).toBeInTheDocument();
+  })
 });
