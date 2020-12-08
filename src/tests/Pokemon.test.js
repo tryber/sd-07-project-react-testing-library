@@ -39,11 +39,11 @@ const pokemon = {
   type: 'Electric',
 };
 
-describe('Teste se é renderizado um card com as informações de' 
+describe('Teste se é renderizado um card com as informações de'
 + 'determinado pokémon.', () => {
   test('O nome correto do Pokémon deve ser mostrado na tela;', async () => {
     const { queryByTestId } = renderWithRouter(
-      <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />,
+      <Pokemon pokemon={ pokemon }  />,
     );
     await queryByTestId('pokemon-name');
     const pokemonName = queryByTestId('pokemon-name');
@@ -51,17 +51,17 @@ describe('Teste se é renderizado um card com as informações de'
   });
   test('O tipo correto do pokémon deve ser mostrado na tela.', async () => {
     const { queryByTestId } = renderWithRouter(
-        <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />,
+      <Pokemon pokemon={ pokemon }  />,
     );
     await queryByTestId('pokemonType');
     const pokemonType = queryByTestId('pokemonType');
     expect(pokemonType).toHaveTextContent('Electric');
   });
   test('O peso médio do pokémon deve ser exibido com um texto no formato Average'
-  + 'weight: <value> <measurementUnit>; onde <value> e <measurementUnit> são,' 
+  + 'weight: <value> <measurementUnit>; onde <value> e <measurementUnit> são,'
   + 'respectivamente, o peso médio do pokémon e sua unidade de medida', async () => {
     const { queryByTestId } = renderWithRouter(
-      <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />,
+      <Pokemon pokemon={ pokemon }  />,
     );
     await queryByTestId('pokemon-weight');
     const pokemonWeight = queryByTestId('pokemon-weight');
@@ -71,7 +71,7 @@ describe('Teste se é renderizado um card com as informações de'
   + 'a URL da imagem e um atributo alt com o texto <name> sprite, onde <name> é o nome do'
   + 'pokémon;', async () => {
     const { container } = renderWithRouter(
-      <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />,
+      <Pokemon pokemon={ pokemon } />,
     );
     await container.getElementsByTagName('img');
     const img = container.getElementsByTagName('img');

@@ -177,8 +177,8 @@ describe('Teste se é criado, dinamicamente, um botão de filtro'
     );
     const allBtns = container.getElementsByClassName('button-text filter-button');
     const all = [];
-    const cut = 4
-    for (const i = 0; i < allBtns.length; i += 1) {
+    const cut = 4;
+    for (let i = 0; i < allBtns.length; i += 1) {
       all.push(allBtns[i].textContent);
     }
     const allBtnsNew = all.filter((element, index) => all.indexOf(element) === index);
@@ -194,7 +194,7 @@ describe('Teste se é criado, dinamicamente, um botão de filtro'
     );
     const allBtns = container.getElementsByClassName('button-text filter-button');
     const all = [];
-    for (const i = 0; i < allBtns.length; i += 1) {
+    for (let i = 0; i < allBtns.length; i += 1) {
       all.push(allBtns[i].textContent);
     }
     const allBtnsNew = all.filter((element, index) => all.indexOf(element) === index);
