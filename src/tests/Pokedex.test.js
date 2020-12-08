@@ -24,6 +24,7 @@ describe('testing file Pokedex.js', () => {
   });
   test('if the page have one button of type for each pokemon type', () => {
     renderWithRouter(<App />);
+    const compareNumber = 7;
     const typeButtons = screen.getAllByTestId('pokemon-type-button');
     expect(typeButtons[0]).toBeInTheDocument();
     expect(typeButtons[1]).toHaveTextContent(/Fire/i);
@@ -32,7 +33,7 @@ describe('testing file Pokedex.js', () => {
     expect(typeButtons[4]).toHaveTextContent(/Psychic/i);
     expect(typeButtons[5]).toHaveTextContent(/Normal/i);
     expect(typeButtons[6]).toHaveTextContent(/Dragon/i);
-    expect(typeButtons.length).toBe(7);
+    expect(typeButtons.length).toBe(compareNumber);
   });
   test('if the button all works', () => {
     renderWithRouter(<App />);
