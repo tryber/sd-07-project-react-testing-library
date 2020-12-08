@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import NotFound from '../components/NotFound';
+import { NotFound } from '../components';
 
 describe('Testing NotFound.js file', () => {
   test('the page contains heading with the text `Page requested not found`', () => {

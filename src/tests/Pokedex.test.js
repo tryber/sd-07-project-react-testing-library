@@ -97,4 +97,41 @@ describe('Testing Pokedex.js file', () => {
     fireEvent.click(allTypesButton);
     expect(screen.getByText('Pikachu')).toBeInTheDocument();
   });
+
+  test('shows one button for each Pokemon type', () => {
+    renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
+      />,
+    );
+
+    const pokemonsTypeList = screen.queryAllByTestId('pokemon-type-button');
+    const allTypesButton = screen.getAllByRole('button')[0];
+
+    expect(allTypesButton).toHaveTextContent('All');
+    expect(pokemonsTypeList[0]).toHaveTextContent('Electric');
+    expect(pokemonsTypeList[1]).toHaveTextContent('Fire');
+    expect(pokemonsTypeList[2]).not.toHaveTextContent('Fire');
+    expect(pokemonsTypeList[3]).toHaveTextContent('Poison');
+    expect(pokemonsTypeList[4]).not.toHaveTextContent('Normal');
+    expect(pokemonsTypeList[5]).toHaveTextContent('Normal');
+    expect(pokemonsTypeList[6]).toHaveTextContent('Dragon');
+  });
+
+  test('shows `Próximo pokémon` button disable when filtered list has only one Pokemon',
+    () => {
+      renderWithRouter(
+        <Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ favoritePokemonList }
+        />,
+      );
+
+      const electricTypeButton = screen.getAllByTestId('pokemon-type-button')[0];
+
+      fireEvent.click(electricTypeButton);
+      expect(screen.getByText('Pikachu')).toBeInTheDocument();
+      expect(screen.getByTestId('next-pokemon')).toBeDisabled();
+    });
 });
