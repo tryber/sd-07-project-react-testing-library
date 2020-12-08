@@ -1,4 +1,5 @@
 import React from 'react';
+
 import About from '../components/About';
 import renderWithRouter from '../renderWithRouter';
 
@@ -10,10 +11,15 @@ describe('Testando o arquivo About.js', () => {
   });
 
   it('A página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
-    const paragraphs = getAllByTestId('paragraph');
-    const totalParagraphs = 2;
-    expect(paragraphs.length).toBe(totalParagraphs);
+    const { getByText } = renderWithRouter(<About />);
+
+    const paragraphOne = getByText(
+      /This application simulates a Pokédex/i,
+    );
+    expect(paragraphOne).toBeInTheDocument();
+
+    const paragraphTwo = getByText(/One can filter Pokémons by type/i);
+    expect(paragraphTwo).toBeInTheDocument();
   });
 
   it('A página contém a seguinte imagem de uma Pokédex', () => {
