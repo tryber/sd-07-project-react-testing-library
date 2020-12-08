@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
-import favoritePokemons from './mocks/favoritePokemons';
 
 describe('Testando arquivo de Pokemons favoritos', () => {
   it('Teste msg `No favorite pokemon found`, caso não existam pokémons favoritos', () => {
@@ -13,7 +12,7 @@ describe('Testando arquivo de Pokemons favoritos', () => {
   });
 
   it('Teste se são exibidos os cards de pokémons favoritados', () => {
-    // favoritePokemons = [pokemons[0], pokemons[2]];
+    const favoritePokemons = [pokemons[0], pokemons[2]];
     renderWithRouter(
       <FavoritePokemons pokemons={ favoritePokemons } />,
     );
@@ -23,7 +22,7 @@ describe('Testando arquivo de Pokemons favoritos', () => {
   });
 
   it('Teste se nenhum card de pokémon é exibido, se nenhum estiver favoritado', () => {
-    // favoritePokemons = [pokemons[0], pokemons[2]];
+    const favoritePokemons = [pokemons[0], pokemons[2]];
     const notFavoritePokemons = [pokemons[1], pokemons[3]];
     renderWithRouter(
       <FavoritePokemons pokemons={ favoritePokemons } />,
