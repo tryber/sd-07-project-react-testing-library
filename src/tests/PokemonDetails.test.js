@@ -3,6 +3,7 @@ import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import pokemons from '../data'
 import PokemonDetails from '../components/PokemonDetails';
+import App from '../App';
 
 describe('Requirement 07', () => {
   test('1/3', () => {
@@ -35,4 +36,23 @@ describe('Requirement 07', () => {
     expect(imageLocation.src).toBe('https://cdn.bulbagarden.net/upload/5/54/Kanto_Vermilion_City_Map.png');
   });
 
+  test('3/3', () => {
+    renderWithRouter(<App pokemons={ pokemons } />);
+
+    const normalTypeButton = screen.getByText(/normal/i);
+    fireEvent.click(normalTypeButton);
+
+    const moreDetailsLink = screen.getByText(/more details/i);
+    fireEvent.click(moreDetailsLink);
+
+    const labelOfFavoriteInput = screen.getByLabelText(/favorite/i);
+    expect(labelOfFavoriteInput).toBeInTheDocument();
+    
+    fireEvent.click(labelOfFavoriteInput);
+    const favoriteIcon = screen.getByAltText(/snorlax is marked as favorite/i);
+    expect(favoriteIcon).toBeInTheDocument();
+    
+    fireEvent.click(labelOfFavoriteInput);
+    expect(favoriteIcon).not.toBeInTheDocument();
+  });
 });
