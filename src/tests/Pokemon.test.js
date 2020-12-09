@@ -92,3 +92,30 @@ test('Teste também se a URL exibida no navegador muda para /pokemon/<id>,'
   const { pathname } = history.location;
   expect(pathname).toBe('/pokemons/25');
 });
+
+describe('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
+  test('O ícone deve ser uma imagem com o atributo src contendo'
+  + 'o caminho /star-icon.svg;', async () => {
+  const history = createMemoryHistory();
+  const { container } = render(
+    <Router history={ history }>
+      <Pokemon pokemon={ pokemon } isFavorite={ true }  showDetailsLink={ true } />
+    </Router>,
+  );
+    await container.getElementsByTagName('img');
+    const img = container.getElementsByTagName('img');
+    expect(img[1].getAttribute('src')).toBe('/star-icon.svg');
+  });
+  test('A imagem deve ter o atributo alt igual a <pokemon> '
+  + 'is marked as favorite, onde <pokemon> é o nome do Pokémon exibido.', async () => {
+    const history = createMemoryHistory();
+    const { container } = render(
+    <Router history={ history }>
+      <Pokemon pokemon={ pokemon } isFavorite={ true }  showDetailsLink={ true } />
+    </Router>,
+  );
+    await container.getElementsByTagName('img');
+    const img = container.getElementsByTagName('img');
+    expect(img[0].getAttribute('alt')).toBe('Pikachu sprite');
+  });
+});
