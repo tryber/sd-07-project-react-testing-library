@@ -11,12 +11,12 @@ describe('EX03 - Testando o arquivo FavoritePokemons.js', () => {
     const { getByText, container } = RenderWithRouter(<Favorite />);
 
     const favoritePokemon = container.getElementsByClassName('favorite-pokemon');
+    const lengthPokemon = 0;
 
-    if(favoritePokemon.length === 0) {
+    if (favoritePokemon.length === lengthPokemon) {
       const messageNotFound = getByText(/No favorite pokemon found/i);
       expect(messageNotFound).toBeInTheDocument();
     }
-
   });
 
   test('exibido todos os cards de pokémons favoritados.', () => {
@@ -49,6 +49,7 @@ describe('EX03 - Testando o arquivo FavoritePokemons.js', () => {
     fireEvent.click(linkFavorite);
 
     const favoritePokemons = container.getElementsByClassName('favorite-pokemon');
-    expect(favoritePokemons.length).toBe(2);
+    const favoritePokemonsLength = 2;
+    expect(favoritePokemons.length).toBe(favoritePokemonsLength);
   });
 });

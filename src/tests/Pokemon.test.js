@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
-import RenderWithRouter from '../tests/RenderWithRouter';
+import RenderWithRouter from './RenderWithRouter';
 import App from '../App';
 import Pokemon from '../components/Pokemon';
 
@@ -29,12 +29,13 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
       },
     ],
     summary:
-      'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+      `This intelligent Pokémon roasts hard berries
+      with electricity to make them tender enough to eat.`,
   };
 
   test('O nome correto do Pokémon deve ser mostrado na tela', () => {
     const { getByText } = RenderWithRouter(
-      <Pokemon pokemon={pokemon} isFavorite={false} />,
+      <Pokemon pokemon={ pokemon } isFavorite={ false } />,
     );
 
     const pokemonName = getByText(pokemon.name);
@@ -45,7 +46,7 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
 
   test('O tipo correto do pokémon deve ser mostrado na tela.', () => {
     const { getByText } = RenderWithRouter(
-      <Pokemon pokemon={pokemon} isFavorite={false} />,
+      <Pokemon pokemon={ pokemon } isFavorite={ false } />,
     );
 
     const pokemonType = getByText(pokemon.name);
@@ -55,7 +56,7 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
 
   test('O peso médio do pokémon deve ser exibido com um texto', () => {
     const { getByText } = RenderWithRouter(
-      <Pokemon pokemon={pokemon} isFavorite={false} />,
+      <Pokemon pokemon={ pokemon } isFavorite={ false } />,
     );
     const { measurementUnit, value } = pokemon.averageWeight;
 
@@ -68,7 +69,7 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
 
   test('A imagem do Pokémon deve ser exibida', () => {
     const { getByAltText } = RenderWithRouter(
-      <Pokemon pokemon={pokemon} isFavorite={false} />,
+      <Pokemon pokemon={ pokemon } isFavorite={ false } />,
     );
     const { image } = pokemon;
 
@@ -113,10 +114,15 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
   });
 
   test('Testando o type do pokemon', () => {
-    const { getByText, getByAltText, getByLabelText, getByTestId } = RenderWithRouter(<App />);
+    const {
+      getByText,
+      getByAltText,
+      getByLabelText,
+      getByTestId,
+    } = RenderWithRouter(<App />);
     const { type } = pokemon;
 
-    const pokemonType = getByTestId('pokemonType');;
+    const pokemonType = getByTestId('pokemonType');
     expect(pokemonType).toBeInTheDocument();
     expect(pokemonType).toHaveTextContent(type);
 

@@ -22,7 +22,7 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
 
   test('heading h2 com o texto Encountered pokémons', () => {
     const { getByText } = RenderWithRouter(
-      <Pokedex pokemons={Data} isPokemonFavoriteById={isPokemonFavoriteById} />,
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
 
     const subtitle = getByText(/Encountered pokémons/i);
@@ -33,7 +33,7 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
 
   test('Exibe próximo Pokémon quando o botão "Próximo pokémon" é clicado.', () => {
     const { getByText, getByTestId } = RenderWithRouter(
-      <Pokedex pokemons={Data} isPokemonFavoriteById={isPokemonFavoriteById} />,
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
 
     const namePokemon1 = getByText(/Pikachu/i);
@@ -49,7 +49,7 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
 
   test('Pokemons deve ser mostrados sucessivamente ao clicar no botão', () => {
     const { getByText, getByTestId } = RenderWithRouter(
-      <Pokedex pokemons={Data} isPokemonFavoriteById={isPokemonFavoriteById} />,
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
 
     Data.forEach((pokemon) => {
@@ -66,7 +66,7 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
 
   test('Econtrado apenas um Pokemon por vez', () => {
     const { getAllByTestId } = RenderWithRouter(
-      <Pokedex pokemons={Data} isPokemonFavoriteById={isPokemonFavoriteById} />,
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
 
     const pokemonName = getAllByTestId('pokemon-name');
@@ -75,7 +75,7 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
 
   test('Teste se a Pokédex tem os botões de filtro', () => {
     const { getByRole } = RenderWithRouter(
-      <Pokedex pokemons={Data} isPokemonFavoriteById={isPokemonFavoriteById} />,
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
 
     const pokemonsTypes = [
@@ -108,7 +108,7 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
 
   test('Funcionalidade dos filtros dos botões', () => {
     const { getByRole, getByTestId, getByText } = RenderWithRouter(
-      <Pokedex pokemons={Data} isPokemonFavoriteById={isPokemonFavoriteById} />,
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
 
     const pokemonsTypes = [
@@ -143,7 +143,7 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
 
   test('O botão de Próximo pokémon deve ser desabilitado', () => {
     const { getByTestId, getByRole } = RenderWithRouter(
-      <Pokedex pokemons={Data} isPokemonFavoriteById={isPokemonFavoriteById} />,
+      <Pokedex pokemons={ Data } isPokemonFavoriteById={ isPokemonFavoriteById } />,
     );
 
     const buttonNext = getByTestId('next-pokemon');
@@ -159,8 +159,9 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
 
     const allButtons = queryAllByTestId('pokemon-type-button');
     const nextButton = getByText(/Próximo pokémon/i);
-    
-    expect(allButtons.length).toBeGreaterThan(0);
+    const numberMin = 0;
+
+    expect(allButtons.length).toBeGreaterThan(numberMin);
     allButtons.forEach(button => expect(button).toBeInTheDocument());
     expect(nextButton).toBeInTheDocument();
   });

@@ -1,23 +1,11 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
-import RenderWithRouter from '../tests/RenderWithRouter';
+import RenderWithRouter from './RenderWithRouter';
 import App from '../App';
-import Data from '../data';
 
 afterEach(cleanup);
 
 describe('EX07 - Testando o arquivo PokemonDetails.js', () => {
-  const favorite = {
-    4: false,
-    10: false,
-  };
-
-  const match = {
-    params: {
-      id: '4',
-    },
-  };
-
   const pokemon = {
     id: 25,
     name: 'Pikachu',

@@ -15,10 +15,11 @@ describe('EX02 - Testando o arquivo About.js', () => {
     const describe = getByText(/This application simulates a Pokédex/i);
     const subTitle = getByText(/About Pokédex/i);
     const tagsP = container.getElementsByTagName('p');
+    const pLength = 2;
 
     expect(describe).toBeInTheDocument();
     expect(subTitle).toBeInTheDocument();
-    expect(tagsP.length).toBe(2);
+    expect(tagsP.length).toBe(pLength);
   });
 
   test('Teste se aimgem contém a url de uma imagem', () => {

@@ -11,11 +11,11 @@ describe('EX04 - Testando o arquivo NotFound.js', () => {
 
     history.push('/xablau');
 
-    const h2Tag = getByRole('heading', {name: /Page requested/i});
+    const h2Tag = getByRole('heading', { name: /Page requested/i });
     const img = getByAltText(/Pikachu crying/i);
 
     expect(h2Tag.tagName).toBe('H2');
     expect(h2Tag).toBeInTheDocument();
     expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
-})
+});
