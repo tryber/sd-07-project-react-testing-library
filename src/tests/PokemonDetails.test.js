@@ -12,7 +12,7 @@ describe('Requirement 07', () => {
         match={ { params: { id: 143 } } }
         isPokemonFavoriteById={ false }
         pokemons={ pokemons }
-      />
+      />,
     );
 
     const titleSnorlaxDetails = screen.getByText(/snorlax details/i);
@@ -34,7 +34,7 @@ describe('Requirement 07', () => {
         match={ { params: { id: 143 } } }
         isPokemonFavoriteById={ false }
         pokemons={ pokemons }
-      />
+      />,
     );
 
     const snorlaxGameLocation = screen.getByText(/game locations of snorlax/i);
