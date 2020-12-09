@@ -33,7 +33,9 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
   };
 
   test('O nome correto do Pokémon deve ser mostrado na tela', () => {
-    const { getByText } = RenderWithRouter(<Pokemon pokemon={pokemon} isFavorite={false} />);
+    const { getByText } = RenderWithRouter(
+      <Pokemon pokemon={pokemon} isFavorite={false} />,
+    );
 
     const pokemonName = getByText(pokemon.name);
 
@@ -42,7 +44,9 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
   });
 
   test('O tipo correto do pokémon deve ser mostrado na tela.', () => {
-    const { getByText } = RenderWithRouter(<Pokemon pokemon={pokemon} isFavorite={false} />);
+    const { getByText } = RenderWithRouter(
+      <Pokemon pokemon={pokemon} isFavorite={false} />,
+    );
 
     const pokemonType = getByText(pokemon.name);
 
@@ -50,7 +54,9 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
   });
 
   test('O peso médio do pokémon deve ser exibido com um texto', () => {
-    const { getByText } = RenderWithRouter(<Pokemon pokemon={pokemon} isFavorite={false} />);
+    const { getByText } = RenderWithRouter(
+      <Pokemon pokemon={pokemon} isFavorite={false} />,
+    );
     const { measurementUnit, value } = pokemon.averageWeight;
 
     const pokemonWeight = getByText(
@@ -61,7 +67,9 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
   });
 
   test('A imagem do Pokémon deve ser exibida', () => {
-    const { getByAltText } = RenderWithRouter(<Pokemon pokemon={pokemon} isFavorite={false} />);
+    const { getByAltText } = RenderWithRouter(
+      <Pokemon pokemon={pokemon} isFavorite={false} />,
+    );
     const { image } = pokemon;
 
     const pokemonImage = getByAltText(/Pikachu sprite/i);
@@ -70,9 +78,7 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
   });
 
   test('contém um link de navegação para exibir detalhes', () => {
-    const { getByText, history, getByRole } = RenderWithRouter(
-      <App />,
-    );
+    const { getByText, history, getByRole } = RenderWithRouter(<App />);
 
     const linkDetails = getByText(/More details/i);
     expect(linkDetails).toBeInTheDocument();
@@ -80,7 +86,7 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
     fireEvent.click(linkDetails);
 
     const path = history.location.pathname;
-    const details = getByRole( 'heading', { name: 'Pikachu Details' });
+    const details = getByRole('heading', { name: 'Pikachu Details' });
 
     expect(path).toBe(`/pokemons/${pokemon.id}`);
     expect(details).toBeInTheDocument();
@@ -104,5 +110,24 @@ describe('EX06 - Testando o arquivo Pokemon.js', () => {
 
     fireEvent.click(inputFavorite);
     expect(favoriteImage).not.toBeInTheDocument();
-  })
+  });
+
+  test('Testando o type do pokemon', () => {
+    const { getByText, getByAltText, getByLabelText, getByTestId } = RenderWithRouter(<App />);
+    const { type } = pokemon;
+
+    const pokemonType = getByTestId('pokemonType');;
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType).toHaveTextContent(type);
+
+    const moreDetails = getByText(/More details/i);
+    fireEvent.click(moreDetails);
+
+    const inputFavorite = getByLabelText(/Pokémon favoritado?/i);
+    fireEvent.click(inputFavorite);
+
+    const starFavorite = getByAltText(/Pikachu is marked as favorite/i);
+    expect(starFavorite).toBeInTheDocument();
+    expect(starFavorite.src).toBe('http://localhost/star-icon.svg');
+  });
 });

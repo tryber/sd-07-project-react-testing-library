@@ -163,5 +163,5 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
     expect(allButtons.length).toBeGreaterThan(0);
     allButtons.forEach(button => expect(button).toBeInTheDocument());
     expect(nextButton).toBeInTheDocument();
-  })
+  });
 });
