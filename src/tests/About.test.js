@@ -1,5 +1,5 @@
 import React from 'react';
-import About from '../components/About';
+import { About } from '../components';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Testando o arquivo About.js', () => {
