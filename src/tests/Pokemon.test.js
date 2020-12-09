@@ -73,8 +73,8 @@ test('Teste se ao clicar no link de navegação do Pokémon, é feito o redireci
   const history = createMemoryHistory();
   const { getByText } = render(
     <Router history={ history }>
-      <Pokemon pokemon={ pokemon } />,
-    </Router>
+      <Pokemon pokemon={ pokemon } />
+    </Router>,
   );
   fireEvent.click(getByText(/More details/));
   const { pathname } = history.location;
@@ -85,8 +85,8 @@ test('Teste também se a URL exibida no navegador muda para /pokemon/<id>,'
   const history = createMemoryHistory();
   const { getByText } = render(
     <Router history={ history }>
-      <Pokemon pokemon={ pokemon } />,
-    </Router>
+      <Pokemon pokemon={ pokemon } />
+    </Router>,
   );
   fireEvent.click(getByText(/More details/));
   const { pathname } = history.location;
