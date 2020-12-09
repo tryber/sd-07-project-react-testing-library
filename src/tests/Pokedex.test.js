@@ -114,7 +114,7 @@ describe('testing file Pokedex.js', () => {
 
   it('Btn Próximo pokémon deve ser desabilitado quando houver apenas um pokémon', () => {
     const { getByText, getByRole } = renderWithRouter(<App />);
-    const pikachu = getByText(/Pikachu/i);
+    const pikachu = getByText(/Pikachu/);
     expect(pikachu).toBeVisible();
 
     const electricButton = getByRole('button', { name: /Electric/ });
