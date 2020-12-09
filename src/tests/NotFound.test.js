@@ -17,5 +17,6 @@ describe('EX04 - Testando o arquivo NotFound.js', () => {
     expect(h2Tag.tagName).toBe('H2');
     expect(h2Tag).toBeInTheDocument();
     expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+    expect(img).toBeInTheDocument();
   });
 });

@@ -28,7 +28,7 @@ describe('EX07 - Testando o arquivo PokemonDetails.js', () => {
       },
     ],
     summary:
-      `This intelligent Pokémon roasts hard berries`,
+      'This intelligent Pokémon roasts hard berries',
   };
 
   test('texto <name> Details, onde <name> é o nome do Pokémon', () => {
