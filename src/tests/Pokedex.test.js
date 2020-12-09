@@ -89,20 +89,23 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
       'Dragon',
     ];
 
-    const pokemonsLengths = [9, 1, 2, 1, 1, 2, 1, 1];
+    const allPokemonLength = 9;
+    const pokemonTypeLength = 2;
+    const pokemonsLengths = [allPokemonLength, 1, pokemonTypeLength, 1, 1, pokemonTypeLength, 1, 1];
 
     pokemonsTypes.forEach((buttonName, index) => {
       const button = getByRole('button', { name: buttonName });
       expect(button).toBeInTheDocument();
 
       fireEvent.click(button);
-      const pokemonsType = Data.filter(
-        (pokemon) => pokemon.type === buttonName,
-      );
+      const pokemonsType = Data.filter(pokemon => pokemon.type === buttonName);
+      const initNumber = 0;
 
-      pokemonsType.length === 0
-        ? expect(Data.length).toBe(pokemonsLengths[index])
-        : expect(pokemonsType.length).toBe(pokemonsLengths[index]);
+      if (pokemonsType.length === initNumber) {
+        expect(Data.length).toBe(pokemonsLengths[index])
+      } else {
+        expect(pokemonsType.length).toBe(pokemonsLengths[index]);
+      }
     });
   });
 

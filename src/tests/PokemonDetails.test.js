@@ -28,7 +28,8 @@ describe('EX07 - Testando o arquivo PokemonDetails.js', () => {
       },
     ],
     summary:
-      'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+      `This intelligent Pokémon roasts hard berries
+      with electricity to make them tender enough to eat.`,
   };
 
   test('texto <name> Details, onde <name> é o nome do Pokémon', () => {
@@ -42,7 +43,7 @@ describe('EX07 - Testando o arquivo PokemonDetails.js', () => {
     expect(nameDetails).toBeInTheDocument();
   });
 
-  test('Não deve existir o link de navegação para os detalhes do Pokémon selecionado', () => {
+  test('Não deve existir o link de navegação para os detalhes', () => {
     const { getByText } = RenderWithRouter(<App />);
 
     const linkDetails = getByText(/More details/i);
@@ -85,7 +86,7 @@ describe('EX07 - Testando o arquivo PokemonDetails.js', () => {
     expect(h2Locations).toBeInTheDocument();
   });
 
-  test('Todas as localizações do Pokémon devem ser mostradas na seção de detalhes', () => {
+  test('Todas as localizações do Pokémon devem ser mostradas', () => {
     const { getByText, container } = RenderWithRouter(<App />);
     const { foundAt } = pokemon;
 
@@ -127,7 +128,7 @@ describe('EX07 - Testando o arquivo PokemonDetails.js', () => {
     expect(inputFavorite).toBeInTheDocument();
   });
 
-  test('checkbox devem adicionar e remover respectivamente o Pokémon da lista de favoritos', () => {
+  test('checkbox devem adicionar e remover respectivamente', () => {
     const { getByText, getByLabelText, getByAltText } = RenderWithRouter(
       <App />,
     );
