@@ -12,7 +12,7 @@ describe('Requirement 07', () => {
         match={ { params: { id: 143 } } }
         isPokemonFavoriteById={ false }
         pokemons={ pokemons }
-      />
+      />;
     );
 
     const titleSnorlaxDetails = screen.getByText(/snorlax details/i);
@@ -29,7 +29,13 @@ describe('Requirement 07', () => {
   });
 
   test('2/3', () => {
-    renderWithRouter(<PokemonDetails match={ { params: { id: 143 } } } isPokemonFavoriteById={ false } pokemons={ pokemons } />);
+    renderWithRouter(
+      <PokemonDetails
+        match={ { params: { id: 143 } } }
+        isPokemonFavoriteById={ false }
+        pokemons={ pokemons }
+      />;
+    );
 
     const snorlaxGameLocation = screen.getByText(/game locations of snorlax/i);
     const locationInText = screen.getByText(/kanto/i);
@@ -53,11 +59,11 @@ describe('Requirement 07', () => {
 
     const labelOfFavoriteInput = screen.getByLabelText(/favorite/i);
     expect(labelOfFavoriteInput).toBeInTheDocument();
-    
+
     fireEvent.click(labelOfFavoriteInput);
     const favoriteIcon = screen.getByAltText(/snorlax is marked as favorite/i);
     expect(favoriteIcon).toBeInTheDocument();
-    
+
     fireEvent.click(labelOfFavoriteInput);
     expect(favoriteIcon).not.toBeInTheDocument();
   });
