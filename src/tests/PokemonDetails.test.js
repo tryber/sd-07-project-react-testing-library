@@ -28,8 +28,7 @@ describe('EX07 - Testando o arquivo PokemonDetails.js', () => {
       },
     ],
     summary:
-      `This intelligent Pokémon roasts hard berries
-      with electricity to make them tender enough to eat.`,
+      `This intelligent Pokémon roasts hard berries`,
   };
 
   test('texto <name> Details, onde <name> é o nome do Pokémon', () => {
@@ -64,12 +63,11 @@ describe('EX07 - Testando o arquivo PokemonDetails.js', () => {
 
   test('parágrafo com o resumo do Pokémon específico sendo visualizado', () => {
     const { getByText } = RenderWithRouter(<App />);
-    const { summary } = pokemon;
 
     const linkDetails = getByText(/More details/i);
     fireEvent.click(linkDetails);
 
-    const pDetails = getByText(`${summary}`);
+    const pDetails = getByText(/This intelligent Pokémon roasts hard berries/i);
     expect(pDetails.tagName).toBe('P');
     expect(pDetails).toBeInTheDocument();
   });
