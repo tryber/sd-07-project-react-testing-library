@@ -99,7 +99,7 @@ describe('Teste se existe um ícone de estrela nos Pokémons favoritados.', () =
     const history = createMemoryHistory();
     const { container } = render(
       <Router history={ history }>
-        <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />
+        <Pokemon pokemon={ pokemon } isFavorite showDetailsLink />
       </Router>,
     );
     await container.getElementsByTagName('img');
@@ -111,7 +111,7 @@ describe('Teste se existe um ícone de estrela nos Pokémons favoritados.', () =
     const history = createMemoryHistory();
     const { container } = render(
       <Router history={ history }>
-        <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />
+        <Pokemon pokemon={ pokemon } isFavorite showDetailsLink />
       </Router>,
     );
     await container.getElementsByTagName('img');
