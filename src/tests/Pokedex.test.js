@@ -107,7 +107,7 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
       expect(button).toBeInTheDocument();
 
       fireEvent.click(button);
-      const pokemonsType = Data.filter(pokemon => (pokemon.type === buttonName));
+      const pokemonsType = Data.filter((pokemon) => (pokemon.type === buttonName));
       const initNumber = 0;
 
       if (pokemonsType.length === initNumber) {
@@ -174,7 +174,7 @@ describe('EX05 - Testando o arquivo Pokedex.js', () => {
     const numberMin = 0;
 
     expect(allButtons.length).toBeGreaterThan(numberMin);
-    allButtons.forEach(button => (expect(button).toBeInTheDocument()));
+    allButtons.forEach((button) => (expect(button).toBeInTheDocument()));
     expect(nextButton).toBeInTheDocument();
   });
 });
