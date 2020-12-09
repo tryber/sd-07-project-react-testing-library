@@ -11,7 +11,7 @@ describe('Testing the About.js file', () => {
   });
   test('Test if the page contains a heading `h2` with the text` About Pokédex`', () => {
     renderWithRouter(<About />);
-    const about = screen.getByRole( 'heading', { name: /About Pokédex/i });
+    const about = screen.getByRole('heading', { name: /About Pokédex/i });
     expect(about).toBeInTheDocument();
   });
   test('If the page contains the following image of a Pokédex:', () => {
