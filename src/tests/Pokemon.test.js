@@ -1,35 +1,12 @@
 import React from 'react';
-// import { fireEvent } from '@testing-library/react';
+import { Router } from 'react-router-dom';
+import { fireEvent, render } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import Pokemon from '../components/Pokemon';
 import renderWithRouter from '../renderWithRouter';
 
-// const pokemons = [
-//     {
-//       averageWeight: { value: '6.0', measurementUnit: 'kg' },
-//       image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-//       name: 'Pikachu',
-//       summary: 'This intelligent Pokémon roasts hard berries with electricity'
-//       + 'to make them tender enough to eat.',
-//       type: 'Electric',
-//     },
-//     {
-//       averageWeight: { value: '8.5', measurementUnit: 'kg' },
-//       image: 'https://cdn.bulbagarden.net/upload/0/0a/Spr_5b_004.png',
-//       name: 'Charmander',
-//       summary: 'The flame on its tail shows the strength of its life force.'
-//       + 'If it is weak, the flame also burns weakly.',
-//       type: 'Fire',
-//     },
-//     {
-//       averageWeight: { value: '48.0', measurementUnit: 'kg' },
-//       image: 'https://cdn.bulbagarden.net/upload/8/88/Spr_5b_065_m.png',
-//       name: 'Alakazam',
-//       summary: 'Closing both its eyes heightens all its other senses.'
-//       + 'This enables it to use its abilities to their extremes.',
-//       type: 'Psychic',
-//     },
-//   ];
 const pokemon = {
+  id: 25,
   averageWeight: { value: '6.0', measurementUnit: 'kg' },
   image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
   name: 'Pikachu',
@@ -78,4 +55,39 @@ describe('Teste se é renderizado um card com as informações de'
     expect(img[0].getAttribute('src')).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(img[0].getAttribute('alt')).toBe('Pikachu sprite');
   });
+});
+test('Teste se o card do Pokémon indicado na Pokédex contém um link de navegação'
++ 'para exibir detalhes deste Pokémon.'
++ 'O link deve possuir a URL /pokemons/<id>, onde <id> é o id do Pokémon exibido;', () => {
+  const { container, getByText } = renderWithRouter(
+    <Pokemon pokemon={ pokemon } />,
+  );
+  const link = getByText(/More details/);
+  expect(link).toBeInTheDocument();
+  const tagA = container.getElementsByTagName('a');
+  expect(tagA[0].getAttribute('href')).toBe('/pokemons/25')
+});
+test('Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento'
++ 'da aplicação para a página de detalhes de Pokémon.', () => {
+  const history = createMemoryHistory();
+  const { getByText, container } = render(
+    <Router history={history}>
+      <Pokemon pokemon={ pokemon } />
+    </Router>
+  );
+  fireEvent.click(getByText(/More details/));
+  const { pathname } = history.location;
+  expect(pathname).toBe('/pokemons/25');
+});
+test('Teste também se a URL exibida no navegador muda para /pokemon/<id>,'
++ 'onde <id> é o id do Pokémon cujos detalhes se deseja ver;', () => {
+  const history = createMemoryHistory();
+  const { getByText, container } = render(
+    <Router history={history}>
+      <Pokemon pokemon={ pokemon } />
+    </Router>
+  );
+  fireEvent.click(getByText(/More details/));
+  const { pathname } = history.location;
+  expect(pathname).toBe('/pokemons/25');
 });
