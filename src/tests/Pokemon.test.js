@@ -96,12 +96,12 @@ test('Teste também se a URL exibida no navegador muda para /pokemon/<id>,'
 describe('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
   test('O ícone deve ser uma imagem com o atributo src contendo'
   + 'o caminho /star-icon.svg;', async () => {
-  const history = createMemoryHistory();
-  const { container } = render(
-    <Router history={ history }>
-      <Pokemon pokemon={ pokemon } isFavorite={ true }  showDetailsLink={ true } />
-    </Router>,
-  );
+    const history = createMemoryHistory();
+    const { container } = render(
+      <Router history={ history }>
+        <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />
+      </Router>,
+    );
     await container.getElementsByTagName('img');
     const img = container.getElementsByTagName('img');
     expect(img[1].getAttribute('src')).toBe('/star-icon.svg');
@@ -110,10 +110,10 @@ describe('Teste se existe um ícone de estrela nos Pokémons favoritados.', () =
   + 'is marked as favorite, onde <pokemon> é o nome do Pokémon exibido.', async () => {
     const history = createMemoryHistory();
     const { container } = render(
-    <Router history={ history }>
-      <Pokemon pokemon={ pokemon } isFavorite={ true }  showDetailsLink={ true } />
-    </Router>,
-  );
+      <Router history={ history }>
+        <Pokemon pokemon={ pokemon } isFavorite={ true } showDetailsLink={ true } />
+      </Router>,
+    );
     await container.getElementsByTagName('img');
     const img = container.getElementsByTagName('img');
     expect(img[0].getAttribute('alt')).toBe('Pikachu sprite');
