@@ -32,7 +32,6 @@ test('redirect to path / when click home link', () => {
   expect(pathForHome).toBe('/');
 });
 
-
 test('redirect to path /about when about link is clicked', () => {
   const { getByText, history } = renderWithRouter(<App />);
 
@@ -64,4 +63,3 @@ test('redirect to page not found when an unknown url is passed', () => {
   const notFound = getByText('Page requested not found');
   expect(notFound).toBeInTheDocument();
 });
-
