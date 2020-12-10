@@ -3,7 +3,7 @@ import { fireEvent, cleanup } from '@testing-library/react';
 import renderWithRouter from './helpers/renderWithRouter';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
+test('renders a heading with the text `Pokédex`', () => {
   const { getByText } = renderWithRouter(<App />);
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
