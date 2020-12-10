@@ -17,7 +17,7 @@ test('if renders two paragraph elements with pokedex info', () => {
   expect(paragraphs).toHaveLength(expectedLenght);
 });
 
-test('if renders a iamge element of pokedex', () => {
+test('if renders a image element of pokedex', () => {
   const { getByRole } = render(<About />);
   const expectedPath = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
   const image = getByRole('img');
