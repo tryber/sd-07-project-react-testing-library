@@ -89,7 +89,7 @@ describe('Requirement 5: Testing Pokedex.js', () => {
           map: 'https://cdn.bulbagarden.net/upload/4/44/Unova_Accumula_Town_Map.png',
         },
       ],
-      summary: 'Closing both its eyes heightens all its other senses. This enables it to use its abilities to their extremes.',
+      summary: 'It is pretty smart.',
     },
   ];
 
@@ -163,7 +163,7 @@ describe('Requirement 5: Testing Pokedex.js', () => {
   });
 
   test('if only one pokemon is shown', () => {
-   const { getAllByTestId } = renderWithRouter(
+    const { getAllByTestId } = renderWithRouter(
       <Pokedex
         pokemons={ fakeData }
         isPokemonFavoriteById={ fakeFavPokes }
@@ -187,9 +187,9 @@ describe('Requirement 5: Testing Pokedex.js', () => {
       const psychicButton = getByRole('button', { name: /psychic/i });
       fireEvent.click(psychicButton);
       const allPsychicPoke = queryAllByTestId('pokemonType');
-
-      const pokeType = allPsychicPoke.reduce(type => type.textContent === 'Psychics');
-      expect(pokeType).toHaveTextContent(fakeType);
+      allPsychicPoke.forEach((poke) => {
+        expect(poke).toHaveTextContent(fakeType);
+      });
     });
 
     // test('if the text in the button matches the type\'s name ', () => {});
