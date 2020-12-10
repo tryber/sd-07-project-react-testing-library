@@ -23,7 +23,7 @@ const FavoritePokemon = [
         map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
       },
     ],
-    summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+    summary: 'This intelligent Pokémon h to eat.',
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ const FavoritePokemon = [
         map: 'https://cdn.bulbagarden.net/upload/6/6f/Kanto_Rock_Tunnel_Map.png',
       },
     ],
-    summary: 'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
+    summary: 'The flame on its tail shows me also burns weakly.',
   }];
 
 describe('Testando o arquivo FavoritePokemons.js', () => {
@@ -64,7 +64,9 @@ describe('Testando o arquivo FavoritePokemons.js', () => {
     expect(information).toBeInTheDocument();
   });
   it('Teste se é exibido todos os cards de pokémons favoritados.', () => {
-    const { getAllByTestId } = renderWithRouter(<FavoritePokemons pokemons={ FavoritePokemon } />);
+    const { getAllByTestId } = renderWithRouter(
+      <FavoritePokemons pokemons={ FavoritePokemon } />,
+    );
     const favorites = getAllByTestId('favorite-pokemon');
     expect(favorites).toHaveLength(FavoritePokemon.length);
   });

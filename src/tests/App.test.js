@@ -40,8 +40,7 @@ describe('Testando o arquivo App.js', () => {
     expect(title).toBeInTheDocument();
   });
 
-  // eslint-disable-next-line max-len
-  it('Test if the application is redirected to /About by clicking on the About link', () => {
+  it('Test if the application is redirected to /About', () => {
     const { history } = renderWithRouter(<App />);
     const about = screen.getByText(/About/i);
     fireEvent.click(about);
