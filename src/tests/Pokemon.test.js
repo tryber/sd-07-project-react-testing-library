@@ -1,10 +1,9 @@
 import React from 'react';
-import { fireEvent, getByTitle } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokemon from '../components/Pokemon';
 
-const pokemons = 
-{
+const pokemons = {
   id: 65,
   name: 'Alakazam',
   type: 'Psychic',
@@ -30,10 +29,11 @@ const isFavorite = {
 
 describe('testes do arquivo Pokemon', () => {
   test('Teste se é renderizado um card com as informações de determinado pokémon.',
-  () => {
-    const { container, getByTestId } = renderWithRouter(<Pokemon
-      pokemon={ pokemons } isFavorite={ isFavorite }
-    />);
+    () => {
+      const { container, getByTestId } = renderWithRouter(<Pokemon
+        pokemon={ pokemons }
+        isFavorite={ isFavorite }
+      />);
       const namePokemon = getByTestId('pokemon-name');
       const typePokemon = getByTestId('pokemonType');
       const averageWeight = getByTestId('pokemon-weight');
@@ -43,27 +43,29 @@ describe('testes do arquivo Pokemon', () => {
       expect(averageWeight).toHaveTextContent('Average weight: 48.0 kg');
       expect(img.src).toBe('https://cdn.bulbagarden.net/upload/8/88/Spr_5b_065_m.png');
       expect(img.alt).toBe('Alakazam sprite');
-  });
+    });
 
   test(`Teste se o card do Pokémon indicado na Pokédex 
   contém um link de navegação para exibir detalhes deste Pokémon.
   O link deve possuir a URL /pokemons/<id>, onde <id> é o id do Pokémon exibido`, () => {
-     const { getByText, history } = renderWithRouter(<Pokemon
-      pokemon={ pokemons } isFavorite={ isFavorite }
+    const { getByText, history } = renderWithRouter(<Pokemon
+      pokemon={ pokemons }
+      isFavorite={ isFavorite }
     />);
     const details = getByText(/More details/i);
     fireEvent.click(details);
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/65');
-  })
+  });
 
-  test(`Teste se existe um ícone de estrela nos Pokémons favoritados.`, () => {
+  test('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
     const { container } = renderWithRouter(<Pokemon
-      pokemon={ pokemons } isFavorite={ isFavorite }
+      pokemon={ pokemons }
+      isFavorite={ isFavorite }
     />);
-      const [img] = container.getElementsByClassName('favorite-icon');
-      expect(img).toBeDefined();
-      expect(img.src).toBe('http://localhost/star-icon.svg');
-      expect(img.alt).toBe('Alakazam is marked as favorite');
-   })
+    const [img] = container.getElementsByClassName('favorite-icon');
+    expect(img).toBeDefined();
+    expect(img).toHaveAttribute('src', '/star-icon.svg');
+    expect(img.alt).toBe('Alakazam is marked as favorite');
+  });
 });
