@@ -192,7 +192,7 @@ describe('Requirement 5: Testing Pokedex.js', () => {
 
     test('if the text in the button matches the type\'s name ', () => {
       const { queryAllByTestId, getByRole } = renderWithRouter(
-        <Pokedex 
+        <Pokedex
           pokemons={ fakeData }
           isPokemonFavoriteById={ fakeFavPokes }
         />,
@@ -241,7 +241,7 @@ describe('Requirement 5: Testing Pokedex.js', () => {
         <Pokedex
           pokemons={ fakeData }
           isPokemonFavoriteById={ fakeFavPokes }
-        />
+        />,
       );
 
       const firstPoke = getByText(/snorlax/i);
@@ -352,14 +352,14 @@ describe('Requirement 5: Testing Pokedex.js', () => {
         summary: 'A pretty smart one.',
       },
     ];
-  
+
     const mockedFavs = {
       25: true,
       10: false,
       4: false,
       65: true,
     };
-    
+
     test('if they are dynamic and the "all" button is visible', () => {
       const { getAllByTestId, getByRole } = renderWithRouter(
         <Pokedex
@@ -370,22 +370,22 @@ describe('Requirement 5: Testing Pokedex.js', () => {
       const allButton = getByRole('button', { name: /all/i });
       const typeButtons = getAllByTestId('pokemon-type-button');
       typeButtons.forEach((type) => {
-        const poke = mockedData.find((poke) => (poke.type === type.textContent));
+        const poke = mockedData.find((each) => (each.type === type.textContent));
         expect(poke).toBeTruthy();
         expect(allButton).toBeInTheDocument();
       });
     });
   });
 
-  test('if "Próximo pokémon" is disabled when there is only one pokemon of a type', () => {
+  test('if "Próximo pokémon" is disabled when there is only one pokemon', () => {
     const { getByRole } = renderWithRouter(
       <Pokedex
         pokemons={ fakeData }
         isPokemonFavoriteById={ fakeFavPokes }
-      />
+      />,
     );
     const normalButton = getByRole('button', { name: /normal/i });
-    const nextButton = getByRole('button', { name: /próximo pokémon/i});
+    const nextButton = getByRole('button', { name: /próximo pokémon/i });
     fireEvent.click(normalButton);
     expect(nextButton).toHaveAttribute('disabled');
   });
