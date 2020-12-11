@@ -3,7 +3,7 @@ import { cleanup, fireEvent, screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokemon from '../components/Pokemon';
 
-//Trying a different approach
+//  Trying a different approach
 beforeEach(() => {
   const poke = {
     id: 148,
@@ -52,13 +52,13 @@ describe('Requirement 6: Testing Pokemon.js', () => {
     });
 
     test('if the weight is correct', () => {
-      const weight = screen.getByText(/average weight/i)
+      const weight = screen.getByText(/average weight/i);
       expect(weight).toBeInTheDocument();
       expect(weight).toHaveTextContent(/kg/i);
     });
 
     test('if the pokemon image is shown', () => {
-      const linkToMatch = 'https://cdn.bulbagarden.net/upload/2/2c/Spr_5b_148.png'
+      const linkToMatch = 'https://cdn.bulbagarden.net/upload/2/2c/Spr_5b_148.png';
       const img = screen.getAllByRole('img').find((each) => (each.src === linkToMatch));
       expect(img).toBeInTheDocument();
       expect(img).toHaveAttribute('alt');
@@ -95,7 +95,7 @@ describe('Requirement 6: Testing Pokemon.js', () => {
       ],
       summary: 'Not that big of a deal.',
     };
-  
+
     const favorite = true;
     const { history } = renderWithRouter(
       <Pokemon
@@ -113,11 +113,11 @@ describe('Requirement 6: Testing Pokemon.js', () => {
 
   describe('if there is a star icon', () => {
     test('if the src of the icon is correct', () => {
-      const starSrc = '/star-icon.svg'
+      const starSrc = '/star-icon.svg';
       const starIcon = screen.getByAltText(/marked as favorite/i);
       expect(starIcon).toBeDefined();
       expect(starIcon.src).toMatch(starSrc);
-      expect(starIcon.alt).toMatch(/dragonair/i)
+      expect(starIcon.alt).toMatch(/dragonair/i);
     });
   });
 });
