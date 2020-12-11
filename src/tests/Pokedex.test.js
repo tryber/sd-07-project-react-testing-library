@@ -1,11 +1,11 @@
 import React from 'react';
+import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from './RenderWithRouter';
-import { screen, fireEvent, getByText } from '@testing-library/react';
 import App from '../App';
 import pokemons from '../data';
 
 describe('testing the Pokedex component', () => {
-  beforeEach(() => { renderWithRouter(<App />); })
+  beforeEach(() => { renderWithRouter(<App />); });
   test('if cointain a header h2 with the text "Encountered pokemon"', () => {
     const encountered = screen.getByText(/encountered pokémons/i);
 
@@ -19,7 +19,7 @@ describe('testing the Pokedex component', () => {
     const currentPokemon = screen.getByTestId('pokemon-name').innerHTML;
 
     expect(previousPokemon).not.toEqual(currentPokemon);
-  })
+  });
 
   it('should show the first Pokemon when clicked next button in the last pokemon', () => {
     const firstPokemon = screen.getByTestId('pokemon-name').innerHTML;
@@ -27,12 +27,13 @@ describe('testing the Pokedex component', () => {
 
     pokemons.forEach(() => {
       fireEvent.click(nextPokemonButton);
-    })
+    });
 
     const lastPokemon = screen.getByTestId('pokemon-name').innerHTML;
 
     expect(firstPokemon).toBe(lastPokemon);
-  })
+  });
+
   it('should show only one pokemon each time', () => {
     const nextPokemonButton = screen.getByText(/Próximo pokémon/);
 
@@ -40,8 +41,8 @@ describe('testing the Pokedex component', () => {
       const pokemon = screen.getAllByTestId('pokemon-name');
       expect(pokemon.length).toBe(1);
       fireEvent.click(nextPokemonButton);
-    })
-  })
+    });
+  });
 
   test('if Pokedéx has the filter buttons and the reset filter button', () => {
     const typeButtons = screen.getAllByTestId('pokemon-type-button');
@@ -54,13 +55,12 @@ describe('testing the Pokedex component', () => {
       const pokemonType = screen.getByTestId('pokemonType').innerHTML;
 
       expect(buttonText).toBe(pokemonType);
-    })
+    });
 
     fireEvent.click(allButton);
     const firstPokemonType = screen.getByTestId('pokemonType').innerHTML;
     fireEvent.click(nextPokemonButton);
     const secondPokemonType = screen.getByTestId('pokemonType').innerHTML;
     expect(firstPokemonType).not.toBe(secondPokemonType);
-  })
-
-})
+  });
+});
