@@ -54,6 +54,7 @@ describe('Requirement 6: Testing Pokemon.js', () => {
     test('if the weight is correct', () => {
       const weight = screen.getByText(/average weight/i);
       expect(weight).toBeInTheDocument();
+      expect(weight).toHaveTextContent(/16.5/i);
       expect(weight).toHaveTextContent(/kg/i);
     });
 
