@@ -20,14 +20,15 @@ describe('testing About.js', () => {
 
     test('test if for non pokemons favorited return "No favorite pokemon found"', () => {
         const history = createMemoryHistory();
-        const { getByText } = render(
+        const { getByTestId } = render(
             <Router history={ history }>
                 <App />
             </Router>,
         );
+        fireEvent.click(getByText(/More details/i));
+        fireEvent.click(getByText(/Pokémon favoritado?/i));
         fireEvent.click(getByText(/Favorite Pokémons/i));
-        //clicar no pokemon
-        //clicar em favorito
-        //checar pokemons favoritos
+        const thereisFavorite = getByTestId(/favorite/);
+        expect(thereisFavorite).toBeInTheDocument();
     });
 });
