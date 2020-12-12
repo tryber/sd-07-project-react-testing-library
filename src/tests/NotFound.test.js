@@ -4,7 +4,7 @@ import renderWithRouter from '../services/renderWithRouter';
 
 describe('testing NotFound.js', () => {
   test('testing if the page has h2', () => {
-    const{ getByText } = renderWithRouter(<NotFound />);
+    const { getByText } = renderWithRouter(<NotFound />);
 
     const h2Tag = getByText(/Page requested not found/i);
     expect(h2Tag).toBeInTheDocument();
