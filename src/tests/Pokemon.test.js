@@ -39,7 +39,7 @@ describe('test if it renders a card with detailed info about selected pokemon.',
 });
 
 describe('test integration links in the cards', () => {
-  test('if card in the pokedex page have a link to details about the pokemon.', () => {
+  test('if card in the pokedex page have a link to details about the pokemon', () => {
     const pokemon = pokemons[0];
     const { queryByText } = renderWithRouter(
       Pokemon({ pokemon, showDetailsLink: true, isFavorite: true }),
@@ -48,7 +48,7 @@ describe('test integration links in the cards', () => {
     expect(detailsLink).not.toBe(null);
     expect(detailsLink).toHaveAttribute('href', `/pokemons/${pokemon.id}`);
   });
-  test('if link redirects to the details page.', () => {
+  test('if link redirects to the details page', () => {
     const pokemon = pokemons[0];
     const { queryByText, history } = renderWithRouter(
       Pokemon({ pokemon, showDetailsLink: true, isFavorite: true }),
@@ -59,7 +59,7 @@ describe('test integration links in the cards', () => {
     const { pathname } = history.location;
     expect(pathname).toBe(`/pokemons/${pokemon.id}`);
   });
-  test('if renders pokemon image.', () => {
+  test('if renders pokemon image', () => {
     const pokemon = pokemons[0];
     const { queryByAltText } = renderWithRouter(
       Pokemon({ pokemon, showDetailsLink: true, isFavorite: true }),
@@ -68,7 +68,7 @@ describe('test integration links in the cards', () => {
     expect(pokemonImage).toBeInTheDocument();
     expect(pokemonImage).toHaveAttribute('src', `${pokemon.image}`);
   });
-  test('if favorited pokemons have a star.', () => {
+  test('if favorited pokemons have a star', () => {
     const pokemon = pokemons[0];
     const { queryByAltText } = renderWithRouter(
       Pokemon({ pokemon, showDetailsLink: true, isFavorite: true }),
