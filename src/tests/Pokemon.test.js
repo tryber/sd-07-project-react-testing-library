@@ -1,7 +1,6 @@
-// import React from 'react';
+/*
 import { fireEvent, waitForDomChange } from '@testing-library/react';
 import renderWithRouter from './helpers/renderWithRouter';
-// import App from '../App';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
@@ -79,3 +78,4 @@ describe('test integration links in the cards', () => {
     expect(starImage).toHaveAttribute('alt', `${pokemon.name} is marked as favorite`);
   });
 });
+*/
