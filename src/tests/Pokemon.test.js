@@ -69,10 +69,10 @@ describe('test integration links in the cards', () => {
   });
   test('if favorited pokemons have a star', () => {
     const pokemon = pokemons[0];
-    const { queryByAltText } = renderWithRouter(
-      <Pokemon pokemon={ pokemon } />,
+    const { getByAltText } = renderWithRouter(
+      <Pokemon pokemon={ pokemon } isFavorite />,
     );
-    const starImage = queryByAltText(/is marked as favorite/i);
+    const starImage = getByAltText(/is marked as favorite/i);
     expect(starImage).toBeInTheDocument();
     expect(starImage).toHaveAttribute('src', '/star-icon.svg');
     expect(starImage).toHaveAttribute('alt', `${pokemon.name} is marked as favorite`);
