@@ -4,7 +4,6 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import favPoke from '../mocks/pokeMocks';
 import noFavPoke from '../mocks/noFavPokes';
 import renderWithRouter from '../services/renderWithRouter';
-import { screen } from '@testing-library/react';
 
 describe('testing About.js', () => {
   test('test if for non pokemons favorited return "No favorite pokemon found"', () => {

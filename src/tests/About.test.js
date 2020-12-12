@@ -4,11 +4,10 @@ import renderWithRouter from '../services/renderWithRouter';
 
 describe('testing About.js', () => {
   test('testing if the page has all infos about Pokedex', () => {
-  const { getByText } = renderWithRouter(<About />);
+    const { getByText } = renderWithRouter(<About />);
 
-  const infosPokedex = getByText
-    (/This application simulates a Pokédex, a digital encliclopedia containing all Pokémons/i);
-  expect(infosPokedex).toBeInTheDocument();
+    const infosPokedex = getByText(/One can filter Pokémons by type, and see more details for each one of them/i);
+    expect(infosPokedex).toBeInTheDocument();
   });
 
   test('testing if About.js has a tag h2 with About Pokédex', () => {
@@ -32,5 +31,5 @@ describe('testing About.js', () => {
 
     const imageOfPokedex = getByAltText(/Pokédex/i);
     expect(imageOfPokedex.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
-  });
+    });
 });
