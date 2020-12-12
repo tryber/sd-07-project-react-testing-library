@@ -53,6 +53,7 @@ describe('Testing the Pokemon.js file', () => {
       <Pokemon pokemon={ pikachu } isFavorite={ false } />,
     );
     const link = getByRole('link', { Name: /More details/i });
+    // console.log(link.href);
     expect(link.href).toBe('http://localhost/pokemons/25');
   });
 
@@ -60,10 +61,9 @@ describe('Testing the Pokemon.js file', () => {
     const { getByRole } = RenderWithRouter(
       <Pokemon pokemon={ pikachu } isFavorite={ false } />,
     );
-    const linkR = getByRole('link', { Name: /More details/i });
-    fireEvent.click(linkR);
-    // console.log(linkR.href);
-    expect(linkR.href).toBe('http://localhost/pokemons/pokemons/25');
+    const link = getByRole('link', { Name: /More details/i });
+    // console.log(link.href);
+    expect(link.href).toBe('http://localhost/pokemons/25');
   });
   test('If the URL displays / pokemon / <id>, with the details of the Pokémon.', () => {
     const { getByText, history } = RenderWithRouter(<Pokemon
