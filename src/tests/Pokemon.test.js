@@ -27,9 +27,11 @@ describe('Test 6 - Pokemon.js', () => {
     const details = getByRole('link', {
       name: 'More details',
       src: `/pokemons/${pokemons[0].id}` });
+    const pokImage = getByRole('img', { alt: `${pokemons[0].name} sprite` });
     expect(details).toBeInTheDocument();
     fireEvent.click(details);
     const { pathname } = history.location;
+    expect(pokImage).toBeInTheDocument();
     expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
   });
   it('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
@@ -38,8 +40,8 @@ describe('Test 6 - Pokemon.js', () => {
     );
     const imgSrc = '/star-icon.svg';
     const imgAlt = `${pokemons[0].name} is marked as favorite`;
-    const image = getAllByRole('img', { alt: imgAlt });
+    const image = getAllByRole('img', { src: imgSrc, alt: imgAlt });
     expect(image[1]).toBeInTheDocument();
-    expect(image[1].src.endsWith(imgSrc)).toBe(true);
+    expect(image[1].src.endsWith('/star-icon.svg')).toBe(true);
   });
 });
