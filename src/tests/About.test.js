@@ -6,7 +6,7 @@ describe('testing About.js', () => {
   test('testing if the page has all infos about Pokedex', () => {
     const { getByText } = renderWithRouter(<About />);
 
-    const infosPokedex = getByText(/One can filter Pokémons by type, and more details/i);
+    const infosPokedex = getByText(/One can filter Pokémons by type, and see more/i);
     expect(infosPokedex).toBeInTheDocument();
   });
 
