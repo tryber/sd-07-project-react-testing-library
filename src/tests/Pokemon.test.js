@@ -36,7 +36,9 @@ describe('Test 6 - Pokemon.js', () => {
     const { getAllByRole } = RenderWithRouter(
       <Pokemon pokemon={ pokemons[0] } isFavorite />,
     );
-    const image = getAllByRole('img', { src: '/star-icon.svg' });
+    const imgSrc = '/star-icon.svg';
+    const imgAlt = `${pokemons[0].name} is marked as favorite`;
+    const image = getAllByRole('img', { src: imgSrc, alt: imgAlt });
     expect(image[1]).toBeInTheDocument();
   });
 });
