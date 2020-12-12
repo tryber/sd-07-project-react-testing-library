@@ -2,6 +2,7 @@ import React from 'react';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
 import { fireEvent, screen } from '@testing-library/react';
+import pokemons from '../data';
 
 describe('testing Pokedex.js', () => {
   test('testing if the page has h2', () => {
@@ -42,7 +43,12 @@ describe('testing Pokedex.js', () => {
   test('test if there is just 1 pokemon on the sceen', () => {
     const { getByText, container } = renderWithRouter(<App />);
 
-    const imgOfPoke = container.querySelectorAll('img');
+    for(let index = 0; index < pokemons.length; index+=1) {
+      const imgOfPoke2 = container.querySelectorAll('img');
+      expect(imgOfPoke2.length.toString()).toBe('1');
+      fireEvent.click(getByText(/Próximo pokémon/i));
+    }
+    /*const imgOfPoke = container.querySelectorAll('img');
     expect(imgOfPoke.length.toString()).toBe('1');
 
     fireEvent.click(getByText(/Próximo pokémon/i));
@@ -51,7 +57,7 @@ describe('testing Pokedex.js', () => {
 
     fireEvent.click(getByText(/Próximo pokémon/i));
     const imgOfPoke3 = container.querySelectorAll('img');
-    expect(imgOfPoke3.length.toString()).toBe('1');
+    expect(imgOfPoke3.length.toString()).toBe('1');*/
   });
 
   test('', () => {});
