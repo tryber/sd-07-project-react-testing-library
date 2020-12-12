@@ -38,7 +38,8 @@ describe('Test 6 - Pokemon.js', () => {
     );
     const imgSrc = '/star-icon.svg';
     const imgAlt = `${pokemons[0].name} is marked as favorite`;
-    const image = getAllByRole('img', { src: imgSrc, alt: imgAlt });
+    const image = getAllByRole('img', { alt: imgAlt });
     expect(image[1]).toBeInTheDocument();
+    expect(image[1].src.endsWith(imgSrc)).toBe(true);
   });
 });
