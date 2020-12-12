@@ -18,12 +18,10 @@ describe('testing About.js', () => {
   });
 
   test('verify if there is two paragraphs', () => {
-    const { getByTestId } = renderWithRouter(<About />);
+    const { container } = renderWithRouter(<About />);
 
-    const p1 = getByTestId(/paragraph1/);
-    const p2 = getByTestId(/paragraph2/);
-    expect(p1).toBeInTheDocument();
-    expect(p2).toBeInTheDocument();
+    const paragraph = container.querySelectorAll('p');
+    expect(paragraph.length.toString()).toBe('2');
   });
 
   test('test if /About has an especific image', () => {
