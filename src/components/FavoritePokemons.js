@@ -30,7 +30,7 @@ class FavoritePokemons extends React.Component {
     const { renderFavoritePokemon } = FavoritePokemons;
 
     return (
-      <div className="favorite-pokemons" data-testid="favorite">
+      <div className="favorite-pokemons">
         {pokemons.map((pokemon) => renderFavoritePokemon(pokemon))}
       </div>
     );

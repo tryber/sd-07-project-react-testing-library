@@ -1,9 +1,9 @@
 import React from 'react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import favPoke from '../mocks/pokeMocks';
+import noFavPoke from '../mocks/noFavPokes';
 import renderWithRouter from '../services/renderWithRouter';
 import { screen } from '@testing-library/react';
-import App from '../App';
 
 describe('testing About.js', () => {
 
@@ -22,5 +22,14 @@ describe('testing About.js', () => {
         favPoke.forEach((favorite) => {
             expect(screen.getByText(favorite.name)).toBeInTheDocument();
         });
+    });
+
+    test('test if for non pokemons favorited return "No favorite pokemon found"', () => {
+        renderWithRouter(
+            <FavoritePokemons history={ history } pokemons={ favPoke }/>,
+        );
+        noFavPoke.forEach((notFavorite) => {
+            expect(screen.queryByText(notFavorite.name)).not.toBeInTheDocument();
+          });
     });
 });
