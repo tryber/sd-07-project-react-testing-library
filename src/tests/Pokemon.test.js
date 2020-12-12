@@ -77,4 +77,3 @@ describe('test integration links in the cards', () => {
     expect(starImage).toHaveAttribute('alt', `${pokemon.name} is marked as favorite`);
   });
 });
-
