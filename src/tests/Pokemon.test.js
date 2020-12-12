@@ -32,6 +32,7 @@ describe('Test 6 - Pokemon.js', () => {
     fireEvent.click(details);
     const { pathname } = history.location;
     expect(pokImage).toBeInTheDocument();
+    expect(pokImage.src).toBe(pokemons[0].image);
     expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
   });
   it('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
