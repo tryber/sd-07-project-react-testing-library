@@ -6,7 +6,7 @@ describe('testing About.js', () => {
   test('testing if the page has all infos about Pokedex', () => {
     const { getByText } = renderWithRouter(<About />);
 
-    const infosPokedex = getByText(/One can filter Pokémons by type, and see more details for each one of them/i);
+    const infosPokedex = getByText(/One can filter Pokémons by type, and see more details/i);
     expect(infosPokedex).toBeInTheDocument();
   });
 
@@ -31,5 +31,5 @@ describe('testing About.js', () => {
 
     const imageOfPokedex = getByAltText(/Pokédex/i);
     expect(imageOfPokedex.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
-    });
+  });
 });
