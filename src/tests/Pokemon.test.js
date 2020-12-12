@@ -8,10 +8,7 @@ import pokemons from '../data';
 describe('Test 6 - Pokemon.js', () => {
   it('Should to show all info about a pokemon', () => {
     const { getByTestId, getByRole } = RenderWithRouter(
-      <App pokemons={ pokemons }>
-        <Pokemon />
-      </App>,
-    );
+      <Pokemon pokemon={ pokemons[0] } />);
     const pokemonName = getByTestId('pokemon-name');
     const pokemonType = getByTestId('pokemonType');
     const pokemonWeight = getByTestId('pokemon-weight');
