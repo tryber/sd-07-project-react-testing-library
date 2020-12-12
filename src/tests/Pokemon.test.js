@@ -6,16 +6,18 @@ import pokemons from '../data';
 
 describe('Test 6 - Pokemon.js', () => {
   it('Should to show all info about a pokemon', () => {
-    const { getByTestId, getByRole } = RenderWithRouter(
+    const { getByText, getByRole } = RenderWithRouter(
       <Pokemon pokemon={ pokemons[0] } />,
     );
-    const pokemonName = getByTestId('pokemon-name');
-    const pokemonType = getByTestId('pokemonType');
-    const pokemonWeight = getByTestId('pokemon-weight');
+    const pokemonName = getByText(pokemons[0].name);
+    const pokemonType = getByText(pokemons[0].type);
+    const pokWeightValue = pokemons[0].averageWeight.value;
+    const pokWeightMeasurementUnit = pokemons[0].averageWeight.measurementUnit;
+    const pokWeight = `Average weight: ${pokWeightValue} ${pokWeightMeasurementUnit}`;
     const image = getByRole('img', { src: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png' });
     expect(pokemonName).toBeInTheDocument();
     expect(pokemonType).toBeInTheDocument();
-    expect(pokemonWeight).toBeInTheDocument();
+    expect(getByText(pokWeight)).toBeInTheDocument();
     expect(image).toBeInTheDocument();
   });
   it('Should to contain a link with \'More details\'', () => {
