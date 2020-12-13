@@ -35,7 +35,10 @@ describe('test Pokemons.js cards', () => {
   });
 
   test('test if more dateis is a link', () => {
-    const { getByText } = renderWithRouter(<Pokemon pokemon={ pokemons[8] } isFavorite={ false } />);
+    const { getByText } = renderWithRouter(<Pokemon
+      pokemon={ pokemons[8] }
+      isFavorite={ false }
+    />);
 
     const linkDetails = getByText(/more details/i);
 
@@ -68,7 +71,10 @@ describe('test Pokemons.js cards', () => {
   });
 
   test('test if the favorite star exist', () => {
-    const { getByAltText } = renderWithRouter(<Pokemon pokemon={ pokemons[7] } isFavorite={true} />);
+    const { getByAltText } = renderWithRouter(<Pokemon
+      pokemon={ pokemons[7] }
+      isFavorite={ true }
+    />);
 
     const favoImage = getByAltText(/snorlax is marked as favorite/i);
     expect(favoImage.src).toBe('http://localhost/star-icon.svg');
