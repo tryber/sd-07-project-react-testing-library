@@ -22,7 +22,7 @@ describe('test Pokemons.js cards', () => {
     expect(pokemonWeight).toBeInTheDocument();
     const pokemonImage = container.querySelectorAll('img');
     expect(pokemonImage.length.toString()).toBe('1');
-    
+
     expect(pokemonName).toHaveTextContent(/Pikachu/i);
     expect(pokemonType).toHaveTextContent(/Electric/i);
     expect(pokemonWeight).toHaveTextContent(/Average weight: 6.0 kg/i);
