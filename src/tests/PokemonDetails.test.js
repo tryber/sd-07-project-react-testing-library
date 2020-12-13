@@ -3,25 +3,24 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
-
 describe('test PokemonsDetails.js cards', () => {
   test('test if noma Details in on the screen', () => {
     const { getByText } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/More details/i))
+    fireEvent.click(getByText(/More details/i));
     const nameDetail = getByText(/pikachu details/i);
     expect(nameDetail).toBeInTheDocument();
   });
 
   test('test if Game locations exist', () => {
     const { getByText } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/More details/i))
+    fireEvent.click(getByText(/More details/i));
     const heading = getByText(/Game Locations of Pikachu/i);
     expect(heading).toBeInTheDocument();
   });
 
   test('name and map of localization', () => {
-    const { getAllByAltText, getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/More details/i))
+    const { getAllByAltText, getByText } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/More details/i));
     const map1Localization = getByText(/Kanto Viridian Forest/i);
     const map2Localization = getByText(/Kanto Power Plant/i);
     const mapsImages = getAllByAltText(/pikachu location/i);
