@@ -9,7 +9,7 @@ import App from '../App';
 
 describe('test Pokemons.js cards', () => {
   test('test Pokemons cards', () => {
-    const { getByTestId, container } = renderWithRouter(<Pokemon
+    const { getByTestId, getByAltText } = renderWithRouter(<Pokemon
       pokemon={ pokemons[0] }
       isFavorite={ false }
     />);
@@ -20,12 +20,13 @@ describe('test Pokemons.js cards', () => {
     expect(pokemonType).toBeInTheDocument();
     const pokemonWeight = getByTestId('pokemon-weight');
     expect(pokemonWeight).toBeInTheDocument();
-    const pokemonImage = container.querySelectorAll('img');
-    expect(pokemonImage.length.toString()).toBe('1');
+    const pokemonImage = getByAltText(/Pikachu sprite/i);
+    expect(pokemonImage).toBeInTheDocument();
 
     expect(pokemonName).toHaveTextContent(/Pikachu/i);
     expect(pokemonType).toHaveTextContent(/Electric/i);
     expect(pokemonWeight).toHaveTextContent(/Average weight: 6.0 kg/i);
+    expect(pokemonImage.src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
   test('test Pokemons cards of pokemon[6]', () => {
