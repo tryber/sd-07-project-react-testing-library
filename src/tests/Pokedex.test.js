@@ -2,7 +2,6 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
-import pokemons from '../data';
 
 describe('testing Pokedex.js', () => {
   test('test if the page has h2', () => {
