@@ -26,7 +26,7 @@ describe('test Pokemons.js cards', () => {
     expect(pokemonName).toHaveTextContent(/Pikachu/i);
     expect(pokemonType).toHaveTextContent(/Electric/i);
     expect(pokemonWeight).toHaveTextContent(/Average weight: 6.0 kg/i);
-    expect(pokemonImage.src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+    expect(pokemonImage).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
   test('test Pokemons cards of pokemon[6]', () => {
