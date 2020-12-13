@@ -11,7 +11,9 @@ describe('Testando o arquivo FavoritePokemons.js', () => {
     expect(information).toBeInTheDocument();
   });
   it('Teste se é exibido todos os cards de pokémons favoritados.', () => {
-    const FavoritePokemon = pokemons.slice(0, 3);
+    const limitInf = 0;
+    const limitSup = 3;
+    const FavoritePokemon = pokemons.slice(limitInf, limitSup);
     const { getAllByTestId } = renderWithRouter(
       <FavoritePokemons pokemons={ FavoritePokemon } />,
     );
