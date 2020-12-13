@@ -1,8 +1,8 @@
 import React from 'react';
-import renderWithRouter from '../services/renderWithRouter';
 import { fireEvent, render } from '@testing-library/react';
-import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+import renderWithRouter from '../services/renderWithRouter';
+import { Router } from 'react-router-dom';
 import pokemons from '../data';
 import Pokemon from '../components/Pokemon';
 import App from '../App';
@@ -71,12 +71,13 @@ describe('test Pokemons.js cards', () => {
   });
 
   test('test if the favorite star exist', () => {
-    const { getByAltText } = renderWithRouter(<Pokemon
-      pokemon={ pokemons[7] }
-      isFavorite={ true }
-    />);
+    const { getByText } = renderWithRouter(<App />);
 
-    const favoImage = getByAltText(/snorlax is marked as favorite/i);
-    expect(favoImage.src).toBe('http://localhost/star-icon.svg');
+    
+    fireEvent.click(getByText(/More details/i));
+    fireEvent.click(getByText(/Pokémon favoritado/i));
+    fireEvent.click(getByText(/Favorite Pokémons/i));
+    const favoPoke = getByText(/Pikachu/i);
+    expect(favoPoke).toBeInTheDocument();
   });
 });
