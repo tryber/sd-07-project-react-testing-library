@@ -3,7 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('Testing App.js - requirement1', () => {
+describe('Testa App.js - requirement1', () => {
   it('A Pokédex é renderizada ao carregar a aplicação no path de URL /', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const { pathname } = history.location;

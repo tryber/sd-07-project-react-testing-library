@@ -2,7 +2,7 @@ import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import NotFound from '../components/NotFound';
 
-describe('Testing NotFound.js  - requirement4', () => {
+describe('Testa NotFound.js  - requirement4', () => {
   it('Teste se página contém um h2 com o texto Page requested not found 😭', () => {
     const { getByRole } = renderWithRouter(<NotFound />);
     const heading = getByRole('heading');
