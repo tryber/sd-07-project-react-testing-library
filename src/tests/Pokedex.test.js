@@ -59,14 +59,21 @@ describe('testing Pokedex.js', () => {
   test('test if there is just 1 pokemon on the sceen', () => {
     const { getByText, container } = renderWithRouter(<App />);
 
-    let pokemonsChoosed = 0;
-    while (pokemonsChoosed <= pokemons.length) {
       const imgOfPoke = container.querySelectorAll('img');
       expect(imgOfPoke.length.toString()).toBe('1');
       fireEvent.click(getByText(/Próximo pokémon/i));
 
-      pokemonsChoosed += 1;
-    }
+      const imgOfPoke2 = container.querySelectorAll('img');
+      expect(imgOfPoke2.length.toString()).toBe('1');
+      fireEvent.click(getByText(/Próximo pokémon/i));
+
+      const imgOfPoke3 = container.querySelectorAll('img');
+      expect(imgOfPoke3.length.toString()).toBe('1');
+      fireEvent.click(getByText(/Próximo pokémon/i));
+
+      const imgOfPoke4 = container.querySelectorAll('img');
+      expect(imgOfPoke4.length.toString()).toBe('1');
+      fireEvent.click(getByText(/Próximo pokémon/i));
   });
 
   test('test if there is filter buttons on Pokédex', () => {
