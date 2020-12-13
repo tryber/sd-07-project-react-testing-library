@@ -14,7 +14,7 @@ describe('Testing NotFound.js  - requirement4', () => {
   it('Teste se página mostra a imagem:', () => {
     const { getAllByRole } = renderWithRouter(<NotFound />);
     const images = getAllByRole('img');
-    const matchImage = images.filter((image) => image.src === 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
-    expect(matchImage.length).toBe(1);
+    const matchImage = images.some((image) => image.src === 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+    expect(matchImage).toBe(true);
   });
 });
