@@ -1,7 +1,7 @@
 import React from 'react';
-import App from '../App';
-import renderWithRouter from '../services/renderWithRouter';
 import { fireEvent } from '@testing-library/react';
+import renderWithRouter from '../services/renderWithRouter';
+import App from '../App';
 import pokemons from '../data';
 
 describe('testing Pokedex.js', () => {
@@ -59,7 +59,7 @@ describe('testing Pokedex.js', () => {
   test('test if there is just 1 pokemon on the sceen', () => {
     const { getByText, container } = renderWithRouter(<App />);
 
-    for (let index = 0; index < pokemons.length; index += 1) {
+    while (pokemons.length == true) {
       const imgOfPoke = container.querySelectorAll('img');
       expect(imgOfPoke.length.toString()).toBe('1');
       fireEvent.click(getByText(/Próximo pokémon/i));
