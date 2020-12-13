@@ -1,15 +1,18 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import renderWithRouter from '../services/renderWithRouter';
 import { Router } from 'react-router-dom';
+import renderWithRouter from '../services/renderWithRouter';
 import pokemons from '../data';
 import Pokemon from '../components/Pokemon';
 import App from '../App';
 
 describe('test Pokemons.js cards', () => {
   test('test Pokemons cards', () => {
-    const { getByTestId, container } = renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite={ false } />);
+    const { getByTestId, container } = renderWithRouter(<Pokemon
+      pokemon={ pokemons[0] }
+      isFavorite={ false }
+    />);
 
     const pokemonName = getByTestId('pokemon-name');
     expect(pokemonName).toBeInTheDocument();
@@ -17,12 +20,15 @@ describe('test Pokemons.js cards', () => {
     expect(pokemonType).toBeInTheDocument();
     const pokemonWeight = getByTestId('pokemon-weight');
     expect(pokemonWeight).toBeInTheDocument();
-    const pokemonImage = container.querySelectorAll('img')
+    const pokemonImage = container.querySelectorAll('img');
     expect(pokemonImage.length.toString()).toBe('1');
   });
 
   test('test Pokemons cards of pokemon[6]', () => {
-    const { getByTestId, container } = renderWithRouter(<Pokemon pokemon={ pokemons[6] } isFavorite={ false } />);
+    const { getByTestId, container } = renderWithRouter(<Pokemon
+      pokemon={ pokemons[6] }
+      isFavorite={ false }
+    />);
 
     const pokemonNameOf6 = getByTestId('pokemon-name');
     expect(pokemonNameOf6).toBeInTheDocument();
@@ -30,7 +36,7 @@ describe('test Pokemons.js cards', () => {
     expect(pokemonTypeOf6).toBeInTheDocument();
     const pokemonWeightOf6 = getByTestId('pokemon-weight');
     expect(pokemonWeightOf6).toBeInTheDocument();
-    const pokemonImageOf6 = container.querySelectorAll('img')
+    const pokemonImageOf6 = container.querySelectorAll('img');
     expect(pokemonImageOf6.length.toString()).toBe('1');
   });
 
@@ -73,7 +79,6 @@ describe('test Pokemons.js cards', () => {
   test('test if the favorite star exist', () => {
     const { getByText } = renderWithRouter(<App />);
 
-    
     fireEvent.click(getByText(/More details/i));
     fireEvent.click(getByText(/Pokémon favoritado/i));
     fireEvent.click(getByText(/Favorite Pokémons/i));
