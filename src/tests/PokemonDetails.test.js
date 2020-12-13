@@ -29,4 +29,18 @@ describe('test PokemonsDetails.js cards', () => {
     expect(mapsImages[0].src).toBe('https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
     expect(mapsImages[1].src).toBe('https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
+
+  it('Test if you con favorite by Detaisl page', () => {
+    const { getByRole, getByLabelText } = renderWithRouter(<App />);
+    const details = getByRole('link', { name: 'More details' });
+    fireEvent.click(details);
+    const checkbox = getByRole('checkbox');
+    expect(checkbox).toBeInTheDocument();
+    fireEvent.click(checkbox);
+    expect(checkbox.checked).toBeTruthy();
+    fireEvent.click(checkbox);
+    expect(checkbox.checked).toBeFalsy();
+    const favorite = getByLabelText(/Pokémon favoritado?/i);
+    expect(favorite).toBeInTheDocument();
+  });
 });
