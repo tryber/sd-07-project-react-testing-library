@@ -59,7 +59,7 @@ describe('testing Pokedex.js', () => {
   test('test if there is just 1 pokemon on the sceen', () => {
     const { getByText, container } = renderWithRouter(<App />);
 
-    while (pokemons.length === true) {
+    while (pokemons.length < 9) {
       const imgOfPoke = container.querySelectorAll('img');
       expect(imgOfPoke.length.toString()).toBe('1');
       fireEvent.click(getByText(/Próximo pokémon/i));
