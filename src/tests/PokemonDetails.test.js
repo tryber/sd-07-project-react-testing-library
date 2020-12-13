@@ -14,11 +14,11 @@ describe('test PokemonsDetails.js cards', () => {
     const linkDetails = screen.queryByRole(/More details/i);
     expect(linkDetails).not.toBeInTheDocument();
 
-  const heading = screen.getByText(/Summary/i);
-  expect(heading).toBeInTheDocument();
+    const heading = screen.getByText(/Summary/i);
+    expect(heading).toBeInTheDocument();
 
-  expect(screen.getByText(/This intelligent Pokémon roasts hard/i))
-    .toBeInTheDocument();
+    expect(screen.getByText(/This intelligent Pokémon roasts hard/i))
+      .toBeInTheDocument();
   });
 
   test('test if Game locations exist', () => {
