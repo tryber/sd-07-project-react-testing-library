@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import renderWithRouter from '../services/renderWithRouter';
@@ -9,25 +9,24 @@ import App from '../App';
 
 describe('test Pokemons.js cards', () => {
   test('test Pokemons cards', () => {
-    const { getByTestId, getByAltText } = renderWithRouter(<Pokemon
+    renderWithRouter(<Pokemon
       pokemon={ pokemons[0] }
       isFavorite={ false }
     />);
 
-    const pokemonName = getByTestId('pokemon-name');
+    const pokemonName = screen.getByTestId('pokemon-name');
     expect(pokemonName).toBeInTheDocument();
-    const pokemonType = getByTestId('pokemonType');
+    const pokemonType = screen.getByTestId('pokemonType');
     expect(pokemonType).toBeInTheDocument();
-    const pokemonWeight = getByTestId('pokemon-weight');
+    const pokemonWeight = screen.getByTestId('pokemon-weight');
     expect(pokemonWeight).toBeInTheDocument();
-    const pokemonImage = getByAltText(/Pikachu sprite/i);
+    const pokemonImage = screen.getByRole('img', { name: /Pikachu/i });
     expect(pokemonImage).toBeInTheDocument();
 
     expect(pokemonName).toHaveTextContent(/Pikachu/i);
     expect(pokemonType).toHaveTextContent(/Electric/i);
     expect(pokemonWeight).toHaveTextContent(/Average weight: 6.0 kg/i);
     expect(pokemonImage.src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
-    expect(pokemonImage.alt).toBe('Pikachu sprite');
   });
 
   test('test Pokemons cards of pokemon[6]', () => {
