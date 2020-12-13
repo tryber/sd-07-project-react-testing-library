@@ -14,7 +14,6 @@ describe('5 - Testando o arquivo Pokedex.js', () => {
 
   describe(`Teste se é exibido o próximo Pokémon da lista
   quando o botão Próximo pokémon é clicado.`, () => {
-
     test('O botão deve conter o texto Próximo pokémon', () => {
       const { getByTestId } = renderWithRouter(<App />);
       const buttonProximo = getByTestId('next-pokemon');
@@ -72,6 +71,7 @@ describe('5 - Testando o arquivo Pokedex.js', () => {
       expect(type).toHaveLength(1);
       expect(weight).toHaveLength(1);
       fireEvent.click(buttonProximo[0]);
+      console.log(pokemon.name);
     });
   });
 
