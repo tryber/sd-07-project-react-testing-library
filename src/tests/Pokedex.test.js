@@ -18,8 +18,7 @@ describe('Testing the Pokedex.js file', () => {
     expect(subtitle).toBeInTheDocument();
   });
   it('if next Pokémon is displayed when the`Próximo pokémon`button is clicked', () => {
-    // eslint-disable-next-line no-unused-vars
-    const { getByTestId } = RenderWithRouter(
+    RenderWithRouter(
       <Pokedex pokemons={ data } isPokemonFavoriteById={ favoriteList } />,
     );
     const next = screen.getByTestId('next-pokemon');
