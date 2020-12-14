@@ -5,7 +5,7 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('Test the App.js file', () => {
-  test('renders a reading with the text `Pokédex`', () => {
+  it('renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={ ['/'] }>
         <App />
@@ -18,7 +18,7 @@ describe('Test the App.js file', () => {
   });
 });
 describe('Test whether on the top contains a fixed set of navigation links', () => {
-  test('the page should contain links to Home About and Favorite Pokémons', () => {
+  it('the page should contain links to Home About and Favorite Pokémons', () => {
     const { getByText } = renderWithRouter(<App />);
     expect(getByText('Home')).toBeInTheDocument();
     expect(getByText('About')).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe('Test whether on the top contains a fixed set of navigation links', () 
 });
 
 describe('Test if is redirected to the correct page indicated in the link', () => {
-  test('The page must be redirected to the correct path when the link is clicked', () => {
+  it('The page must be redirected to the correct path when the link is clicked', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const home = getByText('Home');
     fireEvent.click(home);
@@ -40,7 +40,7 @@ describe('Test if is redirected to the correct page indicated in the link', () =
     expect(history.location.pathname).toBe('/favorites');
   });
 
-  test('Test if redirected to the `Not Found` page when entering an unknown URL', () => {
+  it('Test if redirected to the `Not Found` page when entering an unknown URL', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/pagenotfound/');
     const noMatch = getByText(/Page requested not found/i);

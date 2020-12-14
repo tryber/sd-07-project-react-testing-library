@@ -1,5 +1,5 @@
 import React from 'react';
-import renderWithRouter from './renderWithRouter';
+import RenderWithRouter from './renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 import data from '../data';
 
@@ -26,8 +26,8 @@ describe('Testing the FavoritePokemons.js file', () => {
     ],
     summary: 'This intelligent Pokémon roasts hard berries.',
   };
-  test('if the message `No favorite pokemon found` is displayed', () => {
-    const { getByText } = renderWithRouter(
+  it('if the message `No favorite pokemon found` is displayed', () => {
+    const { getByText } = RenderWithRouter(
       <FavoritePokemons
         pokemon={ poke }
       />,
@@ -35,15 +35,15 @@ describe('Testing the FavoritePokemons.js file', () => {
     const text = getByText(/No favorite pokemon found/);
     expect(text).toBeInTheDocument();
   });
-  test('Test whether all favorite Pokémon cards are displayed', () => {
+  it('Test whether all favorite Pokémon cards are displayed', () => {
     const favorite = ['Pikachu', 'Dragonair'];
     const favoriteExpec = data.filter((pokemon) => favorite.includes(pokemon.name));
     const favoriteExpecLength = 2;
     expect(favoriteExpec.length).toBe(favoriteExpecLength);
   });
-  test('Test if ** no ** Pokémon card is displayed, if it is not favored', () => {
+  it('Test if ** no ** Pokémon card is displayed, if it is not favored', () => {
     const favoritePokemons = [];
-    const { queryByText } = renderWithRouter(
+    const { queryByText } = RenderWithRouter(
       <FavoritePokemons pokemons={ favoritePokemons } />,
     );
     const caterpie = queryByText('Caterpie');
