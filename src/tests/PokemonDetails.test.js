@@ -42,7 +42,7 @@ describe('Test screen PokemonDetails', () => {
     const locationsTitle = getByText('Game Locations of Pikachu');
     const location = container.getElementsByClassName('pokemon-habitat');
     const locationPokemonImg = getAllByAltText('Pikachu location');
-    //ideia vista no projeto da Vanessa Bidinotto- turma 07
+    // ideia vista no projeto da Vanessa Bidinotto- turma 07
     const amoutOfImg = 2;
 
     expect(locationsTitle).toBeInTheDocument();
