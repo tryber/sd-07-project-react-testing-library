@@ -6,7 +6,8 @@ import FavoritePokemons from '../components/FavoritePokemons';
 afterEach(cleanup);
 
 describe('third requirement', () => {
-  it("should render the message `No favorite pokemon found` if there's no favorited pokémons", () => {
+  it(`should render the message 'No favorite pokemon found'
+  if there's no favorited pokémons`, () => {
     render(<FavoritePokemons />);
 
     const text = screen.getByText(/No favorite pokemon found/i);
@@ -66,7 +67,7 @@ describe('third requirement', () => {
     ];
     render(
       <MemoryRouter>
-        <FavoritePokemons pokemons={mokedPokemons} />
+        <FavoritePokemons pokemons={ mokedPokemons } />
       </MemoryRouter>,
     );
 
@@ -76,7 +77,7 @@ describe('third requirement', () => {
     expect(secondPokemon).toBeInTheDocument();
   });
 
-  it("shouldn't render any card if there's no favorited pokémon", () => {
+  it(`shouldn't render any card if there's no favorited pokémon`, () => {
     render(<FavoritePokemons />);
     const pokemonOne = screen.queryByText(/pikachu/i);
     const pokemonTwo = screen.queryByText(/snorlax/i);
