@@ -1,8 +1,6 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { cleanup, fireEvent, getAllByRole, render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import About from '../components/About';
-import TestingRouter from '../components/TestingRouter';
 
 afterEach(cleanup);
 
@@ -30,7 +28,7 @@ describe('second requirement', () => {
     const secondParagraph = screen.getByText(/One can filter Pokémons by type/i);
     expect(firstParagraph).toBeInTheDocument();
     expect(firstParagraph.tagName).toBe('P');
-    
+
     expect(secondParagraph).toBeInTheDocument();
     expect(secondParagraph.tagName).toBe('P');
   });
@@ -42,5 +40,5 @@ describe('second requirement', () => {
     const image = screen.getByRole('img');
     expect(image).toBeInTheDocument();
     expect(image.src).toBe(imagePath);
-  })
+  });
 });
