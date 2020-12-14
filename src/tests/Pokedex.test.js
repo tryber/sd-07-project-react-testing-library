@@ -67,7 +67,4 @@ describe('testing Pokedex component', () => {
     expect(buttonContent).toBeInTheDocument();
     fireEvent.click(buttonContent);
   });
-  test('if a button is created for each kind of Pokémon', () => {
-
-  });
 });
