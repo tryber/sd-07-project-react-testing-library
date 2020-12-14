@@ -3,8 +3,8 @@ import './about.css';
 
 const About = () => (
   <section>
-    <h2 data-testid="h2">{`About ` + `Pokédex`}</h2>
-    <section data-testid="pokedex-info">
+    <h2>{`About ` + `Pokédex`}</h2>
+    <section>
       <p>
         This application simulates a Pokédex, a
         digital encliclopedia containing all Pokémons

@@ -8,14 +8,14 @@ describe('second requirement', () => {
   it('should render Pokédex informations', () => {
     render(<About />);
 
-    const pokedexInfo = screen.getByTestId('pokedex-info');
+    const pokedexInfo = screen.getByText(/This application simulates a Pokédex/i);
     expect(pokedexInfo).toBeInTheDocument();
   });
 
   it('should render an heading `h2` with the text `About Pokédex`', () => {
     render(<About />);
 
-    const title = screen.getByTestId('h2');
+    const title = screen.getByText(/about pokédex/i);
     expect(title).toBeInTheDocument();
     expect(title.tagName).toBe('H2');
     expect(title.innerHTML).toBe('About Pokédex');
