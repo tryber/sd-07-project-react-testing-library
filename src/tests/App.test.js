@@ -1,6 +1,6 @@
 import React from 'react';
-import { MemoryRouter, Route } from 'react-router-dom';
-import { cleanup, fireEvent, getByText, render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import App from '../App';
 import TestingRouter from '../components/TestingRouter';
 
@@ -8,12 +8,12 @@ afterEach(cleanup);
 
 describe('first requirement', () => {
   test('renders a reading with the text `Pokédex`', () => {
-    const { getByText } = render(
+    render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
-    const heading = getByText(/Pokédex/i);
+    const heading = screen.getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
 
@@ -21,9 +21,9 @@ describe('first requirement', () => {
     const { history } = TestingRouter(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     if (pathname === '/') {
       const title = screen.getByText(/encountered pokémons/i);
       expect(title).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('first requirement', () => {
     render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const links = screen.queryAllByRole('link');
     expect(links[0]).toBeInTheDocument();
@@ -52,7 +52,7 @@ describe('first requirement', () => {
 
     const homeLink = screen.getByText(/home/i);
     fireEvent.click(homeLink);
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
 
@@ -61,7 +61,7 @@ describe('first requirement', () => {
 
     const aboutLink = screen.getByText(/about/i);
     fireEvent.click(aboutLink);
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
 
@@ -70,7 +70,7 @@ describe('first requirement', () => {
 
     const favoriteLink = screen.getByText(/favorite pokémons/i);
     fireEvent.click(favoriteLink);
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
 
@@ -82,4 +82,4 @@ describe('first requirement', () => {
 
     expect(notFound).toBeInTheDocument();
   });
-})
+});
