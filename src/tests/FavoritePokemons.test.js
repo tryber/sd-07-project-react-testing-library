@@ -77,7 +77,7 @@ describe('third requirement', () => {
     expect(secondPokemon).toBeInTheDocument();
   });
 
-  it(`shouldn't render any card if there's no favorited pokémon`, () => {
+  it('shouldnt render any card if theres no favorited pokémon', () => {
     render(<FavoritePokemons />);
     const pokemonOne = screen.queryByText(/pikachu/i);
     const pokemonTwo = screen.queryByText(/snorlax/i);
