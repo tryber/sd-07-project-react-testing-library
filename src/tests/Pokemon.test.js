@@ -29,7 +29,6 @@ describe('Testing the Pokemon.js file', () => {
       `This intelligent Pokémon roasts hard berries
       with electricity to make them tender enough to eat.`,
   };
-  afterEach(cleanup);
   it('Test if a card with the information of a certain Pokémon is rendered', () => {
     const { getByText } = RenderWithRouter(
       <Pokemon pokemon={ pikachu } isFavorite={ false } />,
