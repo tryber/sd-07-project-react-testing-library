@@ -60,10 +60,10 @@ describe('test integration links in the cards', () => {
   });
   test('if renders pokemon image', () => {
     const pokemon = pokemons[0];
-    const { queryByAltText } = renderWithRouter(
+    const { getByAltText } = renderWithRouter(
       <Pokemon pokemon={ pokemon } isFavorite={ false } />,
     );
-    const pokemonImage = queryByAltText(`${pokemon.name} sprite`);
+    const pokemonImage = getByAltText(`${pokemon.name} sprite`);
     expect(pokemonImage).toBeInTheDocument();
     expect(pokemonImage).toHaveAttribute('src', `${pokemon.image}`);
   });
