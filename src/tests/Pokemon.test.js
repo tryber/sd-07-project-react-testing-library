@@ -2,46 +2,29 @@ import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import RenderWithRouter from './renderWithRouter';
 import Pokemon from '../components/Pokemon';
+import pokemons from '../data';
 
 describe('Testing the Pokemon.js file', () => {
-  const pikachu = {
-    id: 25,
-    name: 'Pikachu',
-    type: 'Electric',
-    averageWeight: {
-      value: '6.0',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
-    foundAt: [
-      {
-        location: 'Kanto Viridian Forest',
-        map: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-      },
-      {
-        location: 'Kanto Power Plant',
-        map:
-          'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-      },
-    ],
-    summary:
-      `This intelligent Pokémon roasts hard berries
-      with electricity to make them tender enough to eat.`,
-  };
+  const pikachu = pokemons[0];
+  const {
+    // id,
+    name,
+    type,
+    averageWeight,
+  } = pikachu;
+  // const match = { params: { id: pikachu.id.toString() } };
   it('Test if a card with the information of a certain Pokémon is rendered', () => {
     const { getByText } = RenderWithRouter(
       <Pokemon pokemon={ pikachu } isFavorite={ false } />,
     );
-    const name = getByText(pikachu.name);
-    expect(name).toBeInTheDocument();
+    const pokeName = getByText(name);
+    expect(pokeName).toBeInTheDocument();
 
-    const type = getByText(pikachu.type);
-    expect(type).toBeInTheDocument();
+    const pokeType = getByText(type);
+    expect(pokeType).toBeInTheDocument();
 
-    const pika = pikachu;
     const pikachuWeight = getByText(
-      `Average weight: ${pika.averageWeight.value} ${pika.averageWeight.measurementUnit}`,
+      `Average weight: ${averageWeight.value} ${averageWeight.measurementUnit}`,
     );
     expect(pikachuWeight).toBeInTheDocument();
 
