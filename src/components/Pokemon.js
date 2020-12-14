@@ -11,7 +11,7 @@ const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
   const { measurementUnit, value } = averageWeight;
 
   return (
-    <div className="pokemon">
+    <div className="pokemon" data-testid='pokemon-card'>
       <div className="pokemon-overview">
         <p data-testid="pokemon-name">{`${name}`}</p>
         <p data-testid="pokemonType">{`${type}`}</p>
