@@ -11,10 +11,9 @@ describe('Testing the PokemonDetails file', () => {
     id,
     name,
     summary,
-    foundAt,
   } = poke;
   const match = { params: { id: poke.id.toString() } };
-  it('if detailed information of the selected Pokémon is shown', () => {
+  it('If detailed information of the selected Pokémon is shown', () => {
     const { container, queryByText } = RenderWithRouter(
       <PokemonDetails
         isPokemonFavoriteById={ App.setIsPokemonFavoriteById(id) }
@@ -33,7 +32,7 @@ describe('Testing the PokemonDetails file', () => {
     expect(paragraph[3].innerHTML).toBe(summary);
   });
   it('If there is a section with maps with the locations of the pokémon', () => {
-    const { queryByText } = RenderWithRouter(
+    RenderWithRouter(
       <PokemonDetails
         isPokemonFavoriteById={ App.setIsPokemonFavoriteById(id) }
         onUpdateFavoritePokemons={ () => {} }
@@ -41,16 +40,19 @@ describe('Testing the PokemonDetails file', () => {
         pokemons={ pokemons }
       />,
     );
-    const heading = queryByText(`Game Locations of ${name}`);
+    const heading = screen.getByRole('heading', { name: `Game Locations of ${name}` });
     expect(heading).toBeInTheDocument();
-    const map1 = foundAt[0].map;
-    expect(map1).toBe('https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
-    const location1 = foundAt[0].location;
-    expect(location1).toBe('Kanto Viridian Forest');
-    const map2 = foundAt[1].map;
-    expect(map2).toBe('https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
-    const location2 = foundAt[1].location;
-    expect(location2).toBe('Kanto Power Plant');
+    const imgs = screen.getAllByRole('img', { name: /Pikachu location/i });
+    const length = 2;
+    expect(imgs).toHaveLength(length);
+    expect(imgs[0]).toHaveAttribute('alt', 'Pikachu location');
+    expect(imgs[0]).toHaveAttribute(
+      'src', 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
+    );
+    expect(imgs[1]).toHaveAttribute('alt', 'Pikachu location');
+    expect(imgs[1]).toHaveAttribute(
+      'src', 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
+    );
   });
   it('If the user can favor a pokémon through the details page', () => {
     const { getByLabelText } = RenderWithRouter(
