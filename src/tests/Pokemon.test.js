@@ -19,6 +19,12 @@ describe('testing Pokemon component', () => {
     expect(image).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
+  test('if leads to datail page with correct id', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const details = getByText(/more details/i);
+    expect(details.href).toBe('http://localhost/pokemons/25');
+  });
+
   test('if the has the corrcet datails link', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const details = getByText(/More details/i);
