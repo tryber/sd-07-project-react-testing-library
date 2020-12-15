@@ -7,16 +7,16 @@ import App from '../App';
 
 describe('testing Pokemon component', () => {
   test('if the correct pokemon name is shown', () => {
-    const { getByTestId, getByRole } = renderWithRouter(<App />);
+    const { getByTestId, getByAltText } = renderWithRouter(<App />);
     const nameID = getByTestId('pokemon-name').innerHTML;
     const typeID = getByTestId('pokemonType').innerHTML;
     const weightID = getByTestId('pokemon-weight').innerHTML;
-    const image = getByRole('img');
+    const altImage = getByAltText(`${nameID} sprite`);
 
     expect(nameID).toBe('Pikachu');
     expect(typeID).toBe('Electric');
     expect(weightID).toBe('Average weight: 6.0 kg');
-    expect(image).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+    expect(altImage).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
   test('if leads to datail page with correct id', () => {
@@ -37,16 +37,14 @@ describe('testing Pokemon component', () => {
   test('if it has the star icon', () => {
     const { getByText, getByAltText, getByLabelText } = renderWithRouter(<App />);
     const details = getByText(/More details/i);
-    expect(details).toBeInTheDocument();
-
     fireEvent.click(details);
 
     const favoriteIcon = getByLabelText('Pokémon favoritado?');
     fireEvent.click(favoriteIcon);
 
     const markedAsFav = getByAltText('Pikachu is marked as favorite');
-    expect(markedAsFav).toBeInTheDocument();
 
+    expect(markedAsFav).toBeInTheDocument();
     expect(markedAsFav).toHaveAttribute('src', '/star-icon.svg');
   });
 });
