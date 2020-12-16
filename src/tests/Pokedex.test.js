@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import Pokedex from '../components/Pokedex';
+// import Pokedex from '../components/Pokedex';
 
 import pokemons from '../data';
 
@@ -117,7 +117,7 @@ describe('5 - Testando o arquivo Pokedex.js', () => {
 
   describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     test('O texto do botão deve ser All', () => {
-/*       jest.spyOn(Pokedex.prototype, 'filterPokemons');
+    /*       jest.spyOn(Pokedex.prototype, 'filterPokemons');
       const { getByTestId } = renderWithRouter(<App />);
       const buttonAll = getByTestId('all');
       expect(buttonAll).toHaveTextContent('All');
