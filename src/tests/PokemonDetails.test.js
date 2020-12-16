@@ -1,49 +1,82 @@
-/* import React from 'react';
- import { fireEvent } from '@testing-library/react';
+import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import PokemonDetails from '../components/PokemonDetails';
-import pokemons from '../data'; */
+import pokemons from '../data';
 
 describe('7 - Testando o arquivo PokemonDetails.js', () => {
-  test(`7.1 - A página deve conter um texto <name> Details,
-    onde <name> é o nome do Pokémon`, () => {
-    /* const { getByRole } = renderWithRouter(<PokemonDetails match={ pokemons[0] } />);
-    const h2 = getByRole('h2');
-    expect(h2).toBeInDocument(); */
+  test(`7.1 - Teste se as informações detalhadas do Pokémon selecionado
+  são mostradas na tela.
+  1 - A página deve conter um texto <name> Details;
+  2 - Não deve existir o link de navegação para os detalhes na pagina detalhes;
+  3 - A seção de detalhes deve conter um heading h2 com o texto Summary;
+  4 - A seção de detalhes deve conter um parágrafo com o resumo do
+  Pokémon específico sendo visualizado.`, () => {
+    const { getByText, history, getByTestId } = renderWithRouter(<App />);
+    const name = getByTestId('pokemon-name').innerHTML;
+    const linkDetails = getByText(/More details/i);
+    fireEvent.click(linkDetails);
+
+    expect(getByText(`${name} Details`)).toBeInTheDocument();
+    expect(linkDetails).not.toBeInTheDocument();
+
+    const { pathname } = history.location;
+    const { id } = pokemons.find((pokemon) => pokemon.name === name);
+
+    expect(pathname).toBe(`/pokemons/${id}`);
+
+    const localPokemon = getByText(`Game Locations of ${name}`);
+    console.log(localPokemon.innerHTML);
+    expect(localPokemon).toBeInTheDocument();
+
+    expect(getByText(/Summary/i)).toBeInTheDocument();
+
+    const p = getByText(
+      /This intelligent Pokémon roasts hard berries with electricity to make/i,
+    );
+    expect(p).toBeInTheDocument();
   });
 
-  test(`7.2 - Não deve existir o link de navegação para os detalhes
-   do Pokémon selecionado.`, () => {});
+  test(`7.2 - Na seção de detalhes deverá existir um heading h2 com o texto Game
+  Locations of <name>; onde <name> é o nome do Pokémon exibido.`, () => {
+    const { getByText } = renderWithRouter(<App />);
+    const linkDetails = getByText(/More details/i);
+    fireEvent.click(linkDetails);
+    expect(getByText(/Game Locations of Pikachu/i)).toBeInTheDocument();
+  });
 
-  test(`7.3 - A seção de detalhes deve conter
-  um heading h2 com o texto Summary.`, () => {});
+  test(`7.5 - Todas as localizações do Pokémon devem ser mostradas na seção
+  de detalhes`, () => {
+    const { getByText, getByTestId, container } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/More details/i));
+    const name = getByTestId('pokemon-name').innerHTML;
+    const { foundAt } = pokemons.find((pokemon) => pokemon.name === name);
+    const divLocatins = container.querySelector('.pokemon-habitat');
+    const imgs = container.querySelectorAll('.pokemon-habitat img');
+    const namesLocal = container.querySelectorAll('.pokemon-habitat p');
 
-  test(`7.4 - A seção de detalhes deve conter um parágrafo com o resumo do
-  Pokémon específico sendo visualizado.`, () => {});
+    imgs.forEach((img, index) => {
+      expect(img).toBeInTheDocument();
+      expect(img).toHaveAttribute('src', foundAt[index].map);
+      expect(img).toHaveAttribute('alt', `${name} location`);
+    });
 
-  test(`7.5 - Na seção de detalhes deverá existir um heading h2 com o texto Game
-  Locations of <name>; onde <name> é o nome do Pokémon exibido.`, () => {});
-
-  test(`7.6 - Todas as localizações do Pokémon devem ser mostradas na seção
-  de detalhes`, () => {});
-
-  test(`7.7 - Todas as localizações do Pokémon devem ser mostradas
-   na seção de detalhes`, () => {});
-
-  test(`7.8 - Devem ser exibidos, o nome da localização e uma imagem
-   do mapa em cada localização`, () => {});
-
-  test(`7.9 - A imagem da localização deve ter um atributo src
-   com a URL da localização`, () => {});
-
-  test(`7.10 - A imagem da localização deve ter um atributo alt com o texto <name>
-  location, onde <name> é o nome do Pokémon`, () => {});
+    namesLocal.forEach((local) => { expect(local).toBeInTheDocument(); });
+    expect(divLocatins).toBeInTheDocument();
+  });
 
   test(`7.11 - A página deve exibir um checkbox
-  que permite favoritar o Pokémon`, () => {});
+  que permite favoritar o Pokémon`, () => {
+    const { getByText, container, getByLabelText } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/More details/i));
 
-  test(`7.12 - Cliques alternados no checkbox devem adicionar e remover respectivamente
-  o Pokémon da lista de favoritos`, () => {});
-  test('7.13 - O label do checkbox deve conter o texto Pokémon favoritado?', () => {});
+    const checkbox = container.querySelector('#favorite');
+    expect(checkbox).toBeInTheDocument();
+    fireEvent.click(checkbox);
+    expect(checkbox.checked).toBeTruthy();
+    fireEvent.click(checkbox);
+    expect(checkbox.checked).toEqual(false);
+
+    expect(getByLabelText(/Pokémon favoritado?/i)).toBeInTheDocument();
+  });
 });
