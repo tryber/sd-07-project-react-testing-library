@@ -5,7 +5,7 @@ import About from '../components/About';
 describe('Testando o arquivo About.js', () => {
   it('a página contém as informações sobre a Pokédex', () => {
     const { getByText } = render(<About />);
-    expect(getByText('This application simulates a Pokédex')).toBeInTheDocument();
+    expect(getByText(/This application simulates a Pokédex/i)).toBeInTheDocument();
   });
 
   it('a página contém um heading h2 com o texto About Pokédex', () => {
@@ -14,8 +14,9 @@ describe('Testando o arquivo About.js', () => {
   });
 
   it('a página contém dois parágrafos com texto sobre a Pokédex', () => {
-    const { queryAllByRole } = render(<About />);
-    expect(queryAllByRole('p').length).toBe('2');
+    const { container } = render(<About />);
+    const expectedLength = 2;
+    expect(container.querySelectorAll('p').length).toBe(expectedLength);
   });
 
   it('a página contém a seguinte imagem de uma Pokédex', () => {
