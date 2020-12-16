@@ -11,9 +11,9 @@ const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
   const { measurementUnit, value } = averageWeight;
 
   return (
-    <div className="pokemon">
+    <div className="pokemon" data-testid='pokemon-card'>
       <div className="pokemon-overview">
-        <p data-testid="pokemon-name">{`${name}`}</p>
+        <p id='pokemon-name' data-testid="pokemon-name">{`${name}`}</p>
         <p data-testid="pokemonType">{`${type}`}</p>
         <p data-testid="pokemon-weight">
           {`Average weight: ${value} ${measurementUnit}`}
@@ -23,6 +23,7 @@ const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
       <img src={ `${image}` } alt={ `${name} sprite` } />
       {isFavorite && (
         <img
+        data-testid="favorite-icon"
           className="favorite-icon"
           src={`/star-icon.svg`}
           alt={ `${name} is marked as favorite` }
