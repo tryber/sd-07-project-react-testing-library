@@ -41,7 +41,8 @@ describe('Testando o arquivo App.js', () => {
   it('ao entrar em uma URL desconhecida, redireciona pra página /not-found', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     history.push('/not-found');
-    const noMatch = getByAltText('Pikachu crying because the page requested was not found');
+    const
+      noMatch = getByAltText('Pikachu crying because the page requested was not found');
     expect(noMatch).toBeInTheDocument();
   });
 });
