@@ -3,8 +3,8 @@ import { render } from '@testing-library/react';
 import About from '../components/About';
 
 test('If page have Pokedéx information', () => {
-  const { getByTestId } = render(<About />);
-  expect(getByTestId('pokedex-info')).toBeInTheDocument();
+  const { container } = render(<About />);
+  expect(container.querySelector('section')).toBeInTheDocument();
 });
 
 test('If page have a heading with text About Pokédex', () => {
@@ -14,8 +14,8 @@ test('If page have a heading with text About Pokédex', () => {
 
 test('If have two paragraphs with Pokédex content', () => {
   const length = 2;
-  const { getAllByTestId } = render(<About />);
-  expect(getAllByTestId('pokedex-content').length).toBe(length);
+  const { container } = render(<About />);
+  expect(container.querySelectorAll('p').length).toBe(length);
 });
 
 test('If page have an image defined', () => {
