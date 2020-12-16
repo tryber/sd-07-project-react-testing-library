@@ -4,9 +4,9 @@ import renderWithRouter from '../renderWithRouter';
 
 describe('2 - Testando o arquivo About.js', () => {
   test('2.1 - Teste se a página contém as informações sobre a Pokédex', () => {
-    const { getAllByText } = renderWithRouter(<About />);
-    const aboutOnly = getAllByText(/Pokédex/i);
-    expect(aboutOnly[0]).toBeInTheDocument();
+    const { getByText } = renderWithRouter(<About />);
+    const aboutOnly = getByText(/About Pokédex/i);
+    expect(aboutOnly).toBeInTheDocument();
   });
   it('2.2 - Teste se a página contém um heading h2 com o texto About Pokédex.', () => {
     const { getByText } = renderWithRouter(<About />);
@@ -14,10 +14,10 @@ describe('2 - Testando o arquivo About.js', () => {
     expect(h2).toBeInTheDocument();
   });
   it('2.3 - Teste se a página contém dois parágrafos com texto sobre a Pokédex', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
-    const qtdP = 2;
-    const p = getAllByTestId('about-pokemon');
-    expect(p.length).toEqual(qtdP);
+    const { container } = renderWithRouter(<About />);
+    const amountP = 2;
+    const p = container.querySelectorAll('p');
+    expect(p.length).toBe(amountP);
   });
   it('2.4 - Teste se a página contém a seguinte imagem de uma Pokédex', () => {
     const { getByRole } = renderWithRouter(<About />);
