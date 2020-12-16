@@ -1,6 +1,5 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
@@ -13,7 +12,7 @@ describe('Testando o arquivo App.js', () => {
     expect(home).toBeInTheDocument();
     expect(about).toBeInTheDocument();
     expect(favoritePokemons).toBeInTheDocument();
-  })
+  });
 
   it('ao clicar no link Home da barra de navegação, redireciona pra página /home', () => {
     const { getByText, history } = renderWithRouter(<App />);
@@ -23,27 +22,26 @@ describe('Testando o arquivo App.js', () => {
     expect(pathname).toBe('/');
   });
 
-  it('ao clicar no link About da barra de navegação, redireciona pra página /about', () => {
+  it('ao clicar no link About, redireciona pra página /about', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const about = getByText('About');
     fireEvent.click(about);
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
-  })
+  });
 
-  it('ao clicar no link Favorite Pokémons da barra de navegação, redireciona pra página /favorites', () => {
+  it('ao clicar no link Favorite Pokémons, redireciona pra página /favorites', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const favoritePokemons = getByText('Favorite Pokémons');
     fireEvent.click(favoritePokemons);
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
-  })
+  });
 
   it('ao entrar em uma URL desconhecida, redireciona pra página /not-found', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     history.push('/not-found');
     const noMatch = getByAltText('Pikachu crying because the page requested was not found');
     expect(noMatch).toBeInTheDocument();
-  })
-})
-
+  });
+});
