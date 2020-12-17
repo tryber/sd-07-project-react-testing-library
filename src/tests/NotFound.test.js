@@ -1,6 +1,6 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import NotFound from '../components/NotFound';
+// import React from 'react';
+// import { render } from '@testing-library/react';
+// import NotFound from '../components/NotFound';
 
 test('If have text Page requested not found 😭 on the page', () => {
   // const { getByRole } = render(<NotFound />);
