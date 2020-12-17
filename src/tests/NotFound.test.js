@@ -6,7 +6,7 @@ test('If have text Page requested not found 😭 on the page', () => {
   const { getByRole } = render(<NotFound />);
   expect(getByRole('heading').textContent).toBe('Page requested not found 😭');
 });
-
+// scr test using cotainer
 test('If have image according to requested', () => {
   const { container } = render(<NotFound />);
   const images = container.getElementsByTagName('img');
