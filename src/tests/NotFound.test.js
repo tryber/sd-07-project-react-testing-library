@@ -8,7 +8,7 @@ describe('4. Testing the NotFound.js file', () => {
     const notFound = container.querySelector('h2');
     const notFoundEmoji = container.querySelector('h2 > span');
     expect(notFound.innerHTML).toContain('Page requested not found');
-    expect(notFoundEmoji.innerHTML).toBe(' 😭');
+    expect(notFoundEmoji.innerHTML).toContain(' 😭');
   });
 
   it('The page shows the image of the crying Pikachu', () => {
