@@ -69,6 +69,10 @@ describe('Testing "Pokedex.js" file:', () => {
   });
 
   describe('Pokedex must contain filter buttons', () => {
+    const types = [];
+    pokemons.forEach((pokemon) => !types.includes(pokemon.type)
+    && types.push(pokemon.type));
+
     test('When a type button is selected, Pokedex should mark that only pokemon type',
       () => {
         renderWithRouter(
@@ -77,10 +81,6 @@ describe('Testing "Pokedex.js" file:', () => {
             isPokemonFavoriteById={ favoritePokemonsById }
           />,
         );
-        // Array de tipos:
-        const types = [];
-        pokemons.forEach((pokemon) => !types.includes(pokemon.type)
-      && types.push(pokemon.type));
 
         const btnFilters = screen.getAllByTestId('pokemon-type-button');
         const nextBtn = screen.getByTestId('next-pokemon');
@@ -103,5 +103,70 @@ describe('Testing "Pokedex.js" file:', () => {
           });
         });
       });
+    test('Button text must be the same as pokemon type. Eg: Psychic', () => {
+      renderWithRouter(
+        <Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ favoritePokemonsById }
+        />,
+      );
+
+      const btnFilters = screen.getAllByTestId('pokemon-type-button');
+
+      btnFilters.forEach((btnFilter) => {
+        fireEvent.click(btnFilter);
+        const typeName = screen.getByTestId('pokemonType').innerHTML;
+        expect(btnFilter).toHaveTextContent(typeName);
+      });
+    });
+  });
+
+  describe('Pokedex must contain a button to reset filtering', () => {
+    test('Button text must be "All"', () => {
+      renderWithRouter(
+        <Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ favoritePokemonsById }
+        />,
+      );
+      const resetBtn = screen.getByRole('button', { name: 'All' });
+      expect(resetBtn).toBeInTheDocument();
+    });
+
+    test(`When this button is clicked, the pokemons
+    must be displayed without filtering`, () => {
+      renderWithRouter(
+        <Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ favoritePokemonsById }
+        />,
+      );
+      const resetBtn = screen.getByRole('button', { name: 'All' });
+      fireEvent.click(resetBtn);
+
+      pokemons.forEach((pokemon) => {
+        const pokemonDisplayed = screen.getByText(pokemon.name);
+        expect(pokemonDisplayed).toBeInTheDocument();
+
+        const nextBtn = screen.getByTestId('next-pokemon');
+        fireEvent.click(nextBtn);
+      });
+    });
+
+    test('When the home page is loaded, the selected option must be "All" button', () => {
+      renderWithRouter(
+        <Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ favoritePokemonsById }
+        />,
+      );
+      pokemons.forEach((pokemon) => {
+        const pokemonDisplayed = screen.getByText(pokemon.name);
+        expect(pokemonDisplayed).toBeInTheDocument();
+
+        const nextBtn = screen.getByTestId('next-pokemon');
+        fireEvent.click(nextBtn);
+      });
+    });
   });
 });
