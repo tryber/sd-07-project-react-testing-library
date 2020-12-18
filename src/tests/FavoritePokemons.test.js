@@ -18,7 +18,7 @@ describe('Testing "FavoritePokemons.js" file:', () => {
     const pokemon1 = pokemons.find((pokemon) => pokemon.id === id1);
     const pokemon2 = pokemons.find((pokemon) => pokemon.id === id2);
     const favoritePokemons = [pokemon1, pokemon2];
-    // Desenvolvimento a seguir adaptado a partir da solução feita por Dan:
+    // Linha a seguir adaptada a partir da solução feita por Dan:
     renderWithRouter(<FavoritePokemons pokemons={ favoritePokemons } />);
     const pikachu = screen.queryByText('Pikachu');
     expect(pikachu).toBeInTheDocument();

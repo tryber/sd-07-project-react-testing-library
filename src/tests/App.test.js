@@ -1,5 +1,4 @@
 import React from 'react';
-// import { MemoryRouter } from 'react-router-dom';
 import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
@@ -23,14 +22,16 @@ describe('Testing "App.js" file:', () => {
 
   it('Should redirect to the home page when the "Home" link is clicked', () => {
     const { history } = renderWithRouter(<App />);
-    fireEvent.click(screen.getByText('Home'));
+    const home = screen.getByText('Home');
+    fireEvent.click(home);
     const path = history.location.pathname;
     expect(path).toBe('/');
   });
 
   it('Should redirect to the about page when the "About" link is clicked', () => {
     const { history } = renderWithRouter(<App />);
-    fireEvent.click(screen.getByText('About'));
+    const about = screen.getByText('About');
+    fireEvent.click(about);
     const path = history.location.pathname;
     expect(path).toBe('/about');
   });
@@ -38,7 +39,8 @@ describe('Testing "App.js" file:', () => {
   it('Should redirect to favorite pokemons page when "Favorite Pokémons" link is clicked',
     () => {
       const { history } = renderWithRouter(<App />);
-      fireEvent.click(screen.getByText('Favorite Pokémons'));
+      const favoritePokemons = screen.getByText('Favorite Pokémons');
+      fireEvent.click(favoritePokemons);
       const path = history.location.pathname;
       expect(path).toBe('/favorites');
     });

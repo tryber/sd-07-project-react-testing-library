@@ -8,8 +8,9 @@ describe('Testing "NotFound.js" file:', () => {
   "Page requested not found 😭"`, () => {
     const { history } = renderWithRouter(<NotFound />);
     history.push('/not/found');
-    const noMatch = screen.getByText('Page requested not found');
-    expect(noMatch).toBeInTheDocument();
+    const h2 = screen.getByRole('heading', { level: 2 });
+    expect(h2).toBeInTheDocument();
+    expect(h2.textContent).toContain('Page requested not found');
   });
 
   it('Should exhibit a specific image', () => {
@@ -17,6 +18,7 @@ describe('Testing "NotFound.js" file:', () => {
     renderWithRouter(<NotFound />);
     const alt = 'Pikachu crying because the page requested was not found';
     const img = screen.getByAltText(alt);
+    expect(img).toBeInTheDocument();
     expect(img.src).toBe(source);
   });
 });

@@ -13,6 +13,7 @@ describe('Testing "About.js" file:', () => {
   it('Should contain heading h2 with text "About Pokédex"', () => {
     renderWithRouter(<About />);
     const h2 = screen.getByRole('heading', { level: 2 });
+    expect(h2).toBeInTheDocument();
     expect(h2.textContent).toContain('About Pokédex');
   });
 
@@ -21,10 +22,12 @@ describe('Testing "About.js" file:', () => {
       renderWithRouter(<About />);
       const text1 = /This application simulates a Pokédex,/i;
       const p1 = screen.getByText(text1);
+      expect(p1).toBeInTheDocument();
       expect(p1.tagName.toLowerCase()).toBe('p');
 
       const text2 = /One can filter Pokémons by type, and see more details for each one/i;
       const p2 = screen.getByText(text2);
+      expect(p2).toBeInTheDocument();
       expect(p2.tagName.toLowerCase()).toBe('p');
     });
 
@@ -32,6 +35,7 @@ describe('Testing "About.js" file:', () => {
     const source = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     renderWithRouter(<About />);
     const img = screen.getByRole('img', { className: 'pokedex-image' });
+    expect(img).toBeInTheDocument();
     expect(img.src).toBe(source);
   });
 });
