@@ -20,5 +20,23 @@ test('shows the Pokédex when the route is `/`', () => {
     </MemoryRouter>,
   );
 
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  const subtitle = getByText(/Encountered pokémons/i);
+  expect(subtitle).toBeInTheDocument();
 });
+
+test('if aplication top contains this links: "Home", "About", "Favorite Pokémons"',
+  () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+
+    const head = getByText(/Home/i);
+    const about = getByText(/About/i);
+    const favoritePokemos = getByText(/Favorite Pokémons/i);
+
+    expect(head).toBeInTheDocument();
+    expect(about).toBeInTheDocument();
+    expect(favoritePokemos).toBeInTheDocument();
+  });
