@@ -10,16 +10,22 @@ describe('Testing "Pokedex.js" file:', () => {
     favoritePokemonsById[pokemon.id] = false;
   });
 
-  it('Should contain h2 heading with text "Encountered pokémons"', () => {
-    renderWithRouter(
-      <Pokedex
-        pokemons={ pokemons }
-        isPokemonFavoriteById={ favoritePokemonsById }
-      />, // App.js
-    );
-    const h2 = screen.getByRole('heading', { level: 2 });
-    expect(h2).toBeInTheDocument();
-    expect(h2).toHaveTextContent('Encountered pokémons');
+  const types = [];
+  pokemons.forEach((pokemon) => !types.includes(pokemon.type)
+    && types.push(pokemon.type));
+
+  describe('There must be a element with a description', () => {
+    it('Should contain h2 heading with text "Encountered pokémons"', () => {
+      renderWithRouter(
+        <Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ favoritePokemonsById }
+        />, // App.js
+      );
+      const h2 = screen.getByRole('heading', { level: 2 });
+      expect(h2).toBeInTheDocument();
+      expect(h2).toHaveTextContent('Encountered pokémons');
+    });
   });
 
   describe(`When the button "Próximo pokémon" is clicked,
@@ -36,8 +42,8 @@ describe('Testing "Pokedex.js" file:', () => {
       expect(nextBtn).toHaveTextContent('Próximo pokémon');
     });
 
-    test(`Each pokemon must be exhibited when the button is clicked.
-      When the button is clicked at the last pokemon, the first pokemon must be returned`,
+    test(`Each pokemon must be exhibited when the button is clicked. When the button
+      is clicked at the last pokemon, the first pokemon must be returned`,
     () => {
       renderWithRouter(
         <Pokedex
@@ -56,53 +62,52 @@ describe('Testing "Pokedex.js" file:', () => {
     });
   });
 
-  it('Should display only one pokemon at a time', () => {
-    renderWithRouter(
-      <Pokedex
-        pokemons={ pokemons }
-        isPokemonFavoriteById={ favoritePokemonsById }
-      />,
-    );
-    const valueExpected = 1;
-    const pokemonOnScreen = screen.getAllByTestId('pokemon-name');
-    expect(pokemonOnScreen).toHaveLength(valueExpected);
+  describe('Pokedex must exhibit one pokemon', () => {
+    it('Should display only one pokemon at a time', () => {
+      renderWithRouter(
+        <Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ favoritePokemonsById }
+        />,
+      );
+      const valueExpected = 1;
+      const pokemonOnScreen = screen.getAllByTestId('pokemon-name');
+      expect(pokemonOnScreen).toHaveLength(valueExpected);
+    });
   });
 
   describe('Pokedex must contain filter buttons', () => {
-    const types = [];
-    pokemons.forEach((pokemon) => !types.includes(pokemon.type)
-    && types.push(pokemon.type));
+    test(`When a type button is selected, Pokedex should only
+    exhibit the pokemons of that type`,
+    () => {
+      renderWithRouter(
+        <Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ favoritePokemonsById }
+        />,
+      );
 
-    test('When a type button is selected, Pokedex should mark that only pokemon type',
-      () => {
-        renderWithRouter(
-          <Pokedex
-            pokemons={ pokemons }
-            isPokemonFavoriteById={ favoritePokemonsById }
-          />,
-        );
+      const btnFilters = screen.getAllByTestId('pokemon-type-button');
+      const nextBtn = screen.getByTestId('next-pokemon');
 
-        const btnFilters = screen.getAllByTestId('pokemon-type-button');
-        const nextBtn = screen.getByTestId('next-pokemon');
+      types.forEach((type) => {
+        const btn = btnFilters.find((item) => item.textContent === type);
+        expect(btn).toHaveTextContent(type);
 
-        types.forEach((type) => {
-          const btn = btnFilters.find((item) => item.textContent === type);
-          expect(btn).toHaveTextContent(type);
+        fireEvent.click(btn);
 
-          fireEvent.click(btn);
+        const filteredPokemons = pokemons.filter((pokemon) => pokemon.type === type);
+        filteredPokemons.forEach((pokemon) => {
+          const pokemonDisplayed = screen.getByText(pokemon.name);
+          expect(pokemonDisplayed).toBeInTheDocument();
 
-          const filteredPokemons = pokemons.filter((pokemon) => pokemon.type === type);
-          filteredPokemons.forEach((pokemon) => {
-            const pokemonDisplayed = screen.getByText(pokemon.name);
-            expect(pokemonDisplayed).toBeInTheDocument();
-
-            // Linha a seguir adaptada a partir da solução do site:
-            // https://stackoverflow.com/questions/13831601/disabling-and-enabling-a-html-input-button
-            if (!nextBtn.disabled) fireEvent.click(nextBtn);
-            // !nextBtn.disabled && fireEvent.click(nextBtn);
-          });
+          // Linha a seguir adaptada a partir da solução do site:
+          // https://stackoverflow.com/questions/13831601/disabling-and-enabling-a-html-input-button
+          if (!nextBtn.disabled) fireEvent.click(nextBtn);
+          // !nextBtn.disabled && fireEvent.click(nextBtn);
         });
       });
+    });
     test('Button text must be the same as pokemon type. Eg: Psychic', () => {
       renderWithRouter(
         <Pokedex
@@ -166,6 +171,34 @@ describe('Testing "Pokedex.js" file:', () => {
 
         const nextBtn = screen.getByTestId('next-pokemon');
         fireEvent.click(nextBtn);
+      });
+    });
+  });
+
+  describe('Testing the filtered list on Pokedex', () => {
+    test(`When the filtered list displays only one pokemon,
+    the "Próximo pokémon" button must be disabled`, () => {
+      renderWithRouter(
+        <Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ favoritePokemonsById }
+        />,
+      );
+      const onlyOnePokemon = 1;
+      const nextBtn = screen.getByTestId('next-pokemon');
+      const btnFilters = screen.getAllByTestId('pokemon-type-button');
+
+      types.forEach((type) => {
+        const btn = btnFilters.find((item) => item.textContent === type);
+        fireEvent.click(btn);
+
+        const filteredPokemons = pokemons.filter((pokemon) => pokemon.type === type);
+
+        filteredPokemons.forEach(() => {
+          if (filteredPokemons.length === onlyOnePokemon) {
+            expect(nextBtn.disabled).toBeTruthy();
+          }
+        });
       });
     });
   });
