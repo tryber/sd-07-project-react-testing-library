@@ -22,6 +22,7 @@ describe('Testing "Pokedex.js" file:', () => {
           isPokemonFavoriteById={ favoritePokemonsById }
         />, // App.js
       );
+
       const h2 = screen.getByRole('heading', { level: 2 });
       expect(h2).toBeInTheDocument();
       expect(h2).toHaveTextContent('Encountered pokémons');
