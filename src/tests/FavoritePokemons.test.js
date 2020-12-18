@@ -8,12 +8,12 @@ describe('Testando o arquivo FavoritePokemons.js', () => {
     const { getByText } = RenderWithRouter(<FavoritePokemons />);
     expect(getByText(/No favorite pokemon found/i)).toBeInTheDocument();
 });
-    test('é exibido todos os cards de pokémons favoritados.', () => {
-        const { getByText } = RenderWithRouter(<App />);
-        fireEvent.click(getByText(/More details/i));
-        fireEvent.click(getByText(/pokémon favoritado?/i));
-        const zero = 0;
-        const { getAllByTestId } = RenderWithRouter(<FavoritePokemons />);
-        expect(getAllByTestId(/pokemon-name/i).length).not.toBe(zero);
-    });
+test('é exibido todos os cards de pokémons favoritados.', () => {
+    const { getByText } = RenderWithRouter(<App />);
+    fireEvent.click(getByText(/More details/i));
+    fireEvent.click(getByText(/pokémon favoritado?/i));
+    const zero = 0;
+    const { getAllByTestId } = RenderWithRouter(<FavoritePokemons />);
+    expect(getAllByTestId(/pokemon-name/i).length).not.toBe(zero);
+});
 });
