@@ -54,9 +54,9 @@ describe('Testing Pokemon.js file:', () => {
         renderWithRouter(<App />);
 
         pokemons.forEach((pokemon) => {
-          const pokemonImage = screen.getByRole('img',
-            { src: pokemon.image, alt: `${pokemon.name} sprite` });
+          const pokemonImage = screen.getByAltText(`${pokemon.name} sprite`);
           expect(pokemonImage).toBeInTheDocument();
+          expect(pokemonImage.src).toMatch(pokemon.image);
 
           const nextBtn = screen.getByTestId('next-pokemon');
           fireEvent.click(nextBtn);
@@ -112,15 +112,15 @@ describe('Testing Pokemon.js file:', () => {
       renderWithRouter(<App />);
 
       const pokemonLink = screen.getByRole('link', { name: 'More details' });
+
       fireEvent.click(pokemonLink);
+      const checkbox = screen.getByRole('checkbox',
+        { name: 'Pokémon favoritado?' });
+      expect(checkbox).toBeInTheDocument();
 
-      let selectFavoritePokemon = screen.getByRole('checkbox', { checked: false });
-      expect(selectFavoritePokemon).toBeInTheDocument();
-      fireEvent.click(selectFavoritePokemon);
-      selectFavoritePokemon = screen.getByRole('checkbox', { checked: true });
-      expect(selectFavoritePokemon).toBeInTheDocument();
-
-      const starIcon = screen.getByAltText('Pikachu is marked as favorite');
+      fireEvent.click(checkbox);
+      const starIcon = screen
+        .getByAltText(`${pokemons[0].name} is marked as favorite`);
       expect(starIcon).toBeInTheDocument();
       expect(starIcon.src).toMatch('/star-icon.svg');
     });
