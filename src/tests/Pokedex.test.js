@@ -81,4 +81,3 @@ describe('Testando o arquivo Pokedex.js', () => {
     expect(buttonNext).toBeInTheDocument();
   });
 });
-
