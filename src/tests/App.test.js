@@ -15,7 +15,8 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 }); */
 
-describe('Teste se a página principal da Pokédex é renderizada ao carregar a aplicação no caminho de URL /', () => {
+describe('Teste se a página principal da Pokédex '
++ 'é renderizada ao carregar a aplicação no caminho de URL /', () => {
   it('shows the Pokédex when the route is `/`', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={ ['/'] }>
@@ -27,7 +28,8 @@ describe('Teste se a página principal da Pokédex é renderizada ao carregar a 
   });
 });
 
-describe('Teste se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
+describe('Teste se o topo da aplicação contém um '
++ 'conjunto fixo de links de navegação', () => {
   it('O primeiro link deve possuir o texto Home', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={ ['/'] }>
@@ -59,7 +61,9 @@ describe('Teste se o topo da aplicação contém um conjunto fixo de links de na
   });
 });
 
-describe('Teste se a aplicação é redirecionada para a página inicial, na URL ao clicar no link Home da barra de navegação.', () => {
+describe('Teste se a aplicação é redirecionada para'
++ 'a página inicial, na URL ao clicar no link Home'
++ 'da barra de navegação.', () => {
   it('Deve renderizar o componente Home', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Home/i));
