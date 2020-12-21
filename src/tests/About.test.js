@@ -32,7 +32,7 @@ describe('Testando o arquivo About.js', () => {
 
     const h2 = getByTestId('about-pokedex');
 
-    expect(h2).toHaveTextContent('About Pokédex');
+    expect(h2).toHaveTextContent(/About Pokédex/i);
   });
 
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex', () => {
