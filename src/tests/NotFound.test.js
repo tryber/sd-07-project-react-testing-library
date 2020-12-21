@@ -27,10 +27,10 @@ describe('Testando o arquivo NotFound.js', () => {
   });
 
   it('Teste se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {
-    const { getAllByRole } = render(<NotFound />);
+    const { getByAltText } = render(<NotFound />);
 
-    const image = getAllByRole('img', { src: 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif' });
+    const image = getByAltText('Pikachu crying because the page requested was not found');
 
-    expect(image[1]).toBeInTheDocument();
+    expect(image).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
