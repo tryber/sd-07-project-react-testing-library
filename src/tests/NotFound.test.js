@@ -21,7 +21,7 @@ describe('Testando o arquivo NotFound.js', () => {
   it('Teste se página contém um heading h2 com o texto Page requested not found', () => {
     const { getByText } = render(<NotFound />);
 
-    const h2 = getByText(/Page requested not found /i);
+    const h2 = getByText(/Page requested not found 😭/i);
 
     expect(h2).toBeInTheDocument();
   });
