@@ -19,9 +19,9 @@ describe('Teste se a aplicação é redirecionada para a'
 
 describe('Testando o arquivo NotFound.js', () => {
   it('Teste se página contém um heading h2 com o texto Page requested not found', () => {
-    const { getByText } = render(<NotFound />);
+    const { getByRole } = render(<NotFound />);
 
-    const h2 = getByText(/Page requested not found 😭/i);
+    const h2 = getByRole('heading', { name: 'Page requested not found Crying emoji' });
 
     expect(h2).toBeInTheDocument();
   });
