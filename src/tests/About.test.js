@@ -3,7 +3,6 @@ import { About } from '../components';
 import renderWhitRouter from '../RenderWhitRouter';
 
 describe('Test whether a page contains information about a Pokédex', () => {
-
   it('Test wheter page contain h2 whit text About Pokedex.', () => {
     const { getByText } = renderWhitRouter(<About />);
     const header = getByText(/About Pokédex/i);
