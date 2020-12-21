@@ -21,9 +21,9 @@ describe('Testando o arquivo NotFound.js', () => {
   it('Teste se página contém um heading h2 com o texto Page requested not found', () => {
     const { getByRole } = render(<NotFound />);
 
-    const h2 = getByRole('heading', { name: 'Page requested not found Crying emoji' });
+    const h2 = getByRole('heading');
 
-    expect(h2).toBeInTheDocument();
+    expect(h2).toBeInTheDocument(/Page requested not found/i);
   });
 
   it('Teste se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {

@@ -3,7 +3,7 @@ import './not-found.css';
 
 const NotFound = () => (
   <div className="not-found">
-    <h2>
+    <h2 role="heading">
       {`Page requested ` + `not found`}
       <span role="img" aria-label="Crying emoji"> 😭</span>
     </h2>
