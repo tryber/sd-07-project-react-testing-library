@@ -11,6 +11,6 @@ describe('Teste se a aplicação é redirecionada para a'
 
     const noMatch = getByText(/Page requested not found/i);
 
-    expect(noMatch).toBeInTheDocument();
+    expect(noMatch).toBeInTheDocument('About Pokédex');
   });
 });
