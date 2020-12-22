@@ -125,7 +125,7 @@ describe('testing Pokedex.js ⌐> Checks if:', () => {
     const mockFavById = { 23: true, 25: true, 4: false };
     const mockById = Object.keys(mockFavById).map((key) => parseInt(key, 10));
     const mockPokemons = data.filter((pokemon) => mockById.includes(pokemon.id));
-    const { getByTestId, getByRole } = renderWithRouter(
+    const { getByRole } = renderWithRouter(
       <Pokedex pokemons={ mockPokemons } isPokemonFavoriteById={ mockFavById } />,
     );
     const filterRole = getByRole('button', { name: /all/i });
