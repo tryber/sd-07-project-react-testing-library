@@ -20,6 +20,7 @@ describe('Testing favorite pokemons', () => {
       getByText,
       getAllByTestId,
       getByTestId,
+      getByLabelText,
     } = renderWhitRouter(<App />);
 
     const home = getByText(/Home/i);
