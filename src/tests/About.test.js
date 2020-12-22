@@ -36,13 +36,16 @@ describe('Testando o arquivo About.js', () => {
   });
 
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex', () => {
-    const { getAllByTestId } = render(<About />);
+    const { getByText } = render(<About />);
 
-    const p = getAllByTestId('about-pokedex-text');
+    const textOne = getByText('This application simulates a Pokédex, '
+    + 'a digital encliclopedia containing all Pokémons');
 
-    const numberParagraph = 2;
+    const textTwo = getByText('One can filter Pokémons by type, '
+    + 'and see more details for each one of them');
 
-    expect(p.length).toBe(numberParagraph);
+    expect(textOne).toBeInTheDocument();
+    expect(textTwo).toBeInTheDocument();
   });
 
   it('Teste se a página contém a imagem de uma Pokédex', () => {
