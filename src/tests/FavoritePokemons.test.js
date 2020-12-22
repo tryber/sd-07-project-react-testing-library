@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getByLabelText } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/dom';
 import data from '../data';
 import App from '../App';
 import renderWhitRouter from '../RenderWhitRouter';
@@ -20,7 +20,6 @@ describe('Testing favorite pokemons', () => {
       getByText,
       getAllByTestId,
       getByTestId,
-      getByLabelText,
     } = renderWhitRouter(<App />);
 
     const home = getByText(/Home/i);
