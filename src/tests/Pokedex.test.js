@@ -130,8 +130,6 @@ describe('testing Pokedex.js ⌐> Checks if:', () => {
     );
     const filterRole = getByRole('button', { name: /all/i });
     expect(filterRole).toBeInTheDocument();
-    const filterTestId = getByTestId('');
-    expect(filterTestId).toBeInTheDocument();
   });
 
   test('2rd: when "All" is clicked the filtering will be disabled', () => {
