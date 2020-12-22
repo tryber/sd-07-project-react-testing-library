@@ -7,7 +7,7 @@ import renderWhitRouter from '../RenderWhitRouter';
 describe('Testing favorite pokemons', () => {
   it('Testing if the message No favorite pokemon found is displayed', () => {
     const { getByText } = renderWhitRouter(<App />);
-    const favoritePokemons = getByText('/Favorite Pokemons/i');
+    const favoritePokemons = getByText(/Favorite Pokémons/i);
     fireEvent.click(favoritePokemons);
 
     const noFavorite = getByText('No favorite pokemon found');
@@ -20,19 +20,20 @@ describe('Testing favorite pokemons', () => {
       getByText,
       getAllByTestId,
       getByTestId,
+      getByLabelText,
     } = renderWhitRouter(<App />);
 
     const home = getByText(/Home/i);
     fireEvent.click(home);
 
     const buttons = getAllByTestId('pokemon-type-button');
-    const butonNumber = 1;
+    const butonNumber = 2;
     fireEvent.click(buttons[butonNumber]);
 
     const moreDetail = getByText(/More details/i);
-    fireEvent(moreDetail);
+    fireEvent.click(moreDetail);
 
-    const checkBox = getByLabelText('Pokemon favoritado?');
+    const checkBox = getByLabelText(/Pokémon favoritado?/i);
     fireEvent.click(checkBox);
 
     const pokemon = getByTestId('pokemon-name').textContent;
