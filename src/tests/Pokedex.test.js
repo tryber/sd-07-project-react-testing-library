@@ -4,12 +4,9 @@ import renderWithRouter from '../renderWhithRouter';
 import { Pokedex } from '../components';
 import data from '../data';
 
-describe('testing Pokedex.js ⌐> Checks if:', () => {
+describe('Testing Pokedex.js ⌐> Checks if:', () => {
   test('There is a heading whith message "Encountered pokémons"', () => {
-    const mockFavById = {
-      25: true,
-      23: true,
-    };
+    const mockFavById = { 25: true, 23: true };
     const { container, getByText, getByRole } = renderWithRouter(
       <Pokedex pokemons={ data } isPokemonFavoriteById={ mockFavById } />,
     );
@@ -84,7 +81,8 @@ describe('testing Pokedex.js ⌐> Checks if:', () => {
     const mockFavById = { 78: true, 25: true, 4: false };
     const mockById = Object.keys(mockFavById).map((key) => parseInt(key, 10));
     const mockPokemons = data.filter((pokemon) => mockById.includes(pokemon.id));
-    const mockTypes = mockPokemons.reduce((types, { type }) => [...types, type], []);
+    const mockTypes = [...new Set(mockPokemons
+      .reduce((types, { type }) => [...types, type], []))];
     const mockPokesByTypes = (hereType) => mockPokemons
       .filter((pokemon) => hereType
         .includes(pokemon.type));
@@ -108,15 +106,18 @@ describe('testing Pokedex.js ⌐> Checks if:', () => {
     const mockFavById = { 78: true, 25: true, 4: false };
     const mockById = Object.keys(mockFavById).map((key) => parseInt(key, 10));
     const mockPokemons = data.filter((pokemon) => mockById.includes(pokemon.id));
-    const mockTypes = mockPokemons.reduce((types, { type }) => [...types, type], []);
+    const mockTypes = [...new Set(mockPokemons
+      .reduce((types, { type }) => [...types, type], []))];
 
-    const { getByRole } = renderWithRouter(
+    const { getAllByTestId, getByRole } = renderWithRouter(
       <Pokedex pokemons={ mockPokemons } isPokemonFavoriteById={ mockFavById } />,
     );
 
     mockTypes.forEach((type) => {
       const pokeType = getByRole('button', { name: type });
       expect(pokeType).toBeInTheDocument();
+      const pokeTypeButton = getAllByTestId(/(pokemon-type-button)/i);
+      expect(pokeTypeButton).toHaveLength(mockTypes.length);
     });
   });
 
@@ -125,20 +126,19 @@ describe('testing Pokedex.js ⌐> Checks if:', () => {
     const mockFavById = { 23: true, 25: true, 4: false };
     const mockById = Object.keys(mockFavById).map((key) => parseInt(key, 10));
     const mockPokemons = data.filter((pokemon) => mockById.includes(pokemon.id));
-    const { getByTestId, getByRole } = renderWithRouter(
+    const { getByRole } = renderWithRouter(
       <Pokedex pokemons={ mockPokemons } isPokemonFavoriteById={ mockFavById } />,
     );
     const filterRole = getByRole('button', { name: /all/i });
     expect(filterRole).toBeInTheDocument();
-    const filterTestId = getByTestId('');
-    expect(filterTestId).toBeInTheDocument();
   });
 
   test('2rd: when "All" is clicked the filtering will be disabled', () => {
     const mockFavById = { 78: true, 25: true, 4: false };
     const mockById = Object.keys(mockFavById).map((key) => parseInt(key, 10));
     const mockPokemons = data.filter((pokemon) => mockById.includes(pokemon.id));
-    const mockTypes = mockPokemons.reduce((types, { type }) => [...types, type], []);
+    const mockTypes = [...new Set(mockPokemons
+      .reduce((types, { type }) => [...types, type], []))];
 
     const { container, getByRole } = renderWithRouter(
       <Pokedex pokemons={ mockPokemons } isPokemonFavoriteById={ mockFavById } />,
@@ -146,7 +146,7 @@ describe('testing Pokedex.js ⌐> Checks if:', () => {
 
     fireEvent.click(getByRole('button', { name: /all/i }));
     const classButton = container.querySelectorAll('.filter-button');
-    expect(classButton).toHaveLength(mockTypes.length);
+    expect(classButton).toHaveLength(mockTypes.length + 1);
   });
 
   test('3rd: "All" may be the selected filter when loaded', () => {
