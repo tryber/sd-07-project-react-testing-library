@@ -9,7 +9,7 @@ describe('Testing Pokemons.js ⌐> Checks if:', () => {
     test('Test if there is a link "/pokemons/<id>" to show "pokemon details"', () => {});
     test('Test if when clicked the redirection to link is made', () => {});
     test('Test if the URL shown is changed ', () => {});
-});
+  });
   describe('Test if there are stars on favorited pokemons:', () => {
     test('the icon must be a image with source path "/star-icon.svg"', () => {});
     test('the icon must have alt whith "pokemon" is marked as favorite', () => {});
