@@ -2,20 +2,22 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import NotFound from '../components/NotFound';
+import App from '../App';
 
 describe('quarto requisito', () => {
   test('se página contém um heading h2 com o texto Page requested not found', () => {
     const history = createMemoryHistory();
-    const { getByText, getByRole } = render(
+    const { getByText, getAllByRole } = render(
       <Router history={ history }>
-        <NotFound />
+        <App />
       </Router>,
     );
 
-    const h2Tag = getByRole('heading', { level: 2 });
+    const notFound = '/xablau';
+    history.push(notFound);
+    const h2Tag = getAllByRole('heading', { level: 2 });
     const h2Text = getByText('Page requested not found');
-    expect(h2Tag).toBeInTheDocument();
+    expect(h2Tag[1]).toBeInTheDocument();
     expect(h2Text).toBeInTheDocument();
   });
 
@@ -23,10 +25,11 @@ describe('quarto requisito', () => {
     const history = createMemoryHistory();
     const { getAllByRole, getByAltText } = render(
       <Router history={ history }>
-        <NotFound />
+        <App />
       </Router>,
     );
-
+    const notFound = '/xablau';
+    history.push(notFound);
     const imgAlt = getByAltText(
       'Pikachu crying because the page requested was not found',
     );
