@@ -28,11 +28,11 @@ describe('Testando o arquivo About.js', () => {
   });
 
   it('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
-    const { getByTestId } = render(<About />);
+    const { getByText } = render(<About />);
 
-    const h2 = getByTestId('about-pokedex');
+    const h2 = getByText('About Pokédex');
 
-    expect(h2).toHaveTextContent(/About Pokédex/i);
+    expect(h2).toBeInTheDocument();
   });
 
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex', () => {
