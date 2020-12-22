@@ -4,7 +4,7 @@ import renderWithRouter from '../renderWhithRouter';
 import { FavoritePokemons } from '../components';
 import data from '../data';
 
-describe('testing FavoritePokemons.js Checks if:', () => {
+describe('Testing FavoritePokemons.js <¬ Checks if:', () => {
   test('the message "No favorite pokemon found"', () => {
     const { getByText } = render(<FavoritePokemons pokemons={ [] } />);
     const noFavorite = getByText(/(No favorite) (pokemon found)/i);

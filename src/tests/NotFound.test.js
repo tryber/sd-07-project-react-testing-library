@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { NotFound } from '../components';
 
-describe('testing NotFound.js Checks if:', () => {
+describe('Testing NotFound.js ⌐> Checks if:', () => {
   test('there is a heading whith message "Page requested not found 😭"', () => {
     const { container, getByText, getByRole } = render(<NotFound />);
     const heading = getByRole(/heading/i);

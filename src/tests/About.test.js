@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import renderWithRouter from '../renderWhithRouter';
 import { About } from '../components';
 
-describe('testing About.js. Checks if:', () => {
+describe('Testing About.js. <¬ Checks if:', () => {
   test('the page contains the informations about Pokedéx', () => {
     const { history } = renderWithRouter(<About />);
     history.push('/about');

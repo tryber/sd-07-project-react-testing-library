@@ -3,7 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWhithRouter';
 import App from '../App';
 
-describe('testing App.js', () => {
+describe('Testing App.js <¬ Checks if:', () => {
   test('if Renders a heading with the text `Pokédex`', () => {
     const { getByText } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
