@@ -25,7 +25,6 @@ class App extends Component {
       acc[pokemon.id] = favoritePokemonIds.includes(pokemon.id);
       return acc;
     }, {});
-
     return isPokemonFavorite;
   }
 
@@ -53,7 +52,6 @@ class App extends Component {
 
   renderPokemonDetails(match) {
     const { isPokemonFavoriteById } = this.state;
-
     return (
       <PokemonDetails
         isPokemonFavoriteById={ isPokemonFavoriteById }
