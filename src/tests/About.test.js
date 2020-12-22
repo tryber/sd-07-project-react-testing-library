@@ -28,9 +28,9 @@ describe('Testando o arquivo About.js', () => {
   });
 
   it('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
-    const { getByText } = render(<About />);
+    const { getByRole } = render(<About />);
 
-    const h2 = getByText('About Pokédex');
+    const h2 = getByRole('heading', { name: 'About Pokédex' });
 
     expect(h2).toBeInTheDocument();
   });
