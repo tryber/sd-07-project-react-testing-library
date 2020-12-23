@@ -69,26 +69,26 @@ describe('quinto requisito', () => {
 
   test('Teste se a Pokédex tem os botões de filtro', () => {
     const history = createMemoryHistory();
-    const { getByText, getAllByText, getByRole, getByTestId } = render(
+    const { getByText, getByTestId, getAllByTestId } = render(
       <Router history={ history }>
         <App />
       </Router>,
     );
 
+    const SETE = 7;
+    const buttonFilter = getAllByTestId('pokemon-type-button');
+    expect(buttonFilter.length).toBe(SETE);
     // O texto do botão deve corresponder ao nome do tipo, ex. Psychic;
-    const buttonToPsychic = getByRole('button', { name: 'Psychic' });
-    expect(buttonToPsychic).toBeInTheDocument();
-    expect(buttonToPsychic).toHaveTextContent('Psychic');
+    expect(buttonFilter[4]).toHaveTextContent('Psychic');
+    fireEvent.click(buttonFilter[4]);
+    expect(getByTestId('pokemonType')).toHaveTextContent('Psychic');
     // A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;
-    expect(getByText('Pikachu')).toBeInTheDocument();
-    fireEvent.click(buttonToPsychic);
     expect(getByText('Alakazam')).toBeInTheDocument();
     const buttonToNext = getByTestId('next-pokemon');
     fireEvent.click(buttonToNext);
     expect(getByText('Mew')).toBeInTheDocument();
     fireEvent.click(buttonToNext);
     expect(getByText('Alakazam')).toBeInTheDocument();
-    expect(getAllByText('Psychic')[0]).toBeInTheDocument();
   });
 
   test('Teste se a Pokédex contém um botão para resetar o filtro', () => {
