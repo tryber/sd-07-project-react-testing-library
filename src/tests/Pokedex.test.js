@@ -73,15 +73,10 @@ describe('Testando o arquivo Pokedex.js', () => {
         isPokemonFavoriteById={ favoritePokemonList }
       />,
     );
-    // Referência: Rafael Machado
-    fireEvent.click(getByText('Fire'));
-    ALL_TYPES.forEach((type) => {
-      fireEvent.click(getByText(type));
-      pokemons.filter((pokemon) => pokemon.type === type).forEach((pokemon) => {
-        expect(getByTestId('pokemon-name')).toHaveTextContent(pokemon.name);
-        fireEvent.click(getByTestId('next-pokemon'));
-      });
-    });
+
+    fireEvent.click(getByText('Bug'));
+    expect(getByText('Caterpie')).toBeInTheDocument();
+    expect(getByTestId('pokemonType').textContent).toBe('Bug');
   });
 
   it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
