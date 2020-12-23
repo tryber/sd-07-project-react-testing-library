@@ -40,6 +40,9 @@ describe('Testando o arquivo Pokedex.js', () => {
     );
 
     // Referência: Rafael Machado
+
+    expect(getByTestId('next-pokemon')).toHaveTextContent(/Próximo pokémon/i);
+
     pokemons.forEach((pokemon) => {
       expect(getByText(pokemon.name)).toBeInTheDocument();
       fireEvent.click(getByTestId('next-pokemon'));
