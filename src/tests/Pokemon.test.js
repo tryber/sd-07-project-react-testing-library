@@ -6,10 +6,10 @@ import pokemons from '../data';
 
 describe('Testando o arquivo Pokemon.js', () => {
   const pokemonCharmander = pokemons[1];
-  const { id, name } = pokemonCharmander;
+  const { id, name, image } = pokemonCharmander;
 
   it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
-    const { getByText } = renderWithRouter(
+    const { getByText, getByAltText } = renderWithRouter(
       <Pokemon
         pokemon={ pokemonCharmander }
         isFavorite={ false }
@@ -24,6 +24,7 @@ describe('Testando o arquivo Pokemon.js', () => {
         pokemonCharmander.averageWeight.measurementUnit}`,
     );
     expect(pokemonWeight).toBeInTheDocument();
+    expect(getByAltText(`${name} sprite`)).toHaveAttribute('src', `${image}`);
   });
 
   it('Teste se o card do Pokémon indicado na Pokédex'
