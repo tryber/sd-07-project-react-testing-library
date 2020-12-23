@@ -120,7 +120,7 @@ describe('quinto requisito', () => {
 
   test('Teste se é criado um botão de filtro para cada tipo de Pokémon', () => {
     const history = createMemoryHistory();
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getAllByTestId } = render(
       <Router history={ history }>
         <App />
       </Router>,
@@ -131,15 +131,18 @@ describe('quinto requisito', () => {
     const NOVE = 9;
     const allButtons = getAllByRole('button');
     expect(allButtons.length).toBe(NOVE);
-    expect(getByRole('button', { name: 'All' })).toBeInTheDocument();
-    expect(getByRole('button', { name: 'Electric' })).toBeInTheDocument();
-    expect(getByRole('button', { name: 'Fire' })).toBeInTheDocument();
-    expect(getByRole('button', { name: 'Bug' })).toBeInTheDocument();
-    expect(getByRole('button', { name: 'Poison' })).toBeInTheDocument();
-    expect(getByRole('button', { name: 'Psychic' })).toBeInTheDocument();
-    expect(getByRole('button', { name: 'Normal' })).toBeInTheDocument();
-    expect(getByRole('button', { name: 'Dragon' })).toBeInTheDocument();
-    expect(getByRole('button', { name: 'Próximo pokémon' })).toBeInTheDocument();
+    expect(allButtons[0]).toHaveTextContent('All');
+    expect(allButtons[8]).toHaveTextContent('Próximo pokémon');
+    const SETE = 7;
+    const allFilteredButtons = getAllByTestId('pokemon-type-button');
+    expect(allFilteredButtons.length).toBe(SETE);
+    expect(allFilteredButtons[0]).toHaveTextContent('Electric');
+    expect(allFilteredButtons[1]).toHaveTextContent('Fire');
+    expect(allFilteredButtons[2]).toHaveTextContent('Bug');
+    expect(allFilteredButtons[3]).toHaveTextContent('Poison');
+    expect(allFilteredButtons[4]).toHaveTextContent('Psychic');
+    expect(allFilteredButtons[5]).toHaveTextContent('Normal');
+    expect(allFilteredButtons[6]).toHaveTextContent('Dragon');
   });
 
   test('O botão Próximo deve ser desabilitado quando a lista tiver só 1 pokémon', () => {
