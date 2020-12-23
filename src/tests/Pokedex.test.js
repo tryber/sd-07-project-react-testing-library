@@ -5,7 +5,6 @@ import { Pokedex } from '../components';
 import pokemons from '../data';
 
 describe('Testando o arquivo Pokedex.js', () => {
-  // Referência: Vanessa Naara
   const favoritePokemonList = {
     4: false,
     10: false,
@@ -17,9 +16,6 @@ describe('Testando o arquivo Pokedex.js', () => {
     148: false,
     151: true,
   };
-
-  // Referência: Rafael Machado
-  const ALL_TYPES = [...new Set(pokemons.map((pokemon) => (pokemon.type)))];
 
   it('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
     const { getByRole } = renderWithRouter(
