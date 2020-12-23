@@ -25,12 +25,13 @@ describe('primeiro requisito', () => {
       </Router>,
     );
 
+    // O primeiro link deve possuir o texto Home.
     const home = getByText('Home');
     expect(home).toBeInTheDocument();
-
+    // O segundo link deve possuir o texto About.
     const about = getByText('About');
     expect(about).toBeInTheDocument();
-
+    // O terceiro link deve possuir o texto Favorite Pokémons.
     const favorite = getByText('Favorite Pokémons');
     expect(favorite).toBeInTheDocument();
   });

@@ -27,9 +27,11 @@ describe('quinto requisito', () => {
       </Router>,
     );
 
+    // O botão deve conter o texto Próximo pokémon;
     const buttonToNext = getByTestId('next-pokemon');
     expect(buttonToNext).toBeInTheDocument();
     expect(buttonToNext).toHaveTextContent('Próximo pokémon');
+    // Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar sucessivamente no botão;
     expect(getByText('Pikachu')).toBeInTheDocument();
     fireEvent.click(buttonToNext);
     expect(getByText('Charmander')).toBeInTheDocument();
@@ -47,6 +49,7 @@ describe('quinto requisito', () => {
     expect(getByText('Snorlax')).toBeInTheDocument();
     fireEvent.click(buttonToNext);
     expect(getByText('Dragonair')).toBeInTheDocument();
+    // O primeiro Pokémon da lista deve ser mostrado ao clicar no botão, se estiver no último Pokémon da lista;
     fireEvent.click(buttonToNext);
     expect(getByText('Pikachu')).toBeInTheDocument();
   });
@@ -72,9 +75,11 @@ describe('quinto requisito', () => {
       </Router>,
     );
 
+    // O texto do botão deve corresponder ao nome do tipo, ex. Psychic;
     const buttonToPsychic = getByRole('button', { name: 'Psychic' });
     expect(buttonToPsychic).toBeInTheDocument();
     expect(buttonToPsychic).toHaveTextContent('Psychic');
+    // A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;
     expect(getByText('Pikachu')).toBeInTheDocument();
     fireEvent.click(buttonToPsychic);
     expect(getByText('Alakazam')).toBeInTheDocument();
@@ -93,9 +98,13 @@ describe('quinto requisito', () => {
         <App />
       </Router>,
     );
+
+    // O texto do botão deve ser All;
     const buttonToReset = getByRole('button', { name: 'All' });
     expect(buttonToReset).toBeInTheDocument();
     expect(buttonToReset).toHaveTextContent('All');
+    // A Pokedéx deverá mostrar os Pokémons normalmente (sem filtros) quando o botão All for clicado;
+    // Ao carregar a página, o filtro selecionado deverá ser All;
     expect(getByText('Pikachu')).toBeInTheDocument();
     const buttonToFire = getByRole('button', { name: 'Fire' });
     fireEvent.click(buttonToFire);
@@ -116,7 +125,9 @@ describe('quinto requisito', () => {
         <App />
       </Router>,
     );
-
+    // Os botões de filtragem devem ser dinâmicos;
+    // Deve existir um botão de filtragem para cada tipo de Pokémon disponível nos dados, sem repetição. Ou seja, a sua Pokédex deve possuir pokémons do tipo Fire, Psychic, Electric e Normal;
+    // Deve ser mostrado como opção de filtro, um botão para cada um dos tipos. Além disso, o botão All precisa estar sempre visível.
     const NOVE = 9;
     const allButtons = getAllByRole('button');
     expect(allButtons.length).toBe(NOVE);
