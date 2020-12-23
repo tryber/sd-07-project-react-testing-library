@@ -37,8 +37,8 @@ describe('Testando o arquivo PokemonDetails.js', () => {
     expect(getByRole('heading', { name: `Game Locations of ${name}` }))
       .toBeInTheDocument();
     expect(getByText('Kanto Viridian Forest')).toBeInTheDocument();
-    expect(getAllByAltText(`${name} location`)[0]).toHaveAttribute(
-      'alt', `${name} location`,
+    expect(getAllByAltText(`${name} location`)[1]).toHaveAttribute(
+      'src', 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
     );
   });
 
