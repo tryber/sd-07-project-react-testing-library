@@ -32,9 +32,11 @@ describe('Testando o arquivo FavoritePokemons.js', () => {
   });
 
   it('Teste se é exibido todos os cards de pokémons favoritados', () => {
-    renderWithRouter(<FavoritePokemons pokemons={ [pokemons[0], pokemons[1]] } />);
-
-    const { getByText } = render(<FavoritePokemons />);
+    const { getByText } = renderWithRouter(
+      <FavoritePokemons
+        pokemons={ [pokemons[0], pokemons[1]] }
+      />,
+    );
 
     const pokemonNameOne = getByText('Pikachu');
     const pokemonNameTwo = getByText('Charmander');
@@ -44,9 +46,11 @@ describe('Testando o arquivo FavoritePokemons.js', () => {
   });
 
   it('Teste se nenhum card de pokémon é exibido, se ele não estiver favoritado', () => {
-    renderWithRouter(<FavoritePokemons pokemons={ [pokemons[0]] } />);
-
-    const { queryByText } = render(<FavoritePokemons />);
+    const { queryByText } = renderWithRouter(
+      <FavoritePokemons
+        pokemons={ [pokemons[0]] }
+      />,
+    );
 
     const pokemonNotFavoite = queryByText('Dragonair');
 
