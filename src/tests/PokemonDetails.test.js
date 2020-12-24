@@ -1,6 +1,7 @@
 import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
+import { fireEvent, screen } from '@testing-library/react';
 
 describe('pokemon details works correctly', () => {
   const pokemon = {
@@ -23,11 +24,11 @@ describe('pokemon details works correctly', () => {
         map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
       },
     ],
-    summary: 'Hard berries with electricity to make them tender enough to eat.',
-  };
+    summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+  }
 
   test('page renderer correctly details about pokemons', () => {
-    const { screen, getByText, history } = renderWithRouter(<App />);
+    const { getByText, history } = renderWithRouter(<App />);
     history.push(`/pokemons/${pokemon.id}`);
     const details = getByText(`${pokemon.name} Details`);
     const btn = screen.queryByText(/More Details/i);
@@ -59,7 +60,7 @@ describe('pokemon details works correctly', () => {
     const { getByLabelText,
       getByAltText,
       history,
-      fireEvent } = renderWithRouter(<App />);
+       } = renderWithRouter(<App />);
     history.push(`/pokemons/${pokemon.id}`);
     const checkbox = getByLabelText(/Pokémon favoritado?/i);
     expect(checkbox).toBeInTheDocument();
