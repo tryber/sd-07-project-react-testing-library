@@ -40,7 +40,7 @@ describe('Tests the elements of the Pokedex.js component:', () => {
     });
 
     it('the button should contain the text `Next pokémon`', () => {
-      const { getByTestId, getByText } = renderWithRouter(<Pokedex
+      const { getByTestId } = renderWithRouter(<Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
       />);
