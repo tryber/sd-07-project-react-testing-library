@@ -1,7 +1,7 @@
 import React from 'react';
+import { fireEvent, screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import { fireEvent, screen } from '@testing-library/react';
 
 describe('pokemon details works correctly', () => {
   const pokemon = {
@@ -24,8 +24,8 @@ describe('pokemon details works correctly', () => {
         map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
       },
     ],
-    summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
-  }
+    summary: 'This intelligent Pokémon roasts',
+  };
 
   test('page renderer correctly details about pokemons', () => {
     const { getByText, history } = renderWithRouter(<App />);
@@ -33,7 +33,7 @@ describe('pokemon details works correctly', () => {
     const details = getByText(`${pokemon.name} Details`);
     const btn = screen.queryByText(/More Details/i);
     const summaryTitle = getByText(/Summary/i);
-    const summary = getByText(pokemon.summary);
+    const summary = getByText(pokemon.summary, { exact: false });
     expect(details).toBeInTheDocument();
     expect(btn).not.toBeInTheDocument();
     expect(summaryTitle).toBeInTheDocument();
@@ -60,7 +60,7 @@ describe('pokemon details works correctly', () => {
     const { getByLabelText,
       getByAltText,
       history,
-       } = renderWithRouter(<App />);
+    } = renderWithRouter(<App />);
     history.push(`/pokemons/${pokemon.id}`);
     const checkbox = getByLabelText(/Pokémon favoritado?/i);
     expect(checkbox).toBeInTheDocument();
