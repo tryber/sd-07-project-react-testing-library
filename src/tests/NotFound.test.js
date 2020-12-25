@@ -4,7 +4,9 @@ import renderWithRouter from '../renderWithRouter';
 
 describe('Tests the elements of the NotFound.js component', () => {
   it('tests the messege `Page requested not found`', () => {
-    const { getByText } = renderWithRouter(<NotFound />);
+    const { getByText, container } = renderWithRouter(<NotFound />);
+    const h2 = container.querySelector('h2');
+    expect(h2).toBeInTheDocument();
     const title = getByText(/Page requested not found/);
     expect(title).toBeInTheDocument();
   });
