@@ -2,22 +2,19 @@ import React from 'react';
 import About from '../components/About';
 import renderWithRouter from '../renderWithRouter';
 
-test('if is there a heading containning About Pokédex', () => {
+test('if there is a heading containning About Pokédex', () => {
   const { getByRole } = renderWithRouter(<About />);
 
   const headingElement = getByRole('heading');
   expect(headingElement).toHaveTextContent('About Pokédex');
 });
+test('if there are two paragraphs', () => {
+  const { container } = renderWithRouter(<About />);
 
-test('if there two paragraphs', () => {
-  const { getByText } = renderWithRouter(<About />);
-
-  const paragraph1 = getByText('This application simulates a Pokédex, a digital encliclopedia containing all Pokémons');
-  const paragraph2 = getByText('One can filter Pokémons by type, and see more details for each one of them');
-  expect(paragraph1).toBeInTheDocument();
-  expect(paragraph2).toBeInTheDocument();
+  const number = 2;
+  const paragraphElements = container.querySelectorAll('p');
+  expect(paragraphElements.length).toBe(number);
 });
-
 test('if there is an specific image', () => {
   const { getByRole } = renderWithRouter(<About />);
 
