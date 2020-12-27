@@ -78,8 +78,8 @@ describe('exibido o Pokémon quando o botão o pokémon é clicado.', () => {
     const allButton = getByText(/All/i);
     fireEvent.click(allButton);
     expect(getByText('Pikachu')).toBeInTheDocument();
-    const nextButton = getByText(/Próximo pokémon/i);
-    fireEvent.click(nextButton);
+    const button = getByText(/Próximo pokémon/i);
+    fireEvent.click(button);
     expect(getByText('Charmander')).toBeInTheDocument();
   });
 
@@ -87,8 +87,8 @@ describe('exibido o Pokémon quando o botão o pokémon é clicado.', () => {
     const { getByText, getAllByTestId } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
     );
-    const allTypes = ['Eletric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
-    expect(getAllByTestId('pokemon-type-button').length).toBe(allTypes.length);
+    const types = ['Eletric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
+    expect(getAllByTestId('pokemon-type-button').length).toBe(types.length);
     expect(getByText(/All/i)).toBeInTheDocument();
   });
 
@@ -96,9 +96,9 @@ describe('exibido o Pokémon quando o botão o pokémon é clicado.', () => {
     const { getByText, getByRole } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
     );
-    const eletricButton = getByRole('button', { name: /Electric/i });
-    fireEvent.click(eletricButton);
-    const nextButton = getByText(/Próximo pokémon/i);
-    expect(nextButton).toBeDisabled();
+    const eletric = getByRole('button', { name: /Electric/i });
+    fireEvent.click(eletric);
+    const button = getByText(/Próximo pokémon/i);
+    expect(button).toBeDisabled();
   });
 });
