@@ -22,8 +22,8 @@ describe('Testando o arquivo FavoritePokemons.js', () => {
   // codigo Samantha
   it('nenhum card de pokémon é exibido, se ele não estiver favoritado', () => {
     const { queryByText } = render(<FavoritePokemons />);
-    const favoritePokemons = [];
-    renderWithRouter(<FavoritePokemons pokemons={ favoritePokemons } />);
+    const favorite = [];
+    renderWithRouter(<FavoritePokemons pokemons={ favorite } />);
     expect(queryByText('Pikachu')).not.toBeInTheDocument();
     expect(queryByText('Charmander')).not.toBeInTheDocument();
     expect(queryByText('Snorlax')).not.toBeInTheDocument();
