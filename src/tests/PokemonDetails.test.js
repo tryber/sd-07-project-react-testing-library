@@ -1,12 +1,12 @@
-import { getByText } from '@testing-library/react';
-import React from 'react';
-import PokemonDetails from '../components/PokemonDetails';
-import renderWithRouter from '../renderWithRouter';
+// import { getByText } from '@testing-library/react';
+// import React from 'react';
+// import PokemonDetails from '../components/PokemonDetails';
+// import renderWithRouter from '../renderWithRouter';
 
-test('Informações detalhadas devem ser mostradas', () => {
-  const { getAllByText } = renderWithRouter(<PokemonDetails />);
-  const detaislInfo = getByText();
-});
+// test('Informações detalhadas devem ser mostradas', () => {
+//   const { getAllByText } = renderWithRouter(<PokemonDetails />);
+//   const detaislInfo = getByText();
+// });
 
 // Teste se as informações detalhadas do Pokémon selecionado são mostradas na tela.
 
