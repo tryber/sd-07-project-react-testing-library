@@ -1,4 +1,4 @@
-import { fireEvent, getAllByRole } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import React from 'react';
 import App from '../App';
 // import Pokemons from '../components/Pokemon';

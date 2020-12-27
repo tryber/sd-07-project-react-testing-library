@@ -1,7 +1,5 @@
 import React from 'react';
-import { fireEvent, getAllByTitle } from '@testing-library/react';
-import pokemons from '../data';
-import Pokedex from '../components/Pokedex';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
@@ -54,8 +52,8 @@ test('shows one poke at the time', () => {
 test('Teste se tem os botões de filtro', () => {
   const { getAllByTestId } = renderWithRouter(<App />);
   const sevenButtons = getAllByTestId('pokemon-type-button');
-  //   const number = 7;
-  expect(sevenButtons).toHaveLength(7);
+  const number = 7;
+  expect(sevenButtons).toHaveLength(number);
 });
 
 // test('Pokémons do tipo selecionado através do botão de tipo devem estar circulados', () => {
@@ -124,4 +122,3 @@ test('desabilitado lista filtrada de Pokémons tiver um só pokémon', () => {
   const btNextPokemon = getByRole('button', { name: 'Próximo pokémon' });
   expect(btNextPokemon).toHaveAttribute('disabled');
 });
-
