@@ -16,7 +16,12 @@ const About = () => (
         alt="Pokédex"
       />
     </section>
+
+
   </section>
 );
 
-export default About;
+
+
+
+    export default About;

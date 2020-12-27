@@ -1,6 +1,6 @@
-import React from 'react';
-import Pokedex from '../components/Pokedex';
-import renderWithRouter from '../renderWithRouter';
+// import React from 'react';
+// import Pokedex from '../components/Pokedex';
+// import renderWithRouter from '../renderWithRouter';
 
 test('', () => {
 
