@@ -1,15 +1,12 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter';
 import About from '../components/About';
 
 describe('Testing About Pokedéx page', () => {
   it('contains info about the Pokédex', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <About />
-      </MemoryRouter>,
-    );
+    const { getByText } = renderWithRouter(<About />);
     const info = getByText(/This application simulates a Pokédex/i);
     expect(info).toBeInTheDocument();
   });

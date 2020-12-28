@@ -1,35 +1,24 @@
 import React from 'react';
-import { Router, MemoryRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('tests the home page for the application', () => {
   it('renders a reading with the text `Pokédex`', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
 
   it('shows the Pokédex when the route is `/`', () => {
-    const { getByText } = render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText } = renderWithRouter(<App />);
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
 
   it('contains 3 links with the text "Home", "About" and "Favorite Pokémons"', () => {
-    const { getByRole } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByRole } = renderWithRouter(<App />);
     expect(getByRole('link', { name: /Home/i })).toBeInTheDocument();
     expect(getByRole('link', { name: /About/i })).toBeInTheDocument();
     expect(getByRole('link', { name: /Favorite Pokémons/i })).toBeInTheDocument();
