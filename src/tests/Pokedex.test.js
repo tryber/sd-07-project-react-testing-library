@@ -120,7 +120,7 @@ test('should have a reset button', () => {
   const filterButtons = container.querySelectorAll('.filter-button');
   const resetButton = filterButtons[0];
 
-  expect(resetButton.innerHTML).toBe('All');
+  expect(resetButton.innerHTML).toBe('Al');
 
   fireEvent.click(nextButton);
   expect(pokemon.innerHTML).toBe('Charmander');
