@@ -3,13 +3,13 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { PokemonDetails } from '../components';
 import pokemons from '../data';
 import App from '../App';
-import renderWithRouter from './renderWithrouter';
+import renderWithrouter from './renderWithrouter';
 
 describe('PokemonDetails', () => {
   it('Render the text "<name> Details", where <name> is the pokemon name;', () => {
     const pikachu = pokemons[0];
     const { id } = pikachu;
-    renderWithRouter(<PokemonDetails
+    renderWithrouter(<PokemonDetails
       isPokemonFavoriteById={ { [id]: false } }
       match={ { params: { id: id.toString() } } }
       pokemons={ pokemons }
@@ -23,7 +23,7 @@ describe('PokemonDetails', () => {
   it('Should not have a link navigation to pokemon details', () => {
     const pikachu = pokemons[0];
     const { id } = pikachu;
-    renderWithRouter(<PokemonDetails
+    renderWithrouter(<PokemonDetails
       isPokemonFavoriteById={ { [id]: false } }
       match={ { params: { id: id.toString() } } }
       pokemons={ pokemons }
@@ -37,7 +37,7 @@ describe('PokemonDetails', () => {
   it('The details section must have a heading with the text "Summary" ', () => {
     const pikachu = pokemons[0];
     const { id } = pikachu;
-    renderWithRouter(<PokemonDetails
+    renderWithrouter(<PokemonDetails
       isPokemonFavoriteById={ { [id]: false } }
       match={ { params: { id: id.toString() } } }
       pokemons={ pokemons }
@@ -53,7 +53,7 @@ describe('PokemonDetails', () => {
   it('Should be a paragraph with the especific pokemon resume', () => {
     const pikachu = pokemons[0];
     const { id, summary } = pikachu;
-    renderWithRouter(<PokemonDetails
+    renderWithrouter(<PokemonDetails
       isPokemonFavoriteById={ { [id]: false } }
       match={ { params: { id: id.toString() } } }
       pokemons={ pokemons }
@@ -70,7 +70,7 @@ describe('Render maps that contains pokemons locations ', () => {
   it('Should be a h2 with the text "Game Locations of <name>"', () => {
     const pikachu = pokemons[0];
     const { id, name } = pikachu;
-    renderWithRouter(<PokemonDetails
+    renderWithrouter(<PokemonDetails
       isPokemonFavoriteById={ { [id]: false } }
       match={ { params: { id: id.toString() } } }
       pokemons={ pokemons }
@@ -87,7 +87,7 @@ describe('Render maps that contains pokemons locations ', () => {
     const { id, foundAt, name } = pikachu;
     const locationsQuantity = foundAt.length;
 
-    renderWithRouter(<PokemonDetails
+    renderWithrouter(<PokemonDetails
       isPokemonFavoriteById={ { [id]: false } }
       match={ { params: { id: id.toString() } } }
       pokemons={ pokemons }
@@ -138,7 +138,7 @@ describe('If the user can favorite a pokemon in the respective page', () => {
   });
 
   it('Must have a checkbox to favorite pokemons', () => {
-    renderWithRouter(<App />);
+    renderWithrouter(<App />);
 
     const moreDetailsLink = screen.getByText(/More details/);
     fireEvent.click(moreDetailsLink);

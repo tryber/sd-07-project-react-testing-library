@@ -1,11 +1,11 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from './renderWithrouter';
+import renderWithrouter from './renderWithrouter';
 
 describe('Pokemons tests', () => {
   it('Test if a card with the information of a certain Pokémon is rendered', () => {
-    const { getByTestId, getByAltText } = renderWithRouter(<App />);
+    const { getByTestId, getByAltText } = renderWithrouter(<App />);
 
     const pokemonName = getByTestId('pokemon-name');
     expect(pokemonName).toHaveTextContent('Pikachu');
@@ -20,14 +20,14 @@ describe('Pokemons tests', () => {
   });
 
   it('Test if the Pokémon card indicated on the Pokédex contains...', () => {
-    const { getByText } = renderWithRouter(<App />);
+    const { getByText } = renderWithrouter(<App />);
     const pokemonDetails = getByText('More details');
     expect(pokemonDetails).toBeInTheDocument();
     expect(pokemonDetails.href).toBe('http://localhost/pokemons/25');
   });
 
   it('Test if clicking on the Pokémons navigation link redirects the...', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+    const { getByText, history } = renderWithrouter(<App />);
     const pokemonDetails = getByText('More details');
     fireEvent.click(pokemonDetails);
     const { location: { pathname } } = history;
@@ -35,7 +35,7 @@ describe('Pokemons tests', () => {
   });
 
   it('Test if there is a star icon on favorite Pokémon', () => {
-    const { getByAltText, getByText, getByLabelText } = renderWithRouter(<App />);
+    const { getByAltText, getByText, getByLabelText } = renderWithrouter(<App />);
     const pokemonDetails = getByText('More details');
     fireEvent.click(pokemonDetails);
     const pokemonFavorite = getByLabelText('Pokémon favoritado?');

@@ -1,17 +1,17 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from './renderWithrouter';
+import renderWithrouter from './renderWithrouter';
 import pokemons from '../data';
 
 test('have title', () => {
-  const { getByText } = renderWithRouter(<App />);
+  const { getByText } = renderWithrouter(<App />);
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
 test('', () => {
-  const { getByText } = renderWithRouter(<App />);
+  const { getByText } = renderWithrouter(<App />);
 
   const allPokemons = [...pokemons, ...pokemons];
 
@@ -19,6 +19,7 @@ test('', () => {
     const firstIndex = 0;
     if (index === firstIndex) {
       expect(getByText(name)).toBeInTheDocument();
+
     } else {
       fireEvent.click(getByText('Próximo pokémon'));
       expect(getByText(name)).toBeInTheDocument();
@@ -27,13 +28,13 @@ test('', () => {
 });
 
 test('', () => {
-  const { getAllByTestId } = renderWithRouter(<App />);
+  const { getAllByTestId } = renderWithrouter(<App />);
 
   expect(getAllByTestId('pokemon-name').length).toEqual(1);
 });
 
 test('', () => {
-  const { getByText, getAllByTestId } = renderWithRouter(<App />);
+  const { getByText, getAllByTestId } = renderWithrouter(<App />);
 
   const allPokemonsTypes = pokemons.map((pokemon) => pokemon.type);
   const allTypes = allPokemonsTypes
@@ -60,7 +61,7 @@ test('', () => {
 });
 
 test('All', () => {
-  const { getByText } = renderWithRouter(<App />);
+  const { getByText } = renderWithrouter(<App />);
 
   fireEvent.click(getByText('Bug'));
 
@@ -87,7 +88,7 @@ test('', () => {
   pokemons[1].type = 'yyyyyy';
   pokemons.splice(dois, pokemons.length);
 
-  const { getAllByTestId } = renderWithRouter(<App />);
+  const { getAllByTestId } = renderWithrouter(<App />);
 
   const buttonType = getAllByTestId('pokemon-type-button');
   expect(buttonType[0].innerHTML).toEqual('xxxxxxx');
@@ -101,7 +102,7 @@ test('', () => {
 });
 
 test('test', () => {
-  const { getByText } = renderWithRouter(<App />);
+  const { getByText } = renderWithrouter(<App />);
 
   expect(getByText('Próximo pokémon').disabled).toEqual(false);
   fireEvent.click(getByText('Poison'));
