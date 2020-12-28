@@ -16,7 +16,7 @@ describe('forth requirement', () => {
   it('should render an image with the path `https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif`', () => {
     render(<NotFound />);
     const errorImg = screen.getByAltText(
-      'Pikachu crying because the page requested was not found'
+      'Pikachu crying because the page requested was not found',
     );
     expect(errorImg.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
