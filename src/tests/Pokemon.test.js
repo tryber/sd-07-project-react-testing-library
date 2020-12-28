@@ -46,3 +46,4 @@ describe('Pokemons tests', () => {
     expect(favoriteStar.src).toBe('http://localhost/star-icon.svg');
   });
 });
+
