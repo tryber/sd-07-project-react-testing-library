@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { PokemonDetails } from '../components';
 import pokemons from '../data';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from './renderWithrouter';
 
 describe('PokemonDetails', () => {
   it('Render the text "<name> Details", where <name> is the pokemon name;', () => {

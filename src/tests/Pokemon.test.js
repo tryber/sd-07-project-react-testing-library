@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from './renderWithrouter';
 
 describe('Pokemons tests', () => {
   it('Test if a card with the information of a certain Pokémon is rendered', () => {
