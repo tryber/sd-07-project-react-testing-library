@@ -1,155 +1,82 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { PokemonDetails } from '../components';
-import pokemons from '../data';
+import { fireEvent } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import renderWithrouter from './renderWithrouter';
+import pokemons from '../data';
 
-describe('PokemonDetails', () => {
-  it('Render the text "<name> Details", where <name> is the pokemon name;', () => {
-    const pikachu = pokemons[0];
-    const { id } = pikachu;
-    renderWithrouter(<PokemonDetails
-      isPokemonFavoriteById={ { [id]: false } }
-      match={ { params: { id: id.toString() } } }
-      pokemons={ pokemons }
-      onUpdateFavoritePokemons={ () => { } }
-    />);
+describe('7 - Testando o arquivo PokemonDetails.js', () => {
+  test(`7.1 - Teste se as informações detalhadas do Pokémon selecionado
+  são mostradas na tela.
+  1 - A página deve conter um texto <name> Details;
+  2 - Não deve existir o link de navegação para os detalhes na pagina detalhes;
+  3 - A seção de detalhes deve conter um heading h2 com o texto Summary;
+  4 - A seção de detalhes deve conter um parágrafo com o resumo do
+  Pokémon específico sendo visualizado.`, () => {
+    const { getByText, history, getByTestId } = renderWithRouter(<App />);
+    const name = getByTestId('pokemon-name').innerHTML;
+    const linkDetails = getByText(/More details/i);
+    fireEvent.click(linkDetails);
 
-    const nameDetailsTest = screen.getByText(`${pikachu.name} Details`);
-    expect(nameDetailsTest).toBeInTheDocument();
+    expect(getByText(`${name} Details`)).toBeInTheDocument();
+    expect(linkDetails).not.toBeInTheDocument();
+
+    const { pathname } = history.location;
+    const { id } = pokemons.find((pokemon) => pokemon.name === name);
+
+    expect(pathname).toBe(`/pokemons/${id}`);
+
+    const localPokemon = getByText(`Game Locations of ${name}`);
+    console.log(localPokemon.innerHTML);
+    expect(localPokemon).toBeInTheDocument();
+
+    expect(getByText(/Summary/i)).toBeInTheDocument();
+
+    const p = getByText(
+      /This intelligent Pokémon roasts hard berries with electricity to make/i,
+    );
+    expect(p).toBeInTheDocument();
   });
 
-  it('Should not have a link navigation to pokemon details', () => {
-    const pikachu = pokemons[0];
-    const { id } = pikachu;
-    renderWithrouter(<PokemonDetails
-      isPokemonFavoriteById={ { [id]: false } }
-      match={ { params: { id: id.toString() } } }
-      pokemons={ pokemons }
-      onUpdateFavoritePokemons={ () => { } }
-    />);
-
-    const moreDetailsLinkTest = screen.queryByText(/More Details/);
-    expect(moreDetailsLinkTest).toBe(null);
+  test(`7.2 - Na seção de detalhes deverá existir um heading h2 com o texto Game
+  Locations of <name>; onde <name> é o nome do Pokémon exibido.`, () => {
+    const { getByText } = renderWithRouter(<App />);
+    const linkDetails = getByText(/More details/i);
+    fireEvent.click(linkDetails);
+    expect(getByText(/Game Locations of Pikachu/i)).toBeInTheDocument();
   });
 
-  it('The details section must have a heading with the text "Summary" ', () => {
-    const pikachu = pokemons[0];
-    const { id } = pikachu;
-    renderWithrouter(<PokemonDetails
-      isPokemonFavoriteById={ { [id]: false } }
-      match={ { params: { id: id.toString() } } }
-      pokemons={ pokemons }
-      onUpdateFavoritePokemons={ () => { } }
-    />);
+  test(`7.5 - Todas as localizações do Pokémon devem ser mostradas na seção
+  de detalhes`, () => {
+    const { getByText, getByTestId, container } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/More details/i));
+    const name = getByTestId('pokemon-name').innerHTML;
+    const { foundAt } = pokemons.find((pokemon) => pokemon.name === name);
+    const divLocatins = container.querySelector('.pokemon-habitat');
+    const imgs = container.querySelectorAll('.pokemon-habitat img');
+    const namesLocal = container.querySelectorAll('.pokemon-habitat p');
 
-    const getAllHeaders = screen.queryAllByRole('heading', { level: 2 });
-    const title = getAllHeaders
-      .some((heading) => heading.innerHTML.includes('Summary'));
-    expect(title).toBe(true);
-  });
-
-  it('Should be a paragraph with the especific pokemon resume', () => {
-    const pikachu = pokemons[0];
-    const { id, summary } = pikachu;
-    renderWithrouter(<PokemonDetails
-      isPokemonFavoriteById={ { [id]: false } }
-      match={ { params: { id: id.toString() } } }
-      pokemons={ pokemons }
-      onUpdateFavoritePokemons={ () => { } }
-    />);
-
-    const summaryText = summary;
-    const summaryTextTest = screen.queryByText(summaryText);
-    expect(summaryTextTest).toBeInTheDocument();
-  });
-});
-
-describe('Render maps that contains pokemons locations ', () => {
-  it('Should be a h2 with the text "Game Locations of <name>"', () => {
-    const pikachu = pokemons[0];
-    const { id, name } = pikachu;
-    renderWithrouter(<PokemonDetails
-      isPokemonFavoriteById={ { [id]: false } }
-      match={ { params: { id: id.toString() } } }
-      pokemons={ pokemons }
-      onUpdateFavoritePokemons={ () => { } }
-    />);
-
-    const gameLocationsText = `Game Locations of ${name}`;
-    const gameLocationsTextTest = screen.queryByText(gameLocationsText);
-    expect(gameLocationsTextTest).toBeInTheDocument();
-  });
-
-  it('Render all locations in the pokemon details section', () => {
-    const pikachu = pokemons[0];
-    const { id, foundAt, name } = pikachu;
-    const locationsQuantity = foundAt.length;
-
-    renderWithrouter(<PokemonDetails
-      isPokemonFavoriteById={ { [id]: false } }
-      match={ { params: { id: id.toString() } } }
-      pokemons={ pokemons }
-      onUpdateFavoritePokemons={ () => { } }
-    />);
-
-    const pikachuLocationTest = screen.queryAllByAltText(`${name} location`);
-    expect(pikachuLocationTest.length).toBe(locationsQuantity);
-  });
-
-  it('Should appear the name and a image in every location', () => {
-    const pikachu = pokemons[0];
-    const { id, foundAt, name } = pikachu;
-    const locations = foundAt.map((local) => local.location);
-    const mapURLs = foundAt.map((local) => local.map);
-
-    render(<PokemonDetails
-      isPokemonFavoriteById={ { [id]: false } }
-      match={ { params: { id: id.toString() } } }
-      pokemons={ pokemons }
-      onUpdateFavoritePokemons={ () => { } }
-    />);
-    locations.forEach((location) => {
-      const locationTest = screen.queryByText(location);
-      expect(locationTest).toBeInTheDocument();
+    imgs.forEach((img, index) => {
+      expect(img).toBeInTheDocument();
+      expect(img).toHaveAttribute('src', foundAt[index].map);
+      expect(img).toHaveAttribute('alt', `${name} location`);
     });
 
-    const allImageMaps = screen.queryAllByAltText(`${name} location`);
-    allImageMaps.forEach((map, index) => {
-      expect(map.src).toBe(mapURLs[index]);
-    });
+    namesLocal.forEach((local) => { expect(local).toBeInTheDocument(); });
+    expect(divLocatins).toBeInTheDocument();
   });
-});
 
-describe('If the user can favorite a pokemon in the respective page', () => {
-  it('There should be a label with the text "Pokemon favoritado?"', () => {
-    const pikachu = pokemons[0];
-    const { id } = pikachu;
-    render(<PokemonDetails
-      isPokemonFavoriteById={ { [id]: false } }
-      match={ { params: { id: id.toString() } } }
-      pokemons={ pokemons }
-      onUpdateFavoritePokemons={ () => { } }
-    />);
+  test(`7.11 - A página deve exibir um checkbox
+  que permite favoritar o Pokémon`, () => {
+    const { getByText, container, getByLabelText } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/More details/i));
 
-    const checkbox = screen.getByLabelText(/Pokémon favoritado/);
+    const checkbox = container.querySelector('#favorite');
     expect(checkbox).toBeInTheDocument();
-  });
-
-  it('Must have a checkbox to favorite pokemons', () => {
-    renderWithrouter(<App />);
-
-    const moreDetailsLink = screen.getByText(/More details/);
-    fireEvent.click(moreDetailsLink);
-    expect(screen.getByText('Pikachu Details')).toBeInTheDocument();
-
-    const checkbox = screen.getByLabelText(/Pokémon favoritado/);
     fireEvent.click(checkbox);
-    expect(checkbox.checked).toBe(true);
+    expect(checkbox.checked).toBeTruthy();
     fireEvent.click(checkbox);
-    expect(checkbox.checked).toBe(false);
-    fireEvent.click(checkbox);
-    expect(screen.getByAltText('Pikachu is marked as favorite')).toBeInTheDocument();
+    expect(checkbox.checked).toEqual(false);
+
+    expect(getByLabelText(/Pokémon favoritado?/i)).toBeInTheDocument();
   });
 });
