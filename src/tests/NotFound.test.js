@@ -1,6 +1,6 @@
 import React from 'react';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from './renderWithrouter';
 
 test('if contains a h2 with the correct information', () => {
   const { getAllByRole, history } = renderWithRouter(<App />);
