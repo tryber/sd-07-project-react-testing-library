@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter';
+import renderWithrouter from '../renderWithrouter';
 import App from '../App';
 import pokemons from '../data';
 
@@ -12,7 +12,7 @@ describe('7 - Testando o arquivo PokemonDetails.js', () => {
   3 - A seção de detalhes deve conter um heading h2 com o texto Summary;
   4 - A seção de detalhes deve conter um parágrafo com o resumo do
   Pokémon específico sendo visualizado.`, () => {
-    const { getByText, history, getByTestId } = renderWithRouter(<App />);
+    const { getByText, history, getByTestId } = renderWithrouter(<App />);
     const name = getByTestId('pokemon-name').innerHTML;
     const linkDetails = getByText(/More details/i);
     fireEvent.click(linkDetails);
@@ -39,7 +39,7 @@ describe('7 - Testando o arquivo PokemonDetails.js', () => {
 
   test(`7.2 - Na seção de detalhes deverá existir um heading h2 com o texto Game
   Locations of <name>; onde <name> é o nome do Pokémon exibido.`, () => {
-    const { getByText } = renderWithRouter(<App />);
+    const { getByText } = renderWithrouter(<App />);
     const linkDetails = getByText(/More details/i);
     fireEvent.click(linkDetails);
     expect(getByText(/Game Locations of Pikachu/i)).toBeInTheDocument();
@@ -47,7 +47,7 @@ describe('7 - Testando o arquivo PokemonDetails.js', () => {
 
   test(`7.5 - Todas as localizações do Pokémon devem ser mostradas na seção
   de detalhes`, () => {
-    const { getByText, getByTestId, container } = renderWithRouter(<App />);
+    const { getByText, getByTestId, container } = renderWithrouter(<App />);
     fireEvent.click(getByText(/More details/i));
     const name = getByTestId('pokemon-name').innerHTML;
     const { foundAt } = pokemons.find((pokemon) => pokemon.name === name);
@@ -67,7 +67,7 @@ describe('7 - Testando o arquivo PokemonDetails.js', () => {
 
   test(`7.11 - A página deve exibir um checkbox
   que permite favoritar o Pokémon`, () => {
-    const { getByText, container, getByLabelText } = renderWithRouter(<App />);
+    const { getByText, container, getByLabelText } = renderWithrouter(<App />);
     fireEvent.click(getByText(/More details/i));
 
     const checkbox = container.querySelector('#favorite');
