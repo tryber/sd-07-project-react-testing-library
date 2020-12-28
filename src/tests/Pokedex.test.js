@@ -19,7 +19,6 @@ test('', () => {
     const firstIndex = 0;
     if (index === firstIndex) {
       expect(getByText(name)).toBeInTheDocument();
-
     } else {
       fireEvent.click(getByText('Próximo pokémon'));
       expect(getByText(name)).toBeInTheDocument();
