@@ -102,3 +102,26 @@ test('should have a filter button', () => {
   fireEvent.click(nextButton);
   expect(pokemon.innerHTML).toBe('Rapidash');
 });
+
+test('should have a reset button', () => {
+  const { container, getByTestId } = renderWithRouter(
+    <Pokedex
+      pokemons={ data }
+      isPokemonFavoriteById={ [] }
+    />,
+  );
+
+  const numberOfButtons = 8;
+  const filterPanel = container.querySelectorAll('.filter-button');
+  expect(filterPanel.length).toBe(numberOfButtons);
+
+  const pokemon = getByTestId('pokemon-name');
+  const nextButton = getByTestId('next-pokemon');
+  const filterButtons = container.querySelectorAll('.filter-button');
+  const resetButton = filterButtons[0];
+
+  expect(resetButton.innerHTML).toBe('All');
+
+  fireEvent.click(nextButton);
+  expect(pokemon.innerHTML).toBe('Charmander');
+});
