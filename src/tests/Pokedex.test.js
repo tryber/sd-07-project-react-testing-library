@@ -125,3 +125,42 @@ test('should have a reset button', () => {
   fireEvent.click(nextButton);
   expect(pokemon.innerHTML).toBe('Charmander');
 });
+
+test('should have a fitler  for each pokemon type', () => {
+  const { container } = renderWithRouter(
+    <Pokedex
+      pokemons={ data }
+      isPokemonFavoriteById={ [] }
+    />,
+  );
+
+  const numberOfButtons = 8;
+  const filterPanel = container.querySelectorAll('.filter-button');
+  expect(filterPanel.length).toBe(numberOfButtons);
+
+  const filterButtons = container.querySelectorAll('.filter-button');
+  const resetButton = filterButtons[0];
+
+  expect(resetButton.innerHTML).toBe('All');
+});
+
+test('next button should disable', () => {
+  const { container, getByTestId } = renderWithRouter(
+    <Pokedex
+      pokemons={ data }
+      isPokemonFavoriteById={ [] }
+    />,
+  );
+
+  const numberOfButtons = 8;
+  const filterPanel = container.querySelectorAll('.filter-button');
+  expect(filterPanel.length).toBe(numberOfButtons);
+
+  const nextButton = getByTestId('next-pokemon');
+  const filterButtons = container.querySelectorAll('.filter-button');
+  const electric = filterButtons[1];
+
+  fireEvent.click(electric);
+
+  expect(nextButton.disabled).toBe(true);
+});
