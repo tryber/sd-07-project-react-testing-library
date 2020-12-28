@@ -1,10 +1,14 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, cleanup } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
 
 import renderWithRouter from '../renderWithRouter';
 
 import data from '../data';
+
+afterEach(() => {
+  cleanup();
+});
 
 test('if there is an h2 with Encountered pokemons message', () => {
   const { getByRole } = renderWithRouter(
@@ -32,7 +36,7 @@ test('if there is a button with the text Próximo pokémon', () => {
   expect(nextButton).toHaveTextContent('Próximo pokémon');
 });
 
-test('onClick next pokemon shoul return to the first', () => {
+test('onClick next pokemon should show properly', () => {
   const { getByTestId } = renderWithRouter(
     <Pokedex
       pokemons={ data }
@@ -71,4 +75,30 @@ test('onClick next pokemon shoul return to the first', () => {
 
   fireEvent.click(nextButton);
   expect(pokemon.innerHTML).toBe('Pikachu');
+});
+
+test('should have a filter button', () => {
+  const { container, getByTestId } = renderWithRouter(
+    <Pokedex
+      pokemons={ data }
+      isPokemonFavoriteById={ [] }
+    />,
+  );
+
+  const numberOfButtons = 8;
+  const filterPanel = container.querySelectorAll('.filter-button');
+  expect(filterPanel.length).toBe(numberOfButtons);
+
+  const pokemon = getByTestId('pokemon-name');
+  const nextButton = getByTestId('next-pokemon');
+  const filterButtons = container.querySelectorAll('.filter-button');
+  const electricButton = filterButtons[2];
+
+  expect(electricButton.innerHTML).toBe('Fire');
+
+  fireEvent.click(electricButton);
+  expect(pokemon.innerHTML).toBe('Charmander');
+
+  fireEvent.click(nextButton);
+  expect(pokemon.innerHTML).toBe('Rapidash');
 });
