@@ -94,11 +94,13 @@ describe('fifth requirement', () => {
       </MemoryRouter>,
     );
     const nextBtn = screen.getByText(/próximo pokémon/i);
-    const pokemonNames = { 0: 'Snorlax', 1: 'Caterpie', 2: 'Alakazam', 3: 'Snorlax' };
+    const pokemonNames = ['Snorlax', 'Caterpie', 'Alakazam', 'Snorlax'];
     expect(nextBtn).toBeInTheDocument();
-    for (const index in pokemonNames) {
+    let index = 0;
+    while ( index <= 3 ) {
       expect(screen.getByText(pokemonNames[index])).toBeInTheDocument();
       fireEvent.click(nextBtn);
+      index += 1;
     }
   });
 });
