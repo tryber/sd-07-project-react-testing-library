@@ -4,18 +4,18 @@ import App from '../App';
 import renderWithRouter from '../components/renderWithRouter';
 
 describe('Testando o componente FavoritePokemons', () => {
-  it('Testando se não ha cards pokemons', () => {
-    const { getByText, queryByTestId } = renderWithRouter(<App />);
-    fireEvent.click(getByText('Favorite Pokémons'));
-    const idsName = queryByTestId('pokemon-name');
-    expect(idsName).toBeNull();
-  });
-
   it('Testando se não existem pokemons favoritos', () => {
     const { getByText } = renderWithRouter(<App />);
     fireEvent.click(getByText('Favorite Pokémons'));
     const semPokemons = getByText('No favorite pokemon found');
     expect(semPokemons).toBeInTheDocument();
+  });
+
+  it('Testando se não ha cards pokemons', () => {
+    const { getByText, queryByTestId } = renderWithRouter(<App />);
+    fireEvent.click(getByText('Favorite Pokémons'));
+    const idsName = queryByTestId('pokemon-name');
+    expect(idsName).toBeNull();
   });
 
   it('Testando se o componente renderiza todos favoritos', () => {

@@ -7,22 +7,25 @@ describe('Testando o componente About', () => {
   it('Testando se a pagina contém informações', () => {
     const { getByText } = renderWithRouter(<App />);
     fireEvent.click(getByText('About'));
-    const procurandoInfo = getByText(/About Pokédex/i);
+    const procurandoInfo = getByText(/This application simulates a Pokédex/i);
     expect(procurandoInfo).toBeInTheDocument();
   });
 
-  it('Testando o primeiro paragrafo da pagina', () => {
-    const { getByText } = renderWithRouter(<App />);
+  it('Testando o texto e existencia do H2', () => {
+    const { getByText, getByRole } = renderWithRouter(<App />);
     fireEvent.click(getByText('About'));
-    const procurandoH2 = getByText(/This application simulates/i);
-    expect(procurandoH2).toBeInTheDocument();
+    const procurandoH2 = getByRole('heading', { name: /About Pokédex/i });
+    expect(procurandoH2.tagName).toBe('H2');
   });
 
   it('Testando se a página contém um segundo parágrafo', () => {
     const { getByText } = renderWithRouter(<App />);
     fireEvent.click(getByText('About'));
-    const procurandoP2 = getByText(/One can filter Pokémons by type, and see more/);
-    expect(procurandoP2).toBeInTheDocument();
+    const paragrafo = document.getElementsByTagName('p');
+    const qtdParagrafo = 2;
+    expect(paragrafo.length).toBe(qtdParagrafo);
+    const pTexto = getByText(/One can filter Pokémons by type, and see more/);
+    expect(pTexto).toBeInTheDocument();
   });
 
   it('Testando se a página contém uma img específica', () => {
