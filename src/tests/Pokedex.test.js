@@ -96,12 +96,9 @@ describe('fifth requirement', () => {
     const nextBtn = screen.getByText(/próximo pokémon/i);
     const pokemonNames = ['Snorlax', 'Caterpie', 'Alakazam', 'Snorlax'];
     expect(nextBtn).toBeInTheDocument();
-    let index = 0;
-    while (index <= (pokemonNames.length - 1)) {
-      const cur = index;
-      expect(screen.getByText(pokemonNames[cur])).toBeInTheDocument();
+    pokemonNames.forEach((name) => {
+      expect(screen.getByText(name)).toBeInTheDocument();
       fireEvent.click(nextBtn);
-      index += 1;
-    }
+    });
   });
 });
