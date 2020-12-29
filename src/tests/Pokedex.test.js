@@ -97,8 +97,9 @@ describe('fifth requirement', () => {
     const pokemonNames = ['Snorlax', 'Caterpie', 'Alakazam', 'Snorlax'];
     expect(nextBtn).toBeInTheDocument();
     let index = 0;
-    while ( index <= 3 ) {
-      expect(screen.getByText(pokemonNames[index])).toBeInTheDocument();
+    while (index <= (pokemonNames.length - 1)) {
+      const cur = index;
+      expect(screen.getByText(pokemonNames[cur])).toBeInTheDocument();
       fireEvent.click(nextBtn);
       index += 1;
     }
