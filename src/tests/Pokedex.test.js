@@ -83,7 +83,8 @@ describe('fifth requirement', () => {
             map: 'https://cdn.bulbagarden.net/upload/4/44/Unova_Accumula_Town_Map.png',
           },
         ],
-        summary: 'Closing both its eyes heightens all its other senses. This enables it to use its abilities to their extremes.',
+        summary: `Closing both its eyes heightens all its other senses.
+        This enables it to use its abilities to their extremes.`,
       },
     ];
     render(
@@ -95,7 +96,8 @@ describe('fifth requirement', () => {
     const nextBtn = screen.getByText(/próximo pokémon/i);
     const pokemonNames = ['Snorlax', 'Caterpie', 'Alakazam', 'Snorlax'];
     expect(nextBtn).toBeInTheDocument();
-    for (let index = 0; index <= 3; index += 1) {
+    for (let index = 0;
+      index <= (pokemonNames.length - 1); index += 1) {
       expect(screen.getByText(pokemonNames[index])).toBeInTheDocument();
       fireEvent.click(nextBtn);
     }
