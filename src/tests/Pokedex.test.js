@@ -94,11 +94,13 @@ describe('fifth requirement', () => {
       </MemoryRouter>,
     );
     const nextBtn = screen.getByText(/próximo pokémon/i);
-    const pokemonNames = ['Snorlax', 'Caterpie', 'Alakazam', 'Snorlax'];
     expect(nextBtn).toBeInTheDocument();
-    pokemonNames.forEach((name) => {
-      expect(screen.getByText(name)).toBeInTheDocument();
-      fireEvent.click(nextBtn);
-    });
+    expect(screen.getByText('Snorlax')).toBeInTheDocument();
+    fireEvent.click(nextBtn);
+    expect(screen.getByText('Caterpie')).toBeInTheDocument();
+    fireEvent.click(nextBtn);
+    expect(screen.getByText('Alakazam')).toBeInTheDocument();
+    fireEvent.click(nextBtn);
+    expect(screen.getByText('Snorlax')).toBeInTheDocument();
   });
 });
