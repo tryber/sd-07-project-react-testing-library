@@ -20,7 +20,7 @@ test('shows the Pokédex when the route is `/`', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
@@ -31,7 +31,7 @@ test('check if at the top of the page you have the "Home, About, Favorite Polém
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(getByText('Home')).toBeInTheDocument();
@@ -44,7 +44,7 @@ test('navigate to home', () => {
   const { getByText } = render(
     <Router history={ history }>
       <App />
-    </Router>
+    </Router>,
   );
 
   expect(getByText('Home')).toBeInTheDocument();
@@ -58,7 +58,7 @@ test('navigate to About', () => {
   const { getByText } = render(
     <Router history={ history }>
       <App />
-    </Router>
+    </Router>,
   );
 
   expect(getByText('About')).toBeInTheDocument();
@@ -72,7 +72,7 @@ test('navigate to Favorite Pokémons', () => {
   const { getByText } = render(
     <Router history={ history }>
       <App />
-    </Router>
+    </Router>,
   );
 
   expect(getByText('Favorite Pokémons')).toBeInTheDocument();
@@ -86,7 +86,7 @@ test('navigate to Not Found', () => {
   const { getByText } = render(
     <Router history={ history }>
       <App />
-    </Router>
+    </Router>,
   );
 
   const route = '/teste';
