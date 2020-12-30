@@ -10,7 +10,7 @@ test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
@@ -18,19 +18,20 @@ test('renders a reading with the text `Pokédex`', () => {
 
 test('shows the Pokédex when the route is `/`', () => {
   const { getByText } = render(
-    <MemoryRouter initialEntries={['/']}>
+    <MemoryRouter initialEntries={ ['/'] }>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-test('check if at the top of the page you have the "Home, About, Favorite Polémons link"', () => {
+test('check if at the top of the page you have the "Home, About, Favorite Polémons link"',
+() => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 
   expect(getByText('Home')).toBeInTheDocument();
@@ -41,9 +42,9 @@ test('check if at the top of the page you have the "Home, About, Favorite Polém
 test('navigate to home', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
-    </Router>,
+    </Router>
   );
 
   expect(getByText('Home')).toBeInTheDocument();
@@ -55,9 +56,9 @@ test('navigate to home', () => {
 test('navigate to About', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
-    </Router>,
+    </Router>
   );
 
   expect(getByText('About')).toBeInTheDocument();
@@ -69,9 +70,9 @@ test('navigate to About', () => {
 test('navigate to Favorite Pokémons', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
-    </Router>,
+    </Router>
   );
 
   expect(getByText('Favorite Pokémons')).toBeInTheDocument();
@@ -83,9 +84,9 @@ test('navigate to Favorite Pokémons', () => {
 test('navigate to Not Found', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
-    </Router>,
+    </Router>
   );
 
   const route = '/teste';
