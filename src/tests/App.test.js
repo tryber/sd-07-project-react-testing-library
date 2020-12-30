@@ -41,7 +41,7 @@ test('clicking on home link, goes to route `/`', () => {
   const { getByText } = render(
     <Router history={ history }>
       <App />
-    </Router>
+    </Router>,
   );
   // console.log(history.location)
   fireEvent.click(getByText('Home'));
@@ -55,7 +55,7 @@ test('clicking on about link, goes to route `/about`', () => {
   const { getByText } = render(
     <Router history={ history }>
       <App />
-    </Router>
+    </Router>,
   );
   // console.log(history.location)
   fireEvent.click(getByText('About'));
@@ -69,7 +69,7 @@ test('clicking on Favorite Pokémons link, goes to route `/favorites`', () => {
   const { getByText } = render(
     <Router history={ history }>
       <App />
-    </Router>
+    </Router>,
   );
   // console.log(history.location)
   fireEvent.click(getByText('Favorite Pokémons'));
