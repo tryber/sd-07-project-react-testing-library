@@ -1,26 +1,27 @@
 import React from 'react';
 import About from '../components/About';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from './renderWithRouter.js';
 
 describe('Testing About.js', () => {
-  test('renders with the about page`s content',() => {
+  test('renders with the about page`s content', () => {
     const { getByText } = renderWithRouter(<About />);
-  
-    expect(getByText('This application simulates a Pokédex, a digital encliclopedia containing all Pokémons')).toBeInTheDocument();
+
+    expect(getByText(/This application simulates a Pokédex,/i)).toBeInTheDocument();
   });
 
   test('renders a h2 with the text `About Pokédex`', () => {
-  const { getByText } = renderWithRouter(<About />);
+    const { getByText } = renderWithRouter(<About />);
 
-  expect(getByText('About Pokédex')).toBeInTheDocument();
+    expect(getByText('About Pokédex')).toBeInTheDocument();
   });
 
   test('renders 2 `p`', () => {
     renderWithRouter(<About />);
 
-    const p = document.getElementsByTagName("p").length;
-
-    expect(p).toBe(2);
+    const p = document.getElementsByTagName('p').length;
+    const size = 2
+    
+    expect(p).toBe(size);
   });
 
   test('renders a specific img', () => {
