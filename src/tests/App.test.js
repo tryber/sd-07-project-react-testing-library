@@ -27,12 +27,12 @@ test('shows the Pokédex when the route is `/`', () => {
 });
 
 test('check if at the top of the page you have the "Home, About, Favorite Polémons link"',
-() => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>
-  );
+  () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
 
   expect(getByText('Home')).toBeInTheDocument();
   expect(getByText('About')).toBeInTheDocument();
