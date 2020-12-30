@@ -34,10 +34,10 @@ test('check if at the top of the page you have the "Home, About, Favorite Polém
       </MemoryRouter>
     );
 
-  expect(getByText('Home')).toBeInTheDocument();
-  expect(getByText('About')).toBeInTheDocument();
-  expect(getByText('Favorite Pokémons')).toBeInTheDocument();
-});
+    expect(getByText('Home')).toBeInTheDocument();
+    expect(getByText('About')).toBeInTheDocument();
+    expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+  });
 
 test('navigate to home', () => {
   const history = createMemoryHistory();
