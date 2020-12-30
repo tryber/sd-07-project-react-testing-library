@@ -5,9 +5,9 @@ import renderWithRouter from '../components/renderWithRouter';
 
 describe('Testando o componente Pokedex', () => {
   it('Teste se página contém um h2 com o texto Encountered pokémons', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const h2 = getByText('Encountered pokémons');
-    expect(h2).toBeInTheDocument();
+    const { getByRole } = renderWithRouter(<App />);
+    const h2 = getByRole('heading', { name: /Encountered pokémons/i });
+    expect(h2.tagName).toBe('H2');
   });
 
   it('Teste se o botão próximo pokémon funciona', () => {
@@ -24,7 +24,7 @@ describe('Testando o componente Pokedex', () => {
     expect(secondPokemon).toBeInTheDocument();
     const num0 = 0;
     const num8 = 8;
-    for (let i = num0; i <= num8; i += 1) {
+    for (let i = num0; i < num8; i += 1) {
       fireEvent.click(nextPokemon);
     }
     expect(firstPokémon).toBeInTheDocument();
@@ -42,14 +42,13 @@ describe('Testando o componente Pokedex', () => {
   });
 
   it('Teste se a Pokédex tem os botões de filtro', () => {
-    const { getByText, getAllByTestId } = renderWithRouter(<App />);
-    const num0 = 0;
-    const num8 = 8;
-    for (let i = num0; i <= num8; i += 1) {
-      const pokemon = getAllByTestId('pokemon-name');
-      fireEvent.click(getByText(/Próximo pokémon/i));
-      expect(pokemon.length).toBe(1);
-    }
+    const { getByRole } = renderWithRouter(<App />);
+    const eletric = getByRole('button', { name: 'Electric' });
+    fireEvent.click(eletric);
+    expect(eletric).toBeInTheDocument();
+    const bug = getByRole('button', { name: 'Bug' });
+    fireEvent.click(bug);
+    expect(bug).toBeInTheDocument();
   });
 
   it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
@@ -76,6 +75,8 @@ describe('Testando o componente Pokedex', () => {
       });
       expect(botoes).toBeInTheDocument();
     });
+    const botaoAll = getByRole('button', { name: 'All' });
+    expect(botaoAll).toBeInTheDocument();
   });
 
   it('O botão de próximo pokémon deve ser desabilitado', () => {
