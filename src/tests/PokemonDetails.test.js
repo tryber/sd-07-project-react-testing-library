@@ -142,45 +142,4 @@ describe('Test if the user can favor a pokémon through the details page', () =>
     fireEvent.change(favoriteCheck, { target: { checked: false } });
     expect(favoriteCheck.checked).toBeFalsy();
   });
-  /* test('All Pokémon locations must be shown in the details section', () => {
-    const { getByText } = renderWithRouter(
-      <PokemonDetails
-        pokemons={ pokemons }
-        match={ match }
-        isPokemonFavoriteById={ favorites }
-        onUpdateFavoritePokemons={ () => {} }
-      />,
-    );
-    const { params: { id } } = match;
-    const pokemon = pokemons.find((poke) => poke.id === parseInt(id, 10));
-    const pokemonLocations = pokemon.foundAt;
-    const gameLocations = getByText(`Game Locations of ${pokemon.name}`);
-    const detailsSection = gameLocations.parentElement;
-    const divLocations = gameLocations.nextElementSibling;
-    expect(divLocations.childElementCount).toBe(pokemonLocations.length);
-    expect(detailsSection.tagName).toBe('SECTION');
-  });
-  test('the location name of a map image should be displayed at each location', () => {
-    const { getByText, getAllByAltText } = renderWithRouter(
-      <PokemonDetails
-        pokemons={ pokemons }
-        match={ match }
-        isPokemonFavoriteById={ favorites }
-        onUpdateFavoritePokemons={ () => {} }
-      />,
-    );
-    const { params: { id } } = match;
-    const pokemon = pokemons.find((poke) => poke.id === parseInt(id, 10));
-    const pokemonLocations = pokemon.foundAt;
-    pokemonLocations.forEach((obj) => {
-      const elementLocation = getByText(obj.location);
-      const elementMap = getAllByAltText(`${pokemon.name} location`);
-      expect(elementLocation).toBeInTheDocument();
-      elementMap.forEach((e) => expect(e.tagName).toBe('IMG'));
-      elementMap.forEach((e) => expect(e.alt).toBe(`${pokemon.name} location`));
-      const urlIsTrue = elementMap.some((e) => e.src === obj.map);
-      expect(urlIsTrue).toBeTruthy();
-    });
-  });
-  */
 });
