@@ -39,10 +39,10 @@ test('shows all 3 links', () => {
 test('clicking on home link, goes to route `/`', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
     </Router>
-    );
+  );
   // console.log(history.location)
   fireEvent.click(getByText('Home'));
 
@@ -53,10 +53,10 @@ test('clicking on home link, goes to route `/`', () => {
 test('clicking on about link, goes to route `/about`', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
     </Router>
-    );
+  );
   // console.log(history.location)
   fireEvent.click(getByText('About'));
 
@@ -67,10 +67,10 @@ test('clicking on about link, goes to route `/about`', () => {
 test('clicking on Favorite Pokémons link, goes to route `/favorites`', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
     </Router>
-    );
+  );
   // console.log(history.location)
   fireEvent.click(getByText('Favorite Pokémons'));
 
