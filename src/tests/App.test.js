@@ -18,7 +18,7 @@ test('renders a reading with the text `Pokédex`', () => {
 
 test('shows the Pokédex when the route is `/`', () => {
   const { getByText } = render(
-    <MemoryRouter initialEntries = { ['/'] } >
+    <MemoryRouter initialEntries={['/']}>
       <App />
     </MemoryRouter>,
   );
@@ -26,8 +26,7 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-test('check if at the top of the page you have the "Home, About, Favorite Polémons link"',
-() => {
+test('check if at the top of the page you have the "Home, About, Favorite Polémons link"', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
@@ -41,8 +40,8 @@ test('check if at the top of the page you have the "Home, About, Favorite Polém
 
 test('navigate to home', () => {
   const history = createMemoryHistory();
-  const { getByText }=render(
-    <Router history = { history }>
+  const { getByText } = render(
+    <Router history={history}>
       <App />
     </Router>,
   );
@@ -50,13 +49,13 @@ test('navigate to home', () => {
   expect(getByText('Home')).toBeInTheDocument();
   fireEvent.click(getByText(/Home/i));
   const { pathname } = history.location;
-  expect(pathname).toBe('/')
+  expect(pathname).toBe('/');
 });
 
 test('navigate to About', () => {
   const history = createMemoryHistory();
-  const { getByText }=render(
-    <Router history = { history }>
+  const { getByText } = render(
+    <Router history={history}>
       <App />
     </Router>,
   );
@@ -64,13 +63,13 @@ test('navigate to About', () => {
   expect(getByText('About')).toBeInTheDocument();
   fireEvent.click(getByText(/About/i));
   const { pathname } = history.location;
-  expect(pathname).toBe('/about')
+  expect(pathname).toBe('/about');
 });
 
 test('navigate to Favorite Pokémons', () => {
   const history = createMemoryHistory();
-  const { getByText }=render(
-    <Router history = { history }>
+  const { getByText } = render(
+    <Router history={history}>
       <App />
     </Router>,
   );
@@ -83,8 +82,8 @@ test('navigate to Favorite Pokémons', () => {
 
 test('navigate to Not Found', () => {
   const history = createMemoryHistory();
-  const { getByText }=render(
-    <Router history = { history }>
+  const { getByText } = render(
+    <Router history={history}>
       <App />
     </Router>,
   );
