@@ -1,15 +1,13 @@
 import React from 'react';
-import {MemoryRouter} from 'react-router-dom';
 import {render} from '@testing-library/react';
 import {Router} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
+    const history = createMemoryHistory();
     const {getByText} = render (
-        <MemoryRouter>
-            <App/>
-        </MemoryRouter>,
+        <Router history={history}><App/></Router>,
     );
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
@@ -18,9 +16,7 @@ test('renders a reading with the text `Pokédex`', () => {
 test('shows thePokedex when the route is `/`', () => {
     const history = createMemoryHistory();
     const {getByText} = render (
-        <Router history={history}>
-            <App/>
-        </Router>,
+        <Router history={history}><App/></Router>,
     );
 
     const {pathname} = history.location;
