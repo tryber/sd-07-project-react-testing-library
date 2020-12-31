@@ -69,8 +69,9 @@ describe('Teste se existe na página uma seção com os mapas contendo as '
     const pokemonHabitat = h2.nextElementSibling;
     expect(pokemonHabitat.className).toBe('pokemon-habitat');
     const habitats = pokemonHabitat.childNodes;
+    const magicNumber = 2;
     habitats.forEach((habitat) => {
-      expect(habitat.childNodes.length).toBe(2);
+      expect(habitat.childNodes.length).toBe(magicNumber);
       const img = habitat.childNodes[0];
       const p = habitat.childNodes[1];
       expect(img).toBeInTheDocument();
