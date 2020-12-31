@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, getByText } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import App from '../App';
@@ -24,7 +24,7 @@ describe('Testing Pokedex.js', () => {
       <Pokedex
         pokemons={ PokemonData }
         isPokemonFavoriteById={ isPokemonFavoriteById }
-      />
+      />,
     );
 
     const title = getByText(/Encountered pokémons/i).tagName;
@@ -39,7 +39,7 @@ describe('Testing Pokedex.js', () => {
 
     fireEvent.click(getByText('Próximo pokémon'));
     expect(getByText('Caterpie')).toBeInTheDocument();
-    
+
     fireEvent.click(getByText('Próximo pokémon'));
     expect(getByText('Ekans')).toBeInTheDocument();
 
@@ -57,14 +57,13 @@ describe('Testing Pokedex.js', () => {
 
     fireEvent.click(getByText('Próximo pokémon'));
     expect(getByText('Dragonair')).toBeInTheDocument();
-    
   });
 
-  test('clicking on `Próximo pokémon` on the last pokemon, shows the first pokemon ', () => {
+  test('clicking `Próximo pokémon` on the last pokemon, shows the first pokemon ', () => {
     const { getByText } = renderWithRouter(<App />);
 
-    PokemonData.forEach(pokemon => fireEvent.click(getByText('Próximo pokémon')));
-    
+    PokemonData.forEach(() => fireEvent.click(getByText('Próximo pokémon')));
+
     expect(getByText('Pikachu')).toBeInTheDocument();
   });
 
@@ -123,7 +122,7 @@ describe('Testing Pokedex.js', () => {
       <Pokedex
         pokemons={ PokemonDataTest }
         isPokemonFavoriteById={ isPokemonFavoriteById }
-      />
+      />,
     );
 
     const pokemonBtnType = getAllByTestId('pokemon-type-button').length;
@@ -134,10 +133,10 @@ describe('Testing Pokedex.js', () => {
     expect(queryByRole('button', { name: 'All' })).not.toBeNull();
   });
 
-  test('btn `Próximo pokémon`, should be disable if there is one pokemon for a type', () => {
+  test('btn `Próximo pokémon`, is disable if there is one pokemon for a type', () => {
     const { getByText, getByRole } = renderWithRouter(<App />);
 
-    fireEvent.click(getByRole('button', { name: 'Normal' }))
+    fireEvent.click(getByRole('button', { name: 'Normal' }));
     let nextbBtn = getByText('Próximo pokémon');
     expect(nextbBtn.disabled).toBe(true);
 
