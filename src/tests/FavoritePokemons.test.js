@@ -63,13 +63,13 @@ describe('Testando o arquivo FavoritePokemons.js', () => {
       ],
       summary: 'The flame on its tail shows the strength of its life force.',
     },
-];
+  ];
   it('Teste se é exibido todos os cards de pokémons favoritados.', () => {
     renderWithRouter(<FavoritePokemons pokemons={ pokemonsVIP } />);
     const divs = document.getElementsByClassName('favorite-pokemon');
     const total = 2;
     expect(divs.length).toBe(total);
-  }); 
+  });
   it('Teste se nenhum card de pokémon é exibido,se ele não estiver favoritado', () => {
     renderWithRouter(<FavoritePokemons />);
     const divs = document.getElementsByClassName('favorite-pokemon');
