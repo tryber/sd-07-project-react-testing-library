@@ -1,9 +1,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
-import Pokemon from '../components/Pokemon';
 import App from '../App';
-import PokemonData from '../data';
 
 describe('Testing Pokemon.js', () => {
   test('renders pokemon name correctly', () => {
