@@ -140,12 +140,11 @@ describe('Testing Pokedex.js', () => {
     let nextbBtn = getByText('Próximo pokémon');
     expect(nextbBtn.disabled).toBe(true);
 
-
-    fireEvent.click(getByRole('button', { name: 'Dragon' }))
+    fireEvent.click(getByRole('button', { name: 'Dragon' }));
     nextbBtn = getByText('Próximo pokémon');
     expect(nextbBtn.disabled).toBe(true);
 
-    fireEvent.click(getByRole('button', { name: 'Fire' }))
+    fireEvent.click(getByRole('button', { name: 'Fire' }));
     nextbBtn = getByText('Próximo pokémon');
     expect(nextbBtn.disabled).toBe(false);
   });
