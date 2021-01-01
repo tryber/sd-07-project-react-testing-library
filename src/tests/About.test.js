@@ -10,7 +10,7 @@ test('if the page contains information about Pokédex', () => {
   expect(
     getByText(
       'This application simulates a Pokédex,'
-      + 'a digital encliclopedia containing all Pokémons',
+      + ' a digital encliclopedia containing all Pokémons',
     ),
   ).toBeInTheDocument();
 });
@@ -28,7 +28,7 @@ test('if the page contains two paragraphs with text about Pokédex', () => {
   expect(
     getByText(
       'This application simulates a Pokédex,'
-      + 'a digital encliclopedia containing all Pokémons',
+      + ' a digital encliclopedia containing all Pokémons',
     ),
   ).toBeInTheDocument();
   expect(
