@@ -99,7 +99,7 @@ describe('Teste se o usuário pode favoritar um pokémon', () => {
     const { getByAltText, getByText, getByRole } = renderWithRouter(<App />);
     fireEvent.click(getByText(/More details/i));
     const checkbox = getByRole('checkbox');
-    checkbox.checked && fireEvent.click(checkbox);
+    (checkbox.checked && fireEvent.click(checkbox));
     expect(checkbox.checked).toBeFalsy();
     fireEvent.click(checkbox);
     expect(checkbox.checked).toBeTruthy();
