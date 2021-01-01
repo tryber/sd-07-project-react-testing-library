@@ -66,7 +66,7 @@ describe('Teste se as informações detalhadas do Pokémon', () => {
 describe('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
   it('O ícone deve ser uma imagem com o atributo src', () => {
     const { getByAltText } = renderWithRouter(
-      <Pokemon pokemon={ pokemons[0] } isFavorite={ vip[25] } />
+      <Pokemon pokemon={ pokemons[0] } isFavorite={ vip[25] } />,
     );
     const image = getByAltText(`${pokemons[0].name} is marked as favorite`);
     expect(image.src).toBe('http://localhost/star-icon.svg');
@@ -74,7 +74,7 @@ describe('Teste se existe um ícone de estrela nos Pokémons favoritados.', () =
   });
   it('A imagem deve ter o atributo alt= is marked as favorite', () => {
     const { getByAltText } = renderWithRouter(
-      <Pokemon pokemon={ pokemons[0] } isFavorite={ vip[25] } />
+      <Pokemon pokemon={ pokemons[0] } isFavorite={ vip[25] } />,
     );
     const image = getByAltText(`${pokemons[0].name} is marked as favorite`);
     expect(image.alt).toBe('Pikachu is marked as favorite');
