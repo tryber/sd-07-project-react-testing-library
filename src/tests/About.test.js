@@ -11,16 +11,17 @@ test('if the page contains information about Pokédex', () => {
   const { getByText } = RenderWithRouter(<About />);
   expect(
     getByText(
-      'This application simulates a Pokédex, a digital encliclopedia containing all Pokémons'
-    )
+      'This application simulates a Pokédex,' 
+      + 'a digital encliclopedia containing all Pokémons',
+    ),
   ).toBeInTheDocument();
 });
 
 test('if the page contains an h2 heading with the text About Pokédex', () => {
   const history = createMemoryHistory();
   const { container } = render(
-    <Router history={history}>
-      <About />
+    <Router history={ history }>
+      <About />,
     </Router>
   );
   const h2 = container.querySelector('h2');
@@ -32,18 +33,19 @@ test('if the page contains an h2 heading with the text About Pokédex', () => {
 test('if the page contains two paragraphs with text about Pokédex', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
-      <About />
+    <Router history={ history }>
+      <About />,
     </Router>
   );
   expect(
     getByText(
-      'This application simulates a Pokédex, a digital encliclopedia containing all Pokémons'
-    )
+      'This application simulates a Pokédex,' 
+      + 'a digital encliclopedia containing all Pokémons',
+    ),
   ).toBeInTheDocument();
   expect(
     getByText(
-      /One can filter Pokémons by type, and see more details for each one of them/i
+      /One can filter Pokémons by type, and see more details for each one of them/i,
     )
   ).toBeInTheDocument();
 });
@@ -51,8 +53,8 @@ test('if the page contains two paragraphs with text about Pokédex', () => {
 test('if the page contains the following image of a Pokédex', () => {
   const history = createMemoryHistory();
   const { container } = render(
-    <Router history={history}>
-      <About />
+    <Router history={ history }>
+      <About />,
     </Router>
   );
   const img = container.querySelector('img');
