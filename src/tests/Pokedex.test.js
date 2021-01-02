@@ -1,6 +1,6 @@
 import React from 'react';
-import TestingRouter from '../components/TestingRouter';
 import { cleanup, fireEvent } from '@testing-library/react';
+import TestingRouter from '../components/TestingRouter';
 import { Pokedex } from '../components';
 import pokemons from '../data';
 
@@ -24,7 +24,7 @@ describe('fifth requirement', () => {
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoritePokemonList }
-      />
+      />,
     );
     const pokedexText = getByText(/encountered pokémons/i);
     expect(pokedexText).toBeInTheDocument();
@@ -32,12 +32,11 @@ describe('fifth requirement', () => {
 
   it('should render the next pokémon when press next button', () => {
     // Inspirado em Alexandre Faustino
-    const mockedPokemons = jest.fn(() => pokemons)
     const { getByTestId, getByText } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoritePokemonList }
-      />
+      />,
     );
     const nextBtn = getByTestId('next-pokemon');
     expect(nextBtn.innerHTML).toBe('Próximo pokémon');
@@ -45,7 +44,7 @@ describe('fifth requirement', () => {
     pokemons.forEach((pokemon) => {
       expect(getByText(pokemon.name)).toBeInTheDocument();
       fireEvent.click(nextBtn);
-    })
+    });
     expect(getByText(pokemons[0].name)).toBeInTheDocument();
   });
 
@@ -54,34 +53,33 @@ describe('fifth requirement', () => {
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoritePokemonList }
-      />
+      />,
     );
     const pokemon = getAllByTestId('pokemon-name');
     expect(pokemon.length).toBe(1);
-  })
+  });
 
   it('should render filter buttons', () => {
     const { getAllByTestId, getByText, getByTestId } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoritePokemonList }
-      />
+      />,
     );
     const eletricBtn = (getAllByTestId('pokemon-type-button'))[0];
     fireEvent.click(eletricBtn);
     expect(getByText(/pikachu/i)).toBeInTheDocument();
     expect(getByTestId('pokemonType').textContent).toBe('Electric');
-  })
+  });
 
   it('should render All button', () => {
     const { getByText } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ favoritePokemonList }
-      />
+      />,
     );
     const allBtn = getByText(/all/i);
     expect(allBtn).toBeInTheDocument();
-
-  })
+  });
 });
