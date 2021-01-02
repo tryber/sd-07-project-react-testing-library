@@ -38,7 +38,7 @@ test('Pokmenos favoritos são exibidos, se tiver pokémons favoritos', () => {
   expect(favoritePokemon.length).toBe(two);
 });
 
-test('`No favorite pokemon found` é exibida, se não tiver pokémons favoritos', () => {
+test('Nenhum card é exibido, se não tiver pokémons favoritos', () => {
   const {
     getByText,
     getByLabelText,
