@@ -1,8 +1,6 @@
 import React from 'react';
-import { fireEvent, getAllByDisplayValue } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import { elementType } from 'prop-types';
 
 describe('About.js Tests`', () => {
   it('Checks if "About Pokédex" info apears', () => {
@@ -16,7 +14,7 @@ describe('About.js Tests`', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/about');
     const title = getByText('About Pokédex');
-    expect(title).toBeInTheDocument;
+    expect(title).toBeInTheDocument();
     expect(title.outerHTML).toBe('<h2>About Pokédex</h2>');
   });
 
@@ -24,10 +22,10 @@ describe('About.js Tests`', () => {
     const { container, history } = renderWithRouter(<App />);
     history.push('/about');
     const title = container.querySelectorAll('p');
-    expect(title.length).toBe(2);
+    expect(title.length.toString()).toBe('2');
   });
 
-  it('Checks a especific IMG is rendered', () => {
+  it('Checks if a especific IMG is rendered', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     history.push('/about');
     const img = getByAltText('Pokédex');
