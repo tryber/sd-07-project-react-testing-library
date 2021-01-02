@@ -38,7 +38,7 @@ describe('App.js Tests`', () => {
     expect(pathname).toBe('/about');
   });
 
-  it('Checks if clicking "Favorite Pokémons" link, redirects to the url "/favorites"', () => {
+  it('Checks if clicking "Favorite Pokémons" link, redirects to "/favorites"', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     const favorites = getByText(/Favorite Pokémons/i);
@@ -47,12 +47,12 @@ describe('App.js Tests`', () => {
     expect(pathname).toBe('/favorites');
   });
 
-  it('Checks if chosing a unespecified pathname redirects to NotFound',() => {
+  it('Checks if chosing a unespecified pathname redirects to NotFound', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     history.push('/marcio');
     const notFound = getByAltText(
-      'Pikachu crying because the page requested was not found'
-      ); 
+      'Pikachu crying because the page requested was not found',
+    );
     expect(notFound).toBeInTheDocument();
   });
 });
