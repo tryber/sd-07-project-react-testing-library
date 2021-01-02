@@ -82,6 +82,6 @@
 //     );
 //     const allBtn = screen.getByText(/all/i);
 //     expect(allBtn).toBeInTheDocument();
-    
+
 //   })
 // });
