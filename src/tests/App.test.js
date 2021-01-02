@@ -65,12 +65,7 @@ test('Clicar no link Favorite Pokémons é redirecionado para a URL `/favorites`
 });
 
 test('Ao entrar em uma URL desconhecida é renderizado a página `Not Found`', () => {
-  const { getByAltText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const { history } = renderWithRouter(<App />);
+  const { history, getByAltText } = renderWithRouter(<App />);
   history.push('/7');
   const notFound = getByAltText(
     'Pikachu crying because the page requested was not found',
