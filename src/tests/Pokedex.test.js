@@ -1,106 +1,87 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
+import TestingRouter from '../components/TestingRouter';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
-import App from '../App';
-import { FavoritePokemons } from '../components';
+import { Pokedex, Pokemon } from '../components';
+import pokemons from '../data';
 
 afterEach(cleanup);
 
 describe('fifth requirement', () => {
+  // Inspirado no projeto de Alexandre Faustino
+  const favoritePokemonList = {
+    4: false,
+    10: false,
+    23: true,
+    25: true,
+    65: false,
+    78: false,
+    143: false,
+    148: false,
+    151: true,
+  };
   it('should render an heading H2 with the text `Encountered pokémons`', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
+    const {} = TestingRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
+      />
     );
     const pokedexText = screen.getByText(/encountered pokémons/i);
     expect(pokedexText).toBeInTheDocument();
   });
 
   it('should render the next pokémon when press next button', () => {
-    const mockedPokemons = [
-      {
-        id: 143,
-        name: 'Snorlax',
-        type: 'Normal',
-        averageWeight: {
-          value: '460.0',
-          measurementUnit: 'kg',
-        },
-        image: 'https://cdn.bulbagarden.net/upload/4/40/Spr_5b_143.png',
-        moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Snorlax_(Pok%C3%A9mon)',
-        foundAt: [
-          {
-            location: 'Kanto Vermillion City',
-            map: 'https://cdn.bulbagarden.net/upload/5/54/Kanto_Vermilion_City_Map.png',
-          },
-        ],
-        summary: 'It is hungry.',
-      },
-      {
-        id: 10,
-        name: 'Caterpie',
-        type: 'Bug',
-        averageWeight: {
-          value: '2.9',
-          measurementUnit: 'kg',
-        },
-        image: 'https://cdn.bulbagarden.net/upload/8/83/Spr_5b_010.png',
-        moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Caterpie_(Pok%C3%A9mon)',
-        foundAt: [
-          {
-            location: 'Johto Route 30',
-            map: 'https://cdn.bulbagarden.net/upload/7/76/Johto_Route_30_Map.png',
-          },
-          {
-            location: 'Johto Route 31',
-            map: 'https://cdn.bulbagarden.net/upload/2/2b/Johto_Route_31_Map.png',
-          },
-          {
-            location: 'Ilex Forest',
-            map: 'https://cdn.bulbagarden.net/upload/a/ae/Johto_Ilex_Forest_Map.png',
-          },
-          {
-            location: 'Johto National Park',
-            map: 'https://cdn.bulbagarden.net/upload/4/4e/Johto_National_Park_Map.png',
-          },
-        ],
-        summary: 'Well... It is a bug',
-      },
-      {
-        id: 65,
-        name: 'Alakazam',
-        type: 'Psychic',
-        averageWeight: {
-          value: '48.0',
-          measurementUnit: 'kg',
-        },
-        image: 'https://cdn.bulbagarden.net/upload/8/88/Spr_5b_065_m.png',
-        moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Alakazam_(Pok%C3%A9mon)',
-        foundAt: [
-          {
-            location: 'Unova Accumula Town',
-            map: 'https://cdn.bulbagarden.net/upload/4/44/Unova_Accumula_Town_Map.png',
-          },
-        ],
-        summary: `Closing both its eyes heightens all its other senses.
-        This enables it to use its abilities to their extremes.`,
-      },
-    ];
-    render(
-      <MemoryRouter>
-        <App />
-        <FavoritePokemons pokemons={ mockedPokemons } />
-      </MemoryRouter>,
+    // Inspirado em Alexandre Faustino
+    const mockedPokemons = jest.fn(() => pokemons)
+    const {} = TestingRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
+      />
     );
-    const nextBtn = screen.getByText(/próximo pokémon/i);
-    expect(nextBtn).toBeInTheDocument();
-    expect(screen.getByText('Snorlax')).toBeInTheDocument();
-    fireEvent.click(nextBtn);
-    expect(screen.getByText('Caterpie')).toBeInTheDocument();
-    fireEvent.click(nextBtn);
-    expect(screen.getByText('Alakazam')).toBeInTheDocument();
-    fireEvent.click(nextBtn);
-    expect(screen.getByText('Snorlax')).toBeInTheDocument();
+    const nextBtn = screen.getByTestId('next-pokemon');
+    expect(nextBtn.innerHTML).toBe('Próximo pokémon');
+
+    pokemons.forEach((pokemon) => {
+      expect(screen.getByText(pokemon.name)).toBeInTheDocument();
+      fireEvent.click(nextBtn);
+    })
+    expect(screen.getByText(pokemons[0].name)).toBeInTheDocument();
   });
+
+  it('should render just one Pokémon at time', () => {
+    const {} = TestingRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
+      />
+    );
+    const pokemon = screen.getAllByTestId('pokemon-name');
+    expect(pokemon.length).toBe(1);
+  })
+
+  it('should render filter buttons', () => {
+    const {} = TestingRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
+      />
+    );
+    const eletricBtn = (screen.getAllByTestId('pokemon-type-button'))[0];
+    fireEvent.click(eletricBtn);
+    expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
+    expect(screen.getByTestId('pokemonType').textContent).toBe('Electric');
+  })
+
+  it('should render All button', () => {
+    const {} = TestingRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
+      />
+    );
+    const allBtn = screen.getByText(/all/i);
+    expect(allBtn).toBeInTheDocument();
+    
+  })
 });
