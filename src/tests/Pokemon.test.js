@@ -7,7 +7,7 @@ import Pokemon from '../components/Pokemon';
 
 afterEach(cleanup);
 
-describe('fifth requirement', () => {
+describe('sixth requirement', () => {
   it('should render the informations of a given Pokémon', () => {
     const { getByTestId, getByRole } = TestingRouter(
       <App
