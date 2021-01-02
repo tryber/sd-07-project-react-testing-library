@@ -1,7 +1,7 @@
 import React from 'react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import App from '../App';
 import TestingRouter from '../components/TestingRouter';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import pokemons from '../data';
 import Pokemon from '../components/Pokemon';
 
@@ -9,15 +9,15 @@ afterEach(cleanup);
 
 describe('fifth requirement', () => {
   it('should render the informations of a given Pokémon', () => {
-    const {} = TestingRouter(
+    const { getByTestId, getByRole } = TestingRouter(
       <App
         pokemons={ pokemons }
-      />
-    )
-    const pokemonName = screen.getByTestId('pokemon-name');
-    const pokemonType = screen.getByTestId('pokemonType');
-    const pokemonWeight = screen.getByTestId('pokemon-weight');
-    const pokemonImage = screen.getByRole('img');
+      />,
+    );
+    const pokemonName = getByTestId('pokemon-name');
+    const pokemonType = getByTestId('pokemonType');
+    const pokemonWeight = getByTestId('pokemon-weight');
+    const pokemonImage = getByRole('img');
 
     expect(pokemonName.innerHTML).toBe('Pikachu');
     expect(pokemonType.innerHTML).toBe('Electric');
@@ -27,34 +27,34 @@ describe('fifth requirement', () => {
   });
 
   it('should render an url to the details of a given Pokémon', () => {
-    const {} = TestingRouter(
+    const { getByText } = TestingRouter(
       <App
         pokemons={ pokemons }
-      />
-    )
-    const detailsBtn = screen.getByText(/more details/i);
+      />,
+    );
+    const detailsBtn = getByText(/more details/i);
     expect(detailsBtn.href).toContain('/pokemons/25');
   });
 
   it('should be redirected to the Detail Page when clicking in the button', () => {
-    const { history } = TestingRouter(
+    const { history, getByText } = TestingRouter(
       <App
         pokemons={ pokemons }
-      />
-    )
-    const detailsBtn = screen.getByText(/more details/i);
+      />,
+    );
+    const detailsBtn = getByText(/more details/i);
     fireEvent.click(detailsBtn);
     expect(history.location.pathname).toBe('/pokemons/25');
   });
 
   it('should render an star icon if the Pokémon is marked as favorite', () => {
-    const {} = TestingRouter(
+    const { getByAltText } = TestingRouter(
       <Pokemon
         pokemon={ pokemons[0] }
-        isFavorite={ true }
-      />
-    )
-    const starIcon = screen.getByAltText('Pikachu is marked as favorite');
+        isFavorite
+      />,
+    );
+    const starIcon = getByAltText('Pikachu is marked as favorite');
     expect(starIcon.src).toContain('/star-icon.svg');
-  })
+  });
 });
