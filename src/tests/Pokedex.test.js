@@ -18,19 +18,19 @@ describe('fifth requirement', () => {
     143: false,
     148: false,
     151: true,
-  }
+  };
   it('should render heading with the text Encountered pokémons', () => {
-    const { getByRole } = TestingRouter (
+    const { getByRole } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
       />,
-    )
+    );
     const heading = getByRole('heading');
     expect(heading).toBeInTheDocument();
   });
   it('should render render the next pokémon when clicking next buttom', () => {
-    const { getByTestId } = TestingRouter (
+    const { getByTestId } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
@@ -43,11 +43,11 @@ describe('fifth requirement', () => {
     pokemons.forEach((pokemon) => {
       expect(pokemonName.innerHTML).toBe(pokemon.name);
       fireEvent.click(nextBtn);
-    })
+    });
     expect(pokemonName.innerHTML).toBe('Pikachu');
   });
   it('should render just one pokémon at time', () => {
-    const { getAllByTestId } = TestingRouter (
+    const { getAllByTestId } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
@@ -57,7 +57,7 @@ describe('fifth requirement', () => {
     expect(pokemonName.length).toBe(1);
   });
   it('should render filter buttons', () => {
-    const { getAllByTestId, getByTestId } = TestingRouter (
+    const { getAllByTestId, getByTestId } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
@@ -74,7 +74,7 @@ describe('fifth requirement', () => {
   });
   it('should render reset button', () => {
     // Referência: Alexandre Faustino
-    const { getByTestId, getByText, getAllByRole } = TestingRouter (
+    const { getByTestId, getByText, getAllByRole } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
@@ -95,7 +95,7 @@ describe('fifth requirement', () => {
     });
   });
   it('shouldnt render next button if theres just one pokémon', () => {
-    const { getByText, getAllByRole } = TestingRouter (
+    const { getByText, getAllByRole } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
