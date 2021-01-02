@@ -1,24 +1,15 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../renderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-});
+describe('Tests the App screen', () => {
+  test('renders a reading with the text `Pokédex`', () => {
+    const { getByText, history } = renderWithRouter(<App />);
 
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
+    const heading = getByText(/Pokédex/i);
+    expect(heading).toBeInTheDocument();
 
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
+  });
 });
