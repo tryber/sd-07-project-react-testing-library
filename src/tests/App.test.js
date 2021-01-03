@@ -1,4 +1,5 @@
 import React from 'react';
+import renderWithRouter from '../renderWithRouter';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
@@ -23,16 +24,18 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-test('nav bar contains a group of links', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const firstLink = getByText(/Home/i);
-  const secondLink = getByText(/About/i);
-  const thirdLink = getByText(/Favorite Pokémons/i);
+test('nav bar contains a certain group of links', () => {
+  const { getByText } = renderWithRouter(<App />);
+
+  const firstLink = getByText('Home');
+  const secondLink = getByText('About');
+  const thirdLink = getByText('Favorite Pokémons');
   expect(firstLink).toBeInTheDocument();
   expect(secondLink).toBeInTheDocument();
   expect(thirdLink).toBeInTheDocument();
 });
+
+test('redirects to Home if clicking Home link in navbar', () => {
+
+});
+
