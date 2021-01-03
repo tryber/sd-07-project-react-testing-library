@@ -33,3 +33,28 @@ describe('Next pokemon is rendered when clicked in next button', () => {
     });
   });
 });
+
+describe('Pokédex filters are working correctly', () => {
+  it('rotates pokémons only in selected pokémon type', () => {
+    // Fonte: Estudante Ana Karine
+    const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
+    const actualPokemonType = getByTestId('pokemonType');
+    const allPokemonType = getAllByTestId('pokemon-type-button');
+    allPokemonType.forEach((type) => {
+      fireEvent.click(type);
+      expect(type.textContent).toBe(actualPokemonType.textContent);
+    });
+  });
+  it('contains a button to reset the filter', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const button = getByText(/All/i);
+    expect(button).toBeInTheDocument();
+  });
+  it('filter "All" is selected by default', () => {
+    const { getByTestId, getByText } = renderWithRouter(<App />);
+    const nextButton = getByTestId('next-pokemon');
+    const secondPokemon = getByText(/Charmander/i);
+    fireEvent.click(nextButton);
+    expect(secondPokemon).toBeInTheDocument();
+  });
+});
