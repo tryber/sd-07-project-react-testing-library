@@ -4,7 +4,6 @@ import { render, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
@@ -27,7 +26,7 @@ describe('Testando o arquivo App.js', () => {
     expect(favoritePokemons).toBeInTheDocument();
   });
 
-  it('ao clicar no link Home, a aplicação é redirecionada para a página inicial, na URL /', () => {
+  it('ao clicar no link Home, o app é redirecionado para a URL /', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const home = getByText('Home');
     fireEvent.click(home);
@@ -36,7 +35,7 @@ describe('Testando o arquivo App.js', () => {
     expect(pathname).toBe('/');
   });
 
-  it('ao clicar no link About, a aplicação é redirecionada para a página About, na URL /about', () => {
+  it('ao clicar no link About, o app é redirecionado para a URL /about', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const about = getByText('About');
     fireEvent.click(about);
@@ -45,7 +44,7 @@ describe('Testando o arquivo App.js', () => {
     expect(pathname).toBe('/about');
   });
 
-  it('ao clicar no link Favorite Pokémons, a aplicação é redirecionada para a página Pokémons Favoritados, na URL /favorites', () => {
+  it('ao clicar no link Favorite Pokémons, o app é redirecionado para a URL /favorites', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const favoritePokemons = getByText('Favorite Pokémons');
     fireEvent.click(favoritePokemons);
@@ -58,9 +57,8 @@ describe('Testando o arquivo App.js', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
 
     history.push('/pagina-nao-existente');
-    const noMatch = getByAltText(
-      'Pikachu crying because the page requested was not found'
-    );
+    const
+      noMatch = getByAltText('Pikachu crying because the page requested was not found');
     expect(noMatch).toBeInTheDocument();
   });
 });
