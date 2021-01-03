@@ -1,18 +1,18 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import { fireEvent } from '@testing-library/react';
 
 describe('Pokedéx Tests', () => {
   it('Tests if an H2 with especific text is rendered', () => {
-    const { history, getByText } = renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
     history.push('/');
     const heading = document.querySelector('h2');
     expect(heading).toBeInTheDocument();
   });
 
   it('Tests if "next pokemon" button has functionality', () => {
-    const { getByTestId ,history } = renderWithRouter(<App />);
+    const { getByTestId, history } = renderWithRouter(<App />);
     history.push('/');
     const pokedexBtn = document.querySelector('.pokedex-button');
     expect(pokedexBtn.textContent).toBe('Próximo pokémon');
@@ -35,7 +35,7 @@ describe('Pokedéx Tests', () => {
     const { history, getByTestId } = renderWithRouter(<App />);
     history.push('/');
     const filterBtns = document.querySelectorAll('.filter-button');
-    expect(filterBtns.length).toBe(8);
+    expect((filterBtns.length).toString()).toBe('8');
     const bugBtn = filterBtns[3];
     fireEvent.click(bugBtn);
     expect(bugBtn.textContent).toBe('Bug');
