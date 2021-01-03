@@ -2,6 +2,7 @@ import React from 'react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
+import { screen } from '@testing-library/dom';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -23,6 +24,6 @@ test('full app rendering/navigating', () => {
   );
   // verify page content for expected route
   // often you'd use a data-testid or role query, but this is also possible
-  expect(getByText('Encountered')).toBeInTheDocument();
+  expect(screen.getByText(/Encountered/i)).toBeInTheDocument();
 });
 // adaptado a partir de https://testing-library.com/docs/example-react-router/
