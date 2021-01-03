@@ -23,5 +23,11 @@ describe('testing About.js component', () => {
     expect(getByText(firstParagraph)).toBeInTheDocument();
     expect(getByText(secondParagraph)).toBeInTheDocument();
   });
+
+  it('should contain an image', () => {
+    const { getByRole } = render(<About />);
+    const img = getByRole('img').src;
+    expect(img).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+  });
 });
 
