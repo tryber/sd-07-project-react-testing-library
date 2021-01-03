@@ -7,7 +7,8 @@ describe('NotFound.js Tests`', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/Marcio');
     const heading = document.querySelector('h2');
-    const inner = 'Page requested not found<span role="img" aria-label="Crying emoji"> 😭</span>';
+    let inner ='';
+    inner ='Page requested not found<span role="img" aria-label="Crying emoji"> 😭</span>';
     expect(heading).toBeInTheDocument();
     expect(heading.innerHTML).toBe(inner);
   });
@@ -15,7 +16,7 @@ describe('NotFound.js Tests`', () => {
   it('Checks if a especific IMG is rendered', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     history.push('/Marcio');
-    const img = getByAltText('Pikachu crying because the page requested was not found')
+    const img = getByAltText('Pikachu crying because the page requested was not found');
     const source = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
     expect(img).toBeInTheDocument();
     expect(img.src).toBe(source);
