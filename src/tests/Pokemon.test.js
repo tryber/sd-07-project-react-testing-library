@@ -9,7 +9,7 @@ describe('Testa o arquivo Pokemon.js', () => {
     const pokemon = pokemons[0];
     const {
       getByTestId,
-      getByAltText
+      getByAltText,
     } = renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
 
     const pokemonName = getByTestId('pokemon-name');
