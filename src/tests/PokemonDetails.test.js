@@ -38,13 +38,13 @@ describe('seventh requirement', () => {
     });
   });
   it('should be possible to favorite the pokemon', () => {
-    const { getByLabelText, queryByAltText } = TestingRouter(<PokemonDetails
+    const { getByLabelText } = TestingRouter(<PokemonDetails
       isPokemonFavoriteById={ { 25: false } }
       match={ { params: { id: '25' } } }
       pokemons={ pokemons }
       onUpdateFavoritePokemons={ () => {} }
     />);
-    const checkbox = getByLabelText(`Pokémon favoritado?`);
+    const checkbox = getByLabelText('Pokémon favoritado?');
     expect(checkbox).toBeInTheDocument();
     fireEvent.change(checkbox, { target: { checked: true } });
     expect(checkbox).toBeChecked();
