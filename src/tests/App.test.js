@@ -48,3 +48,10 @@ test('redirects to About page when clicking About link in navbar', () => {
   const pathname = history.location.pathname;
   expect(pathname).toBe('/about');
 });
+
+test('redirects to favorites page when clicking Favorite Pokémons link in navbar', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  fireEvent.click(getByText('Favorite Pokémons'));
+  const pathname = history.location.pathname;
+  expect(pathname).toBe('/favorites');
+});
