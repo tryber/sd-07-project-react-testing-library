@@ -17,7 +17,7 @@ describe('testing About.js component', () => {
     const { getByText } = render(<About />);
     const firstPPart1 = 'This application simulates a Pokédex,';
     const firstPPart2 = ' a digital encliclopedia containing all Pokémons';
-    const secondPPart1 = 'One can filter Pokémons by type,'
+    const secondPPart1 = 'One can filter Pokémons by type,';
     const secondPPart2 = ' and see more details for each one of them';
     expect(getByText(firstPPart1 + firstPPart2)).toBeInTheDocument();
     expect(getByText(secondPPart1 + secondPPart2)).toBeInTheDocument();
