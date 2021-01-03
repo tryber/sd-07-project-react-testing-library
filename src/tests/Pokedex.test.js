@@ -27,6 +27,7 @@ describe('fifth requirement', () => {
       />,
     );
     const heading = getByRole('heading');
+    expect(heading.innerHTML).toBe('Encountered pokémons');
     expect(heading).toBeInTheDocument();
   });
   it('should render render the next pokémon when clicking next buttom', () => {
@@ -92,6 +93,19 @@ describe('fifth requirement', () => {
     pokemons.forEach((pokemon) => {
       expect(getByText(pokemon.name)).toBeInTheDocument();
       fireEvent.click(nextBtn);
+    });
+  });
+  it('should render dynamic buttons for each type', () => {
+    const { getAllByTestId } = TestingRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ isFavorite }
+      />,
+    );
+    const buttons = getAllByTestId('pokemon-type-button');
+    const listOfTypes = pokemons.map((pokemon) => pokemon.type);
+    buttons.forEach((btn) => {
+      expect(listOfTypes).toContain(btn.innerHTML);
     });
   });
   it('shouldnt render next button if theres just one pokémon', () => {
