@@ -22,3 +22,17 @@ test('shows the Pokédex when the route is `/`', () => {
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
+
+test('nav bar contains a group of links', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const firstLink = getByText(/Home/i);
+  const secondLink = getByText(/About/i);
+  const thirdLink = getByText(/Favorite Pokémons/i);
+  expect(firstLink).toBeInTheDocument();
+  expect(secondLink).toBeInTheDocument();
+  expect(thirdLink).toBeInTheDocument();
+});
