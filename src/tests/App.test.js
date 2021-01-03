@@ -46,10 +46,22 @@ describe('Testando se possui os links com os textos', () => {
 });
 
 describe('Testando as rotas dos links', () => {
-  it('Ao clicar home, o link deve ser "/"', () => {
+  it('Ao clicar em Home, o link deve ser "/"', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/home/i));
+    fireEvent.click(getByText(/Home/i));
     const { pathname } = history.location;
     expect(pathname).toBe('/');
+  });
+  it('Ao clicar About, o link deve ser "/about"', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/About/i));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
+  });
+  it('Ao clicar Favorite Pokémons, o link deve ser "/favorites"', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/Favorite Pokémons/i));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
   });
 });
