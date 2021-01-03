@@ -8,6 +8,7 @@ test('A página contém um heading h2 com o texto `Page requested not found`', (
   const heading = getByText('Page requested not found');
   const emoji = getAllByRole('img');
   expect(heading).toBeInTheDocument();
+  expect(heading.tagName).toBe('H2');
   expect(emoji[0]).toBeInTheDocument();
 });
 
