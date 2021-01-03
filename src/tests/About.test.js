@@ -29,6 +29,8 @@ describe('About.js Tests`', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     history.push('/about');
     const img = getByAltText('Pokédex');
+    const src = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     expect(img).toBeInTheDocument();
+    expect(img.src).toBe(src);
   });
 });
