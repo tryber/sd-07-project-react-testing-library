@@ -18,6 +18,16 @@ describe('Tests if a card with pokémon info is rendered', () => {
     const expectedPokemonName = 'Alakazam';
     expect(pokemonName.textContent).toBe(expectedPokemonName);
   });
+  it('should displey correctly the Pokemon type', () => {
+    const selectedPokemon = pokemons[4];
+    const { getByText } = renderWithRouter(<Pokemon
+      pokemon={ selectedPokemon }
+      isFavorite={ false }
+    />);
+    const pokemonType = getByText(selectedPokemon.type);
+    const expectedPokemonType = 'Psychic';
+    expect(pokemonType.textContent).toBe(expectedPokemonType);
+  });
   it('should display the weight of the pokemon', () => {
     const selectedPokemon = pokemons[4];
     const { getByText } = renderWithRouter(<Pokemon
