@@ -47,14 +47,14 @@ describe('fifth requirement', () => {
     expect(pokemonName.innerHTML).toBe('Pikachu');
   });
   it('should render just one pokémon at time', () => {
-    const { getAllByTestId } = TestingRouter(
+    const { getByText, queryByText } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
       />,
     );
-    const pokemonName = getAllByTestId('pokemon-name');
-    expect(pokemonName.length).toBe(1);
+    expect(getByText(pokemons[0].name)).toBeInTheDocument();
+    expect(queryByText(pokemons[1].name)).not.toBeInTheDocument();
   });
   it('should render filter buttons', () => {
     const { getAllByTestId, getByTestId } = TestingRouter(
