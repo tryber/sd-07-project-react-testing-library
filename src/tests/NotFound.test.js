@@ -9,4 +9,10 @@ describe('testing NotFound.js component', () => {
     expect(getByText('Page requested not found')).toBeInTheDocument();
     expect(getByText('😭')).toBeInTheDocument();
   });
+
+  it('should contain a specific gif image', () => {
+    const { getAllByRole } = render(<NotFound />);
+    const img = getAllByRole('img')[1].src;
+    expect(img).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+  });
 });
