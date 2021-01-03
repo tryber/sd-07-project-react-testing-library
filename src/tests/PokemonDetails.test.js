@@ -133,7 +133,7 @@ describe('Testing PokemonDetails.js', () => {
       });
       count += 1;
     });
- 
+
     expect(allInfo[0]['img 1'].imgSrc).toBe(res[0]['img 1'].imgSrc);
     expect(allInfo[0]['img 1'].altName).toBe(res[0]['img 1'].altName);
     expect(allInfo[1]['img 2'].imgSrc).toBe(res[1]['img 2'].imgSrc);
