@@ -10,7 +10,9 @@ describe('NotFound.js Tests`', () => {
     let inner = '';
     inner = 'Page requested not found<span role="img" aria-label="Crying emoji"> 😭</span>';
     expect(heading).toBeInTheDocument();
-    expect(heading.innerHTML).toBe(inner);
+    expect(heading.innerHTML).toBe(
+      'Page requested not found<span role="img" aria-label="Crying emoji"> 😭</span>',
+    );
   });
 
   it('Checks if a especific IMG is rendered', () => {
@@ -19,7 +21,7 @@ describe('NotFound.js Tests`', () => {
     const img = getByAltText('Pikachu crying because the page requested was not found');
     expect(img).toBeInTheDocument();
     expect(img.src).toBe(
-      'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif'
+      'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
     );
   });
 });
