@@ -4,7 +4,7 @@ import App from '../App';
 
 describe('NotFound.js Tests`', () => {
   it('Checks if an H2 is rendered with a message', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
     history.push('/Marcio');
     const heading = document.querySelector('h2');
     const inner = 'Page requested not found<span role="img" aria-label="Crying emoji"> 😭</span>';
