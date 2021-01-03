@@ -1,5 +1,7 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
+import App from '../App';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
@@ -53,5 +55,14 @@ describe('Tests if a card with pokémon info is rendered', () => {
     const urlPath = 'http://localhost/star-icon.svg';
     expect(favoriteStarIcon.src).toBe(urlPath);
     expect(favoriteStarIcon).toBeInTheDocument();
+  });
+});
+
+describe('Tests navigation for Pokemon component', () => {
+  it('contains a navigation link for details', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/More details/i));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/pokemons/25');
   });
 });
