@@ -13,7 +13,8 @@ describe('testing FavoritePokemon.js component', () => {
   it('should show all favorite pokemon cards', () => {
     const favorites = [pokemons[0], pokemons[1]];
     const { getByText, queryByText } = renderWithRouter(
-      <FavoritePokemons pokemons={ favorites } />);
+      <FavoritePokemons pokemons={ favorites } />
+    );
     expect(getByText('Pikachu')).toBeInTheDocument();
     expect(getByText('Charmander')).toBeInTheDocument();
     expect(queryByText('Caterpie')).not.toBeInTheDocument();
