@@ -1,7 +1,7 @@
 import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, fireEvent, getByTestId } from '@testing-library/react';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -35,7 +35,16 @@ test('nav bar contains a certain group of links', () => {
   expect(thirdLink).toBeInTheDocument();
 });
 
-test('redirects to Home if clicking Home link in navbar', () => {
-
+test('redirects to Home when clicking Home link in navbar', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  fireEvent.click(getByText('Home'));
+  const pathname = history.location.pathname;
+  expect(pathname).toBe('/');
 });
 
+test('redirects to About page when clicking About link in navbar', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  fireEvent.click(getByText('About'));
+  const pathname = history.location.pathname;
+  expect(pathname).toBe('/about');
+});
