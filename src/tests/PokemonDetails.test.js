@@ -87,7 +87,7 @@ describe('Testing PokemonDetails.js', () => {
 
     allDivs.forEach(({ children }) => {
       allInfo.push({
-        ['img ' + count]: {
+        [`img  ${count}`]: {
           imgSrc: children[0].src,
           routName: children[1].textContent, // children[1].innetText tb funcionaria!
         },
@@ -126,7 +126,7 @@ describe('Testing PokemonDetails.js', () => {
 
     pokemonImg.forEach((img) => {
       allInfo.push({
-        ['img ' + count]: {
+        [`img  ${count}`]: {
           imgSrc: img.src,
           altName: img.alt,
         },
