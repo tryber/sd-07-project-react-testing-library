@@ -55,3 +55,10 @@ test('redirects to favorites page when clicking Favorite Pokémons link in navba
   const pathname = history.location.pathname;
   expect(pathname).toBe('/favorites');
 });
+
+test('redirects to Not Found page when entering an invalid path', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  history.push('/invalid-url')
+  const invalidPathname = getByText(`Page requested ` + `not found`);
+  expect(invalidPathname).toBeInTheDocument;
+});
