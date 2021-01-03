@@ -17,8 +17,9 @@ describe('NotFound.js Tests`', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     history.push('/Marcio');
     const img = getByAltText('Pikachu crying because the page requested was not found');
-    const source = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
     expect(img).toBeInTheDocument();
-    expect(img.src).toBe(source);
+    expect(img.src).toBe(
+      'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif'
+    );
   });
 });
