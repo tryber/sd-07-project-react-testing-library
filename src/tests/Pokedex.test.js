@@ -51,10 +51,18 @@ describe('Pokédex filters are working correctly', () => {
     expect(button).toBeInTheDocument();
   });
   it('filter "All" is selected by default', () => {
-    // const { getByTestId, getByText } = renderWithRouter(<App />);
-    // const nextButton = getByTestId('next-pokemon');
-    // const secondPokemon = getByText(/Charmander/i);
-    // fireEvent.click(nextButton);
-    // expect(secondPokemon).toBeInTheDocument();
+    const { getByTestId } = renderWithRouter(<App />);
+    const nextButton = getByTestId('next-pokemon');
+    const secondPokemon = getByTestId('pokemon-name');
+    const expectedPokemon = 'Charmander';
+    fireEvent.click(nextButton);
+    expect(secondPokemon.textContent).toBe(expectedPokemon);
+  });
+  it('filter is dinamically created for each Pokémon type', () => {
+    // Fonte: Estudante Zezo Menon
+    const { getAllByTestId } = renderWithRouter(<App />);
+    const lengthTypeButton = [...new Set(pokemons.map((pokemon) => pokemon.type))];
+    const filterButtons = getAllByTestId(/pokemon-type-button/i);
+    expect(filterButtons.length).toBe(lengthTypeButton.length);
   });
 });
