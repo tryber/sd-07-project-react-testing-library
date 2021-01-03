@@ -38,7 +38,6 @@ describe('Testa o arquivo Pokedex.js', () => {
     expect(nextPokemon).toBeInTheDocument();
   });
 
-
   it('Testa se é mostrado apenas um Pokémon por vez', () => {
     const pokemon = [pokemons[0]];
     const { getByText, queryByText } = renderWithRouter(
