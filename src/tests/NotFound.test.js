@@ -7,8 +7,6 @@ describe('NotFound.js Tests`', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/Marcio');
     const heading = document.querySelector('h2');
-    let inner = '';
-    inner = 'Page requested not found<span role="img" aria-label="Crying emoji"> 😭</span>';
     expect(heading).toBeInTheDocument();
     expect(heading.innerHTML).toBe(
       'Page requested not found<span role="img" aria-label="Crying emoji"> 😭</span>',
