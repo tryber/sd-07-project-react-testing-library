@@ -8,6 +8,7 @@ describe('NotFound.js Tests`', () => {
     history.push('/Marcio');
     const heading = document.querySelector('h2');
     expect(heading).toBeInTheDocument();
+    expect(heading.tagName.toLowerCase()).toBe('h2')
     expect(heading.innerHTML).toBe(
       'Page requested not found<span role="img" aria-label="Crying emoji"> 😭</span>',
     );
