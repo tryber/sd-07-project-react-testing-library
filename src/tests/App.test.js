@@ -1,6 +1,7 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -13,23 +14,15 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { createMemoryHistory } from 'history'
-import React from 'react'
-import { Router } from 'react-router-dom'
-
-import '@testing-library/jest-dom/extend-expect'
-
-import { App, LocationDisplay } from './app'
-
 test('full app rendering/navigating', () => {
-  const history = createMemoryHistory()
+  const history = createMemoryHistory();
   render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
-    </Router>
-  )
+    </Router>,
+  );
   // verify page content for expected route
   // often you'd use a data-testid or role query, but this is also possible
-  expect(screen.getByText(/you are home/i)).toBeInTheDocument()
+  expect(getByText('Encountered')).toBeInTheDocument();
+});
+// adaptado a partir de https://testing-library.com/docs/example-react-router/
