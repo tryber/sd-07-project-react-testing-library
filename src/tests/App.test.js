@@ -44,7 +44,7 @@ describe('Testando o arquivo App.js', () => {
     expect(pathname).toBe('/about');
   });
 
-  it('ao clicar no link Favorite Pokémons, o app é redirecionado para a URL /favorites', () => {
+  it('ao clicar em Favorite Pokémons, o app é redirec. para a URL /favorites', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const favoritePokemons = getByText('Favorite Pokémons');
     fireEvent.click(favoritePokemons);
@@ -53,7 +53,7 @@ describe('Testando o arquivo App.js', () => {
     expect(pathname).toBe('/favorites');
   });
 
-  it('aplicação deve ser redirecionada para a página Not Found ao entrar em uma URL desconhecida', () => {
+  it('a página Not Found deve aparecer ao entrar em uma URL desconhecida', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
 
     history.push('/pagina-nao-existente');
