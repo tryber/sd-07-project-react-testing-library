@@ -22,8 +22,8 @@ describe('Testing Pokedex.js file', () => {
   it('the page contains heading with the text `Encountered pokémons`', () => {
     renderWithRouter(
       <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={favoritePokemonList}
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
       />,
     );
     expect(screen.getByRole('heading', { name: 'Encountered pokémons' }));
@@ -32,8 +32,8 @@ describe('Testing Pokedex.js file', () => {
   it('shows the next Pokemon when `Próximo pokémon` button is clicked', () => {
     renderWithRouter(
       <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={favoritePokemonList}
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
       />,
     );
     expect(screen.getByTestId('next-pokemon')).toHaveTextContent(
@@ -56,8 +56,8 @@ describe('Testing Pokedex.js file', () => {
   it('only one Pokemon appears', () => {
     renderWithRouter(
       <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={favoritePokemonList}
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
       />,
     );
 
@@ -68,8 +68,8 @@ describe('Testing Pokedex.js file', () => {
   it('the page contains filtering buttons', () => {
     renderWithRouter(
       <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={favoritePokemonList}
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
       />,
     );
 
@@ -89,8 +89,8 @@ describe('Testing Pokedex.js file', () => {
   it('the page contains reset filtering button', () => {
     renderWithRouter(
       <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={favoritePokemonList}
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
       />,
     );
 
@@ -103,8 +103,8 @@ describe('Testing Pokedex.js file', () => {
   it('shows one button for each Pokemon type', () => {
     renderWithRouter(
       <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={favoritePokemonList}
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
       />,
     );
 
@@ -121,11 +121,11 @@ describe('Testing Pokedex.js file', () => {
     expect(pokemonsTypeList[6]).toHaveTextContent('Dragon');
   });
 
-  it('shows `Próximo pokémon` button disable when filtered list has only one Pokemon', () => {
+  it('disable when filtered list has only one Pokemon', () => {
     renderWithRouter(
       <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={favoritePokemonList}
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ favoritePokemonList }
       />,
     );
 

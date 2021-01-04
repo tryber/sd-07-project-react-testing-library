@@ -14,13 +14,13 @@ test('renderiza uma leitura com o texto `Pokédex', () => {
 });
 test('Mostra a Pokedex quando a rota for`/`', () => {
   const { getByText } = render(
-    <MemoryRouter initialEntries={['/']}>
+    <MemoryRouter initialEntries={ ['/'] }>
       <App />
     </MemoryRouter>,
   );
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
-describe('Existe um grupo de link de navegação fixo na parte superior do aplicativo', () => {
+describe(' link de navegação fixo na parte superior do aplicativo', () => {
   it('O primeiro link deve ter um texto HOME com / URL', () => {
     const { getByText } = render(
       <MemoryRouter>
@@ -51,9 +51,9 @@ describe('Existe um grupo de link de navegação fixo na parte superior do aplic
     );
   });
 });
-test('Deve ser redirecionado para a página Não encontrado ao inserir um URL desconhecido', () => {
+test(' redirecionar para página', () => {
   const { getByText } = render(
-    <MemoryRouter initialEntries={['/none']}>
+    <MemoryRouter initialEntries={ ['/none'] }>
       <App />
     </MemoryRouter>,
   );

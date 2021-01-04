@@ -7,7 +7,7 @@ import App from '../App';
 describe('Requirement 1', () => {
   it('renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={ ['/'] }>
         <App />
       </MemoryRouter>,
     );

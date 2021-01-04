@@ -7,7 +7,7 @@ import pokemons from '../data';
 describe('Requisito 6', () => {
   const pikachu = pokemons[0];
   it('Deve exibir informações do Pokémon', () => {
-    RenderWithRouter(<Pokemon pokemon={pikachu} isFavorite={false} />);
+    RenderWithRouter(<Pokemon pokemon={ pikachu } isFavorite={ false } />);
     expect(screen.getByTestId('pokemon-name').textContent).toBe('Pikachu');
     expect(screen.getByTestId('pokemonType').textContent).toBe('Electric');
     const peso = 'Average weight: 6.0 kg';
@@ -17,21 +17,21 @@ describe('Requisito 6', () => {
   });
 
   it('Se existir um link ver os detalhes do pokémon', () => {
-    RenderWithRouter(<Pokemon pokemon={pikachu} isFavorite={false} />);
+    RenderWithRouter(<Pokemon pokemon={ pikachu } isFavorite={ false } />);
     const http = 'http://localhost/pokemons/25';
     expect(screen.getByText('More details').href).toBe(http);
   });
 
-  it('Se clicar no link do Pokémon, será redirecionado para a página de detalhes.', () => {
+  it('será redirecionado para a página de detalhes.', () => {
     const { getByRole } = RenderWithRouter(
-      <Pokemon pokemon={pikachu} isFavorite={false} />,
+      <Pokemon pokemon={ pikachu } isFavorite={ false } />,
     );
     const path = getByRole('link', { Name: /More details/i });
     expect(path.href).toBe('http://localhost/pokemons/25');
   });
   it('Se a URL exibir / pokemon / <id>, com os detalhes do Pokémon.', () => {
     const { getByText, history } = RenderWithRouter(
-      <Pokemon pokemon={pikachu} isFavorite={false} />,
+      <Pokemon pokemon={ pikachu } isFavorite={ false } />,
     );
     fireEvent.click(getByText(/More details/i));
     const { pathname } = history.location;
@@ -39,7 +39,7 @@ describe('Requisito 6', () => {
   });
   it('Favorite caso existe o icone', () => {
     const { getByAltText } = RenderWithRouter(
-      <Pokemon pokemon={pikachu} isFavorite />,
+      <Pokemon pokemon={ pikachu } isFavorite />,
     );
     const image = getByAltText(/Pikachu is marked as favorite/i);
     expect(image).toHaveAttribute('src', '/star-icon.svg');
