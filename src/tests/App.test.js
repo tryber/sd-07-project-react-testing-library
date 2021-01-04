@@ -4,7 +4,7 @@ import { fireEvent } from '@testing-library/react';
 import RenderWithRouter from '../RenderWithRouter';
 import App from '../App';
 
-describe('Testing file App.js', () => {
+describe('Testing use cases in the component App', () => {
   it('should render Pokédex main page when the path is `/`', () => {
     const { getByText, history } = RenderWithRouter(<App />);
     const { pathname } = history.location;
@@ -12,7 +12,7 @@ describe('Testing file App.js', () => {
     expect(pathname).toBe('/');
   });
 
-  it('should render a NavBar with trhee fixed links', () => {
+  it('should render a NavBar with three fixed links', () => {
     const { getByText } = RenderWithRouter(<App />);
     expect(getByText('Home')).toBeInTheDocument();
     expect(getByText('About')).toBeInTheDocument();
