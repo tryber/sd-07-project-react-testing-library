@@ -17,13 +17,14 @@ describe('testing About page', () => {
   it('Test if the page contains two paragraphs with text about Pokédex.', () => {
     const { container } = render(<About />);
     const paragraphs = container.querySelectorAll('p');
-    expect(paragraphs.length).toBe(2);
+    const plength = 2;
+    expect(paragraphs.length).toBe(plength);
   });
 
   it('Test if the page contains a Pokédex image', () => {
     const { getByAltText } = render(<About />);
     const image = getByAltText('Pokédex').src;
-    const url = 
+    const url =
     'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     expect(image).toBe(url);
   });
