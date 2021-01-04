@@ -1,10 +1,10 @@
 import React from 'react';
 // import userEvent from '@testing-library/user-event';
 import { fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 import App from '../App';
-import userEvent from '@testing-library/user-event';
 
 const {
   averageWeight: { value, measurementUnit },
@@ -24,7 +24,7 @@ test('É renderizado um card com as informações de determinado pokémon', () =
 
   const pokemonWeight = getByTestId('pokemon-weight');
   expect(pokemonWeight.innerHTML).toBe(
-    `Average weight: ${value} ${measurementUnit}`
+    `Average weight: ${value} ${measurementUnit}`,
   );
 
   const pokemonImg = getByAltText('Pikachu sprite');
