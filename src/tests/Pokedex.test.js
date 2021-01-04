@@ -65,4 +65,16 @@ describe('testing Pokedex.js component', () => {
     fireEvent.click(psychicButton);
     expect(getByText('Alakazam')).toBeInTheDocument;
   });
+  
+  it('should contain a reset filter button', () => {
+    const pokemon = [pokemons[0], pokemons[1]];
+    const { getByText } = renderWithRouter(<Pokedex
+      pokemons={ pokemon }
+      isPokemonFavoriteById={ { 25: false, 4: false } }
+    />);
+    const allButton = getByText('All');
+    expect(allButton).toBeInTheDocument;
+    fireEvent.click(allButton);
+    expect(pokemon).toHaveLength(2);
+  });
 });
