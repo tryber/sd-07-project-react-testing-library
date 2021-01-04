@@ -1,5 +1,4 @@
 import React from 'react';
-import fireEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWhithRouter';
 import { PokemonDetails } from '../components';
 import data from '../data';
@@ -98,7 +97,7 @@ describe('Testing PokemonDetails.js ⌐> Checks if:', () => {
       expect(locationName).toHaveLength(locations);
     });
     test('if besides the map locations, there are location names', () => {
-      const { container, getAllByRole} = renderWithRouter(
+      const { container, getAllByRole } = renderWithRouter(
         <PokemonDetails
           pokemons={ mockPokemons }
           match={ mockMatch }
@@ -116,7 +115,7 @@ describe('Testing PokemonDetails.js ⌐> Checks if:', () => {
       expect(locationImg).toHaveLength(locations);
     });
     test('if there is a URL path to each map location', () => {
-      const { container, getAllByRole} = renderWithRouter(
+      const { container, getAllByRole } = renderWithRouter(
         <PokemonDetails
           pokemons={ mockPokemons }
           match={ mockMatch }
@@ -136,7 +135,7 @@ describe('Testing PokemonDetails.js ⌐> Checks if:', () => {
       });
     });
     test('if there is a ALT with "<pokemonName location"', () => {
-      const { container, getAllByRole} = renderWithRouter(
+      const { container, getAllByRole } = renderWithRouter(
         <PokemonDetails
           pokemons={ mockPokemons }
           match={ mockMatch }
