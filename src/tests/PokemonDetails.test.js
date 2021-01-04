@@ -50,7 +50,7 @@ describe('Testing PokemonDetails.js ⌐> Checks if:', () => {
       );
 
       const summaryTitle = getByRole('heading', {
-        name: 'Summary' });
+        name: /(Summary)/i });
       expect(summaryTitle).toBeInTheDocument();
     });
     test('if there is a paragraph with pokemon resume', () => {
