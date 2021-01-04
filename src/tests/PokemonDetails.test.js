@@ -161,7 +161,7 @@ describe('Testing PokemonDetails.js ⌐> Checks if:', () => {
     test('if there is a "checkbox" to favorite the pokemon', () => {});
     test('if alternated clicks on "checkbox" add or remove favorite from list', () => {});
     test('if the "checkbox label" contains the text "Pokémon favoritado?"', () => {
-      const { container, getByLabelText } = renderWithRouter(
+      const { getByLabelText } = renderWithRouter(
         <PokemonDetails
           pokemons={ mockPokemons }
           match={ mockMatch }
