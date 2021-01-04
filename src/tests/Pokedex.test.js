@@ -61,9 +61,10 @@ describe('testing Pokedex.js component', () => {
     />);
     const typeButton = getAllByTestId('pokemon-type-button');
     const psychicButton = getByRole('button', { name: 'Psychic' });
-    expect(typeButton).toHaveLength(2);
+    const numberOfTypes = 2;
+    expect(typeButton).toHaveLength(numberOfTypes);
     fireEvent.click(psychicButton);
-    expect(getByText('Alakazam')).toBeInTheDocument;
+    expect(getByText('Alakazam')).toBeInTheDocument();
   });
   
   it('should contain a reset filter button', () => {
@@ -73,9 +74,10 @@ describe('testing Pokedex.js component', () => {
       isPokemonFavoriteById={ { 25: false, 4: false } }
     />);
     const allButton = getByText('All');
-    expect(allButton).toBeInTheDocument;
+    expect(allButton).toBeInTheDocument();
     fireEvent.click(allButton);
-    expect(pokemon).toHaveLength(2);
+    const numberOfPokemons = 2;
+    expect(pokemon).toHaveLength(numberOfPokemons);
   });
 
   test('next pokemon button must be disabled when theres only one pokemon', () => {
