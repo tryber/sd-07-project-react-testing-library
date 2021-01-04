@@ -24,8 +24,7 @@ describe('testing About page', () => {
   it('Test if the page contains a Pokédex image', () => {
     const { getByAltText } = render(<About />);
     const image = getByAltText('Pokédex').src;
-    const url =
-    'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const url = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     expect(image).toBe(url);
   });
 });
