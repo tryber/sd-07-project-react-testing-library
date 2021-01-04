@@ -43,4 +43,13 @@ describe('testing Pokedex.js component', () => {
     fireEvent.click(getByTestId('next-pokemon'));
     expect(getByText('Pikachu')).toBeInTheDocument();
   });
+
+  it('should show only one pokemon at a time', () => {
+    const pokemon = [pokemons[0], pokemons[1]];
+    const { getAllByText } = renderWithRouter(<Pokedex
+      pokemons={ pokemon }
+      isPokemonFavoriteById={ { 25: false, 4: false } }
+    />);
+    expect(getAllByText('More details')).toHaveLength(1);
+  });
 });
