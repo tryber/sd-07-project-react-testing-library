@@ -77,6 +77,7 @@ test('A Pokédex contém um botão para resetar o filtro', () => {
     userEvent.click(nextPokemonButton);
     secondPokemon = getByTestId('pokemon-name').innerHTML;
   }
+  userEvent.click(allButton);
   expect(secondPokemon).toBe('Pikachu');
 });
 
