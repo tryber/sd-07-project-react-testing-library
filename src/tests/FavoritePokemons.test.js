@@ -19,7 +19,7 @@ describe('Tests use cases for component FavoritePokemons', () => {
     fireEvent.click(getByText(/Pokémon favoritado?/i));
     const empty = 0;
     const { getAllByRole } = RenderWithRouter(<FavoritePokemons />);
-    const images = getAllByRole('img');
+    const images = getAllByRole('img'); // Better take the div or class instead
     expect(images.length).not.toBe(empty);
   });
 });
