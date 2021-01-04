@@ -11,7 +11,7 @@ describe('testing Pokemon.js component', () => {
       pokemon={ pokemon }
       isFavorite
     />);
-    
+
     const name = getByTestId('pokemon-name');
     expect(name).toHaveTextContent('Pikachu');
 
@@ -32,11 +32,11 @@ describe('testing Pokemon.js component', () => {
       pokemon={ pokemon }
       isFavorite
     />);
-    
+
     const details = getByText('More details');
     fireEvent.click(details);
     const { pathname } = history.location;
-    expect(pathname).toBe('/pokemons/25')
+    expect(pathname).toBe('/pokemons/25');
   });
 
   test('favorited pokemons should have a star icon', () => {
@@ -45,7 +45,7 @@ describe('testing Pokemon.js component', () => {
       pokemon={ pokemon }
       isFavorite
     />);
-    
+
     const { src, alt } = getAllByRole('img')[1];
     expect(src).toContain('/star-icon.svg');
     expect(alt).toBe('Pikachu is marked as favorite');
