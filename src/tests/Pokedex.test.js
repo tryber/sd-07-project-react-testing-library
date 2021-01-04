@@ -85,6 +85,7 @@ test('é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon',
 
   let currentPokemon = getByText('Pikachu').innerHTML;
   const nextPokemonBtn = getByText('Próximo pokémon');
+  const allButton = getByText('All');
   let pokemonTypeArray = getAllByText('Electric');
   expect(pokemonTypeArray.length).toBe(two);
 
@@ -96,6 +97,8 @@ test('é criado, dinamicamente, um botão de filtro para cada tipo de Pokémon',
     expect(pokemonTypeArray.length).toBe(two);
     userEvent.click(nextPokemonBtn);
   }
+
+  expect(allButton).toBeInTheDocument();
 });
 
 test('O botão próximo pokemon é desabilitado quando só houver um pokémon do tipo', () => {
