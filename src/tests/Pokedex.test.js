@@ -77,4 +77,15 @@ describe('testing Pokedex.js component', () => {
     fireEvent.click(allButton);
     expect(pokemon).toHaveLength(2);
   });
+
+  test('next pokemon button must be disabled when theres only one pokemon', () => {
+    const pokemon = [pokemons[0]];
+    const { getByTestId, getByRole } = renderWithRouter(<Pokedex
+      pokemons={ pokemon }
+      isPokemonFavoriteById={ { 25: false } }
+    />);
+    const electricButton = getByRole('button', { name: 'Electric' });
+    fireEvent.click(electricButton);
+    expect(getByTestId('next-pokemon').disabled).toBe(true);
+  });
 });
