@@ -60,4 +60,6 @@ describe('Pokedéx Tests', () => {
     const nextPoke = getByTestId(/pokemon-name/i).textContent;
     expect(nextPoke).toBe('Charmander');
   });
+  
+  it();
 });
