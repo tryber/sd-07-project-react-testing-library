@@ -52,4 +52,17 @@ describe('testing Pokedex.js component', () => {
     />);
     expect(getAllByText('More details')).toHaveLength(1);
   });
+
+  it('should have filter buttons', () => {
+    const pokemon = [pokemons[0], pokemons[4], pokemons[5]];
+    const { getByText, getAllByTestId, getByRole } = renderWithRouter(<Pokedex
+      pokemons={ pokemon }
+      isPokemonFavoriteById={ { 25: false, 65: false, 151: false } }
+    />);
+    const typeButton = getAllByTestId('pokemon-type-button');
+    const psychicButton = getByRole('button', { name: 'Psychic' });
+    expect(typeButton).toHaveLength(2);
+    fireEvent.click(psychicButton);
+    expect(getByText('Alakazam')).toBeInTheDocument;
+  });
 });
