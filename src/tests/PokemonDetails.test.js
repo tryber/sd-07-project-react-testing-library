@@ -1,4 +1,4 @@
-mport React from 'react';
+import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import RenderWithRouter from './RenderWithRouter';
