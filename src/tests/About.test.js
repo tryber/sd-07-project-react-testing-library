@@ -18,7 +18,6 @@ describe('Testando  o link /about', () => {
 
   it('A página deve conter dois parágrafos com texto sobre a Pokédex.', () => {
     render(<About />);
-
     const p1 = screen.getByText(/This application simulates a Pokédex, a digital/i);
     const p2 = screen.getByText(/One can filter Pokémons by type, and see more details/i);
     expect(p1).toBeInTheDocument();
@@ -26,4 +25,12 @@ describe('Testando  o link /about', () => {
     expect(p2).toBeInTheDocument();
     expect(p2.tagName).toBe('P');
   });
+
+  it('A página deve conter uma imagem específica, de uma Pokédex:', () => {
+    render(<About />);
+    const imgsrc = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const img = screen.getByRole('img');
+    expect(img.src).toBe(imgsrc);
+  });
 });
+// qual query usar?: https://testing-library.com/docs/guide-which-query
