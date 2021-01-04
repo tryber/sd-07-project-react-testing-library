@@ -9,7 +9,7 @@ test('if page contains an h2 heading with the text Page requested not found 😭
   const { container } = RenderWithRouter(<NotFound />);
   const h2 = container.querySelector('h2');
   expect(h2).toBeInTheDocument();
-  expect(h2.textContent).toBe('Page requested not found 😭');
+  expect(h2.textContent).toBe('Page requested not found 😭 ');
 });
 
 test('if page shows the image https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {
