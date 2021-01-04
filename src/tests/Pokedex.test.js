@@ -35,6 +35,12 @@ describe('Next pokemon is rendered when clicked in next button', () => {
 });
 
 describe('Pokédex filters are working correctly', () => {
+  it('exists one button for each Pokémon type', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);
+    const selectedButtons = getAllByTestId('pokemon-type-button');
+    const numberOfButtons = 7;
+    expect(selectedButtons.length).toBe(numberOfButtons);
+  });
   it('rotates pokémons only in selected pokémon type', () => {
     // Fonte: Estudante Ana Karine
     const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
@@ -64,5 +70,11 @@ describe('Pokédex filters are working correctly', () => {
     const lengthTypeButton = [...new Set(pokemons.map((pokemon) => pokemon.type))];
     const filterButtons = getAllByTestId(/pokemon-type-button/i);
     expect(filterButtons.length).toBe(lengthTypeButton.length);
+  });
+  it('disables "Next Pokémon" when there is only one for that type', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const typeDragonButton = getByText('Dragon', { selector: 'button' });
+    fireEvent.click(typeDragonButton);
+    expect(getByText(/Próximo pokémon/i)).toBeDisabled();
   });
 });
