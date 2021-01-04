@@ -32,4 +32,15 @@ describe('testing Pokedex.js component', () => {
     fireEvent.click(getByTestId('next-pokemon'));
     expect(getByText('Charmander')).toBeInTheDocument();
   });
+
+  it('should show first pokemon when clicking next button after last pokemon', () => {
+    const pokemon = [pokemons[0], pokemons[8]];
+    const { getByTestId, getByText } = renderWithRouter(<Pokedex
+      pokemons={ pokemon }
+      isPokemonFavoriteById={ { 25: false, 148: false } }
+    />);
+    fireEvent.click(getByTestId('next-pokemon'));
+    fireEvent.click(getByTestId('next-pokemon'));
+    expect(getByText('Pikachu')).toBeInTheDocument();
+  });
 });
