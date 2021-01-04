@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
-import pokemons from '../data'
+import pokemons from '../data';
 
 describe('testing Pokedex.js component', () => {
   it('should contain heading with Encountered Pokemons text', () => {
