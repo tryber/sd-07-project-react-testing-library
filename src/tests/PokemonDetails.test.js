@@ -39,7 +39,7 @@ describe('Testing PokemonDetails.js ⌐> Checks if:', () => {
       expect(detailLink).toBeNull();
     });
     test('if there is a "Summary" heading h2', () => {
-      const { getByRole } = renderWithRouter(
+      const { getByRole, getByText } = renderWithRouter(
         <PokemonDetails
           pokemons={ mockPokemons }
           match={ mockMatch }
@@ -51,6 +51,8 @@ describe('Testing PokemonDetails.js ⌐> Checks if:', () => {
       const summaryTitle = getByRole('heading', {
         name: /(Summary)/i });
       expect(summaryTitle).toBeInTheDocument();
+      const summaryText = getByText(/(summary)/i);
+      expect(summaryText).toBeInTheDocument();
     });
     test('if there is a paragraph with pokemon resume', () => {
       const { container } = renderWithRouter(
@@ -158,6 +160,18 @@ describe('Testing PokemonDetails.js ⌐> Checks if:', () => {
   describe('Test if the user can favorite a pokemon through the details page:', () => {
     test('if there is a "checkbox" to favorite the pokemon', () => {});
     test('if alternated clicks on "checkbox" add or remove favorite from list', () => {});
-    test('if the "checkbox label" contains the text "Pokémon favoritado?"', () => {});
+    test('if the "checkbox label" contains the text "Pokémon favoritado?"', () => {
+      const { container, getByLabelText } = renderWithRouter(
+        <PokemonDetails
+          pokemons={ mockPokemons }
+          match={ mockMatch }
+          isPokemonFavoriteById={ mockFavById }
+          // onUpdateFavoritePokemons={ (mockById, mockByValue) }
+        />,
+      );
+
+      const label = getByLabelText(/(Pokémon favoritado?)/i);
+      expect(label).toBeInTheDocument();
+    });
   });
 });
