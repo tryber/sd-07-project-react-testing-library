@@ -31,7 +31,7 @@ describe('pokemon card renderer correctly', () => {
     const { getByAltText, getByTestId } = renderWithRouter(<App />);
     const name = getByTestId('pokemon-name');
     const type = getByTestId('pokemonType');
-    const weight = getByTestId('pokemon-weight');
+    const peso = getByTestId('pokemon-weight');
     const image = getByAltText(`${pokemon.name} sprite`);
     const averageWeight = pokemon.averageWeight.value;
     const unit = pokemon.averageWeight.measurementUnit;
@@ -39,7 +39,7 @@ describe('pokemon card renderer correctly', () => {
     expect(name).toBeInTheDocument();
     expect(type.textContent).toBe(pokemon.type);
     expect(type).toBeInTheDocument();
-    expect(weight.textContent)
+    expect(peso.textContent)
       .toBe(
         `Average weight: ${averageWeight} ${unit}`,
       );
