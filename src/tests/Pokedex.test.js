@@ -67,17 +67,23 @@ test('A Pokédex contém um botão para resetar o filtro', () => {
   const allButton = getByText('All');
   expect(allButton).toBeInTheDocument();
 
+  const buttonPoison = getByText('Poison');
+  userEvent.click(buttonPoison);
+  userEvent.click(allButton);
+  const currentPokemon = getByText('Pikachu');
+  expect(currentPokemon).toBeInTheDocument();
+
   let firstPokemon = getByTestId('pokemon-name').innerHTML;
   const nextPokemonButton = getByText('Próximo pokémon');
   userEvent.click(nextPokemonButton);
   let secondPokemon = getByTestId('pokemon-name').innerHTML;
+
   while (firstPokemon !== 'Dragonair') {
     expect(firstPokemon === secondPokemon).toBe(false);
     firstPokemon = secondPokemon;
     userEvent.click(nextPokemonButton);
     secondPokemon = getByTestId('pokemon-name').innerHTML;
   }
-  userEvent.click(allButton);
   expect(secondPokemon).toBe('Pikachu');
 });
 
