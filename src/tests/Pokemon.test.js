@@ -52,7 +52,7 @@ describe('pokemon card renderer correctly', () => {
     expect(link.href).toContain(`/pokemons/${pokemon.id}`);
     fireEvent.click(link);
     const { pathname } = history.location;
-    const pageName = getByText(`${pokemon.name} Details`);
+    const pageName = getByText(`${ pokemon.name } Details`);
     expect(pageName).toBeInTheDocument();
     expect(pathname).toBe(`/pokemons/${pokemon.id}`);
   });
