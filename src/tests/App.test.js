@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
@@ -14,7 +14,7 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('Testa se a página principal da Pokédex é renderizada ao carregar a aplicação no caminho de URL /.', () => {
+test('Testa se a página principalé carrega a aplicação no caminho de URL /.', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
@@ -25,7 +25,7 @@ test('Testa se a página principal da Pokédex é renderizada ao carregar a apli
   expect(home).toBeInTheDocument();
 });
 
-test('Testa se a aplicação é redirecionada para a página Not Found ao entrar em uma URL desconhecida.', () => {
+test('Testa a página Not Found ao entrar em uma URL desconhecida.', () => {
   const { getByText, history } = renderWithRouter(<App />);
   history.push('/pagina-inexistente');
   const noMatch = getByText(/Page requested not found/i);
@@ -38,7 +38,7 @@ test('Testa a rota Home.', () => {
   const homePage = getByText('Encountered pokémons');
   fireEvent.click(getByText(/Home/i));
   expect(homePage).toBeInTheDocument();
-})
+});
 
 test('Testa a rota About.', () => {
   const { getByText, history } = renderWithRouter(<App />);
@@ -46,7 +46,7 @@ test('Testa a rota About.', () => {
   const homePage = getByText('Encountered pokémons');
   expect(homePage).toBeInTheDocument();
 
-  fireEvent.click(getByText(/about/i))
+  fireEvent.click(getByText(/about/i));
   const { pathname } = history.location;
   expect(pathname).toBe('/about');
 
@@ -60,7 +60,7 @@ test('Testa a rota Favorite pokémons.', () => {
   const homePage = getByText('Encountered pokémons');
   expect(homePage).toBeInTheDocument();
 
-  fireEvent.click(getByText(/Favorite Pokémons/i))
+  fireEvent.click(getByText(/Favorite Pokémons/i));
   const { pathname } = history.location;
   expect(pathname).toBe('/favorites');
 
