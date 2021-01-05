@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter.js';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
