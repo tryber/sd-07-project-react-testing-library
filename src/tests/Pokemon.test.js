@@ -1,4 +1,3 @@
-// Pokemon.test
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
@@ -59,7 +58,7 @@ describe('pokemon card renderer correctly', () => {
   });
   test('test if favorite pokemon works correctly', () => {
     const { getByAltText } = renderWithRouter(
-      <Pokemon pokemon={pokemon} isFavorite />,
+      <Pokemon pokemon={ pokemon } isFavorite />,
     );
     const icon = getByAltText(`${pokemon.name} is marked as favorite`);
     expect(icon).toBeInTheDocument();
