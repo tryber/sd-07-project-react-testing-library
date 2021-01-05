@@ -66,4 +66,4 @@ test('Testa a rota Favorite pokémons.', () => {
 
   const aboutPage = getByText('No favorite pokemon found');
   expect(aboutPage).toBeInTheDocument();
-})
+});
