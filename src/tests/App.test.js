@@ -14,7 +14,7 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('Testa se a página principalé carrega a aplicação no caminho de URL /.', () => {
+test('Testa se a página principal carrega a aplicação no caminho de URL /.', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
