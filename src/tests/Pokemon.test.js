@@ -22,7 +22,8 @@ describe('pokemon card renderer correctly', () => {
       },
       {
         location: 'Kanto Power Plant',
-        map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
+        map:
+          'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
       },
     ],
     summary: 'This intelligent Pokémon roasts',
@@ -39,10 +40,7 @@ describe('pokemon card renderer correctly', () => {
     expect(name).toBeInTheDocument();
     expect(type.textContent).toBe(pokemon.type);
     expect(type).toBeInTheDocument();
-    expect(weight.textContent)
-      .toBe(
-        `Average weight: ${averageWeight} ${unit}`,
-      );
+    expect(weight.textContent).toBe(`Average weight: ${averageWeight} ${unit}`);
     expect(weight).toBeInTheDocument();
     expect(image).toBeInTheDocument();
     expect(image.src).toBe(pokemon.image);
@@ -60,7 +58,7 @@ describe('pokemon card renderer correctly', () => {
   });
   test('test if favorite pokemon works correctly', () => {
     const { getByAltText } = renderWithRouter(
-      <Pokemon pokemon={ pokemon } isFavorite />,
+      <Pokemon pokemon={pokemon} isFavorite />,
     );
     const icon = getByAltText(`${pokemon.name} is marked as favorite`);
     expect(icon).toBeInTheDocument();
