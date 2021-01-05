@@ -1,37 +1,15 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
-import App from '../App';
+import { render } from '@testing-library/react';
+import NotFound from '../components/NotFound';
 
-test('Page without favorites must have the message', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/favorites'] }>
-      <App />
-    </MemoryRouter>,
-  );
-  const noFavorites = getByText('No favorite pokemon found');
-  expect(noFavorites).toBeInTheDocument();
+test('if notFound text is present', () => {
+  const { getByText } = render(<NotFound />);
+  expect(getByText('Page requested not found')).toBeInTheDocument();
 });
 
-test('All favorite pokémon should appear', () => {
-  const { getByText, getByTestId } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
+test('if notFound text is present', () => {
+  const { getAllByRole } = render(<NotFound />);
+  expect(getAllByRole('img')[1]).toHaveAttribute(
+    'src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
   );
-  fireEvent.click(getByText('More details'));
-  fireEvent.click(getByText('Pokémon favoritado?'));
-  fireEvent.click(getByText('Favorite Pokémons'));
-  const fav = getByTestId('pokemon-name').textContent;
-  expect(fav).toBe('Pikachu');
-});
-
-test('No selected pokemons shouldnt appear', () => {
-  const { getByTestId } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const fav = getByTestId('pokemon-name').textContent;
-  expect(fav).not.toBe('Charmander');
 });
