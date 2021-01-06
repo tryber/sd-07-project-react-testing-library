@@ -22,7 +22,7 @@ test('Teste se a página contém um heading h2 com o texto About Pokédex.', () 
 
 test('Testa se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
   const { container } = renderWithRouter(<About />);
-  const totalParagraphs = 2
+  const totalParagraphs = 2;
 
   const paragraphCount = container.querySelectorAll('p');
   expect(paragraphCount.length).toBe(totalParagraphs);
