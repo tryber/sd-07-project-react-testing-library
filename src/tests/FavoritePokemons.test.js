@@ -18,8 +18,7 @@ test('Teste se é exibido todos os cards de pokémons favoritados.', () => {
   const { queryByText } = renderWithRouter(<FavoritePokemons pokemons={ pokemon } />);
 
   const favoritePikachu = queryByText('Pikachu');
-  expect(favoritePikachu).toBeInTheDocument();
-  
   const favoriteChamander = queryByText('Charmander');
+  expect(favoritePikachu).toBeInTheDocument();
   expect(favoriteChamander).toBeInTheDocument();
 });
