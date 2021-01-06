@@ -28,9 +28,8 @@ describe('Testando  o link /about', () => {
 
   it('A página deve conter uma imagem específica, de uma Pokédex:', () => {
     render(<About />);
-    const imgsrc = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     const img = screen.getByRole('img');
-    expect(img.src).toBe(imgsrc);
+    expect(img).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
 // qual query usar?: https://testing-library.com/docs/guide-which-query

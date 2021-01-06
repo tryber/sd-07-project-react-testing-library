@@ -11,9 +11,9 @@ describe('Testando a página de link incorreto', () => {
   });
 
   it('A página deve conter uma imagem com uma rota específica', () => {
-    const imagem = render(<NotFound />);
-    const imgsrc = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
-    const img = imagem.querySelector('img');
-    expect(img.src).toBe(imgsrc);
+    render(<NotFound />);
+    const img = document.querySelector('img');
+    // nesse caso, getByRole não funciona pois "se confunde" com o img do span ( da carinha triste)
+    expect(img).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
