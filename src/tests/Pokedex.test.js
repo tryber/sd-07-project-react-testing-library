@@ -18,21 +18,20 @@ describe(`Testa se é exibido o próximo Pokémon da lista quando o botão Próx
 clicado.`, () => {
   it('O botão deve conter o texto Próximo pokémon;', () => {
     const { getByRole } = renderWithRouter(<Pokedex
-    pokemons={ pokemons }
-    isPokemonFavoriteById={ {} }
-  />);
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ {} }
+    />);
 
-    const btnNextPokemon = getByRole('button', { name: /Próximo pokémon/i })
+    const btnNextPokemon = getByRole('button', { name: /Próximo pokémon/i });
     expect(btnNextPokemon).toBeInTheDocument();
   });
 
   it(`Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar
   sucessivamente no botão;`, () => {
     const { queryByText, getByTestId } = renderWithRouter(<Pokedex
-    pokemons={ pokemons }
-    isPokemonFavoriteById={ {} }
-  />);
-    
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ {} }
+    />);
     const btnNextPokemon = getByTestId(/next-pokemon/i);
     const pikachu = queryByText('Pikachu');
     expect(pikachu).toBeInTheDocument();
@@ -46,9 +45,9 @@ clicado.`, () => {
 
 test('Testa se é mostrado apenas um Pokémon por vez.', () => {
   const { queryByText } = renderWithRouter(<Pokedex
-  pokemons={ pokemons }
-  isPokemonFavoriteById={ {} }
-/>);
+    pokemons={ pokemons }
+    isPokemonFavoriteById={ {} }
+  />);
 
   const uniquePokemons = queryByText('Pikachu');
   expect(uniquePokemons).toBeInTheDocument();
@@ -60,10 +59,9 @@ describe('Testa se a Pokédex tem os botões de filtro.', () => {
   it(`A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos
 pokémons daquele tipo;`, () => {
     const { queryByTestId, queryAllByTestId } = renderWithRouter(<Pokedex
-    pokemons={ pokemons }
-    isPokemonFavoriteById={ {} }
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ {} }
     />);
-    
     let currentPokemon = queryByTestId('pokemon-name').innerHTML;
     const typeBtn = queryAllByTestId('pokemon-type-button');
     expect(currentPokemon).toBe(pokemons[0].name);
