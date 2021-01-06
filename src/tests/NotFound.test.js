@@ -16,4 +16,4 @@ describe('Testando a página de link incorreto', () => {
     // nesse caso, getByRole não funciona pois "se confunde" com o img do span ( do sad smile)
     expect(img).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
-});.
+});
