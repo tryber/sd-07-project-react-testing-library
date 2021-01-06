@@ -13,11 +13,8 @@ test('Testa se a página contém as informações sobre a Pokédex.', () => {
 test('Teste se a página contém um heading h2 com o texto About Pokédex.', () => {
   const { queryByRole, queryByText } = renderWithRouter(<About />);
 
-  const heading = queryByRole('heading');
+  const heading = queryByRole('heading', {name: /About Pokédex/i});
   expect(heading).toBeInTheDocument();
-
-  const headingText = queryByText('About Pokédex');
-  expect(headingText).toBeInTheDocument();
 });
 
 test('Testa se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
