@@ -4,7 +4,7 @@ import NotFound from '../components/NotFound';
 
 test('Testa se página contém um heading h2 com o texto Page requested not found', () => {
   const { getByRole } = render(<NotFound />);
-  const notFound = getByRole('heading', {name: /Page requested not found/i});
+  const notFound = getByRole('heading', { name: /Page requested not found/i });
   expect(notFound).toBeInTheDocument();
 });
 
