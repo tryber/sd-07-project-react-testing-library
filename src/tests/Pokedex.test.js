@@ -59,7 +59,7 @@ test('Testa se é mostrado apenas um Pokémon por vez.', () => {
 describe('Testa se a Pokédex tem os botões de filtro.', () => {
   it(`A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos
 pokémons daquele tipo;`, () => {
-    const { queryByTestId, queryAllByTestId, queryByText } = renderWithRouter(<Pokedex
+    const { queryByTestId, queryAllByTestId } = renderWithRouter(<Pokedex
     pokemons={ pokemons }
     isPokemonFavoriteById={ {} }
     />);
