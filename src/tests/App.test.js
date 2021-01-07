@@ -1,10 +1,10 @@
 import React from 'react';
-import renderWithRouter from '../helper/renderWithRouter';
 import { fireEvent } from '@testing-library/react';
+import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = renderWithRouter(<App />)
+  const { getByText } = renderWithRouter(<App />);
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
 });
@@ -53,5 +53,5 @@ describe('Teste Pokemons de componente APP', () => {
 
     const notFound = getByText(/Page requested not found/i);
     expect(notFound).toBeInTheDocument();
-  })
-})
+  });
+});
