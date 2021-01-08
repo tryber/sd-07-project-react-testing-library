@@ -26,7 +26,6 @@ describe('navegating through the pages', () => {
     fireEvent.click(getByText(/Favorite Pokémons/i));
 
     expect(getByText(/No favorite pokemon found/i)).toBeInTheDocument();
-
   });
 
   test('landing on a bad page shows error 404', () => {
@@ -41,6 +40,5 @@ describe('navegating through the pages', () => {
 
     fireEvent.click(getByText(/About/i));
     expect(getByText(/About Pokédex/i)).toBeInTheDocument();
-
   });
 });
