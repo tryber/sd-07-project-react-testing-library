@@ -54,3 +54,4 @@ describe('Teste se é exibido o próximo Pokémon da lista quando o botão é cl
       expect(getByRole('img')).toBeInTheDocument();
     });
   });
+.
