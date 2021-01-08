@@ -21,7 +21,7 @@ describe('Teste se é exibido o próximo Pokémon da lista quando o botão é cl
       expect(getByText(/Próximo pokémon/i)).toBeInTheDocument();
       expect(getByText(/Próximo pokémon/i).tagName).toBe('BUTTON');
     });
-    it('Os Pokémons da lista devem ser mostrados, um a um, ao clicar o botão;', () => {
+    it('Ao clicar no botão deve ir para o próximo poke e no final, voltar ao 1º;', () => {
       const { getByText } = renderWithRouter(
         <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
       );
@@ -46,5 +46,11 @@ describe('Teste se é exibido o próximo Pokémon da lista quando o botão é cl
       });
       // esse teste foi extraído da página de Ana karine:
       // https://github.com/tryber/sd-07-project-react-testing-library/pull/91/files
+    });
+    it('Teste se é mostrado apenas um Pokémon por vez.', () => {
+      const { getByRole } = renderWithRouter(
+        <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
+      );
+      expect(getByRole('img')).toBeInTheDocument();
     });
   });
