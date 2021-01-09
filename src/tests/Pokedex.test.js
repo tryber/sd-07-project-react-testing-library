@@ -5,11 +5,11 @@ import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 
 test('Teste se a página contém um heading h2 com o texto `Encountered pokémons`', () => {
-  const { getByRole } = renderWithRouter(
+  const { container } = renderWithRouter(
     <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
   );
-  expect(getByRole('heading')).toHaveTextContent(/Encountered pokémons/i);
-  expect(getByRole('heading').tagName).toBe('H2');
+  container.querySelector('h2');
+  expect(container.querySelector('h2')).toHaveTextContent('Encountered pokémons');
 });
 
 describe('Teste se é exibido o próximo Pokémon da lista quando o botão é clicado.',
@@ -47,10 +47,43 @@ describe('Teste se é exibido o próximo Pokémon da lista quando o botão é cl
       // esse teste foi extraído da página de Ana karine:
       // https://github.com/tryber/sd-07-project-react-testing-library/pull/91/files
     });
-    it('Teste se é mostrado apenas um Pokémon por vez.', () => {
-      const { getByRole } = renderWithRouter(
-        <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
-      );
-      expect(getByRole('img')).toBeInTheDocument();
-    });
   });
+
+describe('Teste se é mostrado apenas um Pokémon por vez.', () => {
+  const { getByRole } = renderWithRouter(
+    <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
+  );
+  expect(getByRole('img')).toBeInTheDocument();
+});
+
+describe('Teste se a Pokédex tem os botões de filtro.', () => {
+  it('Ao clicar num botao de tipo, mostra só esse tipo'
+  + 'O botão deve conter o nome do tipo', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
+    );
+    //     const Electric = getByRole('button', { name: 'Electric' });
+    //     const Fire = getByRole('button', { name: 'Fire' });
+    //     const Psychic = getByRole('button', { name: 'Psychic' });
+    //     const Bug = getByRole('button', { name: 'Bug' });
+    //     const Poison = getByRole('button', { name: 'Poison' });
+    //     const Dragon = getByRole('button', { name: 'Dragon' });
+    //     const Normal = getByRole('button', { name: 'Normal' });
+    getByText('Fire');
+    fireEvent.click(getByText('Fire'));
+    expect(getByText('Charmander')).toBeInTheDocument();
+    getByText('Dragon');
+    fireEvent.click(getByText('Dragon'));
+    expect(getByText('Dragonair')).toBeInTheDocument();
+  });
+});
+
+describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+  it('O texto do botão deve ser "All"', () => {
+    const { getByRole } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
+    );
+    const all = getByRole('button', { name: 'All' });
+    expect(all).toBeInTheDocument();
+  });
+});
