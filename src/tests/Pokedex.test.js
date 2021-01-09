@@ -96,3 +96,38 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     expect(name).toHaveTextContent('Pikachu');
   });
 });
+
+describe('Testando os botões', () => {
+  it('Teste se criado dinamicamente botão de filtro para cada tipo pokémon', () => {
+    const { getByRole, getByTestId } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
+    );
+    const all = getByRole('button', { name: 'All' });
+    expect(all).toBeInTheDocument();
+
+    const ElectricButton = getByRole('button', { name: 'Electric' });
+    expect(ElectricButton).toBeInTheDocument();
+
+    fireEvent.click(ElectricButton);
+    const pokeType = getByTestId('pokemonType');
+    expect(pokeType).toHaveTextContent('Electric');
+
+    expect(all).toBeInTheDocument();
+
+    const fireButton = getByRole('button', { name: 'Fire' });
+    expect(fireButton).toBeInTheDocument();
+
+    fireEvent.click(fireButton);
+    const pokeType2 = getByTestId('pokemonType');
+    expect(pokeType2).toHaveTextContent('Fire');
+  });
+
+  it('Botão `Próximo pokémon` desabilita quando houver apenas um Pokémon', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
+    );
+    const btnDragon = getByText('Dragon', { selector: 'button' });
+    fireEvent.click(btnDragon);
+    expect(getByText(/Próximo pokémon/i)).toBeDisabled();
+  });
+});
