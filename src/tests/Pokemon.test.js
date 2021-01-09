@@ -39,9 +39,9 @@ describe('Testes do componente Pokemon', () => {
 
   test('Testese há icone de estrela no pokemon favorito', () => {
     const { getByAltText } = renderWithRouter(<Pokemon
-      pokemon={ pokemons[0] } 
+      pokemon={ pokemons[0] }
       isFavorite
-    />)
+    />);
 
     const icon = getByAltText(/Pikachu is marked as favorite/i);
     expect(icon).toBeInTheDocument();
