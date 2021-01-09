@@ -11,7 +11,7 @@ function renderWithRouter(
   } = {},
 ) {
   return {
-    ...render(<Router history={history}>{component}</Router>),
+    ...render(<Router history={ history }>{component}</Router>),
     history,
   };
 }
