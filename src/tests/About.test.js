@@ -11,7 +11,7 @@ test('information about pokedex', () => {
 test('heading text', () => {
   const { getByTestId } = renderWithRouter(<About />);
 
-  const headingText = getByTestId('headerText')
+  const headingText = getByTestId('headerText');
   expect(headingText).toBeInTheDocument();
 });
 
