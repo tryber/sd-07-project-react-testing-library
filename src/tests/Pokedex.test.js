@@ -86,4 +86,13 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     const all = getByRole('button', { name: 'All' });
     expect(all).toBeInTheDocument();
   });
+  it('Deverá mostrar os Pokémons sem filtros quando o botão All for clicado;', () => {
+    const { getByRole, getByTestId } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
+    );
+    const all = getByRole('button', { name: 'All' });
+    fireEvent.click(all);
+    const name = getByTestId('pokemon-name');
+    expect(name).toHaveTextContent('Pikachu');
+  });
 });
