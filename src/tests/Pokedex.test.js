@@ -105,29 +105,48 @@ describe('Testando os botões', () => {
     const all = getByRole('button', { name: 'All' });
     expect(all).toBeInTheDocument();
 
-    const ElectricButton = getByRole('button', { name: 'Electric' });
-    expect(ElectricButton).toBeInTheDocument();
-
-    fireEvent.click(ElectricButton);
-    const pokeType = getByTestId('pokemonType');
-    expect(pokeType).toHaveTextContent('Electric');
-
-    expect(all).toBeInTheDocument();
-
     const fireButton = getByRole('button', { name: 'Fire' });
     expect(fireButton).toBeInTheDocument();
-
     fireEvent.click(fireButton);
-    const pokeType2 = getByTestId('pokemonType');
-    expect(pokeType2).toHaveTextContent('Fire');
+    expect(getByTestId('pokemonType')).toHaveTextContent('Fire');
+
+    const electricButton = getByRole('button', { name: 'Electric' });
+    expect(electricButton).toBeInTheDocument();
+    fireEvent.click(electricButton);
+    expect(getByTestId('pokemonType')).toHaveTextContent('Electric');
+
+    const bugButton = getByRole('button', { name: 'Bug' });
+    expect(bugButton).toBeInTheDocument();
+    fireEvent.click(bugButton);
+    expect(getByTestId('pokemonType')).toHaveTextContent('Bug');
+
+    const poisonButton = getByRole('button', { name: 'Poison' });
+    expect(poisonButton).toBeInTheDocument();
+    fireEvent.click(poisonButton);
+    expect(getByTestId('pokemonType')).toHaveTextContent('Poison');
+
+    const psychicButton = getByRole('button', { name: 'Psychic' });
+    expect(psychicButton).toBeInTheDocument();
+    fireEvent.click(psychicButton);
+    expect(getByTestId('pokemonType')).toHaveTextContent('Psychic');
+
+    const normalButton = getByRole('button', { name: 'Normal' });
+    expect(normalButton).toBeInTheDocument();
+    fireEvent.click(normalButton);
+    expect(getByTestId('pokemonType')).toHaveTextContent('Normal');
+
+    const dragonButton = getByRole('button', { name: 'Dragon' });
+    expect(dragonButton).toBeInTheDocument();
+    fireEvent.click(dragonButton);
+    expect(getByTestId('pokemonType')).toHaveTextContent('Dragon');
   });
 
   it('Botão `Próximo pokémon` desabilita quando houver apenas um Pokémon', () => {
-    const { getByText } = renderWithRouter(
+    const { getByText, getByRole } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
     );
-    const btnDragon = getByText('Dragon', { selector: 'button' });
-    fireEvent.click(btnDragon);
+    const dragonButton = getByRole('button', { name: 'Dragon' });
+    fireEvent.click(dragonButton);
     expect(getByText(/Próximo pokémon/i)).toBeDisabled();
   });
 });
