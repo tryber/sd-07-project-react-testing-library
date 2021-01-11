@@ -10,9 +10,9 @@ test('heading text', () => {
 });
 
 test('not found image', () => {
-  const { getByTestId } = renderWithRouter(<NotFound />);
+  const { getByAltText } = renderWithRouter(<NotFound />);
 
-  const image = getByTestId('not-found-image');
+  const image = getByAltText('Pikachu crying because the page requested was not found');
   expect(image.src).toBe(
     'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
   );
