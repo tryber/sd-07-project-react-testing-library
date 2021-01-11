@@ -109,36 +109,43 @@ describe('Testando os botões', () => {
     expect(fireButton).toBeInTheDocument();
     fireEvent.click(fireButton);
     expect(getByTestId('pokemonType')).toHaveTextContent('Fire');
+    expect(getByTestId('pokemon-name')).toHaveTextContent('Charmander');
 
     const electricButton = getByRole('button', { name: 'Electric' });
     expect(electricButton).toBeInTheDocument();
     fireEvent.click(electricButton);
     expect(getByTestId('pokemonType')).toHaveTextContent('Electric');
+    expect(getByTestId('pokemon-name')).toHaveTextContent('Pikachu');
 
     const bugButton = getByRole('button', { name: 'Bug' });
     expect(bugButton).toBeInTheDocument();
     fireEvent.click(bugButton);
     expect(getByTestId('pokemonType')).toHaveTextContent('Bug');
+    expect(getByTestId('pokemon-name')).toHaveTextContent('Caterpie');
 
     const poisonButton = getByRole('button', { name: 'Poison' });
     expect(poisonButton).toBeInTheDocument();
     fireEvent.click(poisonButton);
     expect(getByTestId('pokemonType')).toHaveTextContent('Poison');
+    expect(getByTestId('pokemon-name')).toHaveTextContent('Ekans');
 
     const psychicButton = getByRole('button', { name: 'Psychic' });
     expect(psychicButton).toBeInTheDocument();
     fireEvent.click(psychicButton);
     expect(getByTestId('pokemonType')).toHaveTextContent('Psychic');
+    expect(getByTestId('pokemon-name')).toHaveTextContent('Alakazam');
 
     const normalButton = getByRole('button', { name: 'Normal' });
     expect(normalButton).toBeInTheDocument();
     fireEvent.click(normalButton);
     expect(getByTestId('pokemonType')).toHaveTextContent('Normal');
+    expect(getByTestId('pokemon-name')).toHaveTextContent('Snorlax');
 
     const dragonButton = getByRole('button', { name: 'Dragon' });
     expect(dragonButton).toBeInTheDocument();
     fireEvent.click(dragonButton);
     expect(getByTestId('pokemonType')).toHaveTextContent('Dragon');
+    expect(getByTestId('pokemon-name')).toHaveTextContent('Dragonair');
   });
 
   it('Botão `Próximo pokémon` desabilita quando houver apenas um Pokémon', () => {
