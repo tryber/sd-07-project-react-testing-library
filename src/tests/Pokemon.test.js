@@ -13,11 +13,12 @@ describe('testing pokemon', () => {
     expect(getByTestId('pokemon-name')).toHaveTextContent(
       `${pokemons[0].name}`,
     );
+
+    const weight = pokemons[0].averageWeight;
     expect(getByTestId('pokemonType')).toHaveTextContent(pokemons[0].type);
     expect(getByTestId('pokemon-weight')).toHaveTextContent(
-      `Average weight: ${pokemons[0].averageWeight.value} ${pokemons[0].averageWeight.measurementUnit}`,
+      `Average weight: ${weight.value} ${weight.measurementUnit}`,
     );
-
     const pokemonsImage = getByAltText(`${pokemons[0].name} sprite`);
     expect(pokemonsImage.src).toBe(`${pokemons[0].image}`);
   });
@@ -35,7 +36,7 @@ describe('testing pokemon', () => {
 
   test('star favorite icon', () => {
     const { getByAltText } = renderWithRouter(
-      <Pokemon pokemon={ pokemons[0] } isFavorite={ true } />,
+      <Pokemon pokemon={ pokemons[0] } isFavorite />,
     );
 
     const star = getByAltText(`${pokemons[0].name} is marked as favorite`);
