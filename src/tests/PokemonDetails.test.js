@@ -15,7 +15,7 @@ describe('testing pokemon details', () => {
       />,
     );
 
-    expect(getByText(`${pokemons[0].name} ` + `Details`)).toBeInTheDocument();
+    expect(getByText(`${pokemons[0].name} Details`)).toBeInTheDocument();
 
     const detailLink = queryByRole('link', { name: 'More details' });
     expect(detailLink).toBeNull();
@@ -37,10 +37,10 @@ describe('testing pokemon details', () => {
     );
 
     expect(
-      getByText(`Game Locations of ` + `${pokemons[0].name}`),
+      getByText(`Game Locations of ${pokemons[0].name}`),
     ).toBeInTheDocument();
 
-    const map = getAllByAltText(`${pokemons[0].name} ` + `location`);
+    const map = getAllByAltText(`${pokemons[0].name} location`);
     const mapLength = 2;
     expect(map.length).toBe(mapLength);
     expect(map[0].src).toBe(pokemons[0].foundAt[0].map);
