@@ -3,12 +3,13 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
+
 describe('testing pokedex archive', () => {
   test('next pokemon button ', () => {
     const { getByText } = renderWithRouter(
       <Pokedex
-        pokemons={[...pokemons]}
-        isPokemonFavoriteById={{ 25: false }}
+        pokemons={ [...pokemons] }
+        isPokemonFavoriteById={ { 25: false } }
       />,
     );
 
@@ -35,8 +36,8 @@ describe('testing pokedex archive', () => {
   test('show only one pokemon', () => {
     const { getAllByTestId } = renderWithRouter(
       <Pokedex
-        pokemons={[...pokemons]}
-        isPokemonFavoriteById={{ 25: false }}
+        pokemons={ [...pokemons] }
+        isPokemonFavoriteById={ { 25: false } }
       />,
     );
 
@@ -47,8 +48,8 @@ describe('testing pokedex archive', () => {
   test('pokemon filtered by type', () => {
     const { getAllByTestId, getByText } = renderWithRouter(
       <Pokedex
-        pokemons={[...pokemons]}
-        isPokemonFavoriteById={{ 25: false }}
+        pokemons={ [...pokemons] }
+        isPokemonFavoriteById={ { 25: false } }
       />,
     );
 
@@ -60,8 +61,8 @@ describe('testing pokedex archive', () => {
   test('pokemon filter reloaded', () => {
     const { getAllByTestId, getByText } = renderWithRouter(
       <Pokedex
-        pokemons={[...pokemons]}
-        isPokemonFavoriteById={{ 25: false }}
+        pokemons={ [...pokemons] }
+        isPokemonFavoriteById={ { 25: false } }
       />,
     );
 
@@ -92,20 +93,21 @@ describe('testing pokedex archive', () => {
   test('pokemon filter buttons', () => {
     const { getAllByTestId } = renderWithRouter(
       <Pokedex
-        pokemons={[...pokemons]}
-        isPokemonFavoriteById={{ 25: false }}
+        pokemons={ [...pokemons] }
+        isPokemonFavoriteById={ { 25: false } }
       />,
     );
 
+    const typeLength = 7;
     const typeButton = getAllByTestId('pokemon-type-button');
-    expect(typeButton.length).toBe(7);
+    expect(typeButton.length).toBe(typeLength);
   });
 
   test('a button for each type', () => {
     const { getByRole } = renderWithRouter(
       <Pokedex
-        pokemons={[...pokemons]}
-        isPokemonFavoriteById={{ 25: false }}
+        pokemons={ [...pokemons] }
+        isPokemonFavoriteById={ { 25: false } }
       />,
     );
 
@@ -122,8 +124,8 @@ describe('testing pokedex archive', () => {
   test('disable next pokemon button', () => {
     const { getByText, getByRole } = renderWithRouter(
       <Pokedex
-        pokemons={[...pokemons]}
-        isPokemonFavoriteById={{ 25: false }}
+        pokemons={ [...pokemons] }
+        isPokemonFavoriteById={ { 25: false } }
       />,
     );
 
