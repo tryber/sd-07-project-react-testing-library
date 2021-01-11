@@ -6,6 +6,21 @@ import pokemons from '../data';
 
 describe('testing pokedex archive', () => {
   test('next pokemon button ', () => {
+    const { getByRole } = renderWithRouter(
+      <Pokedex
+        pokemons={ [...pokemons] }
+        isPokemonFavoriteById={ { 25: false } }
+      />,
+    );
+
+    const h2 = getByRole('heading', {
+      name: 'Encountered pokémons',
+      level: 2,
+    });
+    expect(h2).toBeInTheDocument();
+  });
+
+  test('next pokemon button ', () => {
     const { getByText } = renderWithRouter(
       <Pokedex
         pokemons={ [...pokemons] }
