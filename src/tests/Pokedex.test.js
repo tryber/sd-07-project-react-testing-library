@@ -15,11 +15,13 @@ test('Teste se a página contém um heading h2 com o texto `Encountered pokémon
 describe('Teste se é exibido o próximo Pokémon da lista quando o botão é clicado.',
   () => {
     it('O botão deve conter o texto Próximo pokémon;', () => {
-      const { getByText } = renderWithRouter(
+      const { getByText, queryAllByTestId } = renderWithRouter(
         <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
       );
+      const magic = 7;
       expect(getByText(/Próximo pokémon/i)).toBeInTheDocument();
       expect(getByText(/Próximo pokémon/i).tagName).toBe('BUTTON');
+      expect(queryAllByTestId('pokemon-type-button').length).toBe(magic);
     });
     it('Ao clicar no botão deve ir para o próximo poke e no final, voltar ao 1º;', () => {
       const { getByText } = renderWithRouter(
@@ -50,10 +52,11 @@ describe('Teste se é exibido o próximo Pokémon da lista quando o botão é cl
   });
 
 describe('Teste se é mostrado apenas um Pokémon por vez.', () => {
-  const { getByRole } = renderWithRouter(
+  const { getAllByText } = renderWithRouter(
     <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
   );
-  expect(getByRole('img')).toBeInTheDocument();
+
+  expect(getAllByText('More details').length).toBe(1);
 });
 
 describe('Teste se a Pokédex tem os botões de filtro.', () => {
@@ -92,8 +95,7 @@ describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     );
     const all = getByRole('button', { name: 'All' });
     fireEvent.click(all);
-    const name = getByTestId('pokemon-name');
-    expect(name).toHaveTextContent('Pikachu');
+    expect(getByTestId('pokemon-name')).toHaveTextContent('Pikachu');
   });
 });
 
