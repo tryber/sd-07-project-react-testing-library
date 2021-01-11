@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getAllByText, getByAltText, getByLabelText } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import PokemonDetails from '../components/PokemonDetails';
 import pokemons from '../data';
@@ -27,7 +27,7 @@ describe('testing pokemon details', () => {
   });
 
   test('location maps', () => {
-    const { getByText, getAllByAltText} = renderWithRouter(
+    const { getByText, getAllByAltText } = renderWithRouter(
       <PokemonDetails
         isPokemonFavoriteById={ { 25: true } }
         match={ { params: { id: '25' } } }
@@ -36,15 +36,15 @@ describe('testing pokemon details', () => {
       />,
     );
 
-      expect(getByText(`Game Locations of ` + `${pokemons[0].name}`)).toBeInTheDocument();
+    expect(
+      getByText(`Game Locations of ` + `${pokemons[0].name}`),
+    ).toBeInTheDocument();
 
-      const map = getAllByAltText(`${pokemons[0].name} ` + `location`);
-      const mapLength = 2;
-      expect(map.length).toBe(mapLength);
-      expect(map[0].src)
-        .toBe(pokemons[0].foundAt[0].map);
-      expect(map[1].src)
-        .toBe(pokemons[0].foundAt[1].map);
+    const map = getAllByAltText(`${pokemons[0].name} ` + `location`);
+    const mapLength = 2;
+    expect(map.length).toBe(mapLength);
+    expect(map[0].src).toBe(pokemons[0].foundAt[0].map);
+    expect(map[1].src).toBe(pokemons[0].foundAt[1].map);
   });
 
   test('favorite a pokemon', () => {
