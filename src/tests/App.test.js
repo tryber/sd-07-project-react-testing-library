@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '../App';
-import RenderWithRaouter from './RenderWithRouter';
+import RenderWithRouter from './RenderWithRouter';
 
 describe('Tests-1 App.js', () => {
   it('should render initial page Pokédex', () => {
@@ -9,7 +9,7 @@ describe('Tests-1 App.js', () => {
     const head = getByText(/Pokédex/i);
     expect(head).toBeInTheDocument();
   });
-  
+
   it('should have a text home', () => {
     const { getByText, history } = RenderWithRouter(<App />);
     const home = getByText('Home');
@@ -37,5 +37,4 @@ describe('Tests-1 App.js', () => {
     expect(pathname).toBe('/favorites:w');
   });
 });
-
 
