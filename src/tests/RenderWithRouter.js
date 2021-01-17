@@ -16,4 +16,3 @@ const RenderWithRouter = (component) => {
 };
 
 export default RenderWithRouter;
-

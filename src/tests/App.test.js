@@ -37,4 +37,3 @@ describe('Tests-1 App.js', () => {
     expect(pathname).toBe('/favorites:w');
   });
 });
-
