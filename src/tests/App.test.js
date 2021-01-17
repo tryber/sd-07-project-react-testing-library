@@ -34,6 +34,6 @@ describe('Tests-1 App.js', () => {
     fireEvent.click(favorites);
     const { pathname } = history.location;
     expect(favorites).toBeInTheDocument();
-    expect(pathname).toBe('/favorites:w');
+    expect(pathname).toBe('/favorites');
   });
 });
