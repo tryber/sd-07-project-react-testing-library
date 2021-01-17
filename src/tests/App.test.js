@@ -14,11 +14,11 @@ test('renders a reading with the text `Pokédex`', () => {
 });
 
 test('shows the Pokédex when the route is `/`', () => {
-	const { getByText } = render(
-		<MemoryRouter initialEntries={['/']}>
-			<App />
-		</MemoryRouter>,
-	);
+  const { getByText } = render(
+    <MemoryRouter initialEntries={ ['/'] }>
+      <App />
+    </MemoryRouter>,
+  );
 
-	expect(getByText('Encountered polémons')).toBeInTheDocument();
+  expect(getByText('Encountered polémons')).toBeInTheDocument();
 });
