@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
 
 const RenderWithRouter = (component) => {
-  const history - createMemoryHistory();
+  const history = createMemoryHistory();
   return {
     ...render(
       <Router history={ history }>
@@ -16,5 +16,4 @@ const RenderWithRouter = (component) => {
 };
 
 export default RenderWithRouter;
-
 
