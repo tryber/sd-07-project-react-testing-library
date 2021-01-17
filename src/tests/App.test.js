@@ -22,11 +22,20 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered polémons')).toBeInTheDocument();
 });
 
-test('has navigation links', () => {
+test('first link navigation is Home', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
     </MemoryRouter>,
   );
   expect(getByText('Home')).toBeInTheDocument();
+});
+
+test('second link navigation is About', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={ ['/'] }>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(getByText('About')).toBeInTheDocument();
 });
