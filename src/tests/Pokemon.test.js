@@ -4,9 +4,9 @@ import RenderWithRouter from './RenderWithRouter';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
-decribe('Test6 - Pokemon.js', () => {
+describe('Test6 - Pokemon.js', () => {
   it('Should to show all info about pokemon', () => {
-    const { getByText, getByRole } = RenderWithRoute(
+    const { getByText, getByRole } = RenderWithRouter(
       <Pokemon pokemon={ pokemons[0] } />,
     );
     const pokemonName = getByText(pokemons[0].name);
@@ -21,20 +21,21 @@ decribe('Test6 - Pokemon.js', () => {
     expect(image).toBeInTheDocument();
   });
 
-  it('should to contain a link with More details', () => {
-    const { getByRole, history } = RenderWithRouter(<Pokemon pokemon={ pokemons[0] } />);
+  it('Should to contain a link with \'More details\'', () => {
+    const { getByRole, history } = RenderWithRouter(
+      <Pokemon pokemon={ pokemons[0] } />,
+    );
     const details = getByRole('link', {
       name: 'More details',
-      src: `/pokemons/${pokemons[0].id}`,
-    });
-    const pokeImage = getByRole('img', { alt: `${pokemons[0].name} sprite` });
+      src: `/pokemons/${pokemons[0].id}` });
+    const pokImage = getByRole('img', { alt: `${pokemons[0].name} sprite` });
     expect(details).toBeInTheDocument();
     fireEvent.click(details);
-    const { pathName } = history.location;
-    expetc(pokeImage).toBeInTheDocument();
-    expect(pokeImage.alt).toBe(`${pokemons[0].name} sprite`);
-    expect(pokeImage.src).toBe(pokemons[0].image);
-    expect(pathName).toBe(`/pokemons/${pokemons[0].id}`);
+    const { pathname } = history.location;
+    expect(pokImage).toBeInTheDocument();
+    expect(pokImage.alt).toBe(`${pokemons[0].name} sprite`);
+    expect(pokImage.src).toBe(pokemons[0].image);
+    expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
   });
 
   it('should be a star icon on favorited pokemons', () => {
