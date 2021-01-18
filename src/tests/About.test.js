@@ -1,6 +1,6 @@
 import React from 'react';
 import About from '../components/About';
-import RenderWithRouter from './renderWithRouter';
+import RenderWithRouter from './RenderWithRouter';
 
 describe('Test2 - About.js', () => {
   it('should contain About pokédex in head', () => {
@@ -19,7 +19,7 @@ describe('Test2 - About.js', () => {
 
   it('should contain two tags p with pokédex description', () => {
     const { container } = RenderWithRouter(<About />);
-    const p  = container.querySelectorAll('p');
+    const p = container.querySelectorAll('p');
     expect(p.length).toBe(arrayLength);
   });
 
