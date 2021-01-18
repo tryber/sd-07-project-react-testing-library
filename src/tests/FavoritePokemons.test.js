@@ -10,7 +10,7 @@ describe('Test4 - FavoritePokemons.js', () => {
   });
 
   it('should to present all favorite pokemons', () => {
-    const { getByText } = RenderWithRouter(<FavoritePokemons pokemons={ pokemons }/>, );
+    const { getByText } = RenderWithRouter(<FavoritePokemons pokemons={ pokemons } />);
     expect(getByText('Pikachu')).toBeInTheDocument();
   });
 
