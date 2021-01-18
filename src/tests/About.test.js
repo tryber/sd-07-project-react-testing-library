@@ -6,7 +6,7 @@ describe('Test2 - About.js', () => {
   it('should contain About pokédex in head', () => {
     const { getByText } = RenderWithRouter(<About />);
     const head = getByText('About Pokédex');
-    expect(head).toBeInDocument();
+    expect(head).toBeInTheDocument();
   });
 
   it('should contain a tag h2 with About Pokédex', () => {
@@ -19,8 +19,9 @@ describe('Test2 - About.js', () => {
 
   it('should contain two tags p with pokédex description', () => {
     const { container } = RenderWithRouter(<About />);
-    const p = container.querySelectorAll('p');
-    expect(p.length).toBe(arrayLength);
+    const pTag = container.querySelectorAll('p');
+    const arrayLenght = 2;
+    expect(pTag.length).toBe(arrayLength);
   });
 
   it('should have specific image source', () => {
