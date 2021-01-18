@@ -20,7 +20,7 @@ describe('Test2 - About.js', () => {
   it('should contain two tags p with pokédex description', () => {
     const { container } = RenderWithRouter(<About />);
     const pTag = container.querySelectorAll('p');
-    const arrayLenght = 2;
+    const arrayLength = 2;
     expect(pTag.length).toBe(arrayLength);
   });
 
