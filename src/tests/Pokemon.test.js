@@ -49,3 +49,4 @@ decribe('Test6 - Pokemon.js', () => {
     expect(image[1].alt).toBe(imgAlt);
   });
 });
+//comment
