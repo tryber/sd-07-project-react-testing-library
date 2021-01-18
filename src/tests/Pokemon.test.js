@@ -1,12 +1,14 @@
-import React from 'react;
-import { fireEvent } from '@testing-libray/react';
+import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import RenderWithRouter from './RenderWithRouter';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
-decribe('Test6 - Pokemon.js', () =>{
+decribe('Test6 - Pokemon.js', () => {
   it('Should to show all info about pokemon', () => {
-    const { getByText, getByRole } = RenderWithRoute(<Pokemon pokemon={ pokemons[0] } />);    
+    const { getByText, getByRole } = RenderWithRoute(
+      <Pokemon pokemon={ pokemons[0] } />,
+    );
     const pokemonName = getByText(pokemons[0].name);
     const pokemonType = getByText(pokemons[0].type);
     const pokeWeightValue = pokemons[0].averageWeight.value;
@@ -19,9 +21,12 @@ decribe('Test6 - Pokemon.js', () =>{
     expect(image).toBeInTheDocument();
   });
 
-  it('should to contain a link with More details', () =>{
+  it('should to contain a link with More details', () => {
     const { getByRole, history } = RenderWithRouter(<Pokemon pokemon={ pokemons[0] } />);
-    const details = getByRole('link', { name: 'More details', src: `/pokemons/${pokemons[0].id}` });
+    const details = getByRole('link', {
+      name: 'More details',
+      src: `/pokemons/${pokemons[0].id}`,
+    });
     const pokeImage = getByRole('img', { alt: `${pokemons[0].name} sprite` });
     expect(details).toBeInTheDocument();
     fireEvent.click(details);
@@ -33,9 +38,12 @@ decribe('Test6 - Pokemon.js', () =>{
   });
 
   it('should be a star icon on favorited pokemons', () => {
-    const { getAllRole } = RenderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite />);
+    const { getAllByRole } = RenderWithRouter(
+      <Pokemon pokemon={ pokemons[0] } isFavorite />,
+    );
     const imgSrc = '/star-icon.svg';
-    const imgAlt = getAllByRole('img', { src: imgSrc });
+    const imgAlt = `${pokemons[0].name} is marked as favorite`;
+    const image = getAllByRole('img', { src: imgSrc });
     expect(image[1]).toBeInTheDocument();
     expect(image[1].src.endsWith('/star-icon.svg')).toBe(true);
     expect(image[1].alt).toBe(imgAlt);
