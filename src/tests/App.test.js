@@ -6,7 +6,7 @@ import App from '../App';
 describe('Testando o arquivo App.js', () => {
   it('Verifica se renderiza a Pokédex na rota `/`', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const title = getByText(/Encountered pokémons/);
+    const title = getByText('Encountered pokémons');
     const { pathname } = history.location;
     expect(title).toBeInTheDocument();
     expect(pathname).toBe('/');
@@ -14,9 +14,9 @@ describe('Testando o arquivo App.js', () => {
 
   it('Verifica se há um conjunto de links de navegação', () => {
     const { getByText } = renderWithRouter(<App />);
-    const home = getByText(/Home/);
-    const about = getByText(/About/);
-    const favoritePokemons = getByText(/Favorite Pokémons/);
+    const home = getByText('Home');
+    const about = getByText('About');
+    const favoritePokemons = getByText('Favorite Pokémons');
     expect(home).toBeInTheDocument();
     expect(about).toBeInTheDocument();
     expect(favoritePokemons).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe('Testando o arquivo App.js', () => {
 
   it('O link `Home` redirecionar para a rota `/`', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const link = getByText(/Home/i);
+    const link = getByText('Home');
     const { pathname } = history.location;
     userEvent.click(link);
     expect(link).toBeInTheDocument();
