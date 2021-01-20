@@ -2,8 +2,8 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import Pokedex from '../components/Pokedex';
-import RenderWithRouter from './RenderWithRouter';
 import pokemons from '../data';
+import RenderWithRouter from './RenderWithRouter';
 
 describe('Test 7 - PokemonDetails.js', () => {
   it('Should show details about a especifc pokemon', () => {

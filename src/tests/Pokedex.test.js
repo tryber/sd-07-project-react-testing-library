@@ -4,15 +4,14 @@ import RenderWithRouter from './RenderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
-describe('Test5 - Pokedex.js', () => {
-  it('should to contain a h2 with text Encountered pokémons', () => {
+describe('Test 5 - Pokedex.js', () => {
+  it('Should to countain a h2 heading with \'Encountered pokémons\'', () => {
     const { container } = RenderWithRouter(<App pokemons={ pokemons } />);
     const tagH2Title = container.querySelector('h2');
-    const h2Text = tagH2Title.innerHTML;
-    expect(h2Text).toContain('Encountered pokémons');
+    const textH2 = tagH2Title.innerHTML;
+    expect(textH2).toContain('Encountered pokémons');
   });
-
-  it('should have a button next pokemon', () => {
+  it('', () => {
     const { getByRole } = RenderWithRouter(<App pokemons={ pokemons } />);
     const button = getByRole('button', { name: 'Próximo pokémon' });
     expect(button).toBeInTheDocument();
@@ -26,14 +25,22 @@ describe('Test5 - Pokedex.js', () => {
     fireEvent.click(button);
     expect(pokemons[0].name).toBe('Pikachu');
   });
-
-  it('should to contain just one pokemon', () => {
+  it('Should to contain only one pokemon', () => {
     const { container } = RenderWithRouter(<App />);
     const pokemonsCard = container.querySelectorAll('.pokemon');
     expect(pokemonsCard.length).toBe(1);
   });
-
-  it('should have a button to clean filters', () => {
+  it('Should contain filter buttons', () => {
+    const { getAllByTestId, getByRole } = RenderWithRouter(<App pokemons={ pokemons } />);
+    const filteredPoke = getAllByTestId('pokemon-type-button');
+    const magicNumber = 7;
+    expect(filteredPoke).toHaveLength(magicNumber);
+    expect(filteredPoke[0].innerHTML).toBe(pokemons[0].type);
+    expect(filteredPoke[1].innerHTML).toBe(pokemons[1].type);
+    const especifcType = getByRole('button', { name: 'Electric' });
+    expect(especifcType).toBeInTheDocument();
+  });
+  it('Should hava a button to clean felters', () => {
     const { getByRole, getByText, getByTestId } = RenderWithRouter(<App />);
     const buttonAll = getByRole('button', { name: 'All' });
     fireEvent.click(buttonAll);
@@ -42,7 +49,6 @@ describe('Test5 - Pokedex.js', () => {
     pokemons.forEach(() => fireEvent.click(nextPokemon));
     expect(getByText('Pikachu')).toBeInTheDocument();
   });
-
   it('Should disable button next pokemon when there is only one pokemon.', () => {
     const { getByTestId, getByRole } = RenderWithRouter(<App />);
     const disable = getByTestId('next-pokemon');
