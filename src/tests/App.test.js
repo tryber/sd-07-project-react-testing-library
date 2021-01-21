@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
@@ -14,7 +15,7 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('When load the URL “/”, the Pokedex main page must show up.', () => {
+test('When load the URL “/”, the Pokedex main page must show up', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
     <Router history={history}>
@@ -28,8 +29,8 @@ test('When load the URL “/”, the Pokedex main page must show up.', () => {
 });
 
 describe('On top of Application, must have fixed nav links', () => {
-  describe('O primeiro link deve possuir o texto Home com a URL /', () => {
-    test('O Link deve possuir o texto Home', () => {
+  describe('First link must have the text Home with the URL"/"', () => {
+    test('The link must have the text Home', () => {
       const history = createMemoryHistory();
       const { getByText } = render(
         <Router history={history}>
@@ -81,7 +82,7 @@ describe('On top of Application, must have fixed nav links', () => {
   });
 
   describe('Third link must have the text Favorite Pokémons with the URL /favorites', () => {
-    test('The link must have the text Favorite Pokémons', () => {
+    test('Third link must have the text Favorite Pokémons', () => {
       const history = createMemoryHistory();
       const { getByText } = render(
         <Router history={history}>
@@ -108,7 +109,7 @@ describe('On top of Application, must have fixed nav links', () => {
 
   test('Unknown URL shows Not Found', () => {
     const history = createMemoryHistory();
-    history.push('/biruliru');
+    history.push('/pageNotFound');
     const { getByText } = render(
       <Router history={history}>
         <App />
