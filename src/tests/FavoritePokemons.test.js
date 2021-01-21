@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import App from '../App';
 
-describe('3rd', () => {
+describe('3rd req', () => {
   test('if "No favorite pokemon found" shows up, if there is no fav pok', () => {
     const history = createMemoryHistory();
     const { getByText } = render(
@@ -20,7 +20,7 @@ describe('3rd', () => {
     expect(noFavorite).toBeInTheDocument();
   });
 
-  test('If all fav pok cards shows up', () => {
+  test('if shows all the fav pok cards', () => {
     const history = createMemoryHistory();
     const { getByText, getByLabelText } = render(
       <Router history={ history }>
@@ -38,7 +38,7 @@ describe('3rd', () => {
     expect(pokemonName).toBeInTheDocument();
   });
 
-  test('se nenhum card de pokémon é exibido, se ele não estiver favoritado', () => {
+  test('If none pok card shows up if it is not a favorite one', () => {
     const history = createMemoryHistory();
     const { getByText, getByLabelText } = render(
       <Router history={ history }>
