@@ -17,7 +17,7 @@ test('renders a reading with the text `Pokédex`', () => {
 test('When load the URL “/”, the Pokedex main page must show up', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
     </Router>,
   );
@@ -32,7 +32,7 @@ describe('On top of Application, must have fixed nav links', () => {
     test('The link must have the text Home', () => {
       const history = createMemoryHistory();
       const { getByText } = render(
-        <Router history={history}>
+        <Router history={ history }>
           <App />
         </Router>,
       );
@@ -40,10 +40,11 @@ describe('On top of Application, must have fixed nav links', () => {
       expect(link).toBeInTheDocument();
     });
 
-    test('Clicking on "Home" in the nav bar, the application must redirect to the home page, URL "/"', () => {
+    test('Clicking on "Home" in the nav bar, the application must redirect to the home page, URL "/"'
+    , () => {
       const history = createMemoryHistory();
       const { getByText } = render(
-        <Router history={history}>
+        <Router history={ history }>
           <App />
         </Router>,
       );
@@ -58,7 +59,7 @@ describe('On top of Application, must have fixed nav links', () => {
     test('The link must have the text About', () => {
       const history = createMemoryHistory();
       const { getByText } = render(
-        <Router history={history}>
+        <Router history={ history }>
           <App />
         </Router>,
       );
@@ -66,10 +67,11 @@ describe('On top of Application, must have fixed nav links', () => {
       expect(link).toBeInTheDocument();
     });
 
-    test('When clicking the link "About" in the nav bar, the application must redirect to the About page, URL "/about"', () => {
+    test('When clicking the link "About" in the nav bar, the application must redirect to the About page, URL "/about"'
+    , () => {
       const history = createMemoryHistory();
       const { getByText } = render(
-        <Router history={history}>
+        <Router history={ history }>
           <App />
         </Router>,
       );
@@ -80,11 +82,12 @@ describe('On top of Application, must have fixed nav links', () => {
     });
   });
 
-  describe('Third link must have the text Favorite Pokémons with the URL /favorites', () => {
+  describe('Third link must have the text Favorite Pokémons with the URL /favorites',
+   () => {
     test('Third link must have the text Favorite Pokémons', () => {
       const history = createMemoryHistory();
       const { getByText } = render(
-        <Router history={history}>
+        <Router history={ history }>
           <App />
         </Router>,
       );
@@ -92,10 +95,11 @@ describe('On top of Application, must have fixed nav links', () => {
       expect(link).toBeInTheDocument();
     });
 
-    test('When clickin the link "Favorite Pokémons" in the nav bar, the application must redirect to the Favorite Pokemon page, na URL "/favorites"', () => {
+    test('Favorite Pokémons in nav bar must redirect to the Fav Pok page, na URL "/favorites"',
+     () => {
       const history = createMemoryHistory();
       const { getByText } = render(
-        <Router history={history}>
+        <Router history={ history }>
           <App />
         </Router>,
       );
@@ -110,7 +114,7 @@ describe('On top of Application, must have fixed nav links', () => {
     const history = createMemoryHistory();
     history.push('/pageNotFound');
     const { getByText } = render(
-      <Router history={history}>
+      <Router history={ history }>
         <App />
       </Router>,
     );
@@ -118,3 +122,4 @@ describe('On top of Application, must have fixed nav links', () => {
     expect(notFoundText).toBeInTheDocument();
   });
 });
+
