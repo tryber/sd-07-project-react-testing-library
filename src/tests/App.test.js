@@ -1,8 +1,8 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
+import renderWithRouter from './RenderWithRouter';
 import App from '../App';
-import renderWithRouter from '../RenderWithRouter';
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
@@ -26,7 +26,7 @@ describe('Testando o arquivo App.js', () => {
     expect(favoritePokemons).toBeInTheDocument();
   });
 
-  it('Quando clicar no link Home, o app é redirecionado para a URL /', () => {
+  it('ao clicar no link Home, é redirecionado para a URL /', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const home = getByText('Home');
     fireEvent.click(home);
@@ -35,7 +35,7 @@ describe('Testando o arquivo App.js', () => {
     expect(pathname).toBe('/');
   });
 
-  it('Quando clicar no link About, o app é redirecionado para a URL /about', () => {
+  it('ao clicar no link About, é redirecionado para a URL /about', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const about = getByText('About');
     fireEvent.click(about);
@@ -44,7 +44,7 @@ describe('Testando o arquivo App.js', () => {
     expect(pathname).toBe('/about');
   });
 
-  it('ao clicar em Favorite Pokémons, o app é redirecionado para a URL /favorites', () => {
+  it('ao clicar em Favorite , é redirec. para a URL /favorites', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const favoritePokemons = getByText('Favorite Pokémons');
     fireEvent.click(favoritePokemons);
