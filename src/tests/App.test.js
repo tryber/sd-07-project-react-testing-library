@@ -1,7 +1,6 @@
 import React from 'react';
-import { MemoryRouter, Router } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { MemoryRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -13,113 +12,47 @@ test('renders a reading with the text `Pokédex`', () => {
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
 });
-
 test('When load the URL “/”, the Pokedex main page must show up', () => {
-  const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={ history }>
+    <MemoryRouter initialEntries={ ['/'] }>
       <App />
-    </Router>,
+    </MemoryRouter>,
   );
-  const path = history.location.pathname;
-  expect(path).toBe('/');
-  const text = getByText(/Encountered pokémons/);
-  expect(text).toBeInTheDocument();
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
-
 describe('On top of Application, must have fixed nav links', () => {
-  describe('First link must have the text Home with the URL"/"', () => {
-    test('The link must have the text Home', () => {
-      const history = createMemoryHistory();
-      const { getByText } = render(
-        <Router history={ history }>
-          <App />
-        </Router>,
-      );
-      const link = getByText(/Home/);
-      expect(link).toBeInTheDocument();
-    });
-
-    test('Clicking on "Home" in the nav bar, the application must redirect to the home page, URL "/"'
-    , () => {
-      const history = createMemoryHistory();
-      const { getByText } = render(
-        <Router history={ history }>
-          <App />
-        </Router>,
-      );
-      const link = getByText(/Home/);
-      fireEvent.click(link);
-      const path = history.location.pathname;
-      expect(path).toBe('/');
-    });
-  });
-
-  describe('Second link must have the text About with the URL /about', () => {
-    test('The link must have the text About', () => {
-      const history = createMemoryHistory();
-      const { getByText } = render(
-        <Router history={ history }>
-          <App />
-        </Router>,
-      );
-      const link = getByText(/About/);
-      expect(link).toBeInTheDocument();
-    });
-
-    test('When clicking the link "About" in the nav bar, the application must redirect to the About page, URL "/about"'
-    , () => {
-      const history = createMemoryHistory();
-      const { getByText } = render(
-        <Router history={ history }>
-          <App />
-        </Router>,
-      );
-      const link = getByText(/About/);
-      fireEvent.click(link);
-      const path = history.location.pathname;
-      expect(path).toBe('/about');
-    });
-  });
-
-  describe('Third link must have the text Favorite Pokémons with the URL /favorites',
-   () => {
-    test('Third link must have the text Favorite Pokémons', () => {
-      const history = createMemoryHistory();
-      const { getByText } = render(
-        <Router history={ history }>
-          <App />
-        </Router>,
-      );
-      const link = getByText(/Favorite Pokémons/);
-      expect(link).toBeInTheDocument();
-    });
-
-    test('Favorite Pokémons in nav bar must redirect to the Fav Pok page, na URL "/favorites"',
-     () => {
-      const history = createMemoryHistory();
-      const { getByText } = render(
-        <Router history={ history }>
-          <App />
-        </Router>,
-      );
-      const link = getByText(/Favorite Pokémons/);
-      fireEvent.click(link);
-      const path = history.location.pathname;
-      expect(path).toBe('/favorites');
-    });
-  });
-
-  test('Unknown URL shows Not Found', () => {
-    const history = createMemoryHistory();
-    history.push('/pageNotFound');
+  it('First link must have the text Home with the URL"/"', () => {
     const { getByText } = render(
-      <Router history={ history }>
+      <MemoryRouter>
         <App />
-      </Router>,
+      </MemoryRouter>,
     );
-    const notFoundText = getByText(/Page requested not found/);
-    expect(notFoundText).toBeInTheDocument();
+    expect(getByText('Home')).toHaveAttribute('href', '/');
+  });
+
+  it('Second link must have the text About with the URL /about', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    expect(getByText('About')).toHaveAttribute('href', '/about');
+  });
+
+  it('3rd link must have Favorite Pokémons with `/favorites`', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    expect(getByText('Favorite Pokémons')).toHaveAttribute('href', '/favorites');
   });
 });
-
+test('Unknown URL shows Not Found', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={ ['/none'] }>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(getByText('Page requested not found')).toBeInTheDocument();
+});
