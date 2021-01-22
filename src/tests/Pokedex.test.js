@@ -74,23 +74,17 @@ describe('5th Req. | Testing Pokedex.js', () => {
   });
 
   it('should render reset button', () => {
-    const { getByTestId, getByText } = TestingRouter(
+    const { getAllByTestId } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
       />,
     );
-    const nextBtn = getByTestId('next-pokemon');
-    expect(getByText('Pikachu')).toBeInTheDocument();
-    fireEvent.click(nextBtn);
-    expect(getByText('Charmander')).toBeInTheDocument();
-
-    const allBtn = getByText('All');
-    expect(allBtn).toBeInTheDocument();
-    fireEvent.click(allBtn);
-    expect(getByText('Pikachu')).toBeInTheDocument();
-    fireEvent.click(nextBtn);
-    expect(getByText('Charmander')).toBeInTheDocument();
+    const buttons = getAllByTestId('pokemon-type-button');
+    const listOfTypes = pokemons.map((pokemon) => pokemon.type);
+    buttons.forEach((btn) => {
+      expect(listOfTypes).toContain(btn.innerHTML);
+    });
   });
 
   it('should render dynamic filter buttons', () => {
