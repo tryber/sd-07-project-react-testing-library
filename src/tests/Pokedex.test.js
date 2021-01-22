@@ -94,7 +94,7 @@ describe('5th Req. | Testing Pokedex.js', () => {
   });
 
   it('should render dynamic filter buttons', () => {
-    const { getByText, queryByTestId, getAllByTestId } = TestingRouter(
+    const { getByText, queryByTestId } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
@@ -102,11 +102,7 @@ describe('5th Req. | Testing Pokedex.js', () => {
     );
     const nextBtn = queryByTestId('next-pokemon');
     const allBtn = getByText('All');
-    const filterButtons = getAllByTestId('pokemon-type-button');
-    filterButtons.forEach((btn, index) => {
-      expect(btn.innerHTML).toBe(filterButtons[index].innerHTML);
-      expect(allBtn).toBeInTheDocument();
-    });
-    if (pokemons.length === 1) expect(nextBtn).not.toBeInTheDocument();
+    fireEvent.click(allBtn[1]);
+    expect(nextBtn.disabled).toBe(true);
   });
 });
