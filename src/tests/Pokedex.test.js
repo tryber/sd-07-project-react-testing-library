@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent, getByText } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
 
 test('Teste se página contém um heading h2 com o texto Encountered pokémons',
@@ -82,7 +82,8 @@ test(
     fireEvent.click(button);
 
     expect(primeiroPokemon).toBeInTheDocument();
-  });
+  },
+);
 
 test('Teste se é mostrado apenas um Pokémon por vez',
   () => {
@@ -113,7 +114,6 @@ test('Teste se a Pokédex tem os botões de filtro',
     fireEvent.click(buttonPsychic);
     const psychicPokemon = getByText('Alakazam');
     expect(psychicPokemon).toBeInTheDocument();
-
   });
 
 test('Teste se a Pokédex contém um botão para resetar o filtro',
@@ -138,5 +138,4 @@ test('Teste se a Pokédex contém um botão para resetar o filtro',
     fireEvent.click(buttonPsychic);
     const psychicPokemon = getByText('Alakazam');
     expect(psychicPokemon).toBeInTheDocument();
-
   });
