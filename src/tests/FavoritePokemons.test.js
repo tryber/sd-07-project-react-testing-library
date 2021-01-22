@@ -59,10 +59,9 @@ const pokemon = [
   },
 ];
 
-const render = (bool = false) => renderWithRouter(
+const render = (poks = []) => renderWithRouter(
   <FavoritePokemons
-    pokemons={ pokemon }
-    isPokemonFavoriteById={ { 25: bool, 4: false } }
+    pokemons={ poks }
   />,
 );
 
@@ -74,4 +73,13 @@ se a pessoa não tiver pokémons favoritos.`, () => {
   expect(noFavoritePokemon).toBeInTheDocument();
 });
 
-test('Teste se é exibido todos os cards de pokémons favoritados.', () => {});
+test('Teste se é exibido todos os cards de pokémons favoritados.', () => {
+  const { getAllByTestId } = render(pokemon);
+  const allCards = getAllByTestId('pokemon-name');
+  const cardsQty = 2;
+
+  expect(allCards).toHaveLength(cardsQty);
+});
+
+// test(`Teste se **nenhum** card de pokémon é exibido,
+// se ele não estiver favoritado`, () => {});
