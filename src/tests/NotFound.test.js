@@ -1,7 +1,9 @@
 import React from 'react';
+import { cleanup } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import NotFound from '../components/NotFound';
 
+afterEach(cleanup);
 describe('Testando o arquivo `NotFound.js`', () => {
   it('Verifica se há um título `h2` com o texto `Page requested not found`', () => {
     const { getByRole, getByText } = renderWithRouter(<NotFound />);
