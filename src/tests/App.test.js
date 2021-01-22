@@ -1,17 +1,17 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-  
+describe('App.js Tests`', () => {
+  it('renders a reading with the text `Pokédex`', () => {
+    const { getByText } = renderWithRouter(<App />);
+
+    const heading = getByText(/Pokédex/i);
+    expect(heading).toBeInTheDocument();
+  });
+
   it('checks if Home, About and Favorite links are rendered', () => {
     const { getByText } = renderWithRouter(<App />);
     const home = getByText(/Home/i);
