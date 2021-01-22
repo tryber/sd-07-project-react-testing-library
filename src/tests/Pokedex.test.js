@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getByTestId } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import TestingRouter from '../components/TestingRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
@@ -60,7 +60,7 @@ describe('5th Req. | Testing Pokedex.js', () => {
   });
 
   it('should render filter buttons', () => {
-    const { getAllByTestId, getByTestId } = TestingRouter(
+    const { getAllByTestId } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
