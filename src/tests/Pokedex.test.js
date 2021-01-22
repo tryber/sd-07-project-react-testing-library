@@ -4,6 +4,8 @@ import TestingRouter from '../components/TestingRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 
+afterEach(cleanup);
+
 // Referência: Alexandre Faustino
 const isFavorite = {
   4: false,
