@@ -5,14 +5,17 @@ import App from '../App';
 
 test('Testese há icone de estrela no pokemon favorito',
   () => {
-    const { getByTestId, getByText, queryByRole, getByRole } = render(
+    const { getByTestId, getByText, queryByRole, getByRole, container } = render(
       <MemoryRouter initialEntries={ ['/pokemons/25'] }>
         <App />
       </MemoryRouter>,
     );
 
     const pokemonName = getByTestId('pokemon-name');
-    expect(pokemonName).toHaveTextContent('Pikachu Details');
+    expect(pokemonName).toHaveTextContent('Pikachu');
+
+    const title = container.querySelector('h2');
+    expect(title).toBeInTheDocument();
 
     const detailslLink = queryByRole('link', { name: 'More details' });
     expect(detailslLink).toBeNull();
