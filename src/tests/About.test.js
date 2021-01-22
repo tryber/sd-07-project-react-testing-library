@@ -1,8 +1,6 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import About from '../components/About';
-import TestingRouter from '../components/TestingRouter';
 
 describe('2nd Req. | Testing About.js', () => {
   it('should render Pokédex informations', () => {
