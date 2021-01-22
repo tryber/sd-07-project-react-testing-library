@@ -16,6 +16,7 @@ test('Testese há icone de estrela no pokemon favorito',
 
     const title = container.querySelector('h2');
     expect(title).toBeInTheDocument();
+    expect(title).toHaveTextContent('Pikachu Details');
 
     const detailslLink = queryByRole('link', { name: 'More details' });
     expect(detailslLink).toBeNull();
