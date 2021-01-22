@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, getByTestId } from '@testing-library/react';
 import TestingRouter from '../components/TestingRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
@@ -31,29 +31,32 @@ describe('5th Req. | Testing Pokedex.js', () => {
   });
 
   it('should render the next pokemon when click next button', () => {
-    const { getByText } = TestingRouter(
+    const { getByTestId } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
       />,
     );
-    const nextBtn = getByText(/próximo pokémon/i);
+    const nextBtn = getByTestId('next-pokemon');
+    const pokemonName = getByTestId('pokemon-name');
+    expect(nextBtn.innerHTML).toBe('Próximo pokémon');
+
     pokemons.forEach(({ name }) => {
-      expect(getByText(name)).toBeInTheDocument();
+      expect(pokemonName.innerHTML).toBe(name);
       fireEvent.click(nextBtn);
     });
-    expect(getByText('Pikachu')).toBeInTheDocument();
+    expect(pokemonName.innerHTML).toBe('Pikachu');
   });
 
   it('should render just one pokémon', () => {
-    const { queryByText } = TestingRouter(
+    const { getByText, queryByText } = TestingRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ isFavorite }
       />,
     );
-    expect(queryByText('Pikachu')).toBeInTheDocument();
-    expect(queryByText('Charmander')).not.toBeInTheDocument();
+    expect(getByText(pokemons[0].name)).toBeInTheDocument();
+    expect(queryByText(pokemons[1].name)).not.toBeInTheDocument();
   });
 
   it('should render filter buttons', () => {
