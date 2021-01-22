@@ -12,7 +12,7 @@ test('Testese há icone de estrela no pokemon favorito',
     );
 
     const pokemonName = getByTestId('pokemon-name');
-    expect(pokemonName).toHaveTextContent('Pikachu');
+    expect(pokemonName).toHaveTextContent('Pikachu Details');
 
     const detailslLink = queryByRole('link', { name: 'More details' });
     expect(detailslLink).toBeNull();
