@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithrouter from './renderWithrouter';
@@ -75,7 +74,7 @@ describe('6. Testinf Pokemon.js file', () => {
     });
   });
 
-  test(`6.3`, () => {
+  test('6.3', () => {
     const { getByText, history, getByTestId } = renderWithrouter(<App />);
     const linkDetails = getByText(/More details/i);
     fireEvent.click(linkDetails);
@@ -85,7 +84,7 @@ describe('6. Testinf Pokemon.js file', () => {
     expect(pathname).toBe(`/pokemons/${id}`);
   });
 
-  test(`6.4`, () => {
+  test('6.4', () => {
     const { getByText, history, getByTestId } = renderWithrouter(<App />);
     const linkDetails = getByText(/More details/i);
     fireEvent.click(linkDetails);
@@ -95,7 +94,7 @@ describe('6. Testinf Pokemon.js file', () => {
     expect(pathname).toBe(`/pokemons/${id}`);
   });
 
-  test(`6.5`, () => {
+  test('6.5', () => {
     const { getAllByRole, getByText, getByLabelText } = renderWithrouter(<App />);
     const linkDetails = getByText(/More details/i);
     fireEvent.click(linkDetails);
