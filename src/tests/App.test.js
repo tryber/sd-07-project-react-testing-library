@@ -1,8 +1,10 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
+import { cleanup } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
+afterEach(cleanup);
 describe('Testando o arquivo App.js', () => {
   it('Verifica se renderiza a Pokédex na rota `/`', () => {
     const { getByText, history } = renderWithRouter(<App />);
