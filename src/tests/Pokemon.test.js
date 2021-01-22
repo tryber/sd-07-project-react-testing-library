@@ -53,5 +53,6 @@ describe('Testando o arquivo `Pokemon.js`', () => {
     expect(favorite.checked).toBeTruthy();
     const starIcon = getByAltText('Pikachu is marked as favorite');
     expect(starIcon).toBeInTheDocument();
+    expect(starIcon.src).toBe('http://localhost/star-icon.svg');
   });
 });
