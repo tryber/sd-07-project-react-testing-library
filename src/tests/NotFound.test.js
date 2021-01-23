@@ -4,9 +4,9 @@ import App from '../App';
 
 describe('NotFound.js Tests`', () => {
   it('Checks if an H2 is rendered with a message', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history, container } = renderWithRouter(<App />);
     history.push('/Marcio');
-    const heading = document.querySelector('h2');
+    const heading = container.querySelector('h2');
     expect(heading).toBeInTheDocument();
     expect(heading.tagName.toLowerCase()).toBe('h2');
     expect(heading.innerHTML).toBe(
