@@ -1,13 +1,15 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, getByRole } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
+import pokemons from '../data';
+import Pokedex from '../components/Pokedex';
 
 describe('Pokedéx Tests', () => {
   it('Tests if an H2 with especific text is rendered', () => {
-    const { history } = renderWithRouter(<App />);
+    const { getByRole, history, getByText } = renderWithRouter(<App />);
     history.push('/');
-    const heading = document.querySelector('h2');
+    const heading = getByRole('heading', {name: /Encountered pokémons/i});
     expect(heading).toBeInTheDocument();
   });
 
@@ -61,19 +63,23 @@ describe('Pokedéx Tests', () => {
     expect(nextPoke).toBe('Charmander');
   });
 
-  it('Tests if a filter btn its redered to each pokemon type', () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/');
-    const filterBtns = document.querySelectorAll('.filter-button');
-    expect((filterBtns.length).toString()).toBe('8');
-    expect(filterBtns[0].textContent).toBe('All');
-    expect(filterBtns[1].textContent).toBe('Electric');
-    expect(filterBtns[2].textContent).toBe('Fire');
-    expect(filterBtns[3].textContent).toBe('Bug');
-    expect(filterBtns[4].textContent).toBe('Poison');
-    expect(filterBtns[5].textContent).toBe('Psychic');
-    expect(filterBtns[6].textContent).toBe('Normal');
-    expect(filterBtns[7].textContent).toBe('Dragon');
+  it('Tests if filter btns are redered dinamictly to each pokemon type', () => {
+    const pokemonmocked = [pokemons[0], pokemons[1], pokemons[4], pokemons[7]];
+    const favorites = {25: false, 4:false, 65: false, 143: false};
+    const { getAllByTestId, getByRole } = renderWithRouter(
+      <Pokedex
+        pokemons={ pokemonmocked }
+        isPokemonFavoriteById={ favorites }
+      />
+    );
+    const filterBtns = getAllByTestId('pokemon-type-button')
+    expect((filterBtns.length).toString()).toBe('4');
+    expect(filterBtns[0].innerHTML).toBe('Electric');
+    expect(filterBtns[1].innerHTML).toBe('Fire');
+    expect(filterBtns[2].innerHTML).toBe('Psychic');
+    expect(filterBtns[3].innerHTML).toBe('Normal');
+    const all = getByRole('button', { name: /All/i });
+    expect(all).toBeInTheDocument();
   });
 
   it('Tests if the "Proximo Pokemon" btn is disabled when desired', () => {
