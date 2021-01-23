@@ -60,4 +60,31 @@ describe('Pokedéx Tests', () => {
     const nextPoke = getByTestId(/pokemon-name/i).textContent;
     expect(nextPoke).toBe('Charmander');
   });
+  
+  it('Tests if a filter btn its redered to each pokemon type', () => {
+    const { history, getByTestId } = renderWithRouter(<App />);
+    history.push('/');
+    const filterBtns = document.querySelectorAll('.filter-button');
+    expect((filterBtns.length).toString()).toBe('8');
+    expect(filterBtns[0].textContent).toBe('All');
+    expect(filterBtns[1].textContent).toBe('Electric');
+    expect(filterBtns[2].textContent).toBe('Fire');
+    expect(filterBtns[3].textContent).toBe('Bug');
+    expect(filterBtns[4].textContent).toBe('Poison');
+    expect(filterBtns[5].textContent).toBe('Psychic');
+    expect(filterBtns[6].textContent).toBe('Normal');
+    expect(filterBtns[7].textContent).toBe('Dragon');
+  });
+
+  it('Tests if the "Proximo Pokemon" btn is disabled when desired', () => {
+    const { history, getByTestId } = renderWithRouter(<App />);
+    history.push('/');
+    const filterBtns = document.querySelectorAll('.filter-button');
+    fireEvent.click(filterBtns[3]);
+    const pokedexBtn = document.querySelector('.pokedex-button');
+    expect(pokedexBtn.textContent).toBe('Próximo pokémon');
+    expect(pokedexBtn.disabled).toBe(true);
+    
+  });
+
 });
