@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getByRole } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
@@ -7,9 +7,9 @@ import Pokedex from '../components/Pokedex';
 
 describe('Pokedéx Tests', () => {
   it('Tests if an H2 with especific text is rendered', () => {
-    const { getByRole, history, getByText } = renderWithRouter(<App />);
+    const { getByRole, history } = renderWithRouter(<App />);
     history.push('/');
-    const heading = getByRole('heading', {name: /Encountered pokémons/i});
+    const heading = getByRole('heading', { name: /Encountered pokémons/i });
     expect(heading).toBeInTheDocument();
   });
 
@@ -65,14 +65,14 @@ describe('Pokedéx Tests', () => {
 
   it('Tests if filter btns are redered dinamictly to each pokemon type', () => {
     const pokemonmocked = [pokemons[0], pokemons[1], pokemons[4], pokemons[7]];
-    const favorites = {25: false, 4:false, 65: false, 143: false};
+    const favorites = { 25: false, 4: false, 65: false, 143: false };
     const { getAllByTestId, getByRole } = renderWithRouter(
       <Pokedex
         pokemons={ pokemonmocked }
         isPokemonFavoriteById={ favorites }
-      />
+      />,
     );
-    const filterBtns = getAllByTestId('pokemon-type-button')
+    const filterBtns = getAllByTestId('pokemon-type-button');
     expect((filterBtns.length).toString()).toBe('4');
     expect(filterBtns[0].innerHTML).toBe('Electric');
     expect(filterBtns[1].innerHTML).toBe('Fire');
