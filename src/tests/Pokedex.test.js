@@ -14,7 +14,7 @@ describe('Testing the Pokedex.js file', () => {
     expect(getByRole('heading', { level: 2 })).toBeInTheDocument();
 });
 
-test('Teste se é exibido o próximo Pokémon da lista quando o botão Próximo pokémon é clicado.', () => {
+  test('Teste se é exibido o próximo Pokémon da lista', () => {
 
     const pokemon = [Pokemon[0]];
     const { getByTestId } = renderWithRouter(<Pokedex
