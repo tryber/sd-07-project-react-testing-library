@@ -2,8 +2,6 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import pokemons from '../data';
-import Pokedex from '../components/Pokedex';
 
 describe('Pokemon.js behaviour tests', () => {
   it('Tests ig a card with pokemon infos are rendered', () => {
@@ -18,7 +16,7 @@ describe('Pokemon.js behaviour tests', () => {
     const name = getByText(/Pikachu/i);
     const type = getByTestId(/pokemonType/i);
     const averageWeight = getByTestId(/pokemon-weight/i);
-    const image = getByAltText(/Pikachu sprite/i)
+    const image = getByAltText(/Pikachu sprite/i);
     expect(name).toBeInTheDocument();
     expect(type).toBeInTheDocument();
     expect(averageWeight).toBeInTheDocument();
@@ -36,7 +34,7 @@ describe('Pokemon.js behaviour tests', () => {
     } = renderWithRouter(<App />);
     history.push('/');
     const details = getByText(/More details/i);
-    const href = details.href;
+    const { href } = details;
     expect(details).toBeInTheDocument();
     expect(href).toBe('http://localhost/pokemons/25');
   });
