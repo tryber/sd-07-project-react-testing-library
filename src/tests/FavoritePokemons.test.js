@@ -33,20 +33,22 @@ const arrMocadoTrue = [
 const arrMocadoFalse = [];
 
 describe('Requisito 3', () => {
+
   it('Verifica se a mensagem "no favorite pokemon found" é exibida.', () => {
     const { getByText } = render(<FavoritePokemons />);
     const noFound = getByText(/no favorite pokemon found/i);
     expect(noFound).toBeInTheDocument();
   });
 
-  it('testa se é exibido todos os pokémons favoritos', () => {
+  it('Verifica se é exibido todos os pokémons favoritos', () => {
     const { getByText } = renderRouter(
       <FavoritePokemons pokemons={ arrMocadoTrue } />,
     );
     const pokemonMocado = getByText('Pikachu');
     expect(pokemonMocado).toBeInTheDocument();
   });
-  it('testa se pokémons que não são favoritos não são exibidos', () => {
+
+  it('Verifica se pokémons não favoritados não são exibidos', () => {
     const { container } = renderRouter(
       <FavoritePokemons pokemons={ arrMocadoFalse } />,
     );
