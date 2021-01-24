@@ -18,9 +18,9 @@ describe('Testando About.js', () => {
   it('testa se a página contém dois parágrafos com texto sobre a Pokédex', () => {
     const { container } = renderWithRouter(<About />);
     const paragraphs = container.querySelectorAll('p');
-    const count = 2;
+    const DOIS = 2;
 
-    expect(paragraphs).toHaveLength(count);
+    expect(paragraphs).toHaveLength(DOIS);
   });
   it('testa se a página contém uma imagem específica de uma Pokédex', () => {
     const { getByRole } = renderWithRouter(<About />);
