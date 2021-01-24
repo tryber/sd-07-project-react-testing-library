@@ -33,7 +33,6 @@ const arrMocadoTrue = [
 const arrMocadoFalse = [];
 
 describe('Requisito 3', () => {
-
   it('Verifica se a mensagem "no favorite pokemon found" é exibida.', () => {
     const { getByText } = render(<FavoritePokemons />);
     const noFound = getByText(/no favorite pokemon found/i);
