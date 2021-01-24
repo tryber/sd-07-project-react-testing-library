@@ -86,6 +86,7 @@ class App extends Component {
           render={ () => <FavoritePokemons pokemons={ favoritePokemons } /> }
         />
         <Route path="/about" component={ About } />
+        
         <Route component={ NotFound } />
       </Switch>
     );
