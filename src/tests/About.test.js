@@ -1,6 +1,6 @@
 import React from 'react';
 import renderWithRouter from './renderWithRouter';
-import { About } from '../components';
+import About from '../components/About';
 
 describe('Testando About.js', () => {
   it('testa se a página contém as informações sobre a Pokédex', () => {
