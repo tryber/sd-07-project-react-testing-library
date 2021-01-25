@@ -99,4 +99,112 @@ describe('Requisito 5 Pokedex', () => {
     fireEvent.click(nextBtn);
     expect(pokemonType.innerHTML).toBe('Fire');
   });
+
+  it('O texto do botão deve corresponder ao "nome do tipo" ex. Psychic', () => {
+    renderRouter(<App />);
+    const psychic = screen.getByRole('button', { name: /Psychic/i });
+    fireEvent.click(psychic);
+    expect(psychic.textContent).toBe('Psychic');
+  });
+  // Fazer o teste se contem um botão para resetar o filtro.
+  it('O texto do botão deve ser All', () => {
+    renderRouter(<App />);
+    const btn = screen.getByRole('button', { name: /All/i });
+    expect(btn.textContent).toBe('All');
+  });
+
+  it('Verifica se mostra os Pokémons normalmente quando o botão All for clicado', () => {
+    renderRouter(<App />);
+    const btn = screen.getByTestId('next-pokemon');
+    const btnAll = screen.getByRole('button', { name: 'All' });
+    fireEvent.click(btnAll);
+
+    const electric = screen.getByTestId('pokemonType');
+    expect(electric.textContent).toBe('Electric');
+    fireEvent.click(btn);
+    const fire = screen.getByTestId('pokemonType');
+    expect(fire.textContent).toBe('Fire');
+    fireEvent.click(btn);
+    const bug = screen.getByTestId('pokemonType');
+    expect(bug.textContent).toBe('Bug');
+    fireEvent.click(btn);
+    const poison = screen.getByTestId('pokemonType');
+    expect(poison.textContent).toBe('Poison');
+    fireEvent.click(btn);
+    const psychic = screen.getByTestId('pokemonType');
+    expect(psychic.textContent).toBe('Psychic');
+    fireEvent.click(btn);
+    expect(psychic.textContent).toBe('Psychic');
+    fireEvent.click(btn);
+    expect(fire.textContent).toBe('Fire');
+    fireEvent.click(btn);
+    const normal = screen.getByTestId('pokemonType');
+    expect(normal.textContent).toBe('Normal');
+    fireEvent.click(btn);
+    const dragon = screen.getByTestId('pokemonType');
+    expect(dragon.textContent).toBe('Dragon');
+    fireEvent.click(btn);
+    expect(electric.textContent).toBe('Electric');
+  });
+
+  it('Ao carregar a página, o filtro selecionado deverá ser All', () => {
+    renderRouter(<App />);
+    const btn = screen.getByTestId('next-pokemon');
+    const electric = screen.getByTestId('pokemonType');
+    expect(electric.textContent).toBe('Electric');
+    fireEvent.click(btn);
+  });
+
+  it('Os botões de filtragem devem ser dinâmicos', () => {
+    renderRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+      />,
+    );
+    const btn = screen.getAllByTestId('pokemon-type-button');
+    const types2 = [
+      ...new Set(pokemons.reduce((types, { type }) => [...types, type], []))];
+
+    expect(btn.length).toBe(types2.length);
+  });
+
+  it('Deve existir um botão de filtragem para cada tipo de Pokémon', () => {
+    renderRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+      />,
+    );
+    const btn = screen.getAllByTestId('pokemon-type-button');
+    const type = btn.map((item) => item.firstChild.nodeValue);
+    expect(type).toContain('Fire');
+    expect(type).toContain('Psychic');
+    expect(type).toContain('Electric');
+    expect(type).toContain('Normal');
+  });
+
+  it('Verifica se botão All esta sempre visível', () => {
+    renderRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+      />,
+    );
+    const btnAll = screen.getByRole('button', { name: 'All' });
+    expect(btnAll).toBeInTheDocument();
+  });
+
+  it('O botão de Próximo pokémon deve ser desabilitado um só pokémon', () => {
+    renderRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+      />,
+    );
+    const electric = screen.getByRole('button', { name: 'Electric' });
+    fireEvent.click(electric);
+    const btn = screen.getByTestId('next-pokemon');
+    expect(btn.disabled).toBeTruthy();
+  });
 });
