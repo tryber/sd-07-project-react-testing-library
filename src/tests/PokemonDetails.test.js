@@ -6,7 +6,7 @@ import renderWithRouter from '../renderWithRouter';
 describe('Testing PokemonDetails page', () => {
   test('if specific information for the selected Pokémon is shown on the screen.', () => {
     const { getByText } = renderWithRouter(
-      <PokemonDetails 
+      <PokemonDetails
         pokemons={ pokemons }
         match={ { params: { id: '25' } } }
         isPokemonFavoriteById={ { 25: true } }
