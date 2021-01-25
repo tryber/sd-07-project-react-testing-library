@@ -10,7 +10,7 @@ describe('NotFound.js Tests`', () => {
     expect(heading).toBeInTheDocument();
     expect(heading.tagName.toLowerCase()).toBe('h2');
     expect(heading.innerHTML).toBe(
-      'Page requested not found<span role="img" aria-label="Crying emoji"> 😭</span>',
+      'Page requested not found<span role="img" aria-label="Crying emoji"> 😭 </span>',
     );
   });
 
