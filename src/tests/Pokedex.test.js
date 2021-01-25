@@ -1,12 +1,13 @@
 import React from 'react';
-import { cleanup } from '@testing-library/jest-dom';
-import Pokedex from '../components/Pokedex';
-import data from '../data';
+import { cleanup } from '@testing-library/react';
 import App from '../App';
+import Pokedex from '../components/Pokedex';
 
 afterEach(cleanup);
 
-describe('EX05 - Testando o arquivo Pokedex.js', () => {
+describe('', () =>{
+  it('', () =>{
     
-});
+  });
 
+})
