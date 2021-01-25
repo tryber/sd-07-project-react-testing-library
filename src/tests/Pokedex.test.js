@@ -4,7 +4,6 @@ import renderRouter from './renderRouter';
 import Pokedex from '../components/Pokedex';
 import App from '../App';
 import pokemons from '../data';
-import { Button } from '../components';
 
 const isPokemonFavoriteById = {
   4: false,
