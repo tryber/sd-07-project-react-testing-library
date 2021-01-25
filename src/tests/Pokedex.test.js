@@ -27,7 +27,6 @@ describe('Testing the Pokedex.js file', () => {
 
     const nextPokemon = getByText('Charmander');
     expect(nextPokemon).toBeInTheDocument();
-
   });
 
   test('Teste se é mostrado apenas um Pokémon por vez', () => {
@@ -40,6 +39,6 @@ describe('Testing the Pokedex.js file', () => {
     expect(pokemon.length).toBe(1);
   });
   test('Teste se a Pokédex tem os botões de filtro.', () => {
-    
+
   });
 });
