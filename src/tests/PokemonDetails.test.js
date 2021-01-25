@@ -5,8 +5,14 @@ import renderWithRouter from '../renderWithRouter';
 
 describe('Testing PokemonDetails page', () => {
   test('if specific information for the selected Pokémon is shown on the screen.', () => {
-    const pikachuName = pokemons[0];
-    const { getByText } = renderWithRouter(<PokemonDetails pokemon={ pikachuName } />);
+    const { getByText } = renderWithRouter(
+      <PokemonDetails 
+        pokemons={ pokemons }
+        match={ { params: { id: '25' } } }
+        isPokemonFavoriteById={ { 25: true } }
+        onUpdateFavoritePokemons={ () => {} }
+      />,
+    );
 
     const pikachuDetails = getByText('Pikachu Details');
     expect(pikachuDetails).toBeInTheDocument();
