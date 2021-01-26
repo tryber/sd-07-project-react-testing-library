@@ -1,7 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-// import renderWithrouter from './renderWithrouter';
-import { renderWithRouter } from 'react-router-dom'
+// import { renderWithRouter } from 'react-router-dom';
 import App from '../App';
 import pokemons from '../data';
 
@@ -44,7 +43,7 @@ describe('7- Testing PokemonDetails.js', () => {
     expect(getByText(/Game Locations of Pikachu/i)).toBeInTheDocument();
   });
 
-  test(`7.5 All the pok locations must appear in details`, () => {
+  test('7.5 All the pok locations must appear in details', () => {
     const { getByText, getByTestId, container } = renderWithrouter(<App />);
     fireEvent.click(getByText(/More details/i));
     const name = getByTestId('pokemon-name').innerHTML;
@@ -63,7 +62,7 @@ describe('7- Testing PokemonDetails.js', () => {
     expect(divLocatins).toBeInTheDocument();
   });
 
-  test(`7.11 Checkbox to mark as favorite`, () => {
+  test(' 7.11 Checkbox to mark as favorite ', () => {
     const { getByText, container, getByLabelText } = renderWithrouter(<App />);
     fireEvent.click(getByText(/More details/i));
 

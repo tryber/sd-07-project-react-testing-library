@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
+import { renderWithRouter } from 'react-router-dom';
 import App from '../App';
-import { renderWithRouter } from 'react-router-dom'
 import pokemons from '../data';
 
 test('if have the title Encountered pokémons', () => {
