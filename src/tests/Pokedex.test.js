@@ -313,7 +313,7 @@ describe('Testa Pokedex.js', () => {
     expect(charmander).toBeInTheDocument();
   });
   it('testa se botão de filtro para cada tipo é criado dinamicamente', () => {
-    const { getByRole, container } = renderWithRouter(
+    const { getByRole } = renderWithRouter(
       <Pokedex
         pokemons={ mockPokemons }
         isPokemonFavoriteById={ mockFavoriteById }
@@ -338,9 +338,8 @@ describe('Testa Pokedex.js', () => {
     expect(filteredBug).toBe(1);
     expect(filteredDragon).toBe(1);
 
-    const EMPTY = 0;
-    const allBtnEnable = container.getElementsByClassName('filter-button:disabled');
-    expect(allBtnEnable).toHaveLength(EMPTY);
+    const allBtnEnable = getByRole('button', { name: 'All' });
+    expect(allBtnEnable.disabled).toBeFalsy();
   });
   it('testa funcionalidade que desabilita botão "Próximo pokémon"', () => {
     const { getByRole, getByTestId } = renderWithRouter(
