@@ -1,5 +1,4 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
 import pokemons from '../data';
 import PokemonDetails from '../components/PokemonDetails';
 import renderWithRouter from '../renderWithRouter';
