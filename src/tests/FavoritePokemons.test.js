@@ -3,6 +3,7 @@ import { Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
+import { FavoritePokemons } from '../components/FavoritePokemons';
 import App from '../App';
 
 describe('3rd req', () => {

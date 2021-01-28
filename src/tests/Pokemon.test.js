@@ -1,13 +1,13 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { renderWithRouter } from '../renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
 describe('6. Testinf Pokemon.js file', () => {
   test(`If render a card with the infos.
    The correct Pokémon name must show up.`, () => {
-    const { getByTestId, container } = renderWithrouter(<App />);
+    const { getByTestId, container } = renderWithRouter(<App />);
     const card = container.querySelector('.pokemon');
     expect(card).toBeInTheDocument();
     const buttonProximo = getByTestId('next-pokemon');
@@ -20,7 +20,7 @@ describe('6. Testinf Pokemon.js file', () => {
 
   test(`If render a card with the infos.
    The correct type must show up`, () => {
-    const { getByTestId } = renderWithrouter(<App />);
+    const { getByTestId } = renderWithRouter(<App />);
     const buttonProximo = getByTestId('next-pokemon');
     const type = getByTestId('pokemonType');
     pokemons.forEach((pokemon) => {
@@ -34,7 +34,7 @@ describe('6. Testinf Pokemon.js file', () => {
   Average weight: <value> <measurementUnit>;
   where <value> e <measurementUnit> are mean weight
   and length unit`, () => {
-    const { getByTestId } = renderWithrouter(<App />);
+    const { getByTestId } = renderWithRouter(<App />);
     const buttonProximo = getByTestId('next-pokemon');
     const weight = getByTestId('pokemon-weight');
     pokemons.forEach((pokemon) => {
@@ -48,7 +48,7 @@ describe('6. Testinf Pokemon.js file', () => {
 
   test(`If render a card with the infos.
   The correct img must show up.`, () => {
-    const { getByRole, getByTestId } = renderWithrouter(<App />);
+    const { getByRole, getByTestId } = renderWithRouter(<App />);
     const pokemonImage = getByRole('img');
     const buttonProximo = getByTestId('next-pokemon');
     pokemons.forEach((pokemon) => {
@@ -63,7 +63,7 @@ describe('6. Testinf Pokemon.js file', () => {
   Link must have 
   URL /pokemons/<id>,
   where <id> is the id from the Pokémon`, () => {
-    const { getByText, getByTestId } = renderWithrouter(<App />);
+    const { getByText, getByTestId } = renderWithRouter(<App />);
     const linkDetails = getByText(/More details/i);
     const buttonProximo = getByTestId('next-pokemon');
 
@@ -75,7 +75,7 @@ describe('6. Testinf Pokemon.js file', () => {
   });
 
   test('6.3', () => {
-    const { getByText, history, getByTestId } = renderWithrouter(<App />);
+    const { getByText, history, getByTestId } = renderWithRouter(<App />);
     const linkDetails = getByText(/More details/i);
     fireEvent.click(linkDetails);
     const name = getByTestId('pokemon-name').innerHTML;
@@ -85,7 +85,7 @@ describe('6. Testinf Pokemon.js file', () => {
   });
 
   test('6.4', () => {
-    const { getByText, history, getByTestId } = renderWithrouter(<App />);
+    const { getByText, history, getByTestId } = renderWithRouter(<App />);
     const linkDetails = getByText(/More details/i);
     fireEvent.click(linkDetails);
     const name = getByTestId('pokemon-name').innerHTML;
@@ -95,7 +95,7 @@ describe('6. Testinf Pokemon.js file', () => {
   });
 
   test('6.5', () => {
-    const { getAllByRole, getByText, getByLabelText } = renderWithrouter(<App />);
+    const { getAllByRole, getByText, getByLabelText } = renderWithRouter(<App />);
     const linkDetails = getByText(/More details/i);
     fireEvent.click(linkDetails);
     fireEvent.click(getByLabelText('Pokémon favoritado?'));

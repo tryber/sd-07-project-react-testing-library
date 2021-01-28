@@ -1,7 +1,7 @@
 import React from 'react';
-import { MemoryRouter, Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+// import { createMemoryHistory } from 'history';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
