@@ -5,10 +5,7 @@ import { render } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
 test('Page must have a heading h2 with text Page requested not found', () => {
-  const history = createMemoryHistory();
-  const { getByRole } = render(
-      <NotFound />
-  );
+  const { getByRole } = render(<NotFound />);
   const h2 = getByRole('heading');
   expect(h2).toBeInTheDocument();
   expect(h2.textContent).toBe('Page requested not found 😭');
