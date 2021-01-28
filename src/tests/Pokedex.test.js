@@ -1,9 +1,9 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
 import { fireEvent } from '@testing-library/react';
-import Pokedex from '../components/Pokedex';
+// import Pokedex from '../components/Pokedex';
 import App from '../App';
 import pokemons from '../data';
+import renderWithRouter from '../renderWithRouter';
 
 test('if have the title Encountered pokémons', () => {
   const { getByText } = renderWithRouter(<App />);

@@ -3,7 +3,7 @@ import { Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
-import { FavoritePokemons } from '../components'
+// import { FavoritePokemons } from '../components/FavoritePokemons';
 import App from '../App';
 
 describe('3rd req', () => {
@@ -15,10 +15,10 @@ describe('3rd req', () => {
       </Router>,
     );
 
-    const favorite = getByText('Favorite Pokémons');
-    fireEvent.click(favorite);
-    const noFavorite = getByText('No favorite pokemon found');
-    expect(noFavorite).toBeInTheDocument();
+    const FavoritePokemons = getByText('Favorite Pokémons');
+    fireEvent.click(FavoritePokemons);
+    const notFound = getByText('No favorite pokemon found');
+    expect(notFound).toBeInTheDocument();
   });
 
   test('if shows all the fav pok cards', () => {
@@ -53,7 +53,7 @@ describe('3rd req', () => {
     userEvent.click(labelInput);
     expect(labelInput).not.toBeChecked();
     fireEvent.click(getByText('Favorite Pokémons'));
-    const noFavorite = getByText('No favorite pokemon found');
-    expect(noFavorite).toBeInTheDocument();
+    const notFound = getByText('No favorite pokemon found');
+    expect(notFound).toBeInTheDocument();
   });
 });
