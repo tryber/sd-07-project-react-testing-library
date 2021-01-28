@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { pokemonType } from '../types';
 import Pokemon from './Pokemon';
-
 import './favorite-pokemons.css';
 
 const ZERO = 0;
@@ -12,7 +10,7 @@ class FavoritePokemons extends React.Component {
   static notFound() {
     return (
       <div>
-        <p>{`No favorite ` + `pokemon found`}</p>
+        <p>{`No favorite pokemon found`}</p>
       </div>
     );
   }
