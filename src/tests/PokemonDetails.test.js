@@ -10,7 +10,7 @@ describe('7- Testing PokemonDetails.js', () => {
   2 - No nav link;
   3 - Heading h2 with text Summary;
   4 - Parahraph with the sumary of the Pokemon selected `, () => {
-    const { getByText, history, getByTestId } = renderWithrouter(<App />);
+    const { getByText, history, getByTestId } = renderWithRouter(<App />);
     const name = getByTestId('pokemon-name').innerHTML;
     const linkDetails = getByText(/More details/i);
     fireEvent.click(linkDetails);
@@ -37,14 +37,14 @@ describe('7- Testing PokemonDetails.js', () => {
 
   test(`7.2 Details section must have heading h2 text Game
   Locations of <name>; where <name> is the Pokémon name selected.`, () => {
-    const { getByText } = renderWithrouter(<App />);
+    const { getByText } = renderWithRouter(<App />);
     const linkDetails = getByText(/More details/i);
     fireEvent.click(linkDetails);
     expect(getByText(/Game Locations of Pikachu/i)).toBeInTheDocument();
   });
 
   test('7.5 All the pok locations must appear in details', () => {
-    const { getByText, getByTestId, container } = renderWithrouter(<App />);
+    const { getByText, getByTestId, container } = renderWithRouter(<App />);
     fireEvent.click(getByText(/More details/i));
     const name = getByTestId('pokemon-name').innerHTML;
     const { foundAt } = pokemons.find((pokemon) => pokemon.name === name);
@@ -63,7 +63,7 @@ describe('7- Testing PokemonDetails.js', () => {
   });
 
   test(' 7.11 Checkbox to mark as favorite ', () => {
-    const { getByText, container, getByLabelText } = renderWithrouter(<App />);
+    const { getByText, container, getByLabelText } = renderWithRouter(<App />);
     fireEvent.click(getByText(/More details/i));
 
     const checkbox = container.querySelector('#favorite');

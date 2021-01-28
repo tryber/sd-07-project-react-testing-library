@@ -36,7 +36,7 @@ describe('On top of Application, must have fixed nav links', () => {
         <App />
       </MemoryRouter>,
     );
-    expect(getByText('About')).toHaveAttribute('href', '/about');
+    expect(getByText('about')).toHaveAttribute('href', '/about');
   });
   it('3rd link must have Favorite Pokémons with `/favorites`', () => {
     const { getByText } = render(
