@@ -313,36 +313,38 @@ describe('Testa Pokedex.js', () => {
     expect(charmander).toBeInTheDocument();
   });
   it('testa se botão de filtro para cada tipo é criado dinamicamente', () => {
-    const { getByRole } = renderWithRouter(
+    const { getByRole, getByTestId } = renderWithRouter(
       <Pokedex
-        pokemons={ mockPokemons }
+        pokemons={ [mockPokemons[0], mockPokemons[1]] }
         isPokemonFavoriteById={ mockFavoriteById }
       />,
     );
 
-    const filteredAll = getByRole('button', { name: 'All' }).ELEMENT_NODE;
-    const filteredFire = getByRole('button', { name: 'Fire' }).ELEMENT_NODE;
-    const filteredPsychic = getByRole('button', { name: 'Psychic' }).ELEMENT_NODE;
-    const filteredElectric = getByRole('button', { name: 'Electric' }).ELEMENT_NODE;
-    const filteredNormal = getByRole('button', { name: 'Normal' }).ELEMENT_NODE;
-    const filteredPoison = getByRole('button', { name: 'Poison' }).ELEMENT_NODE;
-    const filteredBug = getByRole('button', { name: 'Bug' }).ELEMENT_NODE;
-    const filteredDragon = getByRole('button', { name: 'Dragon' }).ELEMENT_NODE;
+    const filteredAll = getByRole('button', { name: 'All' });
+    expect(filteredAll).toBeInTheDocument();
 
-    expect(filteredAll).toBe(1);
-    expect(filteredFire).toBe(1);
-    expect(filteredPsychic).toBe(1);
-    expect(filteredPoison).toBe(1);
-    expect(filteredElectric).toBe(1);
-    expect(filteredNormal).toBe(1);
-    expect(filteredBug).toBe(1);
-    expect(filteredDragon).toBe(1);
+    const filteredElectric = getByRole('button', { name: 'Electric' });
+    expect(filteredElectric).toBeInTheDocument();
 
-    const allBtnEnable = getByRole('button', { name: 'All' });
-    expect(allBtnEnable.disabled).toBeFalsy();
+    fireEvent.click(filteredElectric);
+    const typeElectricPokemon = getByTestId('pokemonType');
+    expect(typeElectricPokemon).toBeInTheDocument();
+    expect(typeElectricPokemon).toHaveTextContent('Electric');
+
+    expect(filteredAll).toBeInTheDocument();
+
+    const filteredFire = getByRole('button', { name: 'Fire' });
+    expect(filteredFire).toBeInTheDocument();
+
+    fireEvent.click(filteredFire);
+    const typeFirePokemon = getByTestId('pokemonType');
+    expect(typeFirePokemon).toBeInTheDocument();
+    expect(typeFirePokemon).toHaveTextContent('Fire');
+
+    expect(filteredAll).toBeInTheDocument();
   });
   it('testa funcionalidade que desabilita botão "Próximo pokémon"', () => {
-    const { getByRole, getByTestId } = renderWithRouter(
+    const { getByTestId } = renderWithRouter(
       <Pokedex
         pokemons={ [mockPokemons[0]] }
         isPokemonFavoriteById={ mockFavoriteById }
