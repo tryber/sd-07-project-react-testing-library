@@ -263,23 +263,28 @@ describe('Testa Pokedex.js', () => {
     expect(nextPokemon).toBeInTheDocument();
   });
   it('testa se exibe apenas um pokémon por vez', () => {
-    const { getByTestId } = renderWithRouter(
+    const { getAllByTestId } = renderWithRouter(
       <Pokedex
         pokemons={ mockPokemons }
         isPokemonFavoriteById={ mockFavoriteById }
       />,
     );
     //  retorna '1' se existe apenas um elemento com tal test id.
-    const boxesInTheDocument = getByTestId('pokemon-name').ELEMENT_NODE;
-    expect(boxesInTheDocument).toBe(1);
+    const boxesInTheDocument = getAllByTestId('pokemon-name');
+    expect(boxesInTheDocument.length).toBe(1);
   });
   it('testa os botões de filtro', () => {
-    const { getByRole, getByText } = renderWithRouter(
+    const { getByRole, getByText, getAllByTestId } = renderWithRouter(
       <Pokedex
         pokemons={ mockPokemons }
         isPokemonFavoriteById={ mockFavoriteById }
       />,
     );
+
+    const LENGTH = 7;
+    const typeButtons = getAllByTestId('pokemon-type-button');
+    expect(typeButtons.length).toBe(LENGTH);
+
     const filterBtn = getByRole('button', { name: 'Psychic' });
     fireEvent.click(filterBtn);
     const firstPokemon = getByText('Alakazam');
