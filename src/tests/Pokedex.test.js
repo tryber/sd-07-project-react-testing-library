@@ -249,13 +249,13 @@ describe('Testa Pokedex.js', () => {
     expect(heading).toHaveTextContent('Encountered pokémons');
   });
   it('testa se exibe o próximo pokémon da lista quando clicar no botão', () => {
-    const { getByTestId, getByText } = renderWithRouter(
+    const { getByText } = renderWithRouter(
       <Pokedex
         pokemons={ mockPokemons }
         isPokemonFavoriteById={ mockFavoriteById }
       />,
     );
-    const btnNextPokemon = getByTestId('next-pokemon');
+    const btnNextPokemon = getByText('Próximo pokémon');
     fireEvent.click(btnNextPokemon);
     const nextPokemonByData = mockPokemons[1].name;
     const nextPokemon = getByText(nextPokemonByData);
@@ -274,7 +274,7 @@ describe('Testa Pokedex.js', () => {
     expect(boxesInTheDocument).toBe(1);
   });
   it('testa os botões de filtro', () => {
-    const { getByRole, getByText, getByTestId } = renderWithRouter(
+    const { getByRole, getByText } = renderWithRouter(
       <Pokedex
         pokemons={ mockPokemons }
         isPokemonFavoriteById={ mockFavoriteById }
@@ -285,7 +285,7 @@ describe('Testa Pokedex.js', () => {
     const firstPokemon = getByText('Alakazam');
     expect(firstPokemon).toBeInTheDocument();
 
-    const btnNextPokemon = getByTestId('next-pokemon');
+    const btnNextPokemon = getByText('Próximo pokémon');
     fireEvent.click(btnNextPokemon);
     const nextPokemon = getByText('Mew');
     expect(nextPokemon).toBeInTheDocument();
@@ -294,7 +294,7 @@ describe('Testa Pokedex.js', () => {
     expect(firstPokemon).toBeInTheDocument();
   });
   it('testa botão para resetar o filtro', () => {
-    const { getByRole, getByText, getByTestId } = renderWithRouter(
+    const { getByRole, getByText } = renderWithRouter(
       <Pokedex
         pokemons={ mockPokemons }
         isPokemonFavoriteById={ mockFavoriteById }
@@ -306,7 +306,7 @@ describe('Testa Pokedex.js', () => {
     const pikachu = getByText('Pikachu');
     expect(pikachu).toBeInTheDocument();
 
-    const btnNextPokemon = getByTestId('next-pokemon');
+    const btnNextPokemon = getByText('Próximo pokémon');
     fireEvent.click(btnNextPokemon);
 
     const charmander = getByText('Charmander');
@@ -344,14 +344,14 @@ describe('Testa Pokedex.js', () => {
     expect(filteredAll).toBeInTheDocument();
   });
   it('testa funcionalidade que desabilita botão "Próximo pokémon"', () => {
-    const { getByTestId } = renderWithRouter(
+    const { getByText } = renderWithRouter(
       <Pokedex
         pokemons={ [mockPokemons[0]] }
         isPokemonFavoriteById={ mockFavoriteById }
       />,
     );
 
-    const btnDisabled = getByTestId('next-pokemon');
+    const btnDisabled = getByText('Próximo pokémon');
     expect(btnDisabled).toBeInTheDocument();
     expect(btnDisabled.disabled).toBeTruthy();
   });
