@@ -344,16 +344,13 @@ describe('Testa Pokedex.js', () => {
   it('testa funcionalidade que desabilita botão "Próximo pokémon"', () => {
     const { getByRole, getByTestId } = renderWithRouter(
       <Pokedex
-        pokemons={ mockPokemons }
+        pokemons={ [mockPokemons[0]] }
         isPokemonFavoriteById={ mockFavoriteById }
       />,
     );
 
-    const filterBtn = getByRole('button', { name: 'Electric' });
-
-    fireEvent.click(filterBtn);
     const btnDisabled = getByTestId('next-pokemon');
-
+    expect(btnDisabled).toBeInTheDocument();
     expect(btnDisabled.disabled).toBeTruthy();
   });
 });
