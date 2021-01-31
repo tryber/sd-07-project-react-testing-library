@@ -3,8 +3,6 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './RenderWithRouter';
 import App from '../App';
 
-// describe('', () => {})
-
 describe('Requisito 1: Testando o arquivo App.js', () => {
   it('Página principal da Pokédex é renderizada ao carregar a aplicação', () => {
     const { getByText } = renderWithRouter(<App />);
@@ -16,10 +14,10 @@ describe('Requisito 1: Testando o arquivo App.js', () => {
 
   it('Possui conjunto fixo de links de navegação: Home, About e Favorite Pokémons',
     () => {
-      const { getByText } = renderWithRouter(<App />);
-      const home = getByText(/Home/i);
-      const about = getByText(/About/i);
-      const favorite = getByText(/Favorite Pokémons/i);
+      const { queryByText } = renderWithRouter(<App />);
+      const home = queryByText(/Home/i);
+      const about = queryByText(/About/i);
+      const favorite = queryByText(/Favorite Pokémons/i);
 
       expect(home).toBeInTheDocument();
       expect(about).toBeInTheDocument();
