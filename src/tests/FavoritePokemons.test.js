@@ -17,3 +17,4 @@ describe('Requisito 3: Testando o arquivo FavoritePokemons.js', () => {
   });
 });
 */
+test('', () => {});

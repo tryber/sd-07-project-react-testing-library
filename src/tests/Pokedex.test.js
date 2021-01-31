@@ -77,3 +77,4 @@ describe('Requisito 5: Testando o arquivo Pokedex.js', () => {
   });
 });
 */
+test('', () => {});
