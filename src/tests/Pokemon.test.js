@@ -42,6 +42,8 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
     fireEvent.click(moreDetails);
 
     expect(history.location.pathname).toBe(`/pokemons/${pokeData[0].id}`);
+    const pokeName = queryByText(`${pokeData[0].name} Details`);
+    expect(pokeName.tagName).toBe('H2');
   });
 
   it('Testa se a URL exibida no navegador muda para /pokemon/id com os detalhes', () => {
