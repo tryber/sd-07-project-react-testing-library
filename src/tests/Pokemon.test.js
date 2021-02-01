@@ -1,4 +1,5 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './RenderWithRouter';
 import Pokemon from '../components/Pokemon';
 import pokeData from '../data';
@@ -38,10 +39,24 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
     const { queryByText, history } = renderWithRouter(
       <Pokemon pokemon={ pokeData[0] } isFavorite />,
     );
+
+    const moreDetails = queryByText(/More details/i);
+    fireEvent.click(moreDetails);
+
+    expect(history.location.pathname).toBe('/pokemons/25');
   });
 
   it('Testa se a URL exibida no navegador muda para /pokemon/id com os detalhes', () => {
-    expect(true).toBeTruthy();
+    const { queryByText, history } = renderWithRouter(
+      <Pokemon pokemon={ pokeData[0] } isFavorite />,
+    );
+
+    expect(history.location.pathname).toBe('/');
+
+    const moreDetailsTwo = queryByText(/More details/i);
+    fireEvent.click(moreDetailsTwo);
+
+    expect(history.location.pathname).toBe('/pokemons/25');
   });
 
   it('Testa se existe um ícone de estrela nos Pokémons favoritados', () => {
