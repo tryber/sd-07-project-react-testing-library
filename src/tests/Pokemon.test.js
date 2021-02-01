@@ -28,9 +28,7 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
   });
 
   it('Teste se o card do Pokémon indicado na Pokédex contém um link de navegação', () => {
-    const { queryByText } = renderWithRouter(
-      <Pokemon pokemon={ pokeData[0] } isFavorite />,
-    );
+    const { queryByText } = renderWithRouter(<App />);
 
     const detailsButton = queryByText(/More details/i);
     expect(detailsButton.tagName).toBe('A');
@@ -38,9 +36,7 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
   });
 
   it('Testa se ao clicar no link de navegação é feito o redirecionamento', () => {
-    const { queryByText, history } = renderWithRouter(
-      <Pokemon pokemon={ pokeData[0] } isFavorite />,
-    );
+    const { queryByText, history } = renderWithRouter(<App />);
 
     const moreDetails = queryByText(/More details/i);
     fireEvent.click(moreDetails);
