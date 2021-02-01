@@ -1,17 +1,28 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('App.js', () => {
-  it('deve renderizar o componente `Pokédex` quando a URL for `/`', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+  test('shows the Pokédex when the route is `/`', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={ ['/'] }>
+        <App />
+      </MemoryRouter>,
+    );
 
-    history.push('/');
-    const heading = getByText(/Pokédex/i);
-    expect(heading).toBeInTheDocument();
-    expect(heading.textContent).toBe('Pokédex');
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
+
+  // it('deve renderizar o componente `Pokédex` quando a URL for `/`', () => {
+  //   const { getByText, history } = renderWithRouter(<App />);
+
+  //   history.push('/');
+  //   const heading = getByText(/Pokédex/i);
+  //   expect(heading).toBeInTheDocument();
+  //   expect(heading.textContent).toBe('Pokédex');
+  // });
 
   it(
     'deve renderizar uma barra de navegação com os links: Home, About e FavoritePokémons',
