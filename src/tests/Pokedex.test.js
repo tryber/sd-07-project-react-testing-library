@@ -7,24 +7,25 @@ import pokeData from '../data';
 describe('Requisito 5: Testando o arquivo Pokedex.js', () => {
   it('Testa se página contém um heading h2 com o texto Encountered pokémons', () => {
     const { queryByText } = renderWithRouter(<App />);
-    const PokedexTitle = queryByText(/Encountered pokémons/i);
+    const pokedexTitle = queryByText(/Encountered pokémons/i);
 
-    expect(PokedexTitle.tagName).toBe('H2');
+    expect(pokedexTitle.tagName).toBe('H2');
   });
 
   it('Testa se é exibido o próximo Pokémon quando o botão é clicado', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const nextPokemon = getByText(/Próximo pokémon/i);
+    const { queryByText } = renderWithRouter(<App />);
+    const nextPokemon = queryByText(/Próximo pokémon/i);
 
     expect(nextPokemon).toBeInTheDocument();
 
     pokeData.forEach((item) => {
-      const pokemon = getByText(item.name);
-      fireEvent.click(getByText(/Próximo pokémon/i));
+      const pokemon = queryByText(item.name);
+      const nextPokemonBtn = queryByText(/Próximo pokémon/i);
+      fireEvent.click(nextPokemonBtn);
       expect(pokemon).toBeInTheDocument();
     });
 
-    const pikachu = getByText(/Pikachu/i);
+    const pikachu = queryByText(pokeData[0].name);
     expect(pikachu).toBeInTheDocument();
   });
 
@@ -53,8 +54,12 @@ describe('Requisito 5: Testando o arquivo Pokedex.js', () => {
     expect(allButton.tagName).toBe('BUTTON');
   });
 
-  it('Teste se é criado, dinamicamente, um botão de filtro para cada tipo', () => {
-    const { getAllByText } = renderWithRouter(<App />);
+  it('Testa se é criado, dinamicamente, um botão de filtro para cada tipo', () => {
+    const { queryByText, getAllByText } = renderWithRouter(<App />);
+    const allPokedexBtn = queryByText(/All/i);
+
+    fireEvent.click(allPokedexBtn);
+
     const electricButton = getAllByText(/Electric/i);
     const poisonButton = getAllByText(/Poison/i);
     const dragonButton = getAllByText(/Dragon/i);
@@ -71,6 +76,6 @@ describe('Requisito 5: Testando o arquivo Pokedex.js', () => {
     fireEvent.click(normalButton);
 
     const nextPokemon = queryByText(/Próximo pokémon/i);
-    expect(nextPokemon).toBeDisabled();
+    expect(nextPokemon).toBeDisabled(); // Source: https://github.com/testing-library/jest-dom#tobedisabled
   });
 });
