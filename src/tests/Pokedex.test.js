@@ -1,80 +1,76 @@
-/*
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './RenderWithRouter';
-import About from '../components/About';
+import App from '../App';
+import pokeData from '../data';
 
 describe('Requisito 5: Testando o arquivo Pokedex.js', () => {
   it('Testa se página contém um heading h2 com o texto Encountered pokémons', () => {
-    expect(true).toBeTruthy();
+    const { queryByText } = renderWithRouter(<App />);
+    const PokedexTitle = queryByText(/Encountered pokémons/i);
+
+    expect(PokedexTitle.tagName).toBe('H2');
   });
 
   it('Testa se é exibido o próximo Pokémon quando o botão é clicado', () => {
-    expect(true).toBeTruthy();
+    const { getByText } = renderWithRouter(<App />);
+    const nextPokemon = getByText(/Próximo pokémon/i);
+
+    expect(nextPokemon).toBeInTheDocument();
+
+    pokeData.forEach((item) => {
+      const pokemon = getByText(item.name);
+      fireEvent.click(getByText(/Próximo pokémon/i));
+      expect(pokemon).toBeInTheDocument();
+    });
+
+    const pikachu = getByText(/Pikachu/i);
+    expect(pikachu).toBeInTheDocument();
   });
 
-  it('O botão deve conter o texto Próximo pokémon', () => {
-    expect(true).toBeTruthy();
-  });
+  it('Testa se é mostrado apenas um Pokémon por vez', () => { // .pokemon
+    const { getAllByText } = renderWithRouter(<App />);
+    const ONE = 1;
+    const getMoreDetails = getAllByText(/More details/i);
 
-  it('Os próximos Pokémons da lista devem ser mostrados, um a um', () => {
-    expect(true).toBeTruthy();
-  });
-
-  it('O primeiro Pokémon deve ser mostrado ao clicar, se estiver no último', () => {
-    expect(true).toBeTruthy();
-  });
-
-  it('Testa se é mostrado apenas um Pokémon por vez', () => {
-    expect(true).toBeTruthy();
+    expect(getMoreDetails.length).toBe(ONE);
   });
 
   it('Testa se a Pokédex tem os botões de filtro', () => {
-    expect(true).toBeTruthy();
-  });
+    const { queryByText } = renderWithRouter(<App />);
+    const bugButton = queryByText(/Bug/i);
 
-  it('Selecionar um botão de tipo destaca somente os pokémons daquele tipo.', () => {
-    expect(true).toBeTruthy();
-  });
+    fireEvent.click(bugButton);
 
-  it('O texto do botão deve corresponder ao nome do tipo, ex. Psychic', () => {
-    expect(true).toBeTruthy();
+    const caterpie = queryByText(/Caterpie/i);
+    expect(caterpie).toBeInTheDocument();
   });
 
   it('Testa se a Pokédex contém um botão para resetar o filtro', () => {
-    expect(true).toBeTruthy();
-  });
+    const { queryByText } = renderWithRouter(<App />);
+    const allButton = queryByText(/All/i);
 
-  it('O texto do botão deve ser All', () => {
-    expect(true).toBeTruthy();
-  });
-
-  it('Ao clicar em All a Pokedéx deverá mostrar os Pokémons normalmente', () => {
-    expect(true).toBeTruthy();
-  });
-
-  it('Ao carregar a página, o filtro selecionado deverá ser All', () => {
-    expect(true).toBeTruthy();
+    expect(allButton.tagName).toBe('BUTTON');
   });
 
   it('Teste se é criado, dinamicamente, um botão de filtro para cada tipo', () => {
-    expect(true).toBeTruthy();
-  });
+    const { getAllByText } = renderWithRouter(<App />);
+    const electricButton = getAllByText(/Electric/i);
+    const poisonButton = getAllByText(/Poison/i);
+    const dragonButton = getAllByText(/Dragon/i);
 
-  it('Os botões de filtragem devem ser dinâmicos', () => {
-    expect(true).toBeTruthy();
-  });
-
-  it('A Pokédex deve possuir pokémons do tipo Fire, Psychic, Electric e Normal', () => {
-    expect(true).toBeTruthy();
-  });
-
-  it('Mostra como opção de filtro para todos tipos. O All precisa estar visível', () => {
-    expect(true).toBeTruthy();
+    expect(electricButton[1].tagName).toBe('BUTTON');
+    expect(poisonButton[0].tagName).toBe('BUTTON');
+    expect(dragonButton[0].tagName).toBe('BUTTON');
   });
 
   it('Se tiver um só pokémon o botão de Próximo pokémon deve ser desabilitado', () => {
-    expect(true).toBeTruthy();
+    const { queryByText } = renderWithRouter(<App />);
+    const normalButton = queryByText(/Normal/i);
+
+    fireEvent.click(normalButton);
+
+    const nextPokemon = queryByText(/Próximo pokémon/i);
+    expect(nextPokemon).toBeDisabled();
   });
 });
-*/
-test('', () => {});
