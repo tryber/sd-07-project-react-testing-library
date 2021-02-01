@@ -2,6 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './RenderWithRouter';
 import Pokemon from '../components/Pokemon';
+import App from '../App';
 import pokeData from '../data';
 
 describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
@@ -48,9 +49,7 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
   });
 
   it('Testa se a URL exibida no navegador muda para /pokemon/id com os detalhes', () => {
-    const { queryByText, history } = renderWithRouter(
-      <Pokemon pokemon={ pokeData[0] } isFavorite />,
-    );
+    const { queryByText, history } = renderWithRouter(<App />);
 
     expect(history.location.pathname).toBe('/');
 
