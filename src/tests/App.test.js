@@ -69,3 +69,5 @@ test('se a aplicação é redirecionada para a página 404', () => {
   const erro404 = getByText(/Page requested not found/i);
   expect(erro404).toBeInTheDocument();
 });
+
+// Referência para Pedro Marques Costa, Nicole Teisen, Bruno Alves,  e outros companheiros do curso da Trybe, em diversas partes dessa aplicação.
