@@ -29,6 +29,11 @@ describe('Verificando o Pokedex.js', () => {
     pokeName = getByTestId('pokemon-name');
     expect(pokeName).toHaveTextContent('Pikachu');
   });
+  it('mostra apenas um pokémon', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);
+    const pokeNames = getAllByTestId('pokemon-name');
+    expect(pokeNames.length).toBe(1);
+  });
   it('circula somente pelos pokémons daquele tipo', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
     const typeArray = ['Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
