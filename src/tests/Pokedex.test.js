@@ -35,8 +35,11 @@ describe('Verificando o Pokedex.js', () => {
     expect(pokeNames.length).toBe(1);
   });
   it('circula somente pelos pokémons daquele tipo', () => {
-    const { getByText, getByTestId } = renderWithRouter(<App />);
+    const { getByText, getByTestId, getAllByTestId } = renderWithRouter(<App />);
     const typeArray = ['Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
+    const allButtons = getAllByTestId('pokemon-type-button');
+    const allTypes = 7;
+    expect(allButtons.length).toBe(allTypes);
     typeArray.forEach((type) => {
       const pokeButton = getByText(type);
       const allButton = getByText('All');
@@ -49,12 +52,16 @@ describe('Verificando o Pokedex.js', () => {
   });
   it('contém um botão para resetar o filtro', () => {
     const { getByTestId, getByText } = renderWithRouter(<App />);
+    const firstPokemon = getByText('Pikachu');
+    const allButton = getByText('All');
     const nextPokemon = getByText('Próximo pokémon');
     let pokemonType = getByTestId('pokemonType');
     expect(pokemonType).toHaveTextContent('Electric');
     fireEvent.click(nextPokemon);
     pokemonType = getByTestId('pokemonType');
     expect(pokemonType).toHaveTextContent('Fire');
+    fireEvent.click(allButton);
+    expect(firstPokemon).toBeInTheDocument();
   });
   it('desabilitao a lista filtrada de Pokémons se tiver um só pokémon', () => {
     const { getByText } = renderWithRouter(<App />);
