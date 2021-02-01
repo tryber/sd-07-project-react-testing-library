@@ -10,19 +10,20 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
       <Pokemon pokemon={ pokeData[0] } isFavorite />,
     );
 
-    const pokeName = queryByText(/Pikachu/i);
-    const pokeType = queryByText(/Electric/i);
-    const pokeWeight = queryByText(/Average weight: 6.0 kg/i);
+    const pokeName = queryByText(pokeData[0].name);
+    const pokeType = queryByText(pokeData[0].type);
+    const avW = pokeData[0].averageWeight;
+    const pokeWeight = queryByText(`Average weight: ${avW.value} ${avW.measurementUnit}`);
     const favoritePokemonImage = getByAltText(/is marked as favorite/i);
     const imageElement = getAllByRole('img');
-    const imageURL = 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
+    const imageURL = pokeData[0].image;
 
     expect(pokeName).toBeInTheDocument();
     expect(pokeType).toBeInTheDocument();
     expect(pokeWeight).toBeInTheDocument();
     expect(favoritePokemonImage).toBeInTheDocument();
     expect(imageElement[0].src).toBe(imageURL);
-    expect(imageElement[0].alt).toBe('Pikachu sprite');
+    expect(imageElement[0].alt).toBe(`${pokeData[0].name} sprite`);
   });
 
   it('Teste se o card do Pokémon indicado na Pokédex contém um link de navegação', () => {
@@ -32,7 +33,7 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
 
     const detailsButton = queryByText(/More details/i);
     expect(detailsButton.tagName).toBe('A');
-    expect(detailsButton).toHaveAttribute('href', '/pokemons/25'); // Source: https://github.com/testing-library/jest-dom#tohaveattribute
+    expect(detailsButton).toHaveAttribute('href', `/pokemons/${pokeData[0].id}`); // Source: https://github.com/testing-library/jest-dom#tohaveattribute
   });
 
   it('Testa se ao clicar no link de navegação é feito o redirecionamento', () => {
@@ -43,7 +44,7 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
     const moreDetails = queryByText(/More details/i);
     fireEvent.click(moreDetails);
 
-    expect(history.location.pathname).toBe('/pokemons/25');
+    expect(history.location.pathname).toBe(`/pokemons/${pokeData[0].id}`);
   });
 
   it('Testa se a URL exibida no navegador muda para /pokemon/id com os detalhes', () => {
@@ -56,7 +57,7 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
     const moreDetailsTwo = queryByText(/More details/i);
     fireEvent.click(moreDetailsTwo);
 
-    expect(history.location.pathname).toBe('/pokemons/25');
+    expect(history.location.pathname).toBe(`/pokemons/${pokeData[0].id}`);
   });
 
   it('Testa se existe um ícone de estrela nos Pokémons favoritados', () => {
