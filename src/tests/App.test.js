@@ -4,7 +4,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import App from '../App';
 
-test('A página principal da Pokédex é renderizada ao carregar a aplicação no caminho de URL /', () => {
+test('Renderizar a página Pokédex ao carregar a aplicação no caminho de URL /', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
@@ -44,7 +44,7 @@ describe('O topo da aplicação contém um conjunto fixo de links de navegação
   });
 });
 
-test('A aplicação é redirecionada para a página inicial, na URL / ao clicar no link Home da barra de navegação', () => {
+test('Redirecionar para a página inicial ao clicar no link Home', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
     <Router history={ history }>
@@ -57,7 +57,7 @@ test('A aplicação é redirecionada para a página inicial, na URL / ao clicar 
   expect(pathname).toBe('/');
 });
 
-test('A aplicação é redirecionada para a página de About, na URL /about, ao clicar no link About da barra de navegação', () => {
+test('Redirecionar para /About ao clicar no link About', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
     <Router history={ history }>
@@ -68,10 +68,9 @@ test('A aplicação é redirecionada para a página de About, na URL /about, ao 
   fireEvent.click(about);
   const { pathname } = history.location;
   expect(pathname).toBe('/about');
-
 });
 
-test('A aplicação é redirecionada para a página de Pokémons Favoritados, na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação', () => {
+test('Redirecionar para /favorites ao clicar no link Favorite Pokémons', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
     <Router history={ history }>
@@ -84,7 +83,7 @@ test('A aplicação é redirecionada para a página de Pokémons Favoritados, na
   expect(pathname).toBe('/favorites');
 });
 
-test('A aplicação é redirecionada para a página Not Found ao entrar em uma URL desconhecida', () => {
+test('Redirecionar para a página Not Found ao entrar em uma URL desconhecida', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
     <Router history={ history }>

@@ -12,7 +12,7 @@ test('A página contém um heading h2 com o texto Encountered pokémons', () => 
   expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
 });
 
-test('É exibido o próximo Pokémon da lista quando o botão Próximo pokémon é clicado', () => {
+test('Exibir o próximo Pokémon da lista quando o botão Próximo pokémon é clicado', () => {
   const { getByRole, getByText } = render(
     <MemoryRouter>
       <App />
@@ -109,7 +109,7 @@ test('É criado, dinamicamente, um botão de filtro para cada tipo de Pokémon',
   expect(allPokemonsButton).toBeInTheDocument();
 });
 
-test('O botão de Próximo pokémon deve ser desabiltestado quando a lista filtrada de Pokémons tiver um só pokémon', () => {
+test('Desabilitar o botão de Próximo pokémon quando tiver um só pokémon', () => {
   const { getAllByRole, getByRole } = render(
     <MemoryRouter>
       <App />

@@ -4,11 +4,12 @@ import { fireEvent, render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
 
-test('É exibido na tela a mensagem No favorite pokemon found, se a pessoa não tiver pokémons favoritos', () => {
-  const { getByText } = render(<FavoritePokemons />);
-  const noFavorites = getByText(/No favorite pokemon found/i);
-  expect(noFavorites).toBeInTheDocument();
-});
+test('Éxibir a mensagem No favorite pokemon found se não tiver pokémons favoritos',
+  () => {
+    const { getByText } = render(<FavoritePokemons />);
+    const noFavorites = getByText(/No favorite pokemon found/i);
+    expect(noFavorites).toBeInTheDocument();
+  });
 
 test('É exibido todos os cards de pokémons favoritados', () => {
   const { getByText } = render(
