@@ -9,7 +9,6 @@ describe('NotFound.js', () => {
 
     const heading = getByText(/page requested not found/i);
     expect(heading).toBeInTheDocument();
-    expect(heading.textContent).toBe('Page requested not found 😭');
   });
 
   it('deve renderizar uma imagem específica', () => {
