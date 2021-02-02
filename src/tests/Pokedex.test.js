@@ -463,6 +463,7 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import pokemons from '../data';
 import App from '../App';
+
 test('se a página possui o texto Encountered pokémons', () => {
   const { getByText } = renderWithRouter(<App />);
   expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
