@@ -68,6 +68,7 @@ class App extends Component {
 
   renderRoutes() {
     const { isPokemonFavoriteById } = this.state;
+    console.log(isPokemonFavoriteById);
     const favoritePokemons = pokemons.filter(({ id }) => isPokemonFavoriteById[id]);
 
     return (
