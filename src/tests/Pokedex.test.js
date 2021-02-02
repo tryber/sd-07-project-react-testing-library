@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getByAltText } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './RenderWithRouter';
 import App from '../App';
 import pokeData from '../data';
