@@ -30,7 +30,7 @@ clicado.`, () => {
 
   it(`Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar
   sucessivamente no botão;`, () => {
-    const { getByTestId } = renderWithRouter(<Pokedex
+    const { getByTestId, getByText } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ {} }
     />);

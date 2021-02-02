@@ -24,7 +24,7 @@ describe('Testes do arquivo PokemonDetails.js', () => {
     expect(link).toBeNull();
 
     const heading = document.querySelectorAll('h2');
-    expect(heading[1].innerHTML).toBe(' Summary ');
+    expect(heading[1].innerHTML).toBe('Summary');
 
     const paragraph = document.querySelector('p');
     expect(paragraph).toBeInTheDocument();
