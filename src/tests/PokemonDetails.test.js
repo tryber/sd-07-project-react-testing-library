@@ -63,7 +63,7 @@ describe('PokemonDetails.js', () => {
     expect(checkbox).toBeInTheDocument();
 
     expect(favoriteIcon).toBeInTheDocument();
-    fireEvent.click(checkboxLabel);
+    fireEvent.click(checkbox);
     expect(favoriteIcon).not.toBeInTheDocument();
   });
 });
