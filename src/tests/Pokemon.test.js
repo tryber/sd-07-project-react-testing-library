@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 
 test('if the card rendering was correct', () => {
   const { getByTestId, getByRole } = renderWithRouter(<App />);

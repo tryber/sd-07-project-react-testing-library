@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 
 test('if messae appears when there is no favorite pokémon', () => {
   const { getByText } = renderWithRouter(<App />);
