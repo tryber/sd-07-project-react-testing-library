@@ -18,7 +18,7 @@ describe('Testes do arquivo Pokemon.js', () => {
     expect(type.innerHTML).toBe('Electric');
 
     const weight = getByTestId('pokemon-weight');
-    expect(weight.innerHTML).toBe('Average weight:6.0kg');
+    expect(weight.innerHTML).toBe('Average weight: 6.0 kg');
 
     const image = getByRole('img');
     expect(image.src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
