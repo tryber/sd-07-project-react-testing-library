@@ -7,7 +7,7 @@ import pokeData from '../data';
 
 describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
   it('Testa se é renderizado um card com as informações de determinado pokémon', () => {
-    const { queryByText, getByAltText, getAllByRole } = renderWithRouter(
+    const { queryByText, getAllByRole } = renderWithRouter(
       <Pokemon pokemon={ pokeData[0] } isFavorite />,
     );
 
@@ -15,14 +15,12 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
     const pokeType = queryByText(pokeData[0].type);
     const avW = pokeData[0].averageWeight;
     const pokeWeight = queryByText(`Average weight: ${avW.value} ${avW.measurementUnit}`);
-    const favoritePokemonImage = getByAltText(/is marked as favorite/i);
     const imageElement = getAllByRole('img');
     const imageURL = pokeData[0].image;
 
     expect(pokeName).toBeInTheDocument();
     expect(pokeType).toBeInTheDocument();
     expect(pokeWeight).toBeInTheDocument();
-    expect(favoritePokemonImage).toBeInTheDocument();
     expect(imageElement[0].src).toBe(imageURL);
     expect(imageElement[0].alt).toBe(`${pokeData[0].name} sprite`);
   });
@@ -43,7 +41,7 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
 
     expect(history.location.pathname).toBe(`/pokemons/${pokeData[0].id}`);
     const pokeName = queryByText(`${pokeData[0].name} Details`);
-    expect(pokeName.tagName).toBe('H2');
+    expect(pokeName).toBeInTheDocument();
   });
 
   it('Testa se a URL exibida no navegador muda para /pokemon/id com os detalhes', () => {
@@ -61,8 +59,16 @@ describe('Requisito 6: Testando o arquivo Pokemon.js', () => {
     const { getByAltText } = renderWithRouter(
       <Pokemon pokemon={ pokeData[0] } isFavorite />,
     );
+
+    // const { queryByText, getByAltText } = renderWithRouter(<App />);
+
+    // const moreDetailsTwo = queryByText(/More details/i);
+    // fireEvent.click(moreDetailsTwo);
+
     const imageURL = '/star-icon.svg';
-    const favoritePokemonImage = getByAltText(/is marked as favorite/i);
+    const favoritePokemonImage = getByAltText(
+      `${pokeData[0].name} is marked as favorite`,
+    );
 
     expect(favoritePokemonImage).toHaveAttribute('src', imageURL);
   });
