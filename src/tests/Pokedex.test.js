@@ -1,8 +1,10 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, cleanup } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
+
+afterEach(cleanup);
 
 test('Testa se página contém heading "h2" com o texto "Encountered pokémons".', () => {
   const { getByRole } = renderWithRouter(<Pokedex
@@ -28,18 +30,37 @@ clicado.`, () => {
 
   it(`Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar
   sucessivamente no botão;`, () => {
-    const { queryByText, getByTestId } = renderWithRouter(<Pokedex
+    const { getByTestId } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ {} }
     />);
     const btnNextPokemon = getByTestId(/next-pokemon/i);
-    const pikachu = queryByText('Pikachu');
-    expect(pikachu).toBeInTheDocument();
     fireEvent.click(btnNextPokemon);
-    const charmander = queryByText('Charmander');
-    expect(charmander).toBeInTheDocument();
+    expect(getByText('Charmander')).toBeInTheDocument();
+
     fireEvent.click(btnNextPokemon);
-    expect(pikachu).toBeInTheDocument();
+    expect(getByText('Caterpie')).toBeInTheDocument();
+
+    fireEvent.click(btnNextPokemon);
+    expect(getByText('Ekans')).toBeInTheDocument();
+
+    fireEvent.click(btnNextPokemon);
+    expect(getByText('Alakazam')).toBeInTheDocument();
+
+    fireEvent.click(btnNextPokemon);
+    expect(getByText('Mew')).toBeInTheDocument();
+
+    fireEvent.click(btnNextPokemon);
+    expect(getByText('Rapidash')).toBeInTheDocument();
+
+    fireEvent.click(btnNextPokemon);
+    expect(getByText('Snorlax')).toBeInTheDocument();
+
+    fireEvent.click(btnNextPokemon);
+    expect(getByText('Dragonair')).toBeInTheDocument();
+
+    fireEvent.click(btnNextPokemon);
+    expect(getByText('Pikachu')).toBeInTheDocument();
   });
 });
 
