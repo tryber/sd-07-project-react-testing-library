@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, getByAltText } from '@testing-library/react';
 import renderWithRouter from './RenderWithRouter';
 import App from '../App';
 import pokeData from '../data';
@@ -48,10 +48,20 @@ describe('Requisito 5: Testando o arquivo Pokedex.js', () => {
   });
 
   it('Testa se a Pokédex contém um botão para resetar o filtro', () => {
-    const { queryByText } = renderWithRouter(<App />);
-    const allButton = queryByText(/All/i);
+    const { getAllByTestId, getByText } = renderWithRouter(<App />); // pokemon-type-button
+    const allButton = getAllByTestId('pokemon-type-button');
 
+    expect(allButton[0]).toBeInTheDocument();
+    expect(getByText('All')).toBeInTheDocument();
+    console.log(allButton);
+    /*
     expect(allButton.tagName).toBe('BUTTON');
+    expect(allButton).toBeInTheDocument();
+
+    fireEvent.click(allButton);
+    const pokeName = queryByText(pokeData[0].name);
+    expect(pokeName).toBeInTheDocument();
+    */
   });
 
   it('Testa se é criado, dinamicamente, um botão de filtro para cada tipo', () => {
