@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouter from '../renderWithRouter'
+import renderWithRouter from '../renderWithRouter';
 
 test('if button and Encountered pokémons text is present', () => {
   const { getByText } = renderWithRouter(<App />);
