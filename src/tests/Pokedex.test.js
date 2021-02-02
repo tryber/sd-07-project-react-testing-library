@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, cleanup } from '@testing-library/react';
+import { fireEvent, cleanup, screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
@@ -27,6 +27,16 @@ clicado.`, () => {
     const btnNextPokemon = getByRole('button', { name: /Próximo pokémon/i });
     expect(btnNextPokemon).toBeInTheDocument();
   });
+
+  it('testa se tem o botão de filtro all', () => {
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ {} }
+    />);
+
+    const btnAllFilter = screen.getByText(/All/i)
+    expect(btnAllFilter).toBeInTheDocument();
+  })
 
   it(`Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar
   sucessivamente no botão;`, () => {
@@ -83,6 +93,15 @@ pokémons daquele tipo;`, () => {
       pokemons={ pokemons }
       isPokemonFavoriteById={ {} }
     />);
+    expect(screen.getByRole('button', { name: /Electric/i })).toBeInTheDocument();
+    expect(screen.getByText(/All/i)).toBeInTheDocument();
+    expect(screen.getByText(/Fire/i)).toBeInTheDocument();
+    expect(screen.getByText(/Bug/i)).toBeInTheDocument();
+    expect(screen.getByText(/Poison/i)).toBeInTheDocument();
+    expect(screen.getByText(/Psy/i)).toBeInTheDocument();
+    expect(screen.getByText(/Normal/i)).toBeInTheDocument();
+    expect(screen.getByText(/Dragon/i)).toBeInTheDocument();
+    const btnAllFilter = screen.getByText(/All/i)
     let currentPokemon = queryByTestId('pokemon-name').innerHTML;
     const typeBtn = queryAllByTestId('pokemon-type-button');
     expect(currentPokemon).toBe(pokemons[0].name);
@@ -104,5 +123,8 @@ pokémons daquele tipo;`, () => {
     fireEvent.click(typeBtn[6]);
     currentPokemon = queryByTestId('pokemon-name').innerHTML;
     expect(currentPokemon).toBe(pokemons[8].name);
+    fireEvent.click(btnAllFilter);
+    currentPokemon = queryByTestId('pokemon-name').innerHTML;
+    expect(currentPokemon).toBe(pokemons[0].name);
   });
 });

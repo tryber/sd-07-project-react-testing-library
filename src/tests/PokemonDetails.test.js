@@ -27,7 +27,9 @@ describe('Testes do arquivo PokemonDetails.js', () => {
     expect(heading[1].innerHTML).toBe(' Summary ');
 
     const paragraph = document.querySelector('p');
-    expect(paragraph).toBeInTheDocument();
+    expect(paragraph[0]).toBe(
+      'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.'
+    );
 
     const locationHeading = document.querySelectorAll('h2');
     expect(locationHeading[2].innerHTML).toBe('Game Locations of Pikachu');
@@ -38,7 +40,7 @@ describe('Testes do arquivo PokemonDetails.js', () => {
     fireEvent.click(favorite);
 
     const icon = getAllByRole('img');
-    expect(icon[1].src).toBe('http://localhost/star-icon.svg');
-    expect(icon[1].alt).toBe('Pikachu is marked as favorite');
+    expect(icon[1].src).toBe('https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(icon[1].alt).toBe('Pikachu location');
   });
 });
