@@ -4,7 +4,7 @@ import renderWithRouter from '../services/renderWithRouter';
 import PokemonDetails from '../components/PokemonDetails';
 import pokemons from '../data';
 
-describe('Testando o arquivo PokemonDetails.js', () => {
+describe('Testando o arquivo PokemonDetails', () => {
   it('se as infos detalhadas do Pokémon selecionado são mostradas', () => {
     renderWithRouter(
       <PokemonDetails
