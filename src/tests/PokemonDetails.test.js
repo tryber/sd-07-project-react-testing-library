@@ -20,7 +20,6 @@ describe('Testando o arquivo PokemonDetails.js', () => {
 
     expect(summary.nextElementSibling.tagName).toBe('P');
     expect(summary.nextElementSibling).toHaveTextContent('This intelligent Pokémon');
-
   });
   it('Teste se exibe uma seção com os mapas contendo as localizações do pokémon', () => {
     const { getByText, getByRole, getAllByAltText } = renderWithRouter(<App />);
