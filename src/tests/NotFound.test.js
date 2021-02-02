@@ -14,7 +14,6 @@ describe('NotFound.js', () => {
 
   it('deve renderizar uma imagem específica', () => {
     const { getByAltText } = renderWithRouter(<NotFound />);
-
     const img = getByAltText(
       /pikachu crying because the page requested was not found/i,
     );
