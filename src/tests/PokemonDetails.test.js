@@ -27,9 +27,8 @@ describe('Testes do arquivo PokemonDetails.js', () => {
     expect(heading[1].innerHTML).toBe(' Summary ');
 
     const paragraph = document.querySelector('p');
-    expect(paragraph[0]).toBe(
-      'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.'
-    );
+    expect(paragraph[0]).toBe(`This intelligent Pokémon roasts hard berries with
+electricity to make them tender enough to eat.`);
 
     const locationHeading = document.querySelectorAll('h2');
     expect(locationHeading[2].innerHTML).toBe('Game Locations of Pikachu');

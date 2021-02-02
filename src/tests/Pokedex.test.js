@@ -34,9 +34,9 @@ clicado.`, () => {
       isPokemonFavoriteById={ {} }
     />);
 
-    const btnAllFilter = screen.getByText(/All/i)
+    const btnAllFilter = screen.getByText(/All/i);
     expect(btnAllFilter).toBeInTheDocument();
-  })
+  });
 
   it(`Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar
   sucessivamente no botão;`, () => {
@@ -101,7 +101,7 @@ pokémons daquele tipo;`, () => {
     expect(screen.getByText(/Psy/i)).toBeInTheDocument();
     expect(screen.getByText(/Normal/i)).toBeInTheDocument();
     expect(screen.getByText(/Dragon/i)).toBeInTheDocument();
-    const btnAllFilter = screen.getByText(/All/i)
+    const btnAllFilter = screen.getByText(/All/i);
     let currentPokemon = queryByTestId('pokemon-name').innerHTML;
     const typeBtn = queryAllByTestId('pokemon-type-button');
     expect(currentPokemon).toBe(pokemons[0].name);
