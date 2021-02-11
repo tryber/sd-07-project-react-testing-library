@@ -4,6 +4,8 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 
+// code idea from vanessaberbidi
+
 describe('testing FavoritePokemon.js component', () => {
   it('should show No favorite pokemon found message if no pokemon is favorited', () => {
     const { getByText } = render(<FavoritePokemons />);
