@@ -26,6 +26,7 @@ describe('testing Pokemon.js component', () => {
     expect(alt).toBe('Pikachu sprite');
   });
 
+  // code idea for it() from vanessa-berbidi  
   it('should contain a link for more details', () => {
     const pokemon = pokemons[0];
     const { getByText, history } = renderWithRouter(<Pokemon
